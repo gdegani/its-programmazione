@@ -516,6 +516,7 @@ int vasprintf(char ** restrict, const char * restrict, va_list) __attribute__((_
 
 
 
+
 FILE *funopen(const void *,
      int (* _Nullable)(void *, char *, int),
      int (* _Nullable)(void *, const char *, int),
@@ -527,25 +528,15 @@ FILE *funopen(const void *,
 # 1 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_common.h" 1 3 4
 # 32 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h" 2 3 4
 # 42 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h" 3 4
+// #region snippet
 extern int __sprintf_chk (char * restrict, int, size_t,
      const char * restrict, ...);
 # 52 "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/secure/_stdio.h" 3 4
 extern int __snprintf_chk (char * restrict, size_t, int, size_t,
       const char * restrict, ...);
 
-
-
-
-
-
-
 extern int __vsprintf_chk (char * restrict, int, size_t,
       const char * restrict, va_list);
-
-
-
-
-
 
 
 extern int __vsnprintf_chk (char * restrict, size_t, int, size_t,
@@ -558,3 +549,4 @@ int main(void) {
     printf("Hello, World!\n");
     return 0;
 }
+// #endregion

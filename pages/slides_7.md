@@ -111,7 +111,6 @@ p=(double *)malloc(sizeof(double));
 free(p);
 ```
 
-
 ---
 level: 3
 

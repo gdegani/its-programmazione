@@ -1,4 +1,6 @@
 ---
+layout: cover
+
 coverDate:
 
 ---
@@ -74,6 +76,18 @@ level: 3
 
 <<< @/snippets/example01/main.c c {all|1-4|6-7|9-15|17-18|19|all}{lines:true}
 
+--
+level: 3
+
+---
+
+# Creazione di un eseguibile
+
+Il processo di creazione di un eseguibile a partire dai sorgenti è composto da 2 fasi:
+
+- **compilazione**: il sorgente viene compilato, ma alcune parti (le “funzioni di base”) sono ancora mancanti; viene generato un file intermedio detto file oggetto
+- **linking**: il file oggetto e le librerie vengono unite (collegate – “link”) così da aggiungere al file oggetto le parti mancanti e costituire un unico file eseguibile. La fase di link può creare un eseguibile collegando insieme più file oggetto e più librerie.
+
 ---
 level: 3
 
@@ -97,16 +111,42 @@ CC-->OF@{ shape: doc, label: "Object file" }
 ```
 
 ---
+layout: two-cols
 level: 3
 
 ---
 
-# Creazione di un eseguibile
+# Build manuale
 
-Il processo di creazione di un eseguibile a partire dai sorgenti è composto da 2 fasi:
+Preprocess
 
-- **compilazione**: il sorgente viene compilato, ma alcune parti (le “funzioni di base”) sono ancora mancanti; viene generato un file intermedio detto file oggetto
-- **linking**: il file oggetto e le librerie vengono unite (collegate – “link”) così da aggiungere al file oggetto le parti mancanti e costituire un unico file eseguibile. La fase di link può creare un eseguibile collegando insieme più file oggetto e più librerie.
+```txt
+$ gcc -E hello.c -o hello.i 
+
+```
+
+::right::
+
+<<< @/snippets/example02/main.i#snippet c {all}{lines:true}
+
+---
+layout: two-cols
+level: 3
+
+---
+
+# Build manuale
+
+Translate
+
+```txt
+$ gcc -S hello.i -o hello.asm 
+
+```
+
+::right::
+
+<<< @/snippets/example02/main.asm c {all}{lines:true}
 
 ---
 level: 3
