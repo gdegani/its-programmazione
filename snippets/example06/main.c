@@ -1,41 +1,42 @@
 #include <stdio.h>
 
-#define MAX_VALUES 100
+#define MAX 100
 
-int main(void) {
-    int n, values[MAX_VALUES];
+int main() {
+    int values[MAX];
+    int n;
 
-    // Chiedi quanti valori verranno introdotti
-    printf("Quanti valori vuoi inserire (max 100)? ");
+    // Ask how many values will be entered
+    printf("How many values do you want to enter (max 100)? ");
     scanf("%d", &n);
 
-    if (n > MAX_VALUES) {
-        printf("Il numero massimo di valori è 100.\n");
+    if (n > MAX) {
+        printf("The maximum number of values is 100.\n");
         return 1;
     }
 
-    // Chiedi i valori
-    printf("Inserisci %d valori:\n", n);
+    // Ask for the values
+    printf("Enter %d values:\n", n);
     for (int i = 0; i < n; i++) {
         scanf("%d", &values[i]);
     }
 
-    // Visualizza i valori pari nell'ordine di inserimento
-    printf("Valori pari: ");
+    // Display even values in insertion order
+    printf("Even values: ");
     for (int i = 0; i < n; i++) {
         if (values[i] % 2 == 0) {
             printf("%d ", values[i]);
         }
     }
 
-    // Visualizza i valori dispari nell'ordine inverso
-    printf("\nValori dispari: ");
+    // Display odd values in reverse order
+    printf("\nOdd values: ");
     for (int i = n - 1; i >= 0; i--) {
         if (values[i] % 2 != 0) {
             printf("%d ", values[i]);
         }
     }
-
     printf("\n");
+
     return 0;
 }

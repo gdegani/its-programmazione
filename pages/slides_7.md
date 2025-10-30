@@ -1,6 +1,6 @@
 ---
 layout: cover
-
+transition:
 coverDate: ""
 
 ---
@@ -8,9 +8,6 @@ coverDate: ""
 # 7 -  Fondamenti di Informatica
 
 Ing. Giancarlo Degani
-
----
-level: 3
 
 ---
 
@@ -23,18 +20,12 @@ level: 3
 - **Deallocare** memoria significa rilasciare questa memoria al sistema operativo per renderla disponibile ad altri programmi
 
 ---
-level: 3
-
----
 
 # Allocazione statica
 
 - Usata per variabili static o locali
 - Avviene durante la compilazione
 - Non può essere rilasciata o deallocata durante l’esecuzione del programma
-
----
-level: 3
 
 ---
 
@@ -45,18 +36,12 @@ level: 3
 - Viene gestita automaticamente dal compilatore
 
 ---
-level: 3
-
----
 
 # Allocazione dinamica
 
 - La memoria viene allocata a run-time
 - Può essere deallocata a run-time
 - La responsabilità della deallocazione è del programmatore
-
----
-level: 3
 
 ---
 
@@ -66,9 +51,6 @@ level: 3
 - Restituiscono l’indirizzo di memoria (di tipo puntatore-a-void) del primo byte del blocco
 - Il blocco di byte non ha di per sé alcun tipo, il cast sul puntatore restituito fa sì che il blocco di byte sia considerato dal compilatore come avente il tipo indicato nel cast
 - Non si può applicare l’operatore **sizeof** a un blocco di memoria allocato dinamicamente in quanto sizeof viene valutato dal compilatore
-
----
-level: 3
 
 ---
 
@@ -82,9 +64,6 @@ level: 3
   - The free() function deallocates the memory allocation pointed to by ptr. If ptr is a NULL pointer, no operation is performed.
 
 ---
-level: 3
-
----
 
 # Esempi di allocazione
 
@@ -95,8 +74,8 @@ level: 3
 - Istanziazione di una variabile scalare:
 
 ```c
-double *p; 
-p=(double *)malloc(sizeof(double)); 
+double *p;
+p=(double *)malloc(sizeof(double));
 ```
 
 - Utilizzo:
@@ -112,9 +91,6 @@ free(p);
 ```
 
 ---
-level: 3
-
----
 
 # Esempi di allocazione
 
@@ -125,8 +101,8 @@ level: 3
 - Istanziazione di una variabile scalare:
 
 ```c
-int *p; 
-p=(int *)malloc(sizeof(int)*100); 
+int *p;
+p=(int *)malloc(sizeof(int)*100);
 ```
 
 - Utilizzo:
@@ -135,9 +111,6 @@ p=(int *)malloc(sizeof(int)*100);
 *(p+12) = 19;
 p[12] = 19;
 ```
-
----
-level: 3
 
 ---
 
@@ -150,8 +123,8 @@ level: 3
 - Istanziazione di una variabile scalare:
 
 ```c
-int *p; 
-p=(int *)malloc(sizeof(int)*100); 
+int *p;
+p=(int *)malloc(sizeof(int)*100);
 ```
 
 - Utilizzo:
@@ -164,8 +137,6 @@ p[12] = 19;
 ---
 layout: two-cols
 
-level: 3
-
 ---
 
 # Esempio
@@ -175,25 +146,16 @@ level: 3
 <<< @/snippets/example23/main.c c {all}{lines:true}
 
 ---
-level: 3
-
----
 
 # Esempio
 
 <<< @/snippets/example22/main.c#part1 c {all}{lines:true}
 
 ---
-level: 3
-
----
 
 # Esempio
 
 <<< @/snippets/example22/main.c#part2 c {all}{lines:true, startLine:17}
-
----
-level: 3
 
 ---
 
@@ -209,9 +171,6 @@ Si utilizzi una funzione per l’ordinamento. Il programma, per allocare un vett
 - scrive il file di output con il contenuto del vettore riordinato
 
 ---
-level: 3
-
----
 
 # Liste
 
@@ -219,9 +178,6 @@ level: 3
 - Il collegamento è costituito da un puntatore all’area di memoria contenente l’elemento successivo della lista
 
 ![Liste](/list1.png)
-
----
-level: 3
 
 ---
 
@@ -233,8 +189,6 @@ level: 3
 
 ---
 layout: two-cols
-
-level: 3
 
 ---
 
@@ -251,18 +205,12 @@ level: 3
 <<< @/snippets/example24/simple_list.c#snippet1 c {*}{lines:true}
 
 ---
-level: 3
-
----
 
 # Inserimento in testa alla lista 1
 
 Situazione iniziale con una lista non vuota
 
 ![Inserimento in testa alla lista](/list2.png)
-
----
-level: 3
 
 ---
 
@@ -273,9 +221,6 @@ Creo una nuova variabile per contenere il nuovo elemento della lista
 ![Inserimento in testa alla lista](/list3.png)
 
 ---
-level: 3
-
----
 
 # Inserimento in testa alla lista 3
 
@@ -284,18 +229,12 @@ Copio il valore ed il puntatore alla testa della lista nel nuovo elemento
 ![Inserimento in testa alla lista](/list4.png)
 
 ---
-level: 3
-
----
 
 # Inserimento in testa alla lista 4
 
 Cambio il valore di Head
 
 ![Inserimento in testa alla lista](/list5.png)
-
----
-level: 3
 
 ---
 
@@ -309,18 +248,12 @@ level: 3
 ![Rimozione dalla testa](/list6.png)
 
 ---
-level: 3
-
----
 
 # Liste bidirezionali
 
 Situazione iniziale con una lista non vuota
 
 ![Rimozione dalla testa](/list7.png)
-
----
-level: 3
 
 ---
 
@@ -336,17 +269,15 @@ level: 3
 ---
 layout: two-cols
 
-level: 3
-
 ---
 
 # Esercizio
 
 - Implementare delle funzioni per la gestione di una lista dinamica di numeri interi
   - lista.h  dichiarazione delle funzioni
-  - lista.c implementazione delle funzioni 
+  - lista.c implementazione delle funzioni
 - Scrivere un main che proponga un menu per testarle.
-- Ogni funzione, quando richiamata, deve stampare a video l’intera lista
+- Ogni funzione, quando richiamata, deve stampare a video l'intera lista
 
 ::right::
 
@@ -354,9 +285,6 @@ level: 3
 
 <<< @/snippets/example24/demo.h#snippet1 c {*}{lines:true}
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -373,18 +301,16 @@ e. ClearAll
 p. PrintAll
 x. Exit
 
-Scelta: 
+Scelta:
 
 ```
-
----
-level: 3
 
 ---
 
 # Esempio di output
 
 ```txt
+
 
 0) address: [0x6000039dc000], value: [22222], next: [0x6000039c4000]
 1) address: [0x6000039c4000], value: [11111], next: [0x0]
@@ -397,6 +323,6 @@ e. ClearAll
 p. PrintAll
 x. Exit
 
-Scelta: 
+Scelta:
 
 ```

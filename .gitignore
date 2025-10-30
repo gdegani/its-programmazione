@@ -7,3 +7,6 @@ dist
 components.d.ts
 cmake-build-debug
 /public/test*.md
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake

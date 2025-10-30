@@ -58,14 +58,14 @@ void test(void) {
 
 
     typedef struct record {
-        char nome[20];
-        char cognome[20];
-        int eta;
-    } record_utente;
+        char name[20];
+        char surname[20];
+        int age;
+    } user_record;
 
-    record_utente utente1, utente2;
+    user_record user1, user2;
 
-    utente1.eta = 20;
-    strcpy(utente1.nome, "Mario");
+    user1.age = 20;
+    strcpy(user1.name, "Mario");
 }
 

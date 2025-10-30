@@ -4,17 +4,17 @@
 
 // #region snippet1
 static struct nodo {
-    int valore;
+    int value;
     struct nodo *next; // pointer to the next instance
 } *head = NULL, *p, *q; // 3 pointers to a nodo
 // #endregion snippet1
 
-int AddToHead(int valoreInput) {
+int AddToHead(int inputValue) {
     void * puntatore =  malloc(sizeof(struct nodo));
     p = (struct nodo *) puntatore;
 
-    if (  p!= NULL) { // allocate memory for a node
-        p->valore = valoreInput;
+    if (p != NULL) { // allocate memory for a node
+        p->value = inputValue;
         p->next = head;
         head = p; // replace the head
         printAll();
@@ -26,10 +26,10 @@ int AddToHead(int valoreInput) {
 
 int RemoveFromHead(int *v) {
     if (head != NULL) {
-        *v = head->valore; // return a copy of the value that we are removing
+        *v = head->value; // return a copy of the value that we are removing
         p = head;
         head = head->next; // replace the head
-        free(p); // free the mamory of the former head node
+        free(p); // free the memory of the former head node
         printAll();
         return LIST_OK;
     } else
@@ -45,7 +45,7 @@ int AddToTail(int v) {
             q = q->next;
         }
         if ((p = (struct nodo *) malloc(sizeof(struct nodo))) != NULL) { // allocate memory for a new item
-            p->valore = v;
+            p->value = v;
             p->next = NULL;
             q->next = p;  // insert the new item to the end of the list
             printAll();
@@ -59,7 +59,7 @@ int RemoveFromTail(int *v) {
     if (head == NULL) {
         return LIST_ERROR; // cannot remove from an empty list
     } else if (head->next == NULL) { // there is just 1 item in the list, the head
-        *v = head->valore;
+        *v = head->value;
         free(head);
         head = NULL;
         printAll();
@@ -69,7 +69,7 @@ int RemoveFromTail(int *v) {
         while (q->next->next != NULL) { // scroll the list to the end
             q = q->next;
         }
-        *v = q->next->valore; // return a copy of the tail's value
+        *v = q->next->value; // return a copy of the tail's value
         free(q->next);
         q->next = NULL; // reset the pointer to the former tail
         printAll();
@@ -89,7 +89,7 @@ void ClearAll(void) {
  */
 void printItem(struct nodo *item) {
     if (item != NULL) {
-        printf("address: [%p], value: [%d], next: [%p]", (void *) item, item->valore, (void *) item->next);
+        printf("address: [%p], value: [%d], next: [%p]", (void *) item, item->value, (void *) item->next);
     }
 }
 

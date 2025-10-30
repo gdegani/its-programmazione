@@ -1,9 +1,9 @@
 ---
 layout: cover
+coverDate:
+transition:
 
-coverDate: 
-
---- 
+---
 
 # 3 - Istruzioni condizionali e cicli
 
@@ -11,8 +11,6 @@ Ing. Giancarlo Degani
 
 ---
 layout: two-cols
-
-level: 3
 
 ---
 
@@ -28,9 +26,6 @@ level: 3
 </Transform>
 
 ---
-level: 3
-
----
 
 # Operatori di confronto o relazionali
 
@@ -42,9 +37,6 @@ level: 3
 |Less than|a < b|
 |Greater than or equal to|a >= b|
 |Less than or equal to|a <= b|
-
----
-level: 3
 
 ---
 
@@ -65,20 +57,14 @@ level: 3
 123UL -> unsigned long int
 
 ---
-level: 3
-
----
 
 # Costanti intere esadecimali
 
-Una costante intera è considerata essere in base 16 se è preceduta da 0x oppure da 0X (zero X) e può contenere le cifre da 0 a 9 e da A a F (maiuscole e minuscole): 
+Una costante intera è considerata essere in base 16 se è preceduta da 0x oppure da 0X (zero X) e può contenere le cifre da 0 a 9 e da A a F (maiuscole e minuscole):
 
 0xA == 10<sub>10</sub>
 
 0x10 == 16<sub>10</sub>
-
----
-level: 3
 
 ---
 
@@ -95,9 +81,6 @@ const double Pi = 3.141592653;
 const double Pi = 4.0*atan(1.0);
 ```
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -122,9 +105,6 @@ level: 3
 </Transform>
 
 ---
-level: 3
-
----
 
 # Costanti simboliche
 
@@ -135,17 +115,11 @@ level: 3
 - La sequenza di caratteri può contenere spazi e termina a fine riga
 
 ---
-level: 3
-
----
 
 # Riferimenti
 
-- https://man7.org/linux/man-pages/man3/printf.3.html
-- https://en.cppreference.com/w/c/language
-
----
-level: 3
+- <https://man7.org/linux/man-pages/man3/printf.3.html>
+- <https://en.cppreference.com/w/c/language>
 
 ---
 
@@ -158,18 +132,12 @@ level: 3
 |Logical OR|a \|\| b <br> a **or** b|
 
 ---
-level: 3
-
----
 
 # Valutazione delle espressioni logiche
 
 - Vengono valutate da sx a dx
 - Si possono usare le parentesi per alterare l’ordine di valutazione
 - La valutazione termina appena è possibile stabilire il risultato complessivo
-
----
-level: 3
 
 ---
 
@@ -184,7 +152,6 @@ level: 3
 
 ---
 layout: two-cols
-level: 3
 
 ---
 
@@ -203,11 +170,8 @@ flowchart TD
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
     Condition -- No --> J
     J --> End([End])
-    
-```
 
----
-level: 3
+```
 
 ---
 
@@ -226,7 +190,6 @@ level: 3
 
 ---
 layout: two-cols-header
-level: 3
 
 ---
 
@@ -254,7 +217,6 @@ if( condizione ) {
 
 ---
 layout: two-cols
-level: 3
 
 ---
 
@@ -272,7 +234,6 @@ level: 3
 
 ---
 layout: two-cols
-level: 3
 
 ---
 
@@ -291,11 +252,8 @@ flowchart TD
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
     Action2 -->   J
     J --> End([End])
-    
-```
 
----
-level: 3
+```
 
 ---
 
@@ -314,9 +272,6 @@ Il programma deve calcolare il costo totale del carrello:
 - Stampare a schermo (vedi esempio):
 
 Il dettaglio del carrello, l’imponibile, l’IVA, ed il totale lordo
-
----
-level: 3
 
 ---
 
@@ -341,9 +296,6 @@ Totale lordo: 2635.20
 </Transform>
 
 ---
-level: 3
-
----
 
 # SELEZIONE MULTIPLA - SWITCH
 
@@ -353,19 +305,16 @@ level: 3
 switch ( espressione ){
   case valore1:
     blocco di istruzioni;
-  
+
   case valore2:
     blocco di istruzioni;
-  
+
   default:
     Blocco di 'default';
 }
 ```
 
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -377,9 +326,6 @@ level: 3
 - Si possono inserire più statement case con un solo blocco di istruzione;
 - Usare **break** per uscire dalla selezione multipla terminato un blocco di
 istruzioni !
-
----
-level: 3
 
 ---
 
@@ -399,9 +345,6 @@ printf(“2\n”);
 </Transform>
 
 ---
-level: 3
-
----
 
 # ITERAZIONI
 
@@ -412,7 +355,6 @@ eseguite più volte
 
 ---
 layout: two-cols
-level: 3
 
 ---
 
@@ -444,9 +386,6 @@ flowchart TD
 ```
 
 ---
-level: 3
-
----
 
 # ITERAZIONI: IL CICLO FOR
 
@@ -462,8 +401,6 @@ for ( **Inizializzazione**; **controllo**; **incremento**){
 
 ---
 layout: two-cols
-
-level: 3
 
 ---
 
@@ -485,15 +422,12 @@ sempre presente
 ```mermaid {scale: 1, alt: 'A diagram'}
 flowchart TD
  J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> J1 
+    Start([Inizio]) --> J1
     J1 --> Controllo{Condizione<br>verificata?}
     Controllo -- Sì --> Azione[Azioni<br>da Eseguire]
     Azione --> J1
     Controllo -- No --> End([Fine])
 ```
-
----
-level: 3
 
 ---
 
@@ -510,8 +444,6 @@ Blocco di istruzioni
 
 ---
 layout: two-cols
-
-level: 3
 
 ---
 
@@ -533,8 +465,6 @@ level: 3
 ---
 layout: two-cols
 
-level: 3
-
 ---
 
 # ESEMPIO: il ciclo WHILE
@@ -554,15 +484,13 @@ Somma dei valori introdotti finché non viene immesso il valore 0
 ---
 layout: two-cols
 
-level: 3
-
 ---
 
 # EQUIVALENZA DI FOR E WHILE
 
 For e While consentono di esprimere lo stesso comportamento.
 
-I due esempi a fianco sono equivalenti.  
+I due esempi a fianco sono equivalenti.
 
 ::right::
 
@@ -576,8 +504,6 @@ I due esempi a fianco sono equivalenti.
 
 ---
 layout: two-cols
-
-level: 3
 
 ---
 
@@ -598,15 +524,12 @@ sempre presente
 ```mermaid {scale: 0.9, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> J1 
+    Start([Inizio]) --> J1
     J1 --> Azione[Azioni<br>da eseguire]
     Azione --> Controllo{Condizione<br>verificata?}
     Controllo -- Sì --> J1
     Controllo -- No --> End([Fine])
 ```
-
----
-level: 3
 
 ---
 
@@ -623,7 +546,6 @@ Blocco di istruzioni
 
 ---
 layout: two-cols
-level: 3
 
 ---
 
@@ -642,9 +564,6 @@ Stampa i numeri da 0 a 1000
 </Transform>
 
 ---
-level: 3
-
----
 
 # CODIFICA DI NUMERI REALI
 
@@ -659,9 +578,6 @@ Esempio:
 <Transform :scale="1.5">
 -12.34 == -0.1234 * 10<sup>2</sup> == [ segno ] 0. [mantissa] * 10<sup>[esponente]</sup>
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -692,9 +608,6 @@ $$
 $$
 
 ---
-level: 3
-
----
 
 # ESEMPIO
 
@@ -720,9 +633,6 @@ esadecimale:
 </Transform>
 
 ---
-level: 3
-
----
 
 # TIPI DI DATI PRIMITIVI PER NUMERI IN VIRGOLA MOBILE
 
@@ -731,9 +641,6 @@ level: 3
 |**float**|Real floating-point type, usually referred to as a single-precision floating-point type|%f<br>%e|
 |**double**|Real floating-point type, usually referred to as a double-precision floating-point type|%lf<br>%le|
 |**long&nbsp;double**|Real floating-point type, usually mapped to an extended precision floating-point number format|%Lf<br>%Le|
-
----
-level: 3
 
 ---
 
@@ -752,7 +659,6 @@ Consegnare: il flowchart, il codice, lo screenshot dell'output
 
 ---
 layout: two-cols
-level: 3
 
 ---
 
@@ -769,7 +675,272 @@ level: 3
 </Transform>
 
 ---
-level: 3
+
+# Errori comuni nei cicli
+
+I cicli sono potenti ma anche una fonte frequente di bug. Ecco i problemi più comuni:
+
+**1. Errori off-by-one (OBOE - Off-By-One Error)**
+
+- Il ciclo esegue una iterazione in più o in meno del previsto
+- Causato da condizioni `<` vs `<=` o inizializzazione errata
+
+**2. Cicli infiniti (Infinite loops)**
+
+- Il ciclo non termina mai perché la condizione rimane sempre vera
+- Causato da dimenticanza dell'incremento o condizione mal formulata
+
+---
+
+# Errori comuni nei cicli
+
+**3. Uso di variabili non inizializzate**
+
+- Comportamento imprevedibile se le variabili accumulo non sono inizializzate
+
+**4. Modifica dell'indice nel corpo del ciclo**
+
+- Alterare la variabile di controllo dentro il ciclo può causare comportamento inatteso
+
+---
+layout: two-cols
+
+---
+
+# Errore off-by-one: esempi
+
+**❌ Errore: stampa 0-9 invece di 1-10**
+
+```c
+// Volevo stampare da 1 a 10
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i);
+}
+// Output: 0 1 2 3 4 5 6 7 8 9
+```
+
+**❌ Errore: accesso fuori array**
+
+```c
+int array[10];
+// ERRORE: i va da 0 a 10 (11 valori)
+// ma array ha solo indici 0-9!
+for (int i = 0; i <= 10; i++) {
+    array[i] = i * 2;  // ❌ Crash!
+}
+```
+
+::right::
+
+**✅ Corretto: stampa 1-10**
+
+```c
+// Soluzione 1: inizia da 1
+for (int i = 1; i <= 10; i++) {
+    printf("%d\n", i);
+}
+// Soluzione 2: stampa i+1
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i + 1);
+}
+```
+
+**✅ Corretto: array completo**
+
+```c
+int array[10];
+// Corretto: i va da 0 a 9 (10 valori)
+for (int i = 0; i < 10; i++) {
+    array[i] = i * 2;  // ✅ OK
+}
+```
+
+---
+layout: two-cols
+
+---
+
+# Cicli infiniti: esempi
+
+**❌ Dimenticato incremento**
+
+```c
+int i = 0;
+while (i < 10) {
+    printf("%d\n", i);
+    // ❌ Dimenticato i++!
+}
+// Loop infinito: stampa 0 all'infinito
+```
+
+**❌ Condizione sempre vera**
+
+```c
+int x = 5;
+while (x > 0) {
+    printf("x = %d\n", x);
+    x = x + 1;  // ❌ Aumenta invece di diminuire!
+}
+// x diventa 6, 7, 8... mai < 0
+```
+
+::right::
+
+**❌ Errore logico nella condizione**
+
+```c
+int count = 0;
+// ❌ Usa = invece di ==
+while (count = 10) {  
+    printf("Count: %d\n", count);
+    count++;
+}
+// count = 10 assegna 10 (sempre true)
+// e stampa sempre 10!
+```
+
+**✅ Corretto**
+
+```c
+int i = 0;
+while (i < 10) {
+    printf("%d\n", i);
+    i++;  // ✅ Incremento presente
+}
+```
+
+---
+
+# Come evitare errori nei cicli
+
+| Problema | Prevenzione | Esempio |
+|----------|-------------|---------|
+| **Off-by-one** | • Controlla condizione: `<` vs `<=`<br>• Pensa: "Quante iterazioni voglio?"<br>• Array: sempre `i < length` | `for (int i = 0; i < 10; i++)` per 10 elementi |
+| **Ciclo infinito** | • Verifica che la condizione possa diventare falsa<br>• Assicurati che l'incremento vada nella direzione giusta | `while (x > 0)` → serve `x--` non `x++` |
+
+---
+
+# Come evitare errori nei cicli
+
+| Problema | Prevenzione | Esempio |
+|----------|-------------|---------|
+| **Variabili non inizializzate** | • Sempre inizializzare variabili di accumulazione<br>• Contatori iniziano a 0, somme a 0, prodotti a 1 | `int sum = 0;` prima del ciclo |
+| **Modifica indice nel ciclo** | • Non modificare la variabile di controllo del `for` nel corpo<br>• Usa variabili separate se necessario | Evita `for (int i = 0; i < n; i++) { i++; }` |
+
+---
+layout: two-cols
+
+---
+
+# Debugging dei cicli
+
+**Tecniche per trovare errori:**
+
+**1. Stampe di debug**
+
+```c
+for (int i = 0; i < 10; i++) {
+    printf("DEBUG: i = %d\n", i);
+    // ... codice ...
+}
+```
+
+**2. Verificare i casi limite**
+
+- Primo e ultimo valore dell'indice
+- Array vuoto (lunghezza 0)
+- Un solo elemento
+
+**3. Contare le iterazioni a mano**
+
+::right::
+
+- Simula 2-3 iterazioni su carta
+- Verifica i valori delle variabili
+
+**4. Usare un debugger (GDB/CLion)**
+
+```c
+// Metti breakpoint nel ciclo
+for (int i = 0; i < n; i++) {
+    int value = array[i] * 2;  // <-- breakpoint qui
+    // Ispeziona i e value ad ogni iterazione
+}
+```
+
+**5. Aggiungere controlli temporanei**
+
+```c
+int iterations = 0;
+while (condition) {
+    iterations++;
+    if (iterations > 1000) {
+        printf("ERRORE: troppe iterazioni!\n");
+        break;  // Esci per evitare loop infinito
+    }
+    // ... codice normale ...
+}
+```
+
+---
+
+# Esercizio: trova gli errori
+
+Identifica e correggi gli errori nei seguenti frammenti di codice:
+
+```c
+// 1. Somma dei primi N numeri
+int n = 10;
+int sum;  // ❌ Errore?
+for (int i = 1; i <= n; i++) {
+    sum = sum + i;
+}
+
+// 2. Copia array
+int source[5] = {1, 2, 3, 4, 5};
+int dest[5];
+for (int i = 0; i <= 5; i++) {  // ❌ Errore?
+    dest[i] = source[i];
+}
+
+// 3. Conta fino a zero
+int count = 10;
+while (count > 0) {
+    printf("%d ", count);
+    count = count + 1;  // ❌ Errore?
+}
+```
+
+---
+
+# Soluzioni esercizio
+
+```c
+// 1. ✅ sum non inizializzato
+int n = 10;
+int sum = 0;  // ✅ Inizializza a 0
+for (int i = 1; i <= n; i++) {
+    sum = sum + i;
+}
+
+// 2. ✅ Off-by-one error: i va da 0 a 5 (6 valori), array ha solo 0-4
+int source[5] = {1, 2, 3, 4, 5};
+int dest[5];
+for (int i = 0; i < 5; i++) {  // ✅ Usa < invece di <=
+    dest[i] = source[i];
+}
+
+// 3. ✅ Ciclo infinito: count aumenta invece di diminuire
+int count = 10;
+while (count > 0) {
+    printf("%d ", count);
+    count = count - 1;  // ✅ Decrementa con -1
+}
+```
+
+---
+
+hide: true
 
 ---
 
@@ -784,7 +955,8 @@ x_{i=0} & =A
 
 $$
 ---
-level: 3
+
+hide: true
 
 ---
 

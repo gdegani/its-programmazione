@@ -5,11 +5,11 @@ int isPalindrome(char *str);
 
 /**
  * Function to print a slice of a vector of integers
- * @param vettore - Pointer to the vector
- * @param sx - Pointer to the left character
- * @param dx - Pointer to the right character
+ * @param array - Pointer to the array
+ * @param left - Pointer to the left character
+ * @param right - Pointer to the right character
  */
-void stampaVettore( int vettore[ ] , int sx, int dx );
+void printArray( int array[ ] , int left, int right );
 
 
 /**

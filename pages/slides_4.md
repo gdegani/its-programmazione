@@ -10,9 +10,6 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
-level: 3
-
----
 
 # Soluzione es. carrello
 
@@ -20,8 +17,6 @@ level: 3
 
 ---
 title: output carrello
-
-level: 3
 
 ---
 
@@ -42,9 +37,6 @@ Totale lordo: 13176.00
 ```
 
 ---
-level: 3
-
----
 
 # Soluzione es. radice
 
@@ -52,8 +44,6 @@ level: 3
 
 ---
 title: output radice
-
-level: 3
 
 ---
 
@@ -80,40 +70,34 @@ La radice quadrata approssimata di 5.0 è: 2.2360680
 ```
 
 ---
-level: 3
-
----
 
 # Vettori
 
-- Variabile Scalare: contiene 1 singolo valore:  
+- Variabile Scalare: contiene 1 singolo valore:
 
 ```c
 tipo identificatore = valore;
 int numero = 3 ;
 ```
 
-- Variabili vettoriali: contengono più valori dello stesso tipo: 
+- Variabili vettoriali: contengono più valori dello stesso tipo:
 
 ```c
-tipo identificatore [ dimensione ] = valore ; 
+tipo identificatore [ dimensione ] = valore;
 int numeri[ 3 ] = { 0, 1, 2 };
 ```
 
 - **dimensione** deve essere una costante intera, positiva, e nota al momento della compilazione
 - Contengono elementi dello stesso tipo scalare ( int, double, char,… )
 - L'indici e di tipo intero e non negativo
-- Il primo elemento ha indice 0 (posizione) 
-- L’ultimo elemento ha indice N-1 ( N è la dimensione del vettore )
-
----
-level: 3
+- Il primo elemento ha indice 0 (posizione)
+- L'ultimo elemento ha indice N-1 ( N è la dimensione del vettore )
 
 ---
 
 # Vettori
 
-- Gli elementi del vettore sono allocati in locazioni di memoria 
+- Gli elementi del vettore sono allocati in locazioni di memoria
 contigue e successive
 - Si accede ai singoli elementi indicando il nome del vettore seguito dall'indice fra parentesi quadre
 - Poiché ciascun elemento del vettore è del tipo indicato nella definizione, può essere utilizzato in tutti i contesti in cui si può usare una variabile di quel tipo
@@ -129,8 +113,6 @@ x = vett[4] * 5;
 
 ---
 layout: two-cols
-
-level: 3
 
 ---
 
@@ -176,8 +158,6 @@ block-beta
 ---
 layout: two-cols
 
-level: 3
-
 ---
 
 # Vettori
@@ -206,9 +186,6 @@ for (i=N-1; i>=0; i--){
 </Transform>
 
 ---
-level: 3
-
----
 
 # Esercizi
 
@@ -217,12 +194,8 @@ level: 3
 
 ---
 layout: figure-side
-
 figureUrl: "/Sieve_of_Eratosthenes_animation.gif"
-
 figureCaption: "source: wikipedia.org"
-
-level: 3
 
 ---
 
@@ -235,25 +208,16 @@ Il crivello di [Eratostene](https://it.wikipedia.org/wiki/Crivello_di_Eratostene
 - si passa al successivo numero non cancellato e si ripete l'operazione con i numeri che seguono
 
 ---
-level: 3
-
----
 
 # Esercizio
 
 Scrivere un programma che richieda un numero n positivo e, usando il crivello di Eratostene, trovi e stampi i numeri primi minori o uguali a n *(see example08)*.
 
 ---
-level: 3
-
----
 
 # Soluzione crivello di Eratostene
 
 <<< @/snippets/example08/main.c c {*}{lines:true,maxHeight:'400px'}
-
----
-level: 3
 
 ---
 
@@ -280,9 +244,6 @@ int matrice [ 5 ][ 10 ];
 ```
 
 ---
-level: 3
-
----
 
 # Matrici
 
@@ -302,8 +263,6 @@ for (r=0; r<RIGHE; r++)
 
 ---
 layout: two-cols
-
-level: 3
 
 ---
 
@@ -331,13 +290,10 @@ int matrice [2][3] = {1,2,3,4,5,6};
 |**1**|4|5|6|
 
 ---
-level: 3
-
----
 
 # Matrici
 
-- Non c'è limite al numero delle dimensioni 
+- Non c'è limite al numero delle dimensioni
 
 ```c
 int matrice [DIM_1][DIM_2]...[DIM_N] ;
@@ -347,9 +303,6 @@ int matrice [DIM_1][DIM_2]...[DIM_N] ;
 - Non è possibile copiare o confrontare due
 generici vettori (multidimensionali) usando gli
 operatori = o == sui nomi dei vettori stessi
-
----
-level: 3
 
 ---
 
@@ -373,15 +326,12 @@ char character = 0x41;  // assegnazione con codice ASCI esadecimale
 </Transform>
 
 ---
-level: 3
-
----
 
 # Caratteri
 
-- Caratteri “speciali” sono rappresentati con le sequenze di escape, ovvero premettendo il carattere '\\':
-  - \’  
-  - \”
+- Caratteri "speciali" sono rappresentati con le sequenze di escape, ovvero premettendo il carattere '\\':
+  - \'
+  - \"
   - \\?
   - \\\\
 
@@ -389,9 +339,6 @@ level: 3
   - \\n - nuova linea
   - \\r - ritorno a capo
   - \\t - tabulazione
-
----
-level: 3
 
 ---
 
@@ -407,9 +354,6 @@ level: 3
 |'0' (zero)|48|0x30|
 
 ---
-level: 3
-
----
 
 # Stringhe
 
@@ -422,9 +366,6 @@ Esempio:
 |**Char**|H|e|l|l|o|!|**\0**|
 |**Dec**|72|101|108|108|111|33|**0**|
 |**Hex**|48|65|6C|6C|6F|21|**0**|
-
----
-level: 3
 
 ---
 
@@ -444,9 +385,6 @@ Esempi:
 
 - Le stringhe variabili sono vettori di char di dimensione nota al momento della compilazione.
 - il vettore deve contenere anche il terminatore null.
-
----
-level: 3
 
 ---
 
@@ -470,9 +408,6 @@ char str[MAX_LENGHT+1] = {‘H’,’e’,’l’,’l’,’o’} ;
   - str[1] è il secondo carattere
 
 ---
-level: 3
-
----
 
 # Stringhe variabili
 
@@ -481,9 +416,6 @@ level: 3
   - "a" è una stringa di 2 char, il caratter 'a' ed il terminatore \0
 - Come per i vettori, il nome della stringa rappresenta per il compilatore una variabile contenente l'indirizzo di memoria del primo carattere della stringa.
 - Una stringa non può essere copiata con l'operatore '=', devo usare delle funzioni apposite.
-
----
-level: 3
 
 ---
 
@@ -503,12 +435,8 @@ Legge da tastiera tutta la stringa in input fino al ritorno a capo incluso , la 
 
 ---
 layout: figure
-
 figureCaption: "source: cpprefence.com"
-
 figureUrl: /string_ctype.png
-
-level: 3
 
 ---
 
@@ -521,14 +449,9 @@ figureCaption: "source: cpprefence.com"
 
 figureUrl: /string_string1.png
 
-level: 3
-
 ---
 
 # Stringhe - string.h
-
----
-level: 3
 
 ---
 
@@ -542,9 +465,6 @@ block-beta
 
     c12 --> c42
 ```
-
----
-level: 3
 
 ---
 
@@ -561,18 +481,12 @@ sequenceDiagram
 ```
 
 ---
-level: 3
-
----
 
 # Esercizi stringhe
 
 <Transform :scale='0.7' >
 <<< @/snippets/example09/main.c c {*}{lines:true}
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -583,9 +497,6 @@ level: 3
 </Transform>
 
 ---
-level: 3
-
----
 
 # Esempio 11
 
@@ -593,18 +504,12 @@ level: 3
 <<< @/snippets/example11/main.c c {*}{lines:true}
 </Transform>
 ---
-level: 3
-
----
 
 # Esempio 12
 
 <Transform :scale='0.4' >
 <<< @/snippets/example12/main.c c {*}{lines:true}
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -620,9 +525,6 @@ float areaTriangolo( float base, float altezza) {
 ```
 
 ---
-level: 3
-
----
 
 # Esempio 14
 
@@ -635,18 +537,12 @@ level: 3
 </Transform>
 
 ---
-level: 3
-
----
 
 # Esempio 14
 
 <Transform :scale='0.4' >
 <<< @/snippets/example14/main.c c {*}{lines:true}
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -680,9 +576,6 @@ classDiagram
 ```
 
 ---
-level: 3
-
----
 
 # typedef
 
@@ -701,18 +594,12 @@ level: 3
 ```
 
 ---
-level: 3
-
----
 
 # Esempio 15
 
 <Transform :scale='0.4' >
 <<< @/snippets/example15/main.c c {*}{lines:true}
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -735,17 +622,14 @@ struct record {
         int eta;
 } utente1, utente2;
 
-if ( utente1.eta == utente2.eta 
+if ( utente1.eta == utente2.eta
       && strcmp(utente1.nome, utente2.nome) == 0
       && strcmp(utente1.cognome, utente2.cognome) == 0 ) {
         // code block
-        
+
 }
 
 ```
-
----
-level: 3
 
 ---
 
@@ -754,16 +638,13 @@ level: 3
 ```c {*}{lines:true}
 
 // stdio.h
-typedef	struct __sFILE {
+typedef struct __sFILE {
  ...
 } FILE;
 
-FILE *my_file; 
+FILE *my_file;
 
 ```
-
----
-level: 3
 
 ---
 
@@ -774,18 +655,12 @@ level: 3
 </Transform>
 
 ---
-level: 3
-
----
 
 # struct & func
 
 <Transform :scale='0.9' >
 <<< @/snippets/example19/main.c c {*}{lines:true}
 </Transform>
-
----
-level: 3
 
 ---
 
@@ -797,9 +672,6 @@ level: 3
 <Transform :scale='0.9' >
 <<< @/snippets/example20/output.txt csv {*}{lines:true}
 </Transform>
-
----
-level: 3
 
 ---
 

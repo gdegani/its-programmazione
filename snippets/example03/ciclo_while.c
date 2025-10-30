@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int example(void) {
+int example_while(void) {
 
     // #region ciclo
 

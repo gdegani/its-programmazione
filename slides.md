@@ -7,12 +7,8 @@ theme: academic
 
 coverDate: "2025"
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+title: Elementi di programmazione e gestione dati
 
-  Learn more at [Sli.dev](https://sli.dev)
 # apply unocss classes to the current slide
 class: text-center
 download: false
@@ -28,14 +24,16 @@ mdc: true
 themeConfig:
   paginationX: r
   paginationY: b
-  paginationPagesDisabled: [1]
-#  <img class="absolute top-0 left-0 w-110" src="/logo-ITS.png" />
+  paginationPagesDisabled: "1"
 
 ---
 
 # Elementi di programmazione e gestione dati
 
 Ing. Giancarlo Degani
+
+---
+hide: true
 
 ---
 
@@ -64,6 +62,26 @@ src: ./pages/slides_4.md
 ---
 
 ---
+src: ./pages/slides_5.md
+
+---
+
+---
+src: ./pages/slides_6.md
+
+---
+
+---
 src: ./pages/slides_7.md
 
 ---
+
+---
+layout: center
+
+---
+
+# License
+
+This presentation is licensed under the  
+[Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/) Giancarlo Degani
