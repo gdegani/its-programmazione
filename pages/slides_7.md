@@ -95,8 +95,8 @@ level: 3
 - Istanziazione di una variabile scalare:
 
 ```c
-double *p; 
-p=(double *)malloc(sizeof(double)); 
+double *p;
+p=(double *)malloc(sizeof(double));
 ```
 
 - Utilizzo:
@@ -125,8 +125,8 @@ level: 3
 - Istanziazione di una variabile scalare:
 
 ```c
-int *p; 
-p=(int *)malloc(sizeof(int)*100); 
+int *p;
+p=(int *)malloc(sizeof(int)*100);
 ```
 
 - Utilizzo:
@@ -150,8 +150,8 @@ level: 3
 - Istanziazione di una variabile scalare:
 
 ```c
-int *p; 
-p=(int *)malloc(sizeof(int)*100); 
+int *p;
+p=(int *)malloc(sizeof(int)*100);
 ```
 
 - Utilizzo:
@@ -344,9 +344,9 @@ level: 3
 
 - Implementare delle funzioni per la gestione di una lista dinamica di numeri interi
   - lista.h  dichiarazione delle funzioni
-  - lista.c implementazione delle funzioni 
+  - lista.c implementazione delle funzioni
 - Scrivere un main che proponga un menu per testarle.
-- Ogni funzione, quando richiamata, deve stampare a video l’intera lista
+- Ogni funzione, quando richiamata, deve stampare a video l'intera lista
 
 ::right::
 
@@ -373,7 +373,7 @@ e. ClearAll
 p. PrintAll
 x. Exit
 
-Scelta: 
+Scelta:
 
 ```
 
@@ -386,6 +386,7 @@ level: 3
 
 ```txt
 
+
 0) address: [0x6000039dc000], value: [22222], next: [0x6000039c4000]
 1) address: [0x6000039c4000], value: [11111], next: [0x0]
 Operazioni possibili:
@@ -397,6 +398,7 @@ e. ClearAll
 p. PrintAll
 x. Exit
 
-Scelta: 
+Scelta:
 
 ```
+

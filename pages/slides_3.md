@@ -1,9 +1,9 @@
 ---
 layout: cover
 
-coverDate: 
+coverDate:
 
---- 
+---
 
 # 3 - Istruzioni condizionali e cicli
 
@@ -71,7 +71,7 @@ level: 3
 
 # Costanti intere esadecimali
 
-Una costante intera è considerata essere in base 16 se è preceduta da 0x oppure da 0X (zero X) e può contenere le cifre da 0 a 9 e da A a F (maiuscole e minuscole): 
+Una costante intera è considerata essere in base 16 se è preceduta da 0x oppure da 0X (zero X) e può contenere le cifre da 0 a 9 e da A a F (maiuscole e minuscole):
 
 0xA == 10<sub>10</sub>
 
@@ -203,7 +203,7 @@ flowchart TD
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
     Condition -- No --> J
     J --> End([End])
-    
+
 ```
 
 ---
@@ -291,7 +291,7 @@ flowchart TD
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
     Action2 -->   J
     J --> End([End])
-    
+
 ```
 
 ---
@@ -353,10 +353,10 @@ level: 3
 switch ( espressione ){
   case valore1:
     blocco di istruzioni;
-  
+
   case valore2:
     blocco di istruzioni;
-  
+
   default:
     Blocco di 'default';
 }
@@ -485,7 +485,7 @@ sempre presente
 ```mermaid {scale: 1, alt: 'A diagram'}
 flowchart TD
  J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> J1 
+    Start([Inizio]) --> J1
     J1 --> Controllo{Condizione<br>verificata?}
     Controllo -- Sì --> Azione[Azioni<br>da Eseguire]
     Azione --> J1
@@ -562,7 +562,7 @@ level: 3
 
 For e While consentono di esprimere lo stesso comportamento.
 
-I due esempi a fianco sono equivalenti.  
+I due esempi a fianco sono equivalenti.
 
 ::right::
 
@@ -598,7 +598,7 @@ sempre presente
 ```mermaid {scale: 0.9, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> J1 
+    Start([Inizio]) --> J1
     J1 --> Azione[Azioni<br>da eseguire]
     Azione --> Controllo{Condizione<br>verificata?}
     Controllo -- Sì --> J1

@@ -86,25 +86,25 @@ level: 3
 
 # Vettori
 
-- Variabile Scalare: contiene 1 singolo valore:  
+- Variabile Scalare: contiene 1 singolo valore:
 
 ```c
 tipo identificatore = valore;
 int numero = 3 ;
 ```
 
-- Variabili vettoriali: contengono più valori dello stesso tipo: 
+- Variabili vettoriali: contengono più valori dello stesso tipo:
 
 ```c
-tipo identificatore [ dimensione ] = valore ; 
+tipo identificatore [ dimensione ] = valore;
 int numeri[ 3 ] = { 0, 1, 2 };
 ```
 
 - **dimensione** deve essere una costante intera, positiva, e nota al momento della compilazione
 - Contengono elementi dello stesso tipo scalare ( int, double, char,… )
 - L'indici e di tipo intero e non negativo
-- Il primo elemento ha indice 0 (posizione) 
-- L’ultimo elemento ha indice N-1 ( N è la dimensione del vettore )
+- Il primo elemento ha indice 0 (posizione)
+- L'ultimo elemento ha indice N-1 ( N è la dimensione del vettore )
 
 ---
 level: 3
@@ -113,7 +113,7 @@ level: 3
 
 # Vettori
 
-- Gli elementi del vettore sono allocati in locazioni di memoria 
+- Gli elementi del vettore sono allocati in locazioni di memoria
 contigue e successive
 - Si accede ai singoli elementi indicando il nome del vettore seguito dall'indice fra parentesi quadre
 - Poiché ciascun elemento del vettore è del tipo indicato nella definizione, può essere utilizzato in tutti i contesti in cui si può usare una variabile di quel tipo
@@ -337,7 +337,7 @@ level: 3
 
 # Matrici
 
-- Non c'è limite al numero delle dimensioni 
+- Non c'è limite al numero delle dimensioni
 
 ```c
 int matrice [DIM_1][DIM_2]...[DIM_N] ;
@@ -379,9 +379,9 @@ level: 3
 
 # Caratteri
 
-- Caratteri “speciali” sono rappresentati con le sequenze di escape, ovvero premettendo il carattere '\\':
-  - \’  
-  - \”
+- Caratteri "speciali" sono rappresentati con le sequenze di escape, ovvero premettendo il carattere '\\':
+  - \'
+  - \"
   - \\?
   - \\\\
 
@@ -735,11 +735,11 @@ struct record {
         int eta;
 } utente1, utente2;
 
-if ( utente1.eta == utente2.eta 
+if ( utente1.eta == utente2.eta
       && strcmp(utente1.nome, utente2.nome) == 0
       && strcmp(utente1.cognome, utente2.cognome) == 0 ) {
         // code block
-        
+
 }
 
 ```
@@ -758,7 +758,7 @@ typedef	struct __sFILE {
  ...
 } FILE;
 
-FILE *my_file; 
+FILE *my_file;
 
 ```
 

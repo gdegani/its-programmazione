@@ -102,8 +102,8 @@ level: 3
 
 - **Finito:** costituito da un numero finito di istruzioni.
 - **Deterministico:** partendo dagli stessi dati di ingresso, ottengo gli stessi risultati.
-- **Generale:** applicabile a tutti i problemi della classe a cui si riferisce.  
-  - Ad esempio, l’algoritmo per il calcolo dell’area di un rettangolo deve essere applicabile a tutti i rettangoli.
+- **Generale:** applicabile a tutti i problemi della classe a cui si riferisce.
+  - Ad esempio, l'algoritmo per il calcolo dell'area di un rettangolo deve essere applicabile a tutti i rettangoli.
 - **Eseguibile:** esiste un esecutore in grado di eseguire tutte le istruzioni in un tempo finito.
 
 ---
@@ -117,7 +117,7 @@ level: 3
 
 - Il linguaggio che possono comprendere (italiano, inglese, C, TypeScript, ecc.)
 - Le azioni che possono eseguire
-- Le regole che associano alle istruzioni fornite le azioni da eseguire 
+- Le regole che associano alle istruzioni fornite le azioni da eseguire
 
 ---
 level: 3
@@ -133,7 +133,7 @@ flowchart LR
   A[/Dati in ingresso/] --> B[Computer]
   C[/Algoritmo/] --> B
   B --> D[/Risultato/]
-```  
+```
 
 ---
 level: 3
@@ -320,7 +320,7 @@ level: 3
 
 ```mermaid {scale: 1, alt: 'A diagram'}
 flowchart LR
-  
+
     Start([Inizio]) --> Input[/Input/]
     Input --> Process1[Elaborazione]
     Process1 --> Decision{Decisione}
@@ -389,7 +389,7 @@ level: 3
 ```mermaid {scale: 1, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> J1 
+    Start([Inizio]) --> J1
     J1 --> Controllo{Condizione Vera?}
     Controllo -- Sì --> Azione[Azioni da Eseguire]
     Azione --> J1
@@ -413,7 +413,7 @@ level: 3
 ```mermaid {scale: 0.9, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> J1 
+    Start([Inizio]) --> J1
     J1 --> Azione[Azioni da Eseguire]
     Azione --> Controllo{Condizione Vera?}
     Controllo -- Sì --> J1
@@ -466,8 +466,8 @@ Dato un numero intero, calcolarne il fattoriale.
 <br>
 <br>
 $$
-n! = 
-\begin{cases} 
+n! =
+\begin{cases}
 1 & \text{se } n = 0 \\
 n \times (n-1) \times \cdots \times 2 \times 1 & \text{se } n > 0
 \end{cases}
@@ -567,7 +567,7 @@ Rappresentare un algoritmo per il calcolo della potenza n-esima di un numero int
 layout: two-cols
 level: 3
 
---- 
+---
 
 # flow-chart
 
@@ -640,7 +640,7 @@ $$
 <br>
 
 $$
-1024_{10} = 1 \times 2^{10} + 0 \times 2^9 + 0 \times 2^8 + 0 \times 2^7 + 0 \times 2^6 + 0 \times 2^5 
+1024_{10} = 1 \times 2^{10} + 0 \times 2^9 + 0 \times 2^8 + 0 \times 2^7 + 0 \times 2^6 + 0 \times 2^5
 \\+ 0 \times 2^4 + 0 \times 2^3 + 0 \times 2^2 + 0 \times 2^1 + 0 \times 2^0 = 100 0000 0000_2
 $$
 
@@ -747,7 +747,7 @@ level: 3
 - Metodo per rappresentare numeri interi con segno nei computer.
 - Calcolo del complemento a due:
   - Rappresentare il numero in forma binaria: 0000 0101 (5).
-  - Invertire tutti i bit (sostituendo 0 con 1 e viceversa): 1111 1010 
+  - Invertire tutti i bit (sostituendo 0 con 1 e viceversa): 1111 1010
     - Ovvero eseguire il complemento a uno).
   - Aggiungere il valore 1: 1111 1011 (che rappresenta -5).
 

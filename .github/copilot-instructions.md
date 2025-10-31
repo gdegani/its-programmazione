@@ -1,5 +1,8 @@
 # Project Overview
 This project contains the slides for the course "Elementi di programmazione e gestione dati" taught by Ing. Giancarlo Degani. The slides are created using Slidev, a framework for building presentation slides with Markdown and Vue.js.
+All the slides are written in Italian.
+All the code examples and snippets in the slides are written in the C programming language with the purpose of teaching programming concepts and data management techniques. All the example and snippets must use english comments and identifiers to ensure clarity and consistency in coding practices.
+
 
 # Copilot instructions for this Slidev + C course repository
 
@@ -14,6 +17,8 @@ Project context (Slidev specifics)
 	- reusable UI: `components/*.vue` and `layouts/*.vue`
 	- static assets: `public/`
 	- examples/snippets: `snippets/*/` (one folder per example)
+	- the examples should never be inlined in the slides; they are always
+		 in separate files under `snippets/` and referenced from the slides in order to have a working code example that can be compiled and tested separately.
 	- Slidev config: `slidev.config.js` / `slidev.config.ts` (or project `package.json` scripts)
 
 Why this matters for Copilot

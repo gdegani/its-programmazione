@@ -19,7 +19,7 @@ image: /kernighan.png
 
 # Il linguaggio C
 
-- Sviluppato da Dennis Ritchie ai Bell Labs nel 1972 per realizzare il sistema operativo UNIX 
+- Sviluppato da Dennis Ritchie ai Bell Labs nel 1972 per realizzare il sistema operativo UNIX
 - Linguaggio compilato
 - Compilatore disponibile per tutte le piattaforme
 - Codice molto efficiente
@@ -107,7 +107,7 @@ CC-->OF@{ shape: doc, label: "Object file" }
 
     OFF@{ shape: docs, label: "Object files" }-->LN[Linker]
     LL@{ shape: docs, label: "Libraries" }--> LN
-    LN -->EF@{ shape: doc, label: "Executable file" }  
+    LN -->EF@{ shape: doc, label: "Executable file" }
 ```
 
 ---
@@ -121,7 +121,7 @@ level: 3
 Preprocess
 
 ```txt
-$ gcc -E hello.c -o hello.i 
+$ gcc -E hello.c -o hello.i
 
 ```
 
@@ -140,7 +140,7 @@ level: 3
 Translate
 
 ```txt
-$ gcc -S hello.i -o hello.asm 
+$ gcc -S hello.i -o hello.asm
 
 ```
 
@@ -226,12 +226,12 @@ level: 3
 
 ```mermaid {scale: 0.9, alt: 'A diagram'}
 flowchart TB
-    
+
     subgraph Programma2
     direction TB
     a1[Codice oggetto]
     end
-    
+
     subgraph Programma1
     direction TB
     a3[Codice oggetto]
@@ -241,7 +241,7 @@ flowchart TB
     direction TB
     a5[Librerie dinamica]
     end
-    
+
     a1<-.->a5
     a3<-.->a5
 ```
@@ -336,7 +336,7 @@ level: 3
 
 ```mermaid {scale: 0.7, alt: 'A diagram'}
 sequenceDiagram
-    actor user 
+    actor user
     user->>+program:main()
     program->>+library:printf()
     library->>-program:return

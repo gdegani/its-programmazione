@@ -1,8 +1,9 @@
 #include <stdio.h>
 
-int example(void) {
+int example_while2(void) {
 
     // #region ciclo
+    int v;
     int somma = 0;
     scanf("%d", &v);
     while (v != 0) {
