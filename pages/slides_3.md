@@ -773,6 +773,291 @@ level: 3
 
 ---
 
+# Errori comuni nei cicli
+
+I cicli sono potenti ma anche una fonte frequente di bug. Ecco i problemi più comuni:
+
+**1. Errori off-by-one (OBOE - Off-By-One Error)**
+- Il ciclo esegue una iterazione in più o in meno del previsto
+- Causato da condizioni `<` vs `<=` o inizializzazione errata
+
+**2. Cicli infiniti (Infinite loops)**
+- Il ciclo non termina mai perché la condizione rimane sempre vera
+- Causato da dimenticanza dell'incremento o condizione mal formulata
+
+---
+level: 3
+
+---
+
+# Errori comuni nei cicli
+
+**3. Uso di variabili non inizializzate**
+
+- Comportamento imprevedibile se le variabili accumulo non sono inizializzate
+
+**4. Modifica dell'indice nel corpo del ciclo**
+
+- Alterare la variabile di controllo dentro il ciclo può causare comportamento inatteso
+
+---
+layout: two-cols
+level: 3
+
+---
+
+# Errore off-by-one: esempi
+
+**❌ Errore: stampa 0-9 invece di 1-10**
+
+```c
+// Volevo stampare da 1 a 10
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i);
+}
+// Output: 0 1 2 3 4 5 6 7 8 9
+```
+
+**❌ Errore: accesso fuori array**
+
+```c
+int array[10];
+// ERRORE: i va da 0 a 10 (11 valori)
+// ma array ha solo indici 0-9!
+for (int i = 0; i <= 10; i++) {
+    array[i] = i * 2;  // ❌ Crash!
+}
+```
+
+::right::
+
+**✅ Corretto: stampa 1-10**
+
+```c
+// Soluzione 1: inizia da 1
+for (int i = 1; i <= 10; i++) {
+    printf("%d\n", i);
+}
+// Soluzione 2: stampa i+1
+for (int i = 0; i < 10; i++) {
+    printf("%d\n", i + 1);
+}
+```
+
+**✅ Corretto: array completo**
+
+```c
+int array[10];
+// Corretto: i va da 0 a 9 (10 valori)
+for (int i = 0; i < 10; i++) {
+    array[i] = i * 2;  // ✅ OK
+}
+```
+
+---
+layout: two-cols
+level: 3
+
+---
+
+# Cicli infiniti: esempi
+
+**❌ Dimenticato incremento**
+
+```c
+int i = 0;
+while (i < 10) {
+    printf("%d\n", i);
+    // ❌ Dimenticato i++!
+}
+// Loop infinito: stampa 0 all'infinito
+```
+
+**❌ Condizione sempre vera**
+
+```c
+int x = 5;
+while (x > 0) {
+    printf("x = %d\n", x);
+    x = x + 1;  // ❌ Aumenta invece di diminuire!
+}
+// x diventa 6, 7, 8... mai < 0
+```
+
+::right::
+
+**❌ Errore logico nella condizione**
+
+```c
+int count = 0;
+// ❌ Usa = invece di ==
+while (count = 10) {  
+    printf("Count: %d\n", count);
+    count++;
+}
+// count = 10 assegna 10 (sempre true)
+// e stampa sempre 10!
+```
+
+**✅ Corretto**
+
+```c
+int i = 0;
+while (i < 10) {
+    printf("%d\n", i);
+    i++;  // ✅ Incremento presente
+}
+```
+
+---
+level: 3
+
+---
+
+# Come evitare errori nei cicli
+
+| Problema | Prevenzione | Esempio |
+|----------|-------------|---------|
+| **Off-by-one** | • Controlla condizione: `<` vs `<=`<br>• Pensa: "Quante iterazioni voglio?"<br>• Array: sempre `i < length` | `for (int i = 0; i < 10; i++)` per 10 elementi |
+| **Ciclo infinito** | • Verifica che la condizione possa diventare falsa<br>• Assicurati che l'incremento vada nella direzione giusta | `while (x > 0)` → serve `x--` non `x++` |
+
+---
+level: 3
+
+---
+
+# Come evitare errori nei cicli
+
+| Problema | Prevenzione | Esempio |
+|----------|-------------|---------|
+| **Variabili non inizializzate** | • Sempre inizializzare variabili di accumulazione<br>• Contatori iniziano a 0, somme a 0, prodotti a 1 | `int sum = 0;` prima del ciclo |
+| **Modifica indice nel ciclo** | • Non modificare la variabile di controllo del `for` nel corpo<br>• Usa variabili separate se necessario | Evita `for (int i = 0; i < n; i++) { i++; }` |
+
+---
+layout: two-cols
+level: 3
+
+---
+
+# Debugging dei cicli
+
+**Tecniche per trovare errori:**
+
+**1. Stampe di debug**
+
+```c
+for (int i = 0; i < 10; i++) {
+    printf("DEBUG: i = %d\n", i);
+    // ... codice ...
+}
+```
+
+**2. Verificare i casi limite**
+
+- Primo e ultimo valore dell'indice
+- Array vuoto (lunghezza 0)
+- Un solo elemento
+
+**3. Contare le iterazioni a mano**
+
+::right::
+
+- Simula 2-3 iterazioni su carta
+- Verifica i valori delle variabili
+
+**4. Usare un debugger (GDB/CLion)**
+
+```c
+// Metti breakpoint nel ciclo
+for (int i = 0; i < n; i++) {
+    int value = array[i] * 2;  // <-- breakpoint qui
+    // Ispeziona i e value ad ogni iterazione
+}
+```
+
+**5. Aggiungere controlli temporanei**
+
+```c
+int iterations = 0;
+while (condition) {
+    iterations++;
+    if (iterations > 1000) {
+        printf("ERRORE: troppe iterazioni!\n");
+        break;  // Esci per evitare loop infinito
+    }
+    // ... codice normale ...
+}
+```
+
+---
+level: 3
+
+---
+
+# Esercizio: trova gli errori
+
+Identifica e correggi gli errori nei seguenti frammenti di codice:
+
+```c
+// 1. Somma dei primi N numeri
+int n = 10;
+int sum;  // ❌ Errore?
+for (int i = 1; i <= n; i++) {
+    sum = sum + i;
+}
+
+// 2. Copia array
+int source[5] = {1, 2, 3, 4, 5};
+int dest[5];
+for (int i = 0; i <= 5; i++) {  // ❌ Errore?
+    dest[i] = source[i];
+}
+
+// 3. Conta fino a zero
+int count = 10;
+while (count > 0) {
+    printf("%d ", count);
+    count = count + 1;  // ❌ Errore?
+}
+```
+
+---
+level: 3
+
+---
+
+# Soluzioni esercizio
+
+```c
+// 1. ✅ sum non inizializzato
+int n = 10;
+int sum = 0;  // ✅ Inizializza a 0
+for (int i = 1; i <= n; i++) {
+    sum = sum + i;
+}
+
+// 2. ✅ Off-by-one error: i va da 0 a 5 (6 valori), array ha solo 0-4
+int source[5] = {1, 2, 3, 4, 5};
+int dest[5];
+for (int i = 0; i < 5; i++) {  // ✅ Usa < invece di <=
+    dest[i] = source[i];
+}
+
+// 3. ✅ Ciclo infinito: count aumenta invece di diminuire
+int count = 10;
+while (count > 0) {
+    printf("%d ", count);
+    count = count - 1;  // ✅ Decrementa con -1
+}
+```
+
+---
+level: 3
+
+hide: true
+
+---
+
 # formula di newton
 
 $$
@@ -785,6 +1070,8 @@ x_{i=0} & =A
 $$
 ---
 level: 3
+
+hide: true
 
 ---
 

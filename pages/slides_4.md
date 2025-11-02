@@ -754,7 +754,7 @@ level: 3
 ```c {*}{lines:true}
 
 // stdio.h
-typedef	struct __sFILE {
+typedef struct __sFILE {
  ...
 } FILE;
 
