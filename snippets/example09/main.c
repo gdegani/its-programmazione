@@ -1,35 +1,19 @@
 #include <stdio.h>
-#include <string.h>
 
-int main(void) {
-    char str1[100], str2[100];
+int main() {
+    int array[5] = {10, 20, 30, 40, 50};
 
-    printf("Inserisci la prima stringa: ");
-    fgets(str1, sizeof(str1), stdin);
-    printf("Inserisci la seconda stringa: ");
-    fgets(str2, sizeof(str2), stdin);
-
-    // Rimuove il carattere di newline alla fine delle stringhe
-    str1[strcspn(str1, "\n")] = '\0';
-
-    int posizione = strcspn(str2, "\n");
-    str2[posizione] = '\0';
-
-    if (strlen(str1) > strlen(str2)) {
-        printf("La stringa più lunga è: %s\n", str1);
-    } else if (strlen(str1) < strlen(str2)) {
-        printf("La stringa più lunga è: %s\n", str2);
-    } else {
-        printf("Le stringhe hanno la stessa lunghezza. La prima stringa è: %s\n", str1);
+    // Print elements and addresses
+    for (int i = 0; i < 5; i++) {
+        printf("array[%d] = %d at address %p\n", i, array[i], (void*)&array[i]);
     }
 
-
-    if (strcmp(str1, str2) > 0) {
-        printf("La stringa maggiore è: %s\n", str1);
-    } else if (strcmp(str1, str2) < 0) {
-        printf("La stringa maggiore è: %s\n", str2);
-    } else {
-        printf("Le stringhe sono uguali: %s\n", str1);
+    // Pointer arithmetic demonstration
+    int *ptr = array;
+    printf("\nPointer arithmetic:\n");
+    for (int i = 0; i < 5; i++) {
+        printf("*(ptr + %d) = %d at address %p\n", i, *(ptr + i), (void*)(ptr + i));
     }
+
     return 0;
 }

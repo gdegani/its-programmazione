@@ -6,28 +6,28 @@
 #define MAX 1000
 
 int main(int argc, char *argv[]) {
-    char vettore[MAX];
+    char buffer[MAX];
 
     // Prompt the user to enter a string
-    printf("Introduci la stringa: ");
+    printf("Enter a string: ");
 
     // Use fgets instead of gets for safer input handling
-    if (fgets(vettore, MAX, stdin) != NULL) {
+    if (fgets(buffer, MAX, stdin) != NULL) {
         // Remove the newline character if present
-        size_t len = strlen(vettore);
-        if (len > 0 && vettore[len - 1] == '\n') {
-            vettore[len - 1] = '\0';
+        size_t len = strlen(buffer);
+        if (len > 0 && buffer[len - 1] == '\n') {
+            buffer[len - 1] = '\0';
         }
 
         // Check if the string is a palindrome and print the result
-        if (isPalindrome(vettore)) {
-            printf("La stringa e' palindroma\n");
+        if (isPalindrome(buffer)) {
+            printf("The string is a palindrome\n");
         } else {
-            printf("La stringa non e' palindroma\n");
+            printf("The string is not a palindrome\n");
         }
     } else {
         // Handle input error
-        printf("Errore nella lettura della stringa\n");
+        printf("Error reading string\n");
     }
 
     return EXIT_SUCCESS;

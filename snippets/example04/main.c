@@ -1,59 +1,59 @@
 /*
- * Esercizio:
- * Scrivere un programma in linguaggio C per la gestione elementare di un carrello della spesa.
- * Il programma deve chiedere in input:
- *   - Il numero di oggetti contenuti nel carrello.
- *   - Il prezzo unitario di ogni oggetto.
- * Il programma deve calcolare il costo totale del carrello:
- *   - Se il numero di oggetti è maggiore di 10, applicare uno sconto del 10%.
- *   - Calcolare il costo al lordo dell’IVA del 22%.
- * Stampare a schermo:
- *   - Il dettaglio del carrello, l’imponibile, l’IVA e il totale lordo.
+ * Exercise:
+ * Write a C program for basic shopping cart management.
+ * The program should request as input:
+ *   - The number of items in the cart.
+ *   - The unit price of each item.
+ * The program should calculate the total cart cost:
+ *   - If the number of items is greater than 10, apply a 10% discount.
+ *   - Calculate the cost including 22% VAT.
+ * Print to screen:
+ *   - The cart details, taxable amount, VAT, and gross total.
  */
 
 #include <stdio.h>
 
 int main() {
-    // Dichiarazione delle variabili
-    int numero_oggetti;        // Numero totale di oggetti nel carrello
-    float prezzo_unitario;     // Prezzo di un singolo oggetto
-    float imponibile;          // Prezzo totale senza IVA
-    float sconto = 0;          // Sconto applicato (se applicabile)
-    float iva;                 // IVA calcolata sul totale
-    float totale;              // Totale finale, comprensivo di IVA
+    // Variable declarations
+    int num_items;             // Total number of items in cart
+    float unit_price;          // Price of a single item
+    float taxable_amount;      // Total price without VAT
+    float discount = 0;        // Applied discount (if applicable)
+    float vat;                 // VAT calculated on total
+    float total;               // Final total, including VAT
     // #region sample
-    // Richiesta dati all'utente
-    printf("Inserisci il numero di oggetti nel carrello: ");
-    scanf("%d", &numero_oggetti);
+    // Request data from user
+    printf("Enter the number of items in the cart: ");
+    scanf("%d", &num_items);
 
-    printf("Inserisci il prezzo unitario degli oggetti: ");
-    scanf("%f", &prezzo_unitario);
+    printf("Enter the unit price of the items: ");
+    scanf("%f", &unit_price);
 
-    // Calcolo del costo totale prima dell'applicazione di sconti o IVA
-    imponibile = numero_oggetti * prezzo_unitario;
+    // Calculate total cost before applying discounts or VAT
+    taxable_amount = num_items * unit_price;
 
     // #region blocco_if
-    // Applicazione dello sconto del 10% se il numero di oggetti è maggiore di 10
-    if (numero_oggetti > 10) {
-        sconto = imponibile * 0.10;  // Calcolo dello sconto (10% del totale)
-        imponibile -= sconto;        // Aggiornamento dell'imponibile dopo lo sconto
+    // Apply 10% discount if number of items is greater than 10
+    if (num_items > 10) {
+        discount = taxable_amount * 0.10;  // Calculate discount (10% of total)
+        taxable_amount -= discount;         // Update taxable amount after discount
     }
     // #endregion
-    // Calcolo dell'IVA (22% sull'imponibile)
-    iva = imponibile * 0.22;
+    // Calculate VAT (22% on taxable amount)
+    vat = taxable_amount * 0.22;
 
-    // Calcolo del totale lordo (imponibile + IVA)
-    totale = imponibile + iva;
+    // Calculate gross total (taxable amount + VAT)
+    total = taxable_amount + vat;
     // #endregion
-    // Stampa del dettaglio del carrello
-    printf("\n===== Dettaglio del Carrello =====\n");
-    printf("Numero di oggetti: %d\n", numero_oggetti);
-    printf("Prezzo unitario: %.2f\n", prezzo_unitario);
-    printf("Totale prima dello sconto: %.2f\n", numero_oggetti * prezzo_unitario);
-    printf("Sconto applicato: %.2f\n", sconto);
-    printf("Imponibile (dopo sconto): %.2f\n", imponibile);
-    printf("IVA (22%%): %.2f\n", iva);
-    printf("Totale lordo: %.2f\n", totale);
+    // Print cart details
+    printf("\n===== Cart Details =====\n");
+    printf("Number of items: %d\n", num_items);
+    printf("Unit price: %.2f\n", unit_price);
+    printf("Total before discount: %.2f\n", num_items * unit_price);
+    printf("Discount applied: %.2f\n", discount);
+    printf("Taxable amount (after discount): %.2f\n", taxable_amount);
+    printf("VAT (22%%): %.2f\n", vat);
+    printf("Gross total: %.2f\n", total);
     printf("==============================\n");
 
     return 0;

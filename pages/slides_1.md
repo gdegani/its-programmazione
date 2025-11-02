@@ -1,4 +1,5 @@
 ---
+
 layout: cover
 coverDate:
 ---
@@ -22,6 +23,7 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # Strumenti
@@ -87,6 +89,7 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # ALGORITMO
@@ -96,6 +99,7 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # Proprietà di un algoritmo
@@ -121,6 +125,7 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # Calcolatore COME ESECUTORE
@@ -137,6 +142,7 @@ flowchart LR
 
 ---
 level: 3
+
 ---
 
 # ESEMPIO
@@ -153,6 +159,7 @@ flowchart LR
 
 ---
 level: 3
+
 ---
 
 # STRUTTURE DATI
@@ -166,6 +173,7 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # ISTRUZIONI DI ASSEGNAZIONE
@@ -177,6 +185,7 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # ESPRESSIONI ARITMETICHE
@@ -190,7 +199,9 @@ Sono costituite da:
 
 ---
 level: 3
+
 ---
+
 # ESEMPI
 
 |||
@@ -202,11 +213,13 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # ESPRESSIONI RELAZIONALI
 
 Sono costituite da:
+
 - Operandi: variabili, costanti, espressioni.
 - Operatori: uguaglianza ==, disuguaglianza !=, maggiore di >, minore di <.
 - Parentesi: per definire l’ordine con cui vengono elaborate.
@@ -214,7 +227,9 @@ Sono costituite da:
 
 ---
 level: 3
+
 ---
+
 # ESEMPI
 
 |||
@@ -226,7 +241,9 @@ level: 3
 
 ---
 level: 3
+
 ---
+
 # ESPRESSIONI LOGICHE
 
 Sono costituite da:
@@ -296,6 +313,7 @@ level: 3
 
 ---
 level: 3
+
 ---
 
 # DIAGRAMMA DI FLUSSO/FLOW CHART
@@ -306,14 +324,20 @@ level: 3
 
 ---
 layout: image
+
 image: /flowchart.png
+
 backgroundSize: contain
+
 title: Simboli flowchart
+
 level: 3
+
 ---
 
 ---
 level: 3
+
 ---
 
 # Esempio di flowchart
@@ -331,7 +355,9 @@ flowchart LR
 
 ---
 layout: two-cols
+
 level: 3
+
 ---
 
 # Esempio: area di un rettangolo
@@ -353,7 +379,9 @@ flowchart TD
 
 ---
 layout: two-cols
+
 level: 3
+
 ---
 
 # Selezione - IF THEN ELSE
@@ -375,7 +403,9 @@ flowchart TD
 
 ---
 layout: two-cols
+
 level: 3
+
 ---
 
 # Ciclo While
@@ -398,7 +428,9 @@ flowchart TD
 
 ---
 layout: two-cols
+
 level: 3
+
 ---
 
 # Ciclo do while
@@ -422,7 +454,9 @@ flowchart TD
 
 ---
 layout: two-cols
+
 level: 3
+
 ---
 
 # Ciclo for
@@ -446,7 +480,9 @@ flowchart TD
 
 ---
 layout: two-cols
+
 level: 3
+
 ---
 
 # Esempio: CALCOLO DEL FATTORIALE
@@ -475,6 +511,7 @@ $$
 
 ---
 level: 3
+
 ---
 
 # Esempio: CALCOLO DEL FATTORIALE
@@ -526,13 +563,16 @@ level: 3
 # ESERCIZIO
 
 Rappresentare un algoritmo per il calcolo del costo di un prodotto che soddisfi i seguenti requisiti:
+
 - Input: costo unitario, quantità acquistata
 - Se il numero di elementi acquistati è superiore a 10, applicare uno sconto del 20%
 - Output: costo totale
 
 ---
 layout: two-cols
+
 level: 3
+
 ---
 
 # flow-chart
@@ -554,11 +594,13 @@ flowchart TD
 
 ---
 level: 3
+
 ---
 
 # ESERCIZIO
 
 Rappresentare un algoritmo per il calcolo della potenza n-esima di un numero intero che soddisfi i seguenti requisiti:
+
 - Input: numero, potenza
 - Output: numero^potenza
 - Usare solo le operazioni elementari: +, -, *, /
@@ -589,6 +631,7 @@ flowchart TD
 
 ---
 level: 3
+
 ---
 
 # Codifiche numeriche
@@ -761,7 +804,7 @@ level: 3
 - Nella codifica in complemento a due:
   - I numeri positivi sono rappresentati in modulo e segno.
   - I numeri negativi sono rappresentati in complemento a due.
-- Con n bit si possono rappresentare numeri da -2<sup>n</sup>-1 a 2<sup>n-1</sup>-1.
+- Con n bit si possono rappresentare numeri da -2<sup>n-1</sup> a 2<sup>n-1</sup>-1.
   - Con 8 bit, ad esempio, si possono rappresentare i numeri da -128 a +127.
 
 ---
@@ -798,6 +841,27 @@ level: 3
 - Unicode è uno standard per la rappresentazione e gestione di testi di ogni lingua e simboli utilizzati in tutto il mondo. È stato creato per risolvere i problemi di compatibilità tra i diversi sistemi di codifica (come ASCII o Latin-1).
 - Ogni carattere in Unicode è identificato da un numero unico chiamato code-point. Questi numeri possono essere rappresentati nel computer con varie codifiche, tra cui le più comuni sono UTF-8, UTF-16 e UTF-32.
 - Supporta anche la rappresentazione di alfabeti complessi come il cinese, il giapponese e il coreano.
+
+---
+level: 3
+
+---
+
+# UNICODE - Codifiche
+
+**UTF-8 (8-bit Unicode Transformation Format)**
+
+- Codifica a lunghezza variabile: usa da 1 a 4 byte per carattere
+- Retrocompatibile con ASCII (i primi 128 caratteri sono identici)
+- Più efficiente per testi in lingue occidentali
+- Standard dominante su Internet (oltre 98% dei siti web)
+
+**UTF-16 (16-bit Unicode Transformation Format)**
+
+- Codifica a lunghezza variabile: usa 2 o 4 byte per carattere
+- Più efficiente per lingue asiatiche (cinese, giapponese, coreano)
+- Utilizzato internamente da Java, C#, Windows e JavaScript
+- Richiede più spazio per testi in lingue occidentali rispetto a UTF-8
 
 ---
 level: 3
@@ -891,6 +955,7 @@ level: 3
 # Pro e contro
 
 Velocità di esecuzione:
+
 - L’interprete deve tradurre il programma ogni volta che lo esegue.
 - Il programma compilato viene tradotto solo una volta.
 - Il compilatore è più efficiente ed ottimizza il codice tradotto.
@@ -903,6 +968,7 @@ level: 3
 # Pro e contro
 
 Prerequisiti:
+
 - L’interprete deve essere installato su ogni macchina che userà il programma.
 - Il compilatore viene acquistato ed usato solo dal programmatore.
 
@@ -914,6 +980,7 @@ level: 3
 # Pro e contro
 
 Proprietà intellettuale:
+
 - L’interprete richiede la distribuzione del codice sorgente in chiaro.
 - Il programma compilato può essere distribuito in linguaggio macchina, senza il codice sorgente.
 

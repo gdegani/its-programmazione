@@ -9,7 +9,8 @@
     "remote": "slidev --remote",
     "dev1": "slidev pages/slides1.md --open",
     "export": "slidev export",
-    "check:snippets": "node scripts/build-snippets.js"
+    "check:snippets": "node scripts/build-snippets.js",
+    "check:language": "node scripts/check-language.js"
   },
   "dependencies": {
     "@slidev/cli": "52.6.0",

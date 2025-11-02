@@ -4,13 +4,13 @@ int example_while2(void) {
 
     // #region ciclo
     int v;
-    int somma = 0;
+    int sum = 0;
     scanf("%d", &v);
     while (v != 0) {
-        somma += v;
+        sum += v;
         scanf("%d", &v);
     }
-    printf("Somma: %d", somma);
+    printf("Sum: %d", sum);
     // #endregion
     return 0;
 }
