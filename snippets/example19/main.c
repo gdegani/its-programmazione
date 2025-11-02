@@ -1,25 +1,25 @@
 #include <stdio.h>
 
-// Definizione della struct
-struct Studente {
-    char nome[50];
-    int eta;
-    float voto;
+// Student struct definition
+struct Student {
+    char name[50];
+    int age;
+    float grade;
 };
 
-// Funzione che prende una struct come argomento
-void stampaStudente(struct Studente s) {
-    printf("Nome: %s\n", s.nome);
-    printf("Età: %d\n", s.eta);
-    printf("Voto: %.2f\n", s.voto);
+// Function that takes a struct as argument
+void printStudent(struct Student s) {
+    printf("Nome: %s\n", s.name);
+    printf("Età: %d\n", s.age);
+    printf("Voto: %.2f\n", s.grade);
 }
 
 int main() {
-    // Dichiarazione e inizializzazione di una struct
-    struct Studente studente1 = {"Marco Rossi", 20, 28.5};
+    // Declaration and initialization of a struct
+    struct Student student1 = {"Marco Rossi", 20, 28.5};
 
-    // Chiamata alla funzione con la struct come argomento
-    stampaStudente(studente1);
+    // Call function with struct as argument
+    printStudent(student1);
 
     return 0;
 }

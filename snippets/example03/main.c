@@ -5,7 +5,7 @@ int main(void) {
 
     printf("Hello world!\n");
     {
-
+        // Scope example: inner base shadows outer base
         int base = 4;
         int area = base * height;
         printf("Base = %d \n", base);
