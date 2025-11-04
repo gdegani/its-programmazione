@@ -7,12 +7,8 @@ theme: academic
 
 coverDate: "2025"
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+title: Elementi di programmazione e gestione dati
 
-  Learn more at [Sli.dev](https://sli.dev)
 # apply unocss classes to the current slide
 class: text-center
 download: false
@@ -60,6 +56,11 @@ src: ./pages/slides_3.md
 
 ---
 src: ./pages/slides_4.md
+
+---
+
+---
+src: ./pages/slides_5.md
 
 ---
 

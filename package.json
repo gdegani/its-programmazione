@@ -7,7 +7,7 @@
     "dev": "slidev",
     "run": "slidev --open",
     "remote": "slidev --remote",
-    "dev1": "slidev pages/slides1.md --open",
+    "dev1": "slidev slides1.md --open",
     "export": "slidev export",
     "check:snippets": "node scripts/build-snippets.js",
     "check:language": "node scripts/check-language.js"
