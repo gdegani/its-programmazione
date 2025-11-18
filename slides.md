@@ -33,15 +33,6 @@ themeConfig:
 Ing. Giancarlo Degani
 
 ---
-hide: true
-
----
-
-# Indice
-
-<Toc text-sm minDepth="1" maxDepth="1" columns="2" mode="all"/>
-
----
 src: ./pages/slides_1.md
 
 ---
@@ -57,22 +48,22 @@ src: ./pages/slides_3.md
 ---
 
 ---
-src: ./pages/slides_4.md
+#src: ./pages/slides_4.md
 
 ---
 
 ---
-src: ./pages/slides_5.md
+#src: ./pages/slides_5.md
 
 ---
 
 ---
-src: ./pages/slides_6.md
+# src: ./pages/slides_6.md
 
 ---
 
 ---
-src: ./pages/slides_7.md
+# src: ./pages/slides_7.md
 
 ---
 

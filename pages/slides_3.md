@@ -10,145 +10,51 @@ transition:
 Ing. Giancarlo Degani
 
 ---
-layout: two-cols
+
+# Controllo del flusso di esecuzione
+
+Finora abbiamo visto programmi che eseguono le istruzioni in **sequenza** (una dopo l'altra).
+
+Il controllo del flusso ci permette di:
+
+## Esecuzione condizionale
+
+Eseguire blocchi di codice **solo se** certe condizioni sono vere
+
+- `if`, `if-else`, `switch`
+
+## Esecuzione ripetuta (iterazione)
+
+Ripetere blocchi di codice **più volte**
+
+- `for`, `while`, `do-while`
+
+Queste strutture sono fondamentali per scrivere programmi che prendono decisioni e automatizzano operazioni ripetitive.
 
 ---
 
-# Esempio
+# Espressioni booleane e condizioni
 
-- Scope di visibilità {}
-- Stampa su schermo di numeri interi %d
-- Overriding
+Prima di vedere le istruzioni condizionali, ricordiamo che in C:
 
-::right::
-<Transform :scale="1.2">
-<<< @/snippets/example03/main.c c {all}{lines:true}
-</Transform>
+- **`0`** rappresenta **falso** (false)
+- **Qualsiasi valore diverso da 0** rappresenta **vero** (true)
 
----
-
-# Operatori di confronto o relazionali
-
-|Operator name|Syntax|
-|:---|:---:|
-|Equal to|a == b|
-|Not equal to|a!=b|
-|Greater than|a > b|
-|Less than|a < b|
-|Greater than or equal to|a >= b|
-|Less than or equal to|a <= b|
-
----
-
-# Costanti intere decimali
-
-- Sono sequenze di cifre decimali eventualmente precedute da ‘+’ o ‘–’
-- Sono del tipo int se possibile, altrimenti long se possibile, altrimenti unsigned long
-- Se non compatibili con un unsigned long si ha un errore
-- Sono di tipo long se seguite dalla lettera L
-- Sono unsigned se seguite dalla lettera U
-
-123 -> int
-
-123L -> long int
-
-123U -> unsigned int
-
-123UL -> unsigned long int
-
----
-
-# Costanti intere esadecimali
-
-Una costante intera è considerata essere in base 16 se è preceduta da 0x oppure da 0X (zero X) e può contenere le cifre da 0 a 9 e da A a F (maiuscole e minuscole):
-
-0xA == 10<sub>10</sub>
-
-0x10 == 16<sub>10</sub>
-
----
-
-# Costanti numeriche
-
-- Il modificatore const nella definizione delle variabili informa il compilatore che queste non dovranno essere modificate
-- Il valore della variabile const deve essere specificato nell’inizializzazione, può anche essere un’espressione di cui viene calcolato il risultato
-
-<br>
-
-<Transform :scale="1.5">
-```c
-const double Pi = 3.141592653;
-const double Pi = 4.0*atan(1.0);
-```
-</Transform>
-
----
-
-# Costanti simboliche
-
-- E’ possibile dare un nome (un identificatore) ad una quantità costante, questo nome è detto simbolo (per convenzione in maiuscolo)
-- Prima della compilazione, il pre-processore cerca i simboli definiti con direttive #define e sostituisce ogni occorrenza del simbolo nome con la corrispondente sequenza_di_caratteri
-- Esempi:
-
-<Transform :scale="1.5">
+## Esempi di condizioni:
 
 ```c
-#define nome sequenza_di_caratteri
+int x = 5, y = 10;
 
-#define TRUE 1
-#define FALSE 0
-#define DIM 80
-#define BANNER “#################################\n”
+// Operatori relazionali restituiscono 0 o 1
+x == y      // 0 (falso)
+x < y       // 1 (vero)
+x != y      // 1 (vero)
 
+// Operatori logici combinano condizioni
+(x > 0) && (y > 0)      // 1 (vero: entrambi positivi)
+(x == 0) || (y == 0)    // 0 (falso: nessuno è zero)
+!(x > y)                // 1 (vero: NOT di falso)
 ```
-
-</Transform>
-
----
-
-# Costanti simboliche
-
-- La sostituzione dei simboli inizia a partire dalla riga dove è presente la #define e continua fino a fine file (ignorando la struttura a blocchi del programma)
-- Non è un’istruzione C di assegnazione, ma una direttiva del pre-processore, quindi:
-  - non bisogna mettere il carattere ‘=’ tra il nome del simbolo e la sequenza_di_caratteri
-  - non si deve mettere il ‘;’ a fine riga
-- La sequenza di caratteri può contenere spazi e termina a fine riga
-
----
-
-# Riferimenti
-
-- <https://man7.org/linux/man-pages/man3/printf.3.html>
-- <https://en.cppreference.com/w/c/language>
-
----
-
-# Operatori logici
-
-|Operator name|Syntax|
-|:---|:---:|
-|Logical negation (NOT)|!a <br> **not** a|
-|Logical AND|a && b <br> a **or** b|
-|Logical OR|a \|\| b <br> a **or** b|
-
----
-
-# Valutazione delle espressioni logiche
-
-- Vengono valutate da sx a dx
-- Si possono usare le parentesi per alterare l’ordine di valutazione
-- La valutazione termina appena è possibile stabilire il risultato complessivo
-
----
-
-# Altri operatori
-
-|Operator name|Syntax|
-|:---|:---:|
-|Function call| f **(** a, b **)** |
-|Comma|a **,** b|
-|Sizeof| **sizeof**( a ) |
-|Conversion (C-style cast)| **(** a valid C Type **)**|
 
 ---
 layout: two-cols
@@ -158,77 +64,90 @@ layout: two-cols
 # Esecuzione condizionale - IF
 
 - Viene valutata una condizione
-- Se la condizione è vera, l’elaborazione prosegue con il ramo di sinistra
-- Se la condizione è false,  l’elaborazione prosegue con il ramo di destra
+- Se la condizione è vera, l'elaborazione prosegue con il blocco di istruzioni
+- Se la condizione è falsa, il blocco viene saltato
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'A diagram'}
+```mermaid {scale: 0.9, alt: 'Flowchart showing if statement control flow'}
 flowchart TD
     Start([Start]) --> Condition{Is condition <br> verified?}
     Condition -- Yes --> Action1[Action if True]
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
     Condition -- No --> J
     J --> End([End])
-
 ```
 
 ---
 
-# Esecuzione condizionale
+# Sintassi dell'istruzione IF
 
-- Sintassi (minima): <br>
+## Forma base:
 
-```txt
-    if (condizione) <br>
-       blocco istruzioni
-```
-
-- Il blocco di istruzioni deve essere racchiuso tra {} se contiene più istruzioni
-- Se c’è una sola istruzione, non serve “;” al termine dell’istruzione
-- Non serve il “;” dopo la parentesi “}”
-
----
-layout: two-cols-header
-
----
-
-# Esempi
-
-::left::
-
-<Transform :scale="2">
-```
-if( condizione )
-  istruzione;
-```
-</Transform>
-
-::right::
-
-<Transform :scale="2">
-```
-if( condizione ) {
-  istruzione 1;
-  istruzione 2;
+```c
+if (condizione) {
+    // blocco di istruzioni eseguito se condizione è vera
 }
 ```
-</Transform>
+
+## Regole:
+
+- La **condizione** deve essere tra parentesi tonde `( )`
+- Il **blocco** deve essere tra parentesi graffe `{ }` se contiene più istruzioni
+- Se c'è una sola istruzione, le graffe sono opzionali (ma **raccomandate per chiarezza**)
+- **Non** mettere `;` dopo la condizione!
 
 ---
 layout: two-cols
 
 ---
 
-# Esempio
+# Esempi di IF
 
-- Chiede un numero e, se è positivo, lo stampa
-- Le parentesi {} sono richieste avendo un blocco di più istruzioni
+## IF con una sola istruzione:
+
+```c
+if (condizione)
+    istruzione;
+```
+
+## IF con blocco di istruzioni:
+
+```c
+if (condizione) {
+    istruzione_1;
+    istruzione_2;
+    istruzione_3;
+}
+```
 
 ::right::
 
-<br>
-<br>
+## ⚠️ Errore comune:
+
+```c
+// ❌ ERRORE: ; dopo condizione
+if (x > 0);  {
+    printf("Positivo\n");
+}
+// Il blocco viene SEMPRE eseguito!
+```
+
+## ✅ Corretto:
+
+```c
+if (x > 0) {
+    printf("Positivo\n");
+}
+```
+
+---
+
+# Esempio pratico: IF
+
+Chiede un numero e, se è positivo, lo stampa.
+
+Le parentesi `{}` sono richieste avendo un blocco di più istruzioni.
 
 <<< @/snippets/example04/main.c#blocco_if c {*}{lines:true}
 
@@ -239,12 +158,13 @@ layout: two-cols
 
 # Esecuzione condizionale - IF-ELSE
 
-- Se la condizione è verificata esegue il blocco 1 altrimenti il blocco 2
-- È richiesta quando si hanno più di due casi che necessitano di elaborazioni diverse
+- Se la condizione è verificata esegue il blocco 1
+- Altrimenti esegue il blocco 2
+- Permette di gestire esattamente due casi alternativi
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'A diagram'}
+```mermaid {scale: 0.9, alt: 'Flowchart showing if-else statement'}
 flowchart TD
     Start([Start]) --> Condition{Is condition <br> verified?}
     Condition -- Yes --> Action1[Block 1]
@@ -252,34 +172,94 @@ flowchart TD
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
     Action2 -->   J
     J --> End([End])
-
 ```
 
 ---
 
-# ESERCIZIO
+# Sintassi dell'istruzione IF-ELSE
+
+```c
+if (condizione) {
+    // blocco 1: eseguito se condizione è vera
+} else {
+    // blocco 2: eseguito se condizione è falsa
+}
+```
+
+## Esempio:
+
+```c
+int age = 17;
+
+if (age >= 18) {
+    printf("Sei maggiorenne\n");
+} else {
+    printf("Sei minorenne\n");
+}
+// Output: Sei minorenne
+```
+
+---
+
+# IF-ELSE annidati (nested)
+
+È possibile annidare più istruzioni if-else per gestire più di due casi:
+
+```c
+int voto = 75;
+
+if (voto >= 90) {
+    printf("Eccellente\n");
+} else if (voto >= 75) {
+    printf("Buono\n");
+} else if (voto >= 60) {
+    printf("Sufficiente\n");
+} else {
+    printf("Insufficiente\n");
+}
+// Output: Buono
+```
+
+## Nota:
+
+- `else if` è in realtà un `else` seguito da un altro `if`
+- La valutazione avviene dall'alto verso il basso
+- Si ferma alla prima condizione vera
+
+---
+
+# Quando usare IF vs IF-ELSE vs IF annidati
+
+| Situazione | Struttura da usare | Esempio |
+|------------|-------------------|---------|
+| Una sola condizione da verificare | `if` | "Stampa un avviso se la temperatura è alta" |
+| Due alternative mutualmente esclusive | `if-else` | "Maggiorenne o minorenne" |
+| Più di due alternative ordinate | `if-else if-else` | "Voto: eccellente, buono, sufficiente, insufficiente" |
+| Molte alternative su stesso valore | `switch` | "Menu con 5+ opzioni numerate" |
+
+---
+
+# ESERCIZIO: Carrello della spesa
 
 Scrivere un programma per la gestione elementare di un carrello della spesa.
-Il programma deve chiedere input:
+
+## Input richiesto:
 
 - Il numero di oggetti contenuti nel carrello
 - Il prezzo unitario
 
-Il programma deve calcolare il costo totale del carrello:
+## Calcoli da eseguire:
 
 - Se il numero di oggetti è maggiore di 10, applicare lo sconto del 10%
-- Calcorare il costo al lordo dell’IVA del 22%
-- Stampare a schermo (vedi esempio):
+- Calcolare il costo al lordo dell'IVA del 22%
 
-Il dettaglio del carrello, l’imponibile, l’IVA, ed il totale lordo
+## Output:
+
+Stampare il dettaglio del carrello, l'imponibile, l'IVA, ed il totale lordo
 
 ---
 
-# ESERCIZIO
-
-Output richiesto:
-
-<Transform :scale="2">
+# ESERCIZIO: Output richiesto
 
 ```txt
 ===== Dettaglio del Carrello =====
@@ -290,68 +270,177 @@ Sconto applicato: 240.00
 Imponibile (dopo sconto): 2160.00
 IVA (22%): 475.20
 Totale lordo: 2635.20
-==============================
+===================================
 ```
 
-</Transform>
+**Suggerimento:** Usa `if` per verificare se applicare lo sconto, poi calcola IVA e totale.
 
 ---
 
 # SELEZIONE MULTIPLA - SWITCH
 
-<Transform :scale="2">
+Quando si devono gestire molti casi basati su un **singolo valore intero**, `switch` è più leggibile di tanti `if-else if`:
 
 ```c
-switch ( espressione ){
-  case valore1:
-    blocco di istruzioni;
-
-  case valore2:
-    blocco di istruzioni;
-
-  default:
-    Blocco di 'default';
+switch (espressione) {
+    case valore1:
+        blocco di istruzioni;
+        break;
+    
+    case valore2:
+        blocco di istruzioni;
+        break;
+    
+    default:
+        blocco di default;
 }
 ```
 
-</Transform>
-
 ---
 
-# SELEZIONE MULTIPLA
+# Regole dello SWITCH
 
-- L’espressione deve restituire un valore intero ( char, short, int, long)
-- I valori sono costanti note al momento della compilazione
-- L’elaborazione inizia in corrispondenza del primo ‘case’ verificato.
-- Si possono inserire più statement case con un solo blocco di istruzione;
-- Usare **break** per uscire dalla selezione multipla terminato un blocco di
-istruzioni !
+## Caratteristiche:
 
----
+- L'**espressione** deve restituire un valore **intero** (char, short, int, long)
+- I **valori** dei case devono essere **costanti** note a tempo di compilazione
+- L'elaborazione inizia dal primo `case` che corrisponde al valore
+- **break** è necessario per uscire dallo switch (altrimenti continua nei case successivi!)
+- **default** è opzionale ed esegue se nessun case corrisponde
 
-# ITERAZIONI
-
-Problema: Visualizzare i numeri interi da 0 a 100
-
-<Transform :scale="2">
+## ⚠️ Non dimenticare break:
 
 ```c
-printf(“0\n”);
-printf(“1\n”);
-printf(“2\n”);
-…
+int x = 2;
+switch (x) {
+    case 1: printf("Uno\n");    // Manca break!
+    case 2: printf("Due\n");    // Eseguito
+    case 3: printf("Tre\n");    // Eseguito anche questo!
+}
+// Output: Due, Tre (fall-through)
 ```
 
-</Transform>
+---
+
+# Esempio pratico: SWITCH
+
+```c
+int choice;
+printf("Scegli un'opzione (1-3): ");
+scanf("%d", &choice);
+
+switch (choice) {
+    case 1:
+        printf("Hai scelto l'opzione 1\n");
+        break;
+    
+    case 2:
+        printf("Hai scelto l'opzione 2\n");
+        break;
+    
+    case 3:
+        printf("Hai scelto l'opzione 3\n");
+        break;
+    
+    default:
+        printf("Opzione non valida\n");
+}
+```
+
+---
+
+# SWITCH: case multipli per stesso blocco
+
+È possibile avere più `case` che eseguono lo stesso blocco:
+
+```c
+char grade;
+printf("Inserisci il voto (A-F): ");
+scanf(" %c", &grade);
+
+switch (grade) {
+    case 'A':
+    case 'a':
+        printf("Eccellente!\n");
+        break;
+    
+    case 'B':
+    case 'b':
+        printf("Buono\n");
+        break;
+    
+    case 'C':
+    case 'c':
+        printf("Sufficiente\n");
+        break;
+    
+    default:
+        printf("Voto non valido\n");
+}
+```
+
+---
+
+# Quando usare IF vs SWITCH
+
+| Criterio | IF-ELSE IF | SWITCH |
+|----------|------------|--------|
+| **Tipo di condizione** | Qualsiasi espressione booleana | Solo valori interi/char |
+| **Complessità condizioni** | Condizioni complesse (range, combinazioni) | Valori esatti e costanti |
+| **Leggibilità** | Meglio per 2-4 alternative | Meglio per 5+ alternative |
+| **Performance** | Valutazione sequenziale | Può essere ottimizzato dal compilatore |
+
+## Esempi:
+
+```c
+// ✅ Usa IF per range
+if (age < 18) {...}
+else if (age < 65) {...}
+
+// ✅ Usa SWITCH per valori esatti
+switch (day_of_week) {
+    case 1: ... // Lunedì
+    case 2: ... // Martedì
+    ...
+}
+```
 
 ---
 
 # ITERAZIONI
 
-- Si parla di iterazioni quando una istruzione, o un blocco di istruzioni, vengono
-eseguite più volte
-- Le strutture iterative sono comunemente dette cicli o loop
-- Sono controllati da una condizione di permanenza nel ciclo
+## Problema:
+
+Visualizzare i numeri interi da 0 a 100
+
+## Soluzione ingenua:
+
+```c
+printf("0\n");
+printf("1\n");
+printf("2\n");
+printf("3\n");
+// ... 97 righe omesse ...
+printf("100\n");
+```
+
+## ❌ Problemi:
+
+- Codice ripetitivo e difficile da mantenere
+- Impossibile se il numero di iterazioni è variabile
+- Errori di battitura
+
+---
+
+# ITERAZIONI: introduzione
+
+- Si parla di **iterazioni** quando una istruzione, o un blocco di istruzioni, vengono eseguite **più volte**
+- Le strutture iterative sono comunemente dette **cicli** o **loop**
+- Sono controllati da una **condizione di permanenza** nel ciclo
+- C fornisce tre tipi di cicli:
+  - **for**: quando si conosce il numero di iterazioni
+  - **while**: quando la condizione è valutata prima dell'esecuzione
+  - **do-while**: quando la condizione è valutata dopo l'esecuzione
 
 ---
 layout: two-cols
@@ -360,87 +449,146 @@ layout: two-cols
 
 # ITERAZIONI: IL CICLO FOR
 
-Il ciclo **for** ripete l'esecuzione del blocco di
-istruzioni fintanto che la condizione è
-verificata
+Il ciclo **for** ripete l'esecuzione del blocco di istruzioni fintanto che la condizione è verificata.
+
+## Sintassi:
 
 ```c
-int j ;
-for ( j = 0; j < 100; j++){
-  blocco di istruzioni
+for (inizializzazione; condizione; incremento) {
+    blocco di istruzioni
+}
+```
+
+## Esempio:
+
+```c
+int i;
+for (i = 0; i < 100; i++) {
+    printf("%d\n", i);
 }
 ```
 
 ::right::
 
-```mermaid {scale: 0.7, alt: 'A diagram'}
+```mermaid {scale: 0.7, alt: 'Flowchart showing for loop execution'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> Inizializzazione[Inizializza Contatore=1]
+    Start([Inizio]) --> Inizializzazione[Inizializza Contatore]
     Inizializzazione --> J1
     J1 --> Controllo{Contatore <= Limite?}
-    Controllo -- Sì --> Azione[Azioni da Eseguire]
+    Controllo -- Sì --> Azione[Esegui Blocco]
     Azione --> Incremento[Incrementa Contatore]
     Incremento --> J1
-    Controllo -- No ---> End([Fine])
-```
-
----
-
-# ITERAZIONI: IL CICLO FOR
-
-<Transform :scale="1.7">
-
-for ( **Inizializzazione**; **controllo**; **incremento**){
-
-   Blocco di istruzioni
-
-}
-
-</Transform>
-
----
-layout: two-cols
-
----
-
-# ITERAZIONI: IL CICLO WHILE
-
-- Fa eseguire un blocco di codice
-fino a che una certa condizione
-è verificata
-- Valuta la condizione prima di
-eseguire il blocco
-- Se la condizione è inizialmente
-falsa, il blocco non viene
-eseguito neppure una volta
-- La condizione deve essere
-sempre presente
-
-::right::
-
-```mermaid {scale: 1, alt: 'A diagram'}
-flowchart TD
- J1@{ shape: f-circ, label: ""}
-    Start([Inizio]) --> J1
-    J1 --> Controllo{Condizione<br>verificata?}
-    Controllo -- Sì --> Azione[Azioni<br>da Eseguire]
-    Azione --> J1
     Controllo -- No --> End([Fine])
 ```
 
 ---
 
+# Anatomia del ciclo FOR
+
+```c
+for (inizializzazione; condizione; incremento) {
+    blocco di istruzioni
+}
+```
+
+| Parte | Quando viene eseguita | Scopo |
+|-------|----------------------|-------|
+| **inizializzazione** | Una sola volta all'inizio | Imposta il valore iniziale del contatore |
+| **condizione** | Prima di ogni iterazione | Decide se continuare il ciclo (1=sì, 0=no) |
+| **incremento** | Dopo ogni iterazione | Modifica il contatore |
+| **blocco** | Ad ogni iterazione (se condizione vera) | Operazioni da ripetere |
+
+## Esempio annotato:
+
+```c
+//     ↓ inizio      ↓ fino a quando?  ↓ come procede?
+for (int i = 0;     i < 10;            i++) {
+    printf("%d\n", i);  // ← Eseguito 10 volte (i = 0,1,2,...,9)
+}
+```
+
+---
+
+# Varianti del ciclo FOR
+
+## Dichiarazione della variabile nel for (C99+):
+
+```c
+for (int i = 0; i < 10; i++) {  // i esiste solo nel ciclo
+    printf("%d\n", i);
+}
+// printf("%d", i);  // ❌ ERRORE: i non esiste qui
+```
+
+## Incremento diverso:
+
+```c
+// Conta per 2
+for (int i = 0; i < 10; i += 2) {
+    printf("%d ", i);  // Output: 0 2 4 6 8
+}
+
+// Conta all'indietro
+for (int i = 10; i > 0; i--) {
+    printf("%d ", i);  // Output: 10 9 8 7 6 5 4 3 2 1
+}
+```
+
+---
+
+# Esempi pratici di FOR
+
+## Calcolare la somma dei primi N numeri:
+
+```c
+int n = 100;
+int sum = 0;
+
+for (int i = 1; i <= n; i++) {
+    sum += i;
+}
+printf("Somma da 1 a %d = %d\n", n, sum);  // 5050
+```
+
+## Stampare la tabellina del 7:
+
+```c
+for (int i = 1; i <= 10; i++) {
+    printf("7 x %d = %d\n", i, 7 * i);
+}
+```
+
+---
+layout: two-cols
+
+---
+
 # ITERAZIONI: IL CICLO WHILE
 
-<Transform :scale="1.7">
+- Esegue un blocco di codice **finché** una certa condizione è verificata
+- Valuta la condizione **prima** di eseguire il blocco
+- Se la condizione è inizialmente falsa, il blocco **non viene eseguito neppure una volta**
 
-while ( **condizione** ) \{
+## Sintassi:
 
-Blocco di istruzioni
+```c
+while (condizione) {
+    blocco di istruzioni
+}
+```
 
-\}
-</Transform>
+::right::
+
+```mermaid {scale: 1, alt: 'Flowchart showing while loop execution'}
+flowchart TD
+    J1@{ shape: f-circ, label: ""}
+    Start([Inizio]) --> J1
+    J1 --> Controllo{Condizione<br>verificata?}
+    Controllo -- Sì --> Azione[Esegui<br>Blocco]
+    Azione --> J1
+    Controllo -- No --> End([Fine])
+```
 
 ---
 layout: two-cols
@@ -449,13 +597,12 @@ layout: two-cols
 
 # ESEMPIO: IL CICLO WHILE
 
-- Stampa i numeri da 0 a 1000
-- Terminato il ciclo, il valore di i è 1001
+Stampa i numeri da 0 a 1000.
+
+Terminato il ciclo, il valore di `i` è 1001.
 
 ::right::
 
-<br>
-<br>
 <Transform :scale="2">
 
 <<< @/snippets/example03/ciclo_while.c#ciclo c {*}{lines:true}
@@ -467,14 +614,12 @@ layout: two-cols
 
 ---
 
-# ESEMPIO: il ciclo WHILE
+# ESEMPIO: ciclo WHILE con input
 
-Somma dei valori introdotti finché non viene immesso il valore 0
+Somma dei valori introdotti finché non viene immesso il valore 0.
 
 ::right::
 
-<br>
-<br>
 <Transform :scale="2">
 
 <<< @/snippets/example03/ciclo_while2.c#ciclo c {*}{lines:true}
@@ -488,14 +633,12 @@ layout: two-cols
 
 # EQUIVALENZA DI FOR E WHILE
 
-For e While consentono di esprimere lo stesso comportamento.
+`for` e `while` consentono di esprimere lo stesso comportamento.
 
 I due esempi a fianco sono equivalenti.
 
 ::right::
 
-<br>
-<br>
 <Transform :scale="2">
 
 <<< @/snippets/example03/ciclo_for_while.c#ciclo c {*}{lines:true}
@@ -503,60 +646,70 @@ I due esempi a fianco sono equivalenti.
 </Transform>
 
 ---
+
+# Quando usare FOR vs WHILE
+
+| Situazione | Ciclo consigliato | Esempio |
+|------------|------------------|---------|
+| **Numero di iterazioni noto** | `for` | "Stampa i numeri da 1 a 100" |
+| **Iterazione su range/sequenza** | `for` | "Scorrere un array" |
+| **Contatore esplicito necessario** | `for` | "Calcola fattoriale di n" |
+| **Numero di iterazioni sconosciuto** | `while` | "Leggi input fino a 0" |
+| **Condizione complessa** | `while` | "Continua finché errore < 0.001" |
+| **Almeno una iterazione necessaria** | `do-while` | "Menu: chiedi scelta fino a 'exit'" |
+
+## Regola generale:
+
+- **FOR**: "per ogni elemento da A a B"
+- **WHILE**: "finché vale questa condizione"
+- **DO-WHILE**: "fai almeno una volta, poi finché vale condizione"
+
+---
 layout: two-cols
 
 ---
 
 # ITERAZIONI: IL CICLO DO-WHILE
 
-- Esegue un blocco di codice
-fino a che una certa condizione
-è verificata
-- Valuta la condizione dopo aver
-eseguito il blocco di istruzioni
-- Il blocco viene eseguito almeno
-una volta
-- La condizione deve essere
-sempre presente
+- Esegue un blocco di codice finché una certa condizione è verificata
+- Valuta la condizione **dopo** aver eseguito il blocco
+- Il blocco viene eseguito **almeno una volta**
+
+## Sintassi:
+
+```c
+do {
+    blocco di istruzioni
+} while (condizione);
+```
+
+**Nota:** Il `;` dopo `while` è obbligatorio!
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'A diagram'}
+```mermaid {scale: 0.9, alt: 'Flowchart showing do-while loop execution'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
-    J1 --> Azione[Azioni<br>da eseguire]
+    J1 --> Azione[Esegui<br>Blocco]
     Azione --> Controllo{Condizione<br>verificata?}
     Controllo -- Sì --> J1
     Controllo -- No --> End([Fine])
 ```
 
 ---
-
-# ITERAZIONI: IL CICLO DO-WHILE
-
-<Transform :scale="2">
-
-do \{
-
-Blocco di istruzioni
-
-\} while ( **condizione** ) ;
-</Transform>
-
----
 layout: two-cols
 
 ---
 
-# ITERAZIONI: IL CICLO DO-WHILE
+# ESEMPIO: ciclo DO-WHILE
 
-Stampa i numeri da 0 a 1000
+Stampa i numeri da 0 a 1000.
+
+Anche questo esempio è equivalente ai precedenti, ma garantisce almeno una esecuzione.
 
 ::right::
 
-<br>
-<br>
 <Transform :scale="2">
 
 <<< @/snippets/example03/ciclo_do_while.c#ciclo c {*}{lines:true}
@@ -565,109 +718,129 @@ Stampa i numeri da 0 a 1000
 
 ---
 
-# CODIFICA DI NUMERI REALI
+# DO-WHILE: caso d'uso tipico - Menu
 
-Se convertiamo il numero in notazione esponenziale, le informazioni da
-memorizzare sono:
+Il caso d'uso più comune per `do-while` è un menu che deve essere mostrato almeno una volta:
 
-- Segno
-- Mantissa
-- Esponente
-
-Esempio:
-<Transform :scale="1.5">
--12.34 == -0.1234 * 10<sup>2</sup> == [ segno ] 0. [mantissa] * 10<sup>[esponente]</sup>
-</Transform>
+```c
+int choice;
+do {
+    printf("\n===== MENU =====\n");
+    printf("1. Opzione 1\n");
+    printf("2. Opzione 2\n");
+    printf("3. Esci\n");
+    printf("Scelta: ");
+    scanf("%d", &choice);
+    
+    switch (choice) {
+        case 1: printf("Eseguo opzione 1\n"); break;
+        case 2: printf("Eseguo opzione 2\n"); break;
+        case 3: printf("Arrivederci!\n"); break;
+        default: printf("Scelta non valida\n");
+    }
+} while (choice != 3);
+```
 
 ---
 
-# CODIFICA FLOATING-POINT DEI NUMERI REALI
+# Confronto tra i tre tipi di ciclo
 
-Un numero in virgola mobile, secondo lo standard IEEE è rappresentato su
-parole di 32, 64 o 128 bit divisi in tre parti: segno, mantissa ed esponente
-
-<Transform :scale="1.5">
-```
-1     8            23                lunghezza in bit
-+-+--------+-----------------------+
-|S|   Esp. |     Mantissa          |
-+-+--------+-----------------------+
-31 30    22                       0  indice dei bit
-```
-
-</Transform>
-<br>
-<br>
-
-Il valore del numero rappresentato è calcolabile come:
-
-<br>
-
-$$
-(-1 )^s*2^E*M
-$$
+| Caratteristica | FOR | WHILE | DO-WHILE |
+|---------------|-----|-------|----------|
+| **Controllo condizione** | Prima dell'esecuzione | Prima dell'esecuzione | Dopo l'esecuzione |
+| **Minimo iterazioni** | 0 | 0 | 1 |
+| **Uso tipico** | Iterazioni contate | Condizione complessa | Menu, validazione input |
+| **Sintassi** | Compatta (tutto in una riga) | Più esplicita | Simile a while |
 
 ---
 
-# ESEMPIO
+# Esempio equivalente
 
-Conversione in precisione semplice (32bit):
+```c
+// FOR
+for (int i = 0; i < 3; i++) printf("%d ", i);
 
-<Transform :scale="1.5">
+// WHILE
+int i = 0;
+while (i < 3) { printf("%d ", i); i++; }
+
+// DO-WHILE
+int i = 0;
+do { printf("%d ", i); i++; } while (i < 3);
+
+// Tutti stampano: 0 1 2
 ```
--5,82812510 = 1 | 1000 0001 | 0111 0101 0000 0000 0000 000
-```
-</Transform>
-
-Se la mantissa eccede i 23 bit, viene troncata, per questo si parla di
-precisione finita.
-
-Per comodità di lettura il numero viene solitamente rappresentato in
-esadecimale:
-<Transform :scale="1.5">
-
-```txt
-1100 0000 1011 1010 1000 0000 0000 0000 = C0 BA 80 00
-```
-
-</Transform>
 
 ---
 
-# TIPI DI DATI PRIMITIVI PER NUMERI IN VIRGOLA MOBILE
+# Controllo del flusso nei cicli: BREAK e CONTINUE
 
-|Type|Description|Format|
-|---|---|---|
-|**float**|Real floating-point type, usually referred to as a single-precision floating-point type|%f<br>%e|
-|**double**|Real floating-point type, usually referred to as a double-precision floating-point type|%lf<br>%le|
-|**long&nbsp;double**|Real floating-point type, usually mapped to an extended precision floating-point number format|%Lf<br>%Le|
+## BREAK
+
+Esce **immediatamente** dal ciclo (for, while, do-while, switch):
+
+```c
+for (int i = 0; i < 10; i++) {
+    if (i == 5) break;  // Esce quando i vale 5
+    printf("%d ", i);
+}
+// Output: 0 1 2 3 4
+```
+
+## CONTINUE
+
+Salta **l'iterazione corrente** e passa alla successiva:
+
+```c
+for (int i = 0; i < 10; i++) {
+    if (i % 2 == 0) continue;  // Salta i numeri pari
+    printf("%d ", i);
+}
+// Output: 1 3 5 7 9
+```
 
 ---
 
-# ESERCIZIO
+# Esempi pratici: BREAK e CONTINUE
 
-Scrivere un programma che calcoli la radice quadrata x di un numero n:
+## Cerca un valore in un array:
 
-- Usare l’algoritmo di bisezione per risolvere l’equazione x<sup>2</sup>=n
-  - Non usare la funzione di libreria sqrt
-  - Calcolare la soluzione con una precisione pari a 0.000 001
-- Il numero in input deve essere maggiore di 1
-  - In caso contrario stampare un messaggio di errore e terminare il programma
-- Prima di scrivere il codice, progettare l’algoritmo con un flowchart
+```c
+int numbers[] = {3, 7, 12, 5, 9};
+int search = 12;
+int found = 0;
 
-Consegnare: il flowchart, il codice, lo screenshot dell'output
+for (int i = 0; i < 5; i++) {
+    if (numbers[i] == search) {
+        found = 1;
+        break;  // Trovato! Esci dal ciclo
+    }
+}
+printf(found ? "Trovato!\n" : "Non trovato\n");
+```
+
+## Stampa solo i numeri divisibili per 3:
+
+```c
+for (int i = 1; i <= 20; i++) {
+    if (i % 3 != 0) continue;  // Salta se non divisibile per 3
+    printf("%d ", i);  // Output: 3 6 9 12 15 18
+}
+```
 
 ---
 layout: two-cols
 
 ---
 
-# ITERAZIONI: IL CICLO FOR ANNIDATO
+# CICLI ANNIDATI (nested loops)
+
+È possibile inserire un ciclo dentro un altro ciclo:
+
+## Esempio: tabella di moltiplicazione
 
 ::right::
 
-<br>
-<br>
 <Transform :scale="1.4">
 
 <<< @/snippets/example03/ciclo_nested.c#ciclo c {*}{lines:true}
@@ -676,29 +849,93 @@ layout: two-cols
 
 ---
 
-# Errori comuni nei cicli
+# CICLI ANNIDATI: esempi pratici
 
-I cicli sono potenti ma anche una fonte frequente di bug. Ecco i problemi più comuni:
+## Stampa un rettangolo di asterischi (5x3)
 
-**1. Errori off-by-one (OBOE - Off-By-One Error)**
+```c
+for (int row = 0; row < 3; row++) {
+    for (int col = 0; col < 5; col++) {
+        printf("* ");
+    }
+    printf("\n");
+}
+// Output:
+// * * * * *
+// * * * * *
+// * * * * *
+```
 
-- Il ciclo esegue una iterazione in più o in meno del previsto
-- Causato da condizioni `<` vs `<=` o inizializzazione errata
+---
 
-**2. Cicli infiniti (Infinite loops)**
+# CICLI ANNIDATI: esempi pratici
 
-- Il ciclo non termina mai perché la condizione rimane sempre vera
-- Causato da dimenticanza dell'incremento o condizione mal formulata
+## Stampa un triangolo
+
+```c
+for (int row = 1; row <= 5; row++) {
+    for (int col = 1; col <= row; col++) {
+        printf("* ");
+    }
+    printf("\n");
+}
+// Output:
+// *
+// * *
+// * * *
+// * * * *
+// * * * * *
+```
+
+---
+
+# Scope delle variabili nei cicli
+
+## Variabile dichiarata nel for (C99+):
+
+```c
+for (int i = 0; i < 10; i++) {
+    printf("%d ", i);  // ✅ i esiste qui
+}
+// printf("%d", i);  // ❌ ERRORE: i non esiste fuori dal for
+```
+
+## Variabile dichiarata prima del ciclo:
+
+```c
+int i;
+for (i = 0; i < 10; i++) {
+    printf("%d ", i);
+}
+printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
+```
+
+## Buona pratica:
+
+- Dichiara le variabili nel for se non servono dopo
+- Usa nomi descrittivi per cicli annidati (`row`, `col` invece di `i`, `j`)
 
 ---
 
 # Errori comuni nei cicli
 
-**3. Uso di variabili non inizializzate**
+I cicli sono potenti ma anche una fonte frequente di bug. Ecco i problemi più comuni:
+
+## 1. Errori off-by-one (OBOE - Off-By-One Error)
+
+- Il ciclo esegue una iterazione in più o in meno del previsto
+- Causato da condizioni `<` vs `<=` o inizializzazione errata
+
+## 2. Cicli infiniti (Infinite loops)
+
+- Il ciclo non termina mai perché la condizione rimane sempre vera
+- Causato da dimenticanza dell'incremento o condizione mal formulata
+
+## 3. Uso di variabili non inizializzate
 
 - Comportamento imprevedibile se le variabili accumulo non sono inizializzate
 
-**4. Modifica dell'indice nel corpo del ciclo**
+## 4. Modifica dell'indice nel corpo del ciclo
 
 - Alterare la variabile di controllo dentro il ciclo può causare comportamento inatteso
 
@@ -709,7 +946,7 @@ layout: two-cols
 
 # Errore off-by-one: esempi
 
-**❌ Errore: stampa 0-9 invece di 1-10**
+## ❌ Errore: stampa 0-9 invece di 1-10
 
 ```c
 // Volevo stampare da 1 a 10
@@ -719,7 +956,7 @@ for (int i = 0; i < 10; i++) {
 // Output: 0 1 2 3 4 5 6 7 8 9
 ```
 
-**❌ Errore: accesso fuori array**
+## ❌ Errore: accesso fuori array
 
 ```c
 int array[10];
@@ -732,7 +969,7 @@ for (int i = 0; i <= 10; i++) {
 
 ::right::
 
-**✅ Corretto: stampa 1-10**
+## ✅ Corretto: stampa 1-10
 
 ```c
 // Soluzione 1: inizia da 1
@@ -745,7 +982,7 @@ for (int i = 0; i < 10; i++) {
 }
 ```
 
-**✅ Corretto: array completo**
+## ✅ Corretto: array completo
 
 ```c
 int array[10];
@@ -762,7 +999,7 @@ layout: two-cols
 
 # Cicli infiniti: esempi
 
-**❌ Dimenticato incremento**
+## ❌ Dimenticato incremento
 
 ```c
 int i = 0;
@@ -773,7 +1010,7 @@ while (i < 10) {
 // Loop infinito: stampa 0 all'infinito
 ```
 
-**❌ Condizione sempre vera**
+## ❌ Condizione sempre vera
 
 ```c
 int x = 5;
@@ -786,7 +1023,7 @@ while (x > 0) {
 
 ::right::
 
-**❌ Errore logico nella condizione**
+## ❌ Errore logico nella condizione
 
 ```c
 int count = 0;
@@ -799,7 +1036,7 @@ while (count = 10) {
 // e stampa sempre 10!
 ```
 
-**✅ Corretto**
+## ✅ Corretto
 
 ```c
 int i = 0;
@@ -817,13 +1054,6 @@ while (i < 10) {
 |----------|-------------|---------|
 | **Off-by-one** | • Controlla condizione: `<` vs `<=`<br>• Pensa: "Quante iterazioni voglio?"<br>• Array: sempre `i < length` | `for (int i = 0; i < 10; i++)` per 10 elementi |
 | **Ciclo infinito** | • Verifica che la condizione possa diventare falsa<br>• Assicurati che l'incremento vada nella direzione giusta | `while (x > 0)` → serve `x--` non `x++` |
-
----
-
-# Come evitare errori nei cicli
-
-| Problema | Prevenzione | Esempio |
-|----------|-------------|---------|
 | **Variabili non inizializzate** | • Sempre inizializzare variabili di accumulazione<br>• Contatori iniziano a 0, somme a 0, prodotti a 1 | `int sum = 0;` prima del ciclo |
 | **Modifica indice nel ciclo** | • Non modificare la variabile di controllo del `for` nel corpo<br>• Usa variabili separate se necessario | Evita `for (int i = 0; i < n; i++) { i++; }` |
 
@@ -834,9 +1064,9 @@ layout: two-cols
 
 # Debugging dei cicli
 
-**Tecniche per trovare errori:**
+## Tecniche per trovare errori:
 
-**1. Stampe di debug**
+## 1. Stampe di debug
 
 ```c
 for (int i = 0; i < 10; i++) {
@@ -845,20 +1075,20 @@ for (int i = 0; i < 10; i++) {
 }
 ```
 
-**2. Verificare i casi limite**
+## 2. Verificare i casi limite
 
 - Primo e ultimo valore dell'indice
 - Array vuoto (lunghezza 0)
 - Un solo elemento
 
-**3. Contare le iterazioni a mano**
-
-::right::
+## 3. Contare le iterazioni a mano
 
 - Simula 2-3 iterazioni su carta
 - Verifica i valori delle variabili
 
-**4. Usare un debugger (GDB/CLion)**
+::right::
+
+## 4. Usare un debugger (GDB/CLion)
 
 ```c
 // Metti breakpoint nel ciclo
@@ -868,7 +1098,7 @@ for (int i = 0; i < n; i++) {
 }
 ```
 
-**5. Aggiungere controlli temporanei**
+## 5. Aggiungere controlli temporanei
 
 ```c
 int iterations = 0;
@@ -940,28 +1170,42 @@ while (count > 0) {
 
 ---
 
-hide: true
+# Riepilogo: Controllo del flusso
+
+## Istruzioni condizionali:
+
+- **if**: esegue codice se condizione vera
+- **if-else**: sceglie tra due alternative
+- **if-else if**: gestisce più alternative ordinate
+- **switch**: scelta multipla su valore intero
+
+## Cicli (iterazioni):
+
+- **for**: numero di iterazioni noto, contatore esplicito
+- **while**: condizione valutata prima, 0+ iterazioni
+- **do-while**: condizione valutata dopo, 1+ iterazioni
+
+## Controllo cicli:
+
+- **break**: esce dal ciclo immediatamente
+- **continue**: salta all'iterazione successiva
 
 ---
 
-# formula di newton
+# Best practices
 
-$$
- \left\{ \begin{array}{cl}\displaystyle \text{}
-x_{i+1} & = \frac{1}{2} (x_{i}+\frac{A}{x_{i}})\\
-x_{i=0} & =A
-\end{array}
-\right.
+## Scrittura di codice chiaro:
 
-$$
----
+1. **Indentazione consistente** - facilita lettura del codice annidato
+2. **Usa parentesi graffe** - anche per blocchi di una sola riga
+3. **Nomi variabili descrittivi** - `row`, `col` meglio di `i`, `j`
+4. **Commenti quando necessario** - spiega il "perché", non il "cosa"
+5. **Evita cicli troppo annidati** - massimo 2-3 livelli
 
-hide: true
+## Testing:
 
----
+1. Testa i **casi limite** (0, 1, max)
+2. Verifica i **casi normali** (valori tipici)
+3. Controlla i **casi errati** (input non valido)
 
-<br>
-$$
-M_n = \frac{(n-1)*M_{n-1}+a_n}{n}
-
-$$
+**Esercitati con esempi reali per consolidare i concetti!**
