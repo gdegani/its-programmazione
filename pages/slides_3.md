@@ -375,10 +375,10 @@ switch (grade) {
 ```
 
 ---
+layout: two-cols
+---
 
 # Esercizio: Menu con SWITCH
-
-<div class="exercise-box">
 
 **Obiettivo:** Creare un menu interattivo usando `switch` e `do-while`
 
@@ -389,6 +389,8 @@ switch (grade) {
 3. Leggi due numeri dall'utente
 4. Usa `switch` per eseguire l'operazione scelta
 5. Usa `do-while` per ripetere fino a scelta "Esci"
+
+::right::
 
 **Esempio di esecuzione:**
 
@@ -404,8 +406,6 @@ Primo numero: 10
 Secondo numero: 5
 Risultato: 15.00
 ```
-
-</div>
 
 ---
 

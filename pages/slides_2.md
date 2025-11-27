@@ -1327,10 +1327,7 @@ int main(void) {
     
     printf("Enter first number: ");
     scanf("%f", &num1);
-    
-    printf("Enter operator (+, -, *, /): ");
-    scanf(" %c", &operator);  // Spazio prima per ignorare newline
-    
+        
     printf("Enter second number: ");
     scanf("%f", &num2);
     
