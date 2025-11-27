@@ -33,27 +33,22 @@ Queste strutture sono fondamentali per scrivere programmi che prendono decisioni
 
 ---
 
-# Espressioni booleane e condizioni
+# Recap: Condizioni in C
 
-Prima di vedere le istruzioni condizionali, ricordiamo che in C:
+**Valori booleani in C:**
+- `0` = falso
+- qualsiasi valore ≠ 0 = vero
 
-- **`0`** rappresenta **falso** (false)
-- **Qualsiasi valore diverso da 0** rappresenta **vero** (true)
-
-## Esempi di condizioni:
+**Operatori già visti (slides precedenti):**
+- Relazionali: `==`, `!=`, `<`, `>`, `<=`, `>=`
+- Logici: `&&` (AND), `||` (OR), `!` (NOT)
 
 ```c
-int x = 5, y = 10;
+int age = 25, score = 85;
 
-// Operatori relazionali restituiscono 0 o 1
-x == y      // 0 (falso)
-x < y       // 1 (vero)
-x != y      // 1 (vero)
-
-// Operatori logici combinano condizioni
-(x > 0) && (y > 0)      // 1 (vero: entrambi positivi)
-(x == 0) || (y == 0)    // 0 (falso: nessuno è zero)
-!(x > y)                // 1 (vero: NOT di falso)
+if (age >= 18 && score > 80) {  // Entrambe le condizioni devono essere vere
+    printf("Ammesso al corso avanzato\n");
+}
 ```
 
 ---
@@ -381,6 +376,39 @@ switch (grade) {
 
 ---
 
+# Esercizio: Menu con SWITCH
+
+<div class="exercise-box">
+
+**Obiettivo:** Creare un menu interattivo usando `switch` e `do-while`
+
+**Requisiti:**
+
+1. Crea un programma calcolatrice con menu
+2. Mostra opzioni: 1=Somma, 2=Sottrazione, 3=Moltiplicazione, 4=Divisione, 5=Esci
+3. Leggi due numeri dall'utente
+4. Usa `switch` per eseguire l'operazione scelta
+5. Usa `do-while` per ripetere fino a scelta "Esci"
+
+**Esempio di esecuzione:**
+
+```text
+=== CALCOLATRICE ===
+1. Somma
+2. Sottrazione
+3. Moltiplicazione
+4. Divisione
+5. Esci
+Scelta: 1
+Primo numero: 10
+Secondo numero: 5
+Risultato: 15.00
+```
+
+</div>
+
+---
+
 # Quando usare IF vs SWITCH
 
 | Criterio | IF-ELSE IF | SWITCH |
@@ -534,6 +562,36 @@ for (int i = 10; i > 0; i--) {
     printf("%d ", i);  // Output: 10 9 8 7 6 5 4 3 2 1
 }
 ```
+
+---
+layout: two-cols
+---
+
+# Esercizio: Somma numeri pari
+
+**Obiettivo:** Usare un ciclo `for` con condizioni
+
+**Requisiti:**
+
+1. Chiedi all'utente un numero N
+2. Calcola la somma di tutti i numeri **pari** da 0 a N (incluso)
+3. Stampa il risultato
+
+**Esempio:**
+
+```text
+Inserisci N: 10
+Somma dei numeri pari da 0 a 10: 30
+(Spiegazione: 0+2+4+6+8+10 = 30)
+```
+
+::right::
+
+**Suggerimenti:**
+
+- Usa `for (int i = 0; i <= n; i++)`
+- Usa `if (i % 2 == 0)` per verificare se un numero è pari
+- Inizializza `sum = 0` prima del ciclo
 
 ---
 
@@ -718,6 +776,47 @@ Anche questo esempio è equivalente ai precedenti, ma garantisce almeno una esec
 
 ---
 
+# Esempio pratico: Validazione password
+
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+    char password[20];
+    int attempts = 0;
+    const int MAX_ATTEMPTS = 3;
+    
+    do {
+        printf("Inserisci password: ");
+        scanf("%s", password);
+        attempts++;
+        
+        if (strcmp(password, "secret123") == 0) {
+            printf("✅ Accesso consentito!\n");
+            break;
+        } else {
+            printf("❌ Password errata. Tentativi rimasti: %d\n", 
+                   MAX_ATTEMPTS - attempts);
+        }
+    } while (attempts < MAX_ATTEMPTS);
+```
+
+---
+
+# Esempio pratico: Validazione password
+
+```c
+    if (attempts == MAX_ATTEMPTS) {
+        printf("🔒 Account bloccato!\n");
+    }
+    
+    return 0;
+}
+```
+
+---
+
 # DO-WHILE: caso d'uso tipico - Menu
 
 Il caso d'uso più comune per `do-while` è un menu che deve essere mostrato almeno una volta:
@@ -770,6 +869,44 @@ do { printf("%d ", i); i++; } while (i < 3);
 
 // Tutti stampano: 0 1 2
 ```
+
+---
+
+# Esempio pratico: Validazione input numerico
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int age;
+    int valid = 0;
+    
+    // Continua a chiedere finché l'input non è valido
+    while (!valid) {
+        printf("Inserisci la tua età (0-120): ");
+        
+        if (scanf("%d", &age) != 1) {
+            // Input non numerico
+            printf("❌ Errore: inserisci un numero!\n");
+            while (getchar() != '\n');  // Pulisci buffer
+            continue;
+        }
+        
+        if (age < 0 || age > 120) {
+            printf("❌ Età non valida! Deve essere tra 0 e 120.\n");
+            continue;
+        }
+        
+        // Input valido!
+        valid = 1;
+        printf("✅ Età registrata: %d anni\n", age);
+    }
+    
+    return 0;
+}
+```
+
+**Mostra come usare `while`, `continue` e validazione input.**
 
 ---
 
@@ -868,6 +1005,34 @@ for (int row = 0; row < 3; row++) {
 
 ---
 
+# Esercizio: Tabellina interattiva
+
+<div class="exercise-box">
+
+**Obiettivo:** Usare cicli annidati per creare una tabella
+
+**Requisiti:**
+
+Crea un programma che stampa la tavola pitagorica (tabellina) da 1 a 10.
+
+**Output atteso:**
+
+```text
+    1   2   3   4   5   6   7   8   9  10
+  ------------------------------------
+1 |  1   2   3   4   5   6   7   8   9  10
+2 |  2   4   6   8  10  12  14  16  18  20
+3 |  3   6   9  12  15  18  21  24  27  30
+...
+10| 10  20  30  40  50  60  70  80  90 100
+```
+
+**Suggerimento:** Usa due cicli `for` annidati (uno per righe, uno per colonne)
+
+</div>
+
+---
+
 # CICLI ANNIDATI: esempi pratici
 
 ## Stampa un triangolo
@@ -886,6 +1051,42 @@ for (int row = 1; row <= 5; row++) {
 // * * * *
 // * * * * *
 ```
+
+---
+
+# Esempio pratico: Elaborazione matrice dati
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    // Matrice 3x4 con temperature giornaliere (3 settimane, 4 giorni)
+    int temps[3][4] = {
+        {22, 24, 23, 25},  // Settimana 1
+        {20, 21, 19, 22},  // Settimana 2
+        {25, 26, 24, 23}   // Settimana 3
+    };
+    
+    printf("Analisi temperature:\n\n");
+    
+    for (int week = 0; week < 3; week++) {
+        int sum = 0;
+        printf("Settimana %d: ", week + 1);
+        
+        for (int day = 0; day < 4; day++) {
+            printf("%d°C ", temps[week][day]);
+            sum += temps[week][day];
+        }
+        
+        float avg = sum / 4.0;
+        printf("(Media: %.1f°C)\n", avg);
+    }
+    
+    return 0;
+}
+```
+
+**Output:** Mostra temperature e medie settimanali - caso d'uso reale!
 
 ---
 
@@ -914,6 +1115,34 @@ printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
 
 - Dichiara le variabili nel for se non servono dopo
 - Usa nomi descrittivi per cicli annidati (`row`, `col` invece di `i`, `j`)
+
+---
+
+# Esercizio: Ricerca numero in array
+
+<div class="exercise-box">
+
+**Obiettivo:** Usare `break` per interrompere la ricerca
+
+**Requisiti:**
+
+1. Crea un array di 10 numeri interi
+2. Chiedi all'utente un numero da cercare
+3. Usa un ciclo `for` per cercare il numero
+4. Quando trovi il numero, stampa la posizione e usa `break`
+5. Se il ciclo termina senza trovarlo, stampa "Non trovato"
+
+**Esempio:**
+
+```c
+Array: {5, 12, 3, 9, 7, 15, 1, 8, 11, 4}
+Cerca: 7
+Output: Trovato in posizione 4
+```
+
+**Suggerimento:** Usa una variabile `found` per tracciare se hai trovato il numero.
+
+</div>
 
 ---
 
@@ -1066,14 +1295,25 @@ layout: two-cols
 
 ## Tecniche per trovare errori:
 
-## 1. Stampe di debug
+## 1. Stampe di debug strategiche
 
 ```c
-for (int i = 0; i < 10; i++) {
-    printf("DEBUG: i = %d\n", i);
-    // ... codice ...
+// Prima del ciclo: stampa stato iniziale
+printf("=== INIZIO CICLO ===\n");
+printf("Valori iniziali: i=%d, sum=%d\n", i, sum);
+
+for (int i = 0; i < 5; i++) {
+    sum += i;
+    // Durante: stampa ad ogni iterazione
+    printf("Iterazione %d: i=%d, sum=%d\n", i+1, i, sum);
 }
+
+// Dopo: stampa risultato finale
+printf("=== FINE CICLO ===\n");
+printf("Risultato finale: sum=%d\n", sum);
 ```
+
+**Output aiuta a vedere cosa succede step-by-step!**
 
 ## 2. Verificare i casi limite
 
