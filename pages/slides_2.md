@@ -1234,6 +1234,85 @@ scanf("%s", &name);     // ❌ ERRORE (name è già un puntatore)
 // scanf("%s") si ferma al primo spazio!
 // Input: "John Doe" → legge solo "John"
 ```
+---
+
+# Pair Programming
+
+**Tecnica collaborativa di sviluppo software**
+
+Due programmatori lavorano insieme allo stesso computer per scrivere codice.
+
+**Vantaggi:**
+
+- Qualità del codice superiore (revisione continua)
+- Apprendimento reciproco e condivisione di conoscenze
+- Meno errori e bug
+- Problem solving più veloce
+- Maggiore concentrazione
+
+**Durante le esercitazioni in aula lavorerete in coppia seguendo questa metodologia.**
+
+---
+
+# Pair Programming: Driver e Navigator
+
+## 🖥️ Driver (Pilota)
+
+**Chi siede davanti al computer**
+
+- Scrive il codice alla tastiera
+- Si concentra sulla sintassi e sui dettagli tecnici
+- Implementa ciò che viene discusso
+- **Focus tattico**: come scrivere il codice
+
+---
+
+# Pair Programming: Driver e Navigator
+
+## 🧭 Navigator (Navigatore)
+
+**Chi guida e supervisiona**
+
+- Pensa alla strategia generale e all'architettura
+- Rivede il codice in tempo reale
+- Suggerisce miglioramenti e alternative
+- Anticipa problemi e casi limite
+- **Focus strategico**: cosa scrivere e perché
+
+**⏱️ Importante:** Scambiatevi i ruoli ogni 15-20 minuti!
+
+---
+
+# Esercizio: Il tuo primo programma in CLion (parte 1)
+
+**Obiettivo:** Creare ed eseguire il programma "Hello, World!" usando CLion
+
+**Passi da seguire:**
+
+1. Apri CLion
+2. Crea un nuovo progetto: `File → New Project`
+3. Seleziona **C Executable**
+4. Imposta le seguenti opzioni:
+   - Nome progetto: `hello_world`
+   - Linguaggio: **C**
+   - Standard: **C11**
+5. Clicca su **Create**
+
+---
+
+# Esercizio: Il tuo primo programma in CLion (parte 2)
+
+6. Verifica che il file `main.c` contenga il codice Hello World
+7. Clicca sul pulsante ▶️ verde (Run) oppure premi `Shift+F10` (Windows/Linux) o `Ctrl+R` (macOS)
+8. Verifica l'output nella finestra **Run** in basso
+
+**Risultato atteso nella console:**
+
+```text
+Hello, World!
+
+Process finished with exit code 0
+```
 
 ---
 
@@ -1265,6 +1344,38 @@ int main(void) {
 ```
 
 **Nota:** La gestione dei diversi operatori richiede `if` o `switch` (prossime lezioni).
+
+---
+
+# Esercizio: Calcola la media
+
+**Obiettivo:** Scrivere un programma che legge 3 numeri dall'utente e calcola la loro media
+
+**Passi da seguire:**
+
+1. Crea un nuovo progetto C in CLion: `calcola_media`
+2. Dichiara 3 variabili di tipo `float` per i numeri (esempio: `num1`, `num2`, `num3`)
+3. Dichiara una variabile `float` per la media (esempio: `media`)
+4. Usa `printf()` per chiedere all'utente di inserire il primo numero
+5. Usa `scanf("%f", &num1)` per leggere il primo numero
+6. Ripeti i passi 4-5 per il secondo e terzo numero
+7. Calcola la media: `media = (num1 + num2 + num3) / 3.0`
+8. Stampa il risultato con `printf("La media è: %.2f\n", media)`
+
+---
+
+# Esercizio: Calcola la media
+
+**Esempio di esecuzione:**
+
+```text
+Inserisci il primo numero: 8.5
+Inserisci il secondo numero: 7.0
+Inserisci il terzo numero: 9.5
+La media è: 8.33
+```
+
+**Suggerimento:** Ricorda di includere `#include <stdio.h>` all'inizio del file!
 
 ---
 

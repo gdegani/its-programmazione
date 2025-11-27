@@ -47,25 +47,25 @@ src: ./pages/slides_3.md
 
 ---
 
----
-#src: ./pages/slides_4.md
+<!-- ---
+src: ./pages/slides_4.md
 
 ---
 
 ---
-#src: ./pages/slides_5.md
+src: ./pages/slides_5.md
 
 ---
 
 ---
-# src: ./pages/slides_6.md
+src: ./pages/slides_6.md
 
 ---
 
 ---
-# src: ./pages/slides_7.md
+src: ./pages/slides_7.md
 
----
+--- -->
 
 ---
 layout: center
