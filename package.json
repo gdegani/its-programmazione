@@ -9,12 +9,13 @@
     "remote": "slidev --remote",
     "dev1": "slidev slides1.md --open",
     "export": "slidev export",
+    "export:l3": "slidev export --range '119-148' --omit-background ",
     "export:schedule": "npx md-to-pdf schedule.md",
     "check:snippets": "node scripts/build-snippets.js",
     "check:language": "node scripts/check-language.js"
   },
   "dependencies": {
-    "@slidev/cli": "52.6.0",
+    "@slidev/cli": "52.9.1",
     "@slidev/theme-default": "^0.25.0",
     "@slidev/theme-seriph": "^0.25.0",
     "slidev-theme-academic": "^2.1.0",
