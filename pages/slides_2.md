@@ -14,7 +14,7 @@ layout: image-right
 image: /kernighan.png
 
 ---
-    
+
 # Il linguaggio C
 
 - Sviluppato da Dennis Ritchie ai Bell Labs nel 1972 per realizzare il sistema operativo UNIX
@@ -122,7 +122,7 @@ int main(void) {
 }
 ```
 
-## Compilazione:
+## Compilazione
 
 ```bash
 gcc -c math_utils.c -o math_utils.o
@@ -840,7 +840,7 @@ float result = i + f;   // i viene convertito a float → 7.0
 
 **Regola generale:** Il tipo "più piccolo" viene promosso al tipo "più grande":
 
-```
+```txt
 char → int → long → float → double
 ```
 
@@ -1234,6 +1234,7 @@ scanf("%s", &name);     // ❌ ERRORE (name è già un puntatore)
 // scanf("%s") si ferma al primo spazio!
 // Input: "John Doe" → legge solo "John"
 ```
+
 ---
 
 # Pair Programming
