@@ -36,10 +36,12 @@ Queste strutture sono fondamentali per scrivere programmi che prendono decisioni
 # Recap: Condizioni in C
 
 **Valori booleani in C:**
+
 - `0` = falso
 - qualsiasi valore ≠ 0 = vero
 
 **Operatori già visti (slides precedenti):**
+
 - Relazionali: `==`, `!=`, `<`, `>`, `<=`, `>=`
 - Logici: `&&` (AND), `||` (OR), `!` (NOT)
 
@@ -77,7 +79,7 @@ flowchart TD
 
 # Sintassi dell'istruzione IF
 
-## Forma base:
+## Forma base
 
 ```c
 if (condizione) {
@@ -85,7 +87,7 @@ if (condizione) {
 }
 ```
 
-## Regole:
+## Regole
 
 - La **condizione** deve essere tra parentesi tonde `( )`
 - Il **blocco** deve essere tra parentesi graffe `{ }` se contiene più istruzioni
@@ -99,14 +101,14 @@ layout: two-cols
 
 # Esempi di IF
 
-## IF con una sola istruzione:
+## IF con una sola istruzione
 
 ```c
 if (condizione)
     istruzione;
 ```
 
-## IF con blocco di istruzioni:
+## IF con blocco di istruzioni
 
 ```c
 if (condizione) {
@@ -118,7 +120,7 @@ if (condizione) {
 
 ::right::
 
-## ⚠️ Errore comune:
+## ⚠️ Errore comune
 
 ```c
 // ❌ ERRORE: ; dopo condizione
@@ -128,7 +130,7 @@ if (x > 0);  {
 // Il blocco viene SEMPRE eseguito!
 ```
 
-## ✅ Corretto:
+## ✅ Corretto
 
 ```c
 if (x > 0) {
@@ -181,7 +183,7 @@ if (condizione) {
 }
 ```
 
-## Esempio:
+## Esempio
 
 ```c
 int age = 17;
@@ -215,7 +217,7 @@ if (voto >= 90) {
 // Output: Buono
 ```
 
-## Nota:
+## Nota
 
 - `else if` è in realtà un `else` seguito da un altro `if`
 - La valutazione avviene dall'alto verso il basso
@@ -238,17 +240,17 @@ if (voto >= 90) {
 
 Scrivere un programma per la gestione elementare di un carrello della spesa.
 
-## Input richiesto:
+## Input richiesto
 
 - Il numero di oggetti contenuti nel carrello
 - Il prezzo unitario
 
-## Calcoli da eseguire:
+## Calcoli da eseguire
 
 - Se il numero di oggetti è maggiore di 10, applicare lo sconto del 10%
 - Calcolare il costo al lordo dell'IVA del 22%
 
-## Output:
+## Output
 
 Stampare il dettaglio del carrello, l'imponibile, l'IVA, ed il totale lordo
 
@@ -295,7 +297,7 @@ switch (espressione) {
 
 # Regole dello SWITCH
 
-## Caratteristiche:
+## Caratteristiche
 
 - L'**espressione** deve restituire un valore **intero** (char, short, int, long)
 - I **valori** dei case devono essere **costanti** note a tempo di compilazione
@@ -303,7 +305,7 @@ switch (espressione) {
 - **break** è necessario per uscire dallo switch (altrimenti continua nei case successivi!)
 - **default** è opzionale ed esegue se nessun case corrisponde
 
-## ⚠️ Non dimenticare break:
+## ⚠️ Non dimenticare break
 
 ```c
 int x = 2;
@@ -375,6 +377,7 @@ switch (grade) {
 ```
 
 ---
+
 layout: two-cols
 ---
 
@@ -418,7 +421,7 @@ Risultato: 15.00
 | **Leggibilità** | Meglio per 2-4 alternative | Meglio per 5+ alternative |
 | **Performance** | Valutazione sequenziale | Può essere ottimizzato dal compilatore |
 
-## Esempi:
+## Esempi
 
 ```c
 // ✅ Usa IF per range
@@ -437,11 +440,11 @@ switch (day_of_week) {
 
 # ITERAZIONI
 
-## Problema:
+## Problema
 
 Visualizzare i numeri interi da 0 a 100
 
-## Soluzione ingenua:
+## Soluzione ingenua
 
 ```c
 printf("0\n");
@@ -452,7 +455,7 @@ printf("3\n");
 printf("100\n");
 ```
 
-## ❌ Problemi:
+## ❌ Problemi
 
 - Codice ripetitivo e difficile da mantenere
 - Impossibile se il numero di iterazioni è variabile
@@ -479,7 +482,7 @@ layout: two-cols
 
 Il ciclo **for** ripete l'esecuzione del blocco di istruzioni fintanto che la condizione è verificata.
 
-## Sintassi:
+## Sintassi
 
 ```c
 for (inizializzazione; condizione; incremento) {
@@ -487,7 +490,7 @@ for (inizializzazione; condizione; incremento) {
 }
 ```
 
-## Esempio:
+## Esempio
 
 ```c
 int i;
@@ -527,7 +530,7 @@ for (inizializzazione; condizione; incremento) {
 | **incremento** | Dopo ogni iterazione | Modifica il contatore |
 | **blocco** | Ad ogni iterazione (se condizione vera) | Operazioni da ripetere |
 
-## Esempio annotato:
+## Esempio annotato
 
 ```c
 //     ↓ inizio      ↓ fino a quando?  ↓ come procede?
@@ -540,7 +543,7 @@ for (int i = 0;     i < 10;            i++) {
 
 # Varianti del ciclo FOR
 
-## Dichiarazione della variabile nel for (C99+):
+## Dichiarazione della variabile nel for (C99+)
 
 ```c
 for (int i = 0; i < 10; i++) {  // i esiste solo nel ciclo
@@ -549,7 +552,7 @@ for (int i = 0; i < 10; i++) {  // i esiste solo nel ciclo
 // printf("%d", i);  // ❌ ERRORE: i non esiste qui
 ```
 
-## Incremento diverso:
+## Incremento diverso
 
 ```c
 // Conta per 2
@@ -564,6 +567,7 @@ for (int i = 10; i > 0; i--) {
 ```
 
 ---
+
 layout: two-cols
 ---
 
@@ -597,7 +601,7 @@ Somma dei numeri pari da 0 a 10: 30
 
 # Esempi pratici di FOR
 
-## Calcolare la somma dei primi N numeri:
+## Calcolare la somma dei primi N numeri
 
 ```c
 int n = 100;
@@ -609,7 +613,7 @@ for (int i = 1; i <= n; i++) {
 printf("Somma da 1 a %d = %d\n", n, sum);  // 5050
 ```
 
-## Stampare la tabellina del 7:
+## Stampare la tabellina del 7
 
 ```c
 for (int i = 1; i <= 10; i++) {
@@ -628,7 +632,7 @@ layout: two-cols
 - Valuta la condizione **prima** di eseguire il blocco
 - Se la condizione è inizialmente falsa, il blocco **non viene eseguito neppure una volta**
 
-## Sintassi:
+## Sintassi
 
 ```c
 while (condizione) {
@@ -716,7 +720,7 @@ I due esempi a fianco sono equivalenti.
 | **Condizione complessa** | `while` | "Continua finché errore < 0.001" |
 | **Almeno una iterazione necessaria** | `do-while` | "Menu: chiedi scelta fino a 'exit'" |
 
-## Regola generale:
+## Regola generale
 
 - **FOR**: "per ogni elemento da A a B"
 - **WHILE**: "finché vale questa condizione"
@@ -733,7 +737,7 @@ layout: two-cols
 - Valuta la condizione **dopo** aver eseguito il blocco
 - Il blocco viene eseguito **almeno una volta**
 
-## Sintassi:
+## Sintassi
 
 ```c
 do {
@@ -940,7 +944,7 @@ for (int i = 0; i < 10; i++) {
 
 # Esempi pratici: BREAK e CONTINUE
 
-## Cerca un valore in un array:
+## Cerca un valore in un array
 
 ```c
 int numbers[] = {3, 7, 12, 5, 9};
@@ -956,7 +960,7 @@ for (int i = 0; i < 5; i++) {
 printf(found ? "Trovato!\n" : "Non trovato\n");
 ```
 
-## Stampa solo i numeri divisibili per 3:
+## Stampa solo i numeri divisibili per 3
 
 ```c
 for (int i = 1; i <= 20; i++) {
@@ -1092,7 +1096,7 @@ int main(void) {
 
 # Scope delle variabili nei cicli
 
-## Variabile dichiarata nel for (C99+):
+## Variabile dichiarata nel for (C99+)
 
 ```c
 for (int i = 0; i < 10; i++) {
@@ -1101,7 +1105,7 @@ for (int i = 0; i < 10; i++) {
 // printf("%d", i);  // ❌ ERRORE: i non esiste fuori dal for
 ```
 
-## Variabile dichiarata prima del ciclo:
+## Variabile dichiarata prima del ciclo
 
 ```c
 int i;
@@ -1111,7 +1115,7 @@ for (i = 0; i < 10; i++) {
 printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
 ```
 
-## Buona pratica:
+## Buona pratica
 
 - Dichiara le variabili nel for se non servono dopo
 - Usa nomi descrittivi per cicli annidati (`row`, `col` invece di `i`, `j`)
@@ -1290,7 +1294,7 @@ while (i < 10) {
 
 # Debugging dei cicli
 
-## Tecniche per trovare errori:
+## Tecniche per trovare errori
 
 ## 1. Stampe di debug strategiche
 
@@ -1415,20 +1419,20 @@ while (count > 0) {
 
 # Riepilogo: Controllo del flusso
 
-## Istruzioni condizionali:
+## Istruzioni condizionali
 
 - **if**: esegue codice se condizione vera
 - **if-else**: sceglie tra due alternative
 - **if-else if**: gestisce più alternative ordinate
 - **switch**: scelta multipla su valore intero
 
-## Cicli (iterazioni):
+## Cicli (iterazioni)
 
 - **for**: numero di iterazioni noto, contatore esplicito
 - **while**: condizione valutata prima, 0+ iterazioni
 - **do-while**: condizione valutata dopo, 1+ iterazioni
 
-## Controllo cicli:
+## Controllo cicli
 
 - **break**: esce dal ciclo immediatamente
 - **continue**: salta all'iterazione successiva
@@ -1437,7 +1441,7 @@ while (count > 0) {
 
 # Best practices
 
-## Scrittura di codice chiaro:
+## Scrittura di codice chiaro
 
 1. **Indentazione consistente** - facilita lettura del codice annidato
 2. **Usa parentesi graffe** - anche per blocchi di una sola riga
@@ -1445,7 +1449,7 @@ while (count > 0) {
 4. **Commenti quando necessario** - spiega il "perché", non il "cosa"
 5. **Evita cicli troppo annidati** - massimo 2-3 livelli
 
-## Testing:
+## Testing
 
 1. Testa i **casi limite** (0, 1, max)
 2. Verifica i **casi normali** (valori tipici)
