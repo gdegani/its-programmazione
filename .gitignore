@@ -13,3 +13,4 @@ cmake_install.cmake
 build/
 *.xls
 *.xlsx
+report.md

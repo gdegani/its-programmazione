@@ -1287,9 +1287,6 @@ while (i < 10) {
 | **Modifica indice nel ciclo** | • Non modificare la variabile di controllo del `for` nel corpo<br>• Usa variabili separate se necessario | Evita `for (int i = 0; i < n; i++) { i++; }` |
 
 ---
-layout: two-cols
-
----
 
 # Debugging dei cicli
 
@@ -1315,6 +1312,10 @@ printf("Risultato finale: sum=%d\n", sum);
 
 **Output aiuta a vedere cosa succede step-by-step!**
 
+---
+
+# Debugging dei cicli
+
 ## 2. Verificare i casi limite
 
 - Primo e ultimo valore dell'indice
@@ -1326,7 +1327,9 @@ printf("Risultato finale: sum=%d\n", sum);
 - Simula 2-3 iterazioni su carta
 - Verifica i valori delle variabili
 
-::right::
+---
+
+# Debugging dei cicli
 
 ## 4. Usare un debugger (GDB/CLion)
 
