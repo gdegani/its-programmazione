@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"slidev.preview-sync": true,
+		"slidev.port": 3030
+	}
+}

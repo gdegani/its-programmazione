@@ -66,7 +66,7 @@ layout: two-cols
 
 ```mermaid {scale: 0.9, alt: 'Flowchart showing if statement control flow'}
 flowchart TD
-    Start([Start]) --> Condition{Is condition <br> verified?}
+    Start([Start]) --> Condition{Is condition <br/> verified?}
     Condition -- Yes --> Action1[Action if True]
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
     Condition -- No --> J
@@ -161,7 +161,7 @@ layout: two-cols
 
 ```mermaid {scale: 0.9, alt: 'Flowchart showing if-else statement'}
 flowchart TD
-    Start([Start]) --> Condition{Is condition <br> verified?}
+    Start([Start]) --> Condition{Is condition <br/> verified?}
     Condition -- Yes --> Action1[Block 1]
     Condition -- No --> Action2[Block 2]
     Action1 -->   J@{ shape: f-circ, label: "Junction" }
@@ -272,7 +272,7 @@ Totale lordo: 2635.20
 
 ---
 
-# SELEZIONE MULTIPLA - SWITCH
+# Selezione multipla - SWITCH
 
 Quando si devono gestire molti casi basati su un **singolo valore intero**, `switch` è più leggibile di tanti `if-else if`:
 
@@ -642,7 +642,7 @@ while (condizione) {
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
-    J1 --> Controllo{Condizione<br>verificata?}
+    J1 --> Controllo{Condizione<br/>verificata?}
     Controllo -- Sì --> Azione[Esegui<br>Blocco]
     Azione --> J1
     Controllo -- No --> End([Fine])
@@ -749,8 +749,8 @@ do {
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
-    J1 --> Azione[Esegui<br>Blocco]
-    Azione --> Controllo{Condizione<br>verificata?}
+    J1 --> Azione[Esegui<br/>Blocco]
+    Azione --> Controllo{Condizione<br/>verificata?}
     Controllo -- Sì --> J1
     Controllo -- No --> End([Fine])
 ```
