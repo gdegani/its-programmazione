@@ -1456,3 +1456,121 @@ while (count > 0) {
 3. Controlla i **casi errati** (input non valido)
 
 **Esercitati con esempi reali per consolidare i concetti!**
+
+---
+
+# Esercizio: Valori pari e dispari
+
+**Obiettivo:** Usare array e cicli per gestire e stampare valori in ordini diversi
+
+**Requisiti:**
+
+1. Chiedi all'utente quanti valori vuole inserire (massimo 100)
+2. Leggi tutti i valori e salvali in un array
+3. Stampa tutti i valori pari nell'ordine in cui sono stati inseriti
+4. Stampa tutti i valori dispari nell'ordine inverso
+
+---
+
+# Esercizio: Valori pari e dispari
+
+**Esempio di esecuzione:**
+
+```text
+Quanti valori vuoi inserire? 6
+Valore 1: 5
+Valore 2: 12
+Valore 3: 7
+Valore 4: 8
+Valore 5: 3
+Valore 6: 14
+
+Valori pari (ordine normale): 12 8 14
+Valori dispari (ordine inverso): 3 7 5
+```
+
+**Suggerimento:** Usa `if (vett[i] % 2 == 0)` per verificare se un numero è pari.
+
+---
+
+# Esercizio: Numeri maggiori della media
+
+**Obiettivo:** Calcolare la media di un array e identificare valori sopra la media
+
+**Requisiti:**
+
+1. Chiedi all'utente quanti numeri reali vuole inserire (massimo 100)
+2. Leggi tutti i numeri e salvali in un array
+3. Calcola la media aritmetica
+4. Conta e stampa quanti numeri sono maggiori della media
+5. Stampa i numeri che sono maggiori della media
+
+---
+
+# Esercizio: Numeri maggiori della media
+
+**Esempio di esecuzione:**
+
+```text
+Quanti numeri vuoi inserire? 5
+Numero 1: 10.5
+Numero 2: 8.0
+Numero 3: 12.3
+Numero 4: 7.2
+Numero 5: 11.0
+
+Media: 9.80
+Numeri maggiori della media: 3
+Valori: 10.50 12.30 11.00
+```
+
+**Suggerimento:** Calcola prima la somma, poi dividi per N per ottenere la media.
+
+---
+layout: figure-side
+figureUrl: "/Sieve_of_Eratosthenes_animation.gif"
+figureCaption: "source: wikipedia.org"
+
+---
+
+# Il crivello di Eratostene
+
+Il crivello di [Eratostene](https://it.wikipedia.org/wiki/Crivello_di_Eratostene) è un metodo che consente di trovare i numeri primi fino ad un certo n prefissato.
+
+**Algoritmo:**
+
+- Si scrivono tutti i numeri naturali a partire da 2 fino a n
+- Si cancellano tutti i multipli del primo numero
+- Si passa al successivo numero non cancellato e si ripete l'operazione con i numeri che seguono
+
+---
+
+# Esercizio: Crivello di Eratostene
+
+<div class="exercise-box">
+
+**Obiettivo:** Implementare l'algoritmo del crivello di Eratostene
+
+**Requisiti:**
+
+1. Chiedi all'utente un numero n positivo
+2. Crea un array booleano di dimensione n+1
+3. Implementa l'algoritmo del crivello:
+   - Inizializza tutti i valori a 1 (primo potenziale)
+   - Per ogni numero i da 2 a √n:
+     - Se i è marcato come primo, marca tutti i suoi multipli come non primi
+4. Stampa tutti i numeri primi trovati
+
+**Esempio di esecuzione:**
+
+```text
+Inserisci un numero n: 30
+Numeri primi fino a 30:
+2 3 5 7 11 13 17 19 23 29
+```
+
+**Suggerimento:** Usa un array `int primi[n+1]` dove `primi[i] = 1` significa che i è primo.
+
+Vedi `example08` per la soluzione completa.
+
+</div>
