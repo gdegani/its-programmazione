@@ -377,8 +377,8 @@ switch (grade) {
 ```
 
 ---
-
 layout: two-cols
+
 ---
 
 # Esercizio: Menu con SWITCH
