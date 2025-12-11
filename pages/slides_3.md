@@ -571,30 +571,30 @@ for (int i = 10; i > 0; i--) {
 layout: two-cols
 ---
 
-# Esercizio: Somma numeri pari
+# Esercizio: Somma fino a un valore
 
-**Obiettivo:** Usare un ciclo `for` con condizioni
+**Obiettivo:** Usare un ciclo `for` per accumulare valori
 
 **Requisiti:**
 
 1. Chiedi all'utente un numero N
-2. Calcola la somma di tutti i numeri **pari** da 0 a N (incluso)
+2. Calcola la somma di tutti i numeri da 1 a N
 3. Stampa il risultato
 
 **Esempio:**
 
 ```text
 Inserisci N: 10
-Somma dei numeri pari da 0 a 10: 30
-(Spiegazione: 0+2+4+6+8+10 = 30)
+Somma da 1 a 10: 55
+(Spiegazione: 1+2+3+4+5+6+7+8+9+10 = 55)
 ```
 
 ::right::
 
 **Suggerimenti:**
 
-- Usa `for (int i = 0; i <= n; i++)`
-- Usa `if (i % 2 == 0)` per verificare se un numero è pari
+- Usa `for (int i = 1; i <= n; i++)`
+- Usa `sum += i` per accumulare
 - Inizializza `sum = 0` prima del ciclo
 
 ---
@@ -714,7 +714,7 @@ I due esempi a fianco sono equivalenti.
 | Situazione | Ciclo consigliato | Esempio |
 |------------|------------------|---------|
 | **Numero di iterazioni noto** | `for` | "Stampa i numeri da 1 a 100" |
-| **Iterazione su range/sequenza** | `for` | "Scorrere un array" |
+| **Iterazione su range/sequenza** | `for` | "Itera da inizio a fine" |
 | **Contatore esplicito necessario** | `for` | "Calcola fattoriale di n" |
 | **Numero di iterazioni sconosciuto** | `while` | "Leggi input fino a 0" |
 | **Condizione complessa** | `while` | "Continua finché errore < 0.001" |
@@ -944,28 +944,28 @@ for (int i = 0; i < 10; i++) {
 
 # Esempi pratici: BREAK e CONTINUE
 
-## Cerca un valore in un array
+## Somma con continue (somma solo dispari)
 
 ```c
-int numbers[] = {3, 7, 12, 5, 9};
-int search = 12;
-int found = 0;
-
-for (int i = 0; i < 5; i++) {
-    if (numbers[i] == search) {
-        found = 1;
-        break;  // Trovato! Esci dal ciclo
-    }
+int somma = 0;
+for (int i = 1; i <= 10; i++) {
+    if (i % 2 == 0) continue;  // Salta i numeri pari
+    somma += i;  // Somma solo dispari
 }
-printf(found ? "Trovato!\n" : "Non trovato\n");
+printf("Somma dispari: %d\n", somma);  // Output: 25 (1+3+5+7+9)
 ```
 
-## Stampa solo i numeri divisibili per 3
+## Stampa con break (conteggio fino a limite)
 
 ```c
-for (int i = 1; i <= 20; i++) {
-    if (i % 3 != 0) continue;  // Salta se non divisibile per 3
-    printf("%d ", i);  // Output: 3 6 9 12 15 18
+int conteggio = 0;
+for (int i = 1; i <= 100; i++) {
+    printf("%d ", i);
+    conteggio++;
+    if (conteggio == 10) {
+        printf("\n");  // A capo dopo 10 numeri
+        break;  // Esci dal ciclo
+    }
 }
 ```
 
@@ -1122,29 +1122,30 @@ printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
 
 ---
 
-# Esercizio: Ricerca numero in array
+# Esercizio: Verifica numero all'interno di range
 
 <div class="exercise-box">
 
-**Obiettivo:** Usare `break` per interrompere la ricerca
+**Obiettivo:** Usare `break` per uscire da un ciclo di ricerca
 
 **Requisiti:**
 
-1. Crea un array di 10 numeri interi
+1. Chiedi all'utente due numeri: limite inferiore e superiore
 2. Chiedi all'utente un numero da cercare
-3. Usa un ciclo `for` per cercare il numero
-4. Quando trovi il numero, stampa la posizione e usa `break`
+3. Usa un ciclo `for` per contare da limite inferiore a superiore
+4. Se trovi il numero, stampa il messaggio e usa `break`
 5. Se il ciclo termina senza trovarlo, stampa "Non trovato"
 
 **Esempio:**
 
-```c
-Array: {5, 12, 3, 9, 7, 15, 1, 8, 11, 4}
-Cerca: 7
-Output: Trovato in posizione 4
+```text
+Limite inferiore: 1
+Limite superiore: 20
+Cerca il numero: 7
+Output: Trovato il numero 7!
 ```
 
-**Suggerimento:** Usa una variabile `found` per tracciare se hai trovato il numero.
+**Suggerimento:** Usa una variabile `trovato` per tracciare se hai trovato il numero.
 
 </div>
 
@@ -1179,50 +1180,30 @@ layout: two-cols
 
 # Errore off-by-one: esempi
 
-## ❌ Errore: stampa 0-9 invece di 1-10
-
 ```c
 // Volevo stampare da 1 a 10
-for (int i = 0; i < 10; i++) {
-    printf("%d\n", i);
-}
-// Output: 0 1 2 3 4 5 6 7 8 9
-```
-
-## ❌ Errore: accesso fuori array
-
-```c
-int array[10];
-// ERRORE: i va da 0 a 10 (11 valori)
-// ma array ha solo indici 0-9!
 for (int i = 0; i <= 10; i++) {
-    array[i] = i * 2;  // ❌ Crash!
+    printf("%d ", i);
 }
+// Output: 0 1 2 3 4 5 6 7 8 9 10  ❌ 11 numeri!
 ```
 
 ::right::
 
-## ✅ Corretto: stampa 1-10
+## ✅ Corretto: stampa da 1 a 10
 
 ```c
-// Soluzione 1: inizia da 1
+// Soluzione 1: condizione corretta
 for (int i = 1; i <= 10; i++) {
-    printf("%d\n", i);
+    printf("%d ", i);
 }
-// Soluzione 2: stampa i+1
-for (int i = 0; i < 10; i++) {
-    printf("%d\n", i + 1);
-}
-```
+// Output: 1 2 3 4 5 6 7 8 9 10  ✅
 
-## ✅ Corretto: array completo
-
-```c
-int array[10];
-// Corretto: i va da 0 a 9 (10 valori)
+// Soluzione 2: offset
 for (int i = 0; i < 10; i++) {
-    array[i] = i * 2;  // ✅ OK
+    printf("%d ", i + 1);
 }
+// Output: 1 2 3 4 5 6 7 8 9 10  ✅
 ```
 
 ---
