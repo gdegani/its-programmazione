@@ -5,69 +5,51 @@ coverDate:
 
 ---
 
-# 4 - Vettori e matrici
+# 4 - Vettori, Matrici e Stringhe
 
 Ing. Giancarlo Degani
 
 ---
 
-# Soluzione es. carrello
+# Perché abbiamo bisogno dei vettori?
 
-<<< @/snippets/example04/main.c#sample c {*}{lines:true,maxHeight:'400px'}
+Immaginiamo di dover gestire i voti di 100 studenti:
 
----
-title: output carrello
+```c
+// ❌ Senza vettori - IMPRATICABILE!
+int voto1, voto2, voto3, voto4, voto5, voto6, voto7, voto8, voto9, voto10;
+int voto11, voto12, voto13, voto14, voto15, voto16, voto17, voto18, voto19, voto20;
+// ... altre 80 variabili!
 
----
-
-```txt
-Inserisci il numero di oggetti nel carrello: 12
-Inserisci il prezzo unitario degli oggetti: 1000
-
-===== Dettaglio del Carrello =====
-Numero di oggetti: 12
-Prezzo unitario: 1000.00
-Totale prima dello sconto: 12000.00
-Sconto applicato: 1200.00
-Imponibile (dopo sconto): 10800.00
-IVA (22%): 2376.00
-Totale lordo: 13176.00
-==============================
-
+// Calcolare la media?
+float media = (voto1 + voto2 + voto3 + ... + voto100) / 100;  // ❌ Impraticabile!
 ```
 
----
-
-# Soluzione es. radice
-
-<<< @/snippets/example05/main.c#snippet c {*}{lines:true,maxHeight:'400px'}
-
----
-title: output radice
+**Problema**: Impossibile gestire grandi quantità di dati dello stesso tipo!
 
 ---
 
-```txt
-Inserisci un numero maggiore di 1: 5
-Punto medio: 3.0000000
-Punto medio: 2.0000000
-Punto medio: 2.5000000
-Punto medio: 2.2500000
-Punto medio: 2.1250000
-Punto medio: 2.1875000
-Punto medio: 2.2187500
-Punto medio: 2.2360535
-Punto medio: 2.2360687
-Punto medio: 2.2360611
-Punto medio: 2.2360649
-Punto medio: 2.2360668
-Punto medio: 2.2360678
-Punto medio: 2.2360682
-Punto medio: 2.2360680
-Punto medio: 2.2360679
-Punto medio: 2.2360680
-La radice quadrata approssimata di 5.0 è: 2.2360680
+# La soluzione: Vettori (Arrays)
+
+```c
+// ✅ Con i vettori - SEMPLICE!
+int voti[100];
+
+// Lettura dei voti
+for (int i = 0; i < 100; i++) {
+    printf("Inserisci voto studente %d: ", i + 1);
+    scanf("%d", &voti[i]);
+}
+
+// Calcolo della media
+int somma = 0;
+for (int i = 0; i < 100; i++) {
+    somma += voti[i];
+}
+float media = somma / 100.0;
 ```
+
+**Soluzione**: Un solo nome per gestire molti valori dello stesso tipo!
 
 ---
 
@@ -89,7 +71,7 @@ int numeri[ 3 ] = { 0, 1, 2 };
 
 - **dimensione** deve essere una costante intera, positiva, e nota al momento della compilazione
 - Contengono elementi dello stesso tipo scalare ( int, double, char,… )
-- L'indici e di tipo intero e non negativo
+- L'indice è di tipo intero e non negativo
 - Il primo elemento ha indice 0 (posizione)
 - L'ultimo elemento ha indice N-1 ( N è la dimensione del vettore )
 
@@ -187,6 +169,86 @@ for (i=N-1; i>=0; i--){
 
 ---
 
+# Operazioni comuni con i vettori
+
+## Trovare il valore massimo
+
+```c
+int numeri[5] = {3, 7, 2, 9, 4};
+int max = numeri[0];  // Assume the first is max
+
+for (int i = 1; i < 5; i++) {
+    if (numeri[i] > max) {
+        max = numeri[i];
+    }
+}
+printf("Massimo: %d\n", max);  // Output: 9
+```
+
+---
+
+# Operazioni comuni con i vettori
+
+## Invertire un vettore
+
+```c
+int vett[5] = {1, 2, 3, 4, 5};
+int temp;
+
+for (int i = 0; i < 5/2; i++) {
+    temp = vett[i];
+    vett[i] = vett[4 - i];
+    vett[4 - i] = temp;
+}
+// Risultato: {5, 4, 3, 2, 1}
+```
+
+---
+
+# Errori comuni con i vettori
+
+## ❌ Errore 1: Accesso fuori dai limiti
+
+```c
+int vett[10];
+vett[10] = 42;  // ❌ ERRORE! L'ultimo indice è 9, non 10
+```
+
+## ❌ Errore 2: Tentare di copiare con =
+
+```c
+int a[5] = {1, 2, 3, 4, 5};
+int b[5];
+b = a;  // ❌ ERRORE! Non si possono copiare array con =
+```
+
+**Soluzione**: Usare un ciclo per copiare elemento per elemento
+
+```c
+for (int i = 0; i < 5; i++) {
+    b[i] = a[i];  // ✅ Corretto
+}
+```
+
+---
+
+# Errori comuni con i vettori
+
+## ❌ Errore 3: Array non inizializzato
+
+```c
+int vett[5];
+printf("%d\n", vett[0]);  // ❌ Valore indefinito (garbage)
+```
+
+**Soluzione**: Inizializzare sempre gli array
+
+```c
+int vett[5] = {0};  // ✅ Tutti gli elementi a 0
+```
+
+---
+
 # Esercizi
 
 - Scrivere un programma che chieda quanti valori verranno introdotti dalla tastiera (max 100), li chieda tutti e successivamente visualizzi prima tutti i valori pari nell’ordine in cui sono stati inseriti e poi tutti i valori dispari nell’ordine inverso. *(see example07)*
@@ -262,6 +324,57 @@ for (r=0; r<RIGHE; r++)
 </Transform>
 
 ---
+
+# Operazioni con le matrici
+
+## Somma degli elementi di una riga
+
+```c
+int matrice[3][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+int riga = 1;  // Seconda riga
+int somma = 0;
+
+for (int c = 0; c < 4; c++) {
+    somma += matrice[riga][c];
+}
+printf("Somma riga %d: %d\n", riga, somma);  // Output: 26
+```
+
+---
+
+# Operazioni con le matrici
+
+## Trasposta di una matrice
+
+```c
+int A[2][3] = {{1, 2, 3}, {4, 5, 6}};
+int T[3][2];  // Trasposta: righe e colonne invertite
+
+for (int r = 0; r < 2; r++) {
+    for (int c = 0; c < 3; c++) {
+        T[c][r] = A[r][c];
+    }
+}
+// T = {{1, 4}, {2, 5}, {3, 6}}
+```
+
+---
+
+# Operazioni con le matrici
+
+## Accesso alla diagonale principale
+
+```c
+int matrice[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+int somma_diag = 0;
+
+for (int i = 0; i < 3; i++) {
+    somma_diag += matrice[i][i];  // Elementi sulla diagonale
+}
+printf("Somma diagonale: %d\n", somma_diag);  // Output: 15 (1+5+9)
+```
+
+---
 layout: two-cols
 
 ---
@@ -318,9 +431,9 @@ un numero intero a ciascuno di essi
 ```c
 
 char character;
-char character = 'A'; // assegnazione con caratter
-char character = 65;  // assegnazione con codice ASCI decimale
-char character = 0x41;  // assegnazione con codice ASCI esadecimale
+char character = 'A'; // assegnazione con carattere
+char character = 65;  // assegnazione con codice ASCII decimale
+char character = 0x41;  // assegnazione con codice ASCII esadecimale
 ```
 
 </Transform>
@@ -413,9 +526,63 @@ char str[MAX_LENGHT+1] = {‘H’,’e’,’l’,’l’,’o’} ;
 
 - Attenzione agli apici:
   - 'a' è un carattere che occupa 1 byte
-  - "a" è una stringa di 2 char, il caratter 'a' ed il terminatore \0
+  - "a" è una stringa di 2 char, il carattere 'a' ed il terminatore \0
 - Come per i vettori, il nome della stringa rappresenta per il compilatore una variabile contenente l'indirizzo di memoria del primo carattere della stringa.
 - Una stringa non può essere copiata con l'operatore '=', devo usare delle funzioni apposite.
+
+---
+
+# ⚠️ Sicurezza con le stringhe
+
+## Buffer Overflow
+
+```c
+char nome[10];
+// ❌ PERICOLO! Se l'utente inserisce più di 9 caratteri
+scanf("%s", nome);  // Può sovrascrivere memoria adiacente!
+```
+
+**Soluzione**: Limitare sempre la lunghezza
+
+```c
+char nome[10];
+scanf("%9s", nome);  // ✅ Legge al massimo 9 caratteri + \0
+```
+
+---
+
+# ⚠️ Sicurezza con le stringhe
+
+## gets() è deprecata e PERICOLOSA!
+
+```c
+char buffer[50];
+gets(buffer);  // ❌ VIETATO! Rimosso da C11 per motivi di sicurezza
+```
+
+**Problema**: `gets()` non controlla la dimensione del buffer → buffer overflow garantito!
+
+**Soluzione**: Usare `fgets()` invece
+
+```c
+char buffer[50];
+fgets(buffer, 50, stdin);  // ✅ Sicuro: specifica la dimensione massima
+```
+
+---
+
+# ⚠️ Sicurezza con le stringhe
+
+## Funzioni sicure vs non sicure
+
+| ❌ Non sicura | ✅ Alternativa sicura | Motivo |
+|--------------|---------------------|---------|
+| `gets(s)` | `fgets(s, size, stdin)` | gets() non controlla la dimensione |
+| `strcpy(dest, src)` | `strncpy(dest, src, n)` | strcpy() non limita la copia |
+| `strcat(dest, src)` | `strncat(dest, src, n)` | strcat() non limita la concatenazione |
+| `sprintf(s, fmt, ...)` | `snprintf(s, n, fmt, ...)` | sprintf() non limita l'output |
+
+**Regola d'oro**: Usare sempre le versioni con 'n' che limitano la dimensione!
 
 ---
 
@@ -513,170 +680,66 @@ sequenceDiagram
 
 ---
 
-# funzione
+# Soluzioni degli esercizi
 
-```c
+Le seguenti slide contengono le soluzioni degli esercizi proposti durante la lezione.
 
-float areaTriangolo( float base, float altezza) {
-  float risultato = base * altezza / 2 ;
-  return risultato ;
-}
+---
+
+# Soluzione es. carrello
+
+<<< @/snippets/example04/main.c#sample c {*}{lines:true,maxHeight:'400px'}
+
+---
+title: output carrello
+
+---
+
+```txt
+Inserisci il numero di oggetti nel carrello: 12
+Inserisci il prezzo unitario degli oggetti: 1000
+
+===== Dettaglio del Carrello =====
+Numero di oggetti: 12
+Prezzo unitario: 1000.00
+Totale prima dello sconto: 12000.00
+Sconto applicato: 1200.00
+Imponibile (dopo sconto): 10800.00
+IVA (22%): 2376.00
+Totale lordo: 13176.00
+==============================
 
 ```
 
 ---
 
-# Esempio 14
+# Soluzione es. radice
 
-<Transform :scale='0.4' >
-<<< @/snippets/example14/utility.h c {*}{lines:true}
-</Transform>
+<<< @/snippets/example05/main.c#snippet c {*}{lines:true,maxHeight:'400px'}
 
-<Transform :scale='0.4' >
-<<< @/snippets/example14/utility.c c {*}{lines:true}
-</Transform>
+---
+title: output radice
 
 ---
 
-# Esempio 14
-
-<Transform :scale='0.4' >
-<<< @/snippets/example14/main.c c {*}{lines:true}
-</Transform>
-
----
-
-# struct
-
-```c
-struct coordinate {
-  float x;
-  float y;
-  float z;
-};
-
-    struct coordinate punto1, punto2, *punto3;
-    struct coordinate punto4 = {1.0, 2.2, 3.4};
-
-    punto2.x = punto4.x;
-    punto2.y = punto4.y;
-
-    (*punto3).x = punto4.x;
-    punto3->x = punto4.x;
-
+```txt
+Inserisci un numero maggiore di 1: 5
+Punto medio: 3.0000000
+Punto medio: 2.0000000
+Punto medio: 2.5000000
+Punto medio: 2.2500000
+Punto medio: 2.1250000
+Punto medio: 2.1875000
+Punto medio: 2.2187500
+Punto medio: 2.2360535
+Punto medio: 2.2360687
+Punto medio: 2.2360611
+Punto medio: 2.2360649
+Punto medio: 2.2360668
+Punto medio: 2.2360678
+Punto medio: 2.2360682
+Punto medio: 2.2360680
+Punto medio: 2.2360679
+Punto medio: 2.2360680
+La radice quadrata approssimata di 5.0 è: 2.2360680
 ```
-
-```mermaid {scale: 0.9}
-classDiagram
-    class coordinate {
-        float x
-        float y
-        float z
-    }
-```
-
----
-
-# typedef
-
-```c
-   typedef struct record {
-        char nome[20];
-        char cognome[20];
-        int eta;
-    } record_utente;
-
-    record_utente utente1, utente2;
-
-    utente1.eta = 20;
-    strcpy(utente1.nome, "Mario");
-
-```
-
----
-
-# Esempio 15
-
-<Transform :scale='0.4' >
-<<< @/snippets/example15/main.c c {*}{lines:true}
-</Transform>
-
----
-
-# struct
-
-```c {*}{lines:true}
-   typedef struct record {
-        char nome[20];
-        char cognome[20];
-        int eta;
-    } record_utente ;
-
-record_utente utenti[10] ={ {"bilbo", "baggins", 100 }};
-
-
-
-struct record {
-        char nome[20];
-        char cognome[20];
-        int eta;
-} utente1, utente2;
-
-if ( utente1.eta == utente2.eta
-      && strcmp(utente1.nome, utente2.nome) == 0
-      && strcmp(utente1.cognome, utente2.cognome) == 0 ) {
-        // code block
-
-}
-
-```
-
----
-
-# file
-
-```c {*}{lines:true}
-
-// stdio.h
-typedef struct __sFILE {
- ...
-} FILE;
-
-FILE *my_file;
-
-```
-
----
-
-# Esempio file
-
-<Transform :scale='0.4' >
-<<< @/snippets/example18/main.c c {*}{lines:true}
-</Transform>
-
----
-
-# struct & func
-
-<Transform :scale='0.9' >
-<<< @/snippets/example19/main.c c {*}{lines:true}
-</Transform>
-
----
-
-# files
-
-<Transform :scale='0.9' >
-<<< @/snippets/example20/input.txt csv {*}{lines:true}
-</Transform>
-<Transform :scale='0.9' >
-<<< @/snippets/example20/output.txt csv {*}{lines:true}
-</Transform>
-
----
-
-# files
-
-<Transform :scale='0.5' >
-<<< @/snippets/example20/main.c c {*}{lines:true}
-</Transform>
