@@ -172,16 +172,23 @@ flowchart TD
 ```
 
 ---
+layout: two-cols
+
+---
 
 # Sintassi dell'istruzione IF-ELSE
 
 ```c
 if (condizione) {
-    // blocco 1: eseguito se condizione è vera
+    // blocco 1: eseguito se 
+    // condizione è vera
 } else {
-    // blocco 2: eseguito se condizione è falsa
+    // blocco 2: eseguito se 
+    // condizione è falsa
 }
 ```
+
+::right::
 
 ## Esempio
 
@@ -567,8 +574,8 @@ for (int i = 10; i > 0; i--) {
 ```
 
 ---
-
 layout: two-cols
+
 ---
 
 # Esercizio: Somma fino a un valore
@@ -657,7 +664,7 @@ layout: two-cols
 
 ---
 
-# ESEMPIO: IL CICLO WHILE
+# Esempio: il ciclo WHILE
 
 Stampa i numeri da 0 a 1000.
 
@@ -676,7 +683,7 @@ layout: two-cols
 
 ---
 
-# ESEMPIO: ciclo WHILE con input
+# Esempio: ciclo WHILE con input
 
 Somma dei valori introdotti finché non viene immesso il valore 0.
 
@@ -693,7 +700,7 @@ layout: two-cols
 
 ---
 
-# EQUIVALENZA DI FOR E WHILE
+# Equivalenza di FOR e WHILE
 
 `for` e `while` consentono di esprimere lo stesso comportamento.
 
@@ -764,7 +771,7 @@ layout: two-cols
 
 ---
 
-# ESEMPIO: ciclo DO-WHILE
+# Esempio: ciclo DO-WHILE
 
 Stampa i numeri da 0 a 1000.
 
@@ -780,38 +787,32 @@ Anche questo esempio è equivalente ai precedenti, ma garantisce almeno una esec
 
 ---
 
-# Esempio pratico: Validazione password
+# Esempio pratico: Validazione PIN
 
 ```c
 #include <stdio.h>
-#include <string.h>
 
 int main(void) {
-    char password[20];
+    int pin;
     int attempts = 0;
+    const int CORRECT_PIN = 1234;
     const int MAX_ATTEMPTS = 3;
     
     do {
-        printf("Inserisci password: ");
-        scanf("%s", password);
+        printf("Inserisci il PIN (4 cifre): ");
+        scanf("%d", &pin);
         attempts++;
         
-        if (strcmp(password, "secret123") == 0) {
+        if (pin == CORRECT_PIN) {
             printf("✅ Accesso consentito!\n");
             break;
         } else {
-            printf("❌ Password errata. Tentativi rimasti: %d\n", 
+            printf("❌ PIN errato. Tentativi rimasti: %d\n", 
                    MAX_ATTEMPTS - attempts);
         }
     } while (attempts < MAX_ATTEMPTS);
-```
-
----
-
-# Esempio pratico: Validazione password
-
-```c
-    if (attempts == MAX_ATTEMPTS) {
+    
+    if (attempts == MAX_ATTEMPTS && pin != CORRECT_PIN) {
         printf("🔒 Account bloccato!\n");
     }
     
@@ -974,7 +975,7 @@ layout: two-cols
 
 ---
 
-# CICLI ANNIDATI (nested loops)
+# Cicli annidati (nested loops)
 
 È possibile inserire un ciclo dentro un altro ciclo:
 
@@ -990,7 +991,7 @@ layout: two-cols
 
 ---
 
-# CICLI ANNIDATI: esempi pratici
+# Cicli annidati: esempi pratici
 
 ## Stampa un rettangolo di asterischi (5x3)
 
@@ -1057,40 +1058,62 @@ for (int row = 1; row <= 5; row++) {
 ```
 
 ---
+layout: two-cols
 
-# Esempio pratico: Elaborazione matrice dati
+---
+
+# Esempio pratico: Analisi di sequenze
 
 ```c
 #include <stdio.h>
 
 int main(void) {
-    // Matrice 3x4 con temperature giornaliere (3 settimane, 4 giorni)
-    int temps[3][4] = {
-        {22, 24, 23, 25},  // Settimana 1
-        {20, 21, 19, 22},  // Settimana 2
-        {25, 26, 24, 23}   // Settimana 3
-    };
+    int num, count = 0;
+    int sum = 0, max = 0, min = 0;
     
-    printf("Analisi temperature:\n\n");
+    printf("Inserisci numeri positivi ");
+    printf("(0 per terminare):\n");
     
-    for (int week = 0; week < 3; week++) {
-        int sum = 0;
-        printf("Settimana %d: ", week + 1);
+    do {
+        printf("Numero %d: ", count + 1);
+        scanf("%d", &num);
         
-        for (int day = 0; day < 4; day++) {
-            printf("%d°C ", temps[week][day]);
-            sum += temps[week][day];
+        if (num > 0) {
+            sum += num;
+            count++;
+            
+            if (count == 1) {
+                max = num;
+                min = num;
+            } else {
+                if (num > max) max = num;
+                if (num < min) min = num;
+            }
         }
-        
-        float avg = sum / 4.0;
-        printf("(Media: %.1f°C)\n", avg);
+    } while (num != 0);
+```
+
+::right::
+
+```c
+    // Print results
+    if (count > 0) {
+        float avg = (float)sum / count;
+        printf("\n=== Riepilogo ===\n");
+        printf("Numeri: %d\n", count);
+        printf("Somma: %d\n", sum);
+        printf("Media: %.2f\n", avg);
+        printf("Massimo: %d\n", max);
+        printf("Minimo: %d\n", min);
+    } else {
+        printf("Nessun numero.\n");
     }
     
     return 0;
 }
 ```
 
-**Output:** Mostra temperature e medie settimanali - caso d'uso reale!
+Calcola statistiche su numeri inseriti dall'utente usando `do-while`
 
 ---
 
@@ -1121,10 +1144,11 @@ printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
 - Usa nomi descrittivi per cicli annidati (`row`, `col` invece di `i`, `j`)
 
 ---
+layout: two-cols
+
+---
 
 # Esercizio: Verifica numero all'interno di range
-
-<div class="exercise-box">
 
 **Obiettivo:** Usare `break` per uscire da un ciclo di ricerca
 
@@ -1136,6 +1160,8 @@ printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
 4. Se trovi il numero, stampa il messaggio e usa `break`
 5. Se il ciclo termina senza trovarlo, stampa "Non trovato"
 
+::right::
+
 **Esempio:**
 
 ```text
@@ -1146,8 +1172,6 @@ Output: Trovato il numero 7!
 ```
 
 **Suggerimento:** Usa una variabile `trovato` per tracciare se hai trovato il numero.
-
-</div>
 
 ---
 
@@ -1354,12 +1378,11 @@ for (int i = 1; i <= n; i++) {
     sum = sum + i;
 }
 
-// 2. Copia array
-int source[5] = {1, 2, 3, 4, 5};
-int dest[5];
-for (int i = 0; i <= 5; i++) {  // ❌ Errore?
-    dest[i] = source[i];
+// 2. Stampa numeri da 1 a 10
+for (int i = 0; i <= 10; i++) {  // ❌ Errore?
+    printf("%d ", i);
 }
+// Volevo stampare da 1 a 10
 
 // 3. Conta fino a zero
 int count = 10;
@@ -1381,11 +1404,13 @@ for (int i = 1; i <= n; i++) {
     sum = sum + i;
 }
 
-// 2. ✅ Off-by-one error: i va da 0 a 5 (6 valori), array ha solo 0-4
-int source[5] = {1, 2, 3, 4, 5};
-int dest[5];
-for (int i = 0; i < 5; i++) {  // ✅ Usa < invece di <=
-    dest[i] = source[i];
+// 2. ✅ Off-by-one error: i va da 0 a 10 (11 valori invece di 10)
+for (int i = 1; i <= 10; i++) {  // ✅ Inizia da 1 invece di 0
+    printf("%d ", i);
+}
+// Oppure:
+for (int i = 0; i < 10; i++) {  // ✅ Usa < invece di <=
+    printf("%d ", i + 1);
 }
 
 // 3. ✅ Ciclo infinito: count aumenta invece di diminuire
@@ -1440,117 +1465,100 @@ while (count > 0) {
 
 ---
 
-# Esercizio: Valori pari e dispari
+# Esercizio: Contatore pari e dispari
 
-**Obiettivo:** Usare array e cicli per gestire e stampare valori in ordini diversi
+**Obiettivo:** Contare e sommare valori pari e dispari da input
 
 **Requisiti:**
 
-1. Chiedi all'utente quanti valori vuole inserire (massimo 100)
-2. Leggi tutti i valori e salvali in un array
-3. Stampa tutti i valori pari nell'ordine in cui sono stati inseriti
-4. Stampa tutti i valori dispari nell'ordine inverso
+1. Chiedi all'utente di inserire una sequenza di numeri interi positivi
+2. Termina quando l'utente inserisce 0
+3. Conta quanti numeri pari e quanti dispari sono stati inseriti
+4. Calcola la somma separata dei pari e dei dispari
+5. Stampa i risultati
 
 ---
 
-# Esercizio: Valori pari e dispari
+# Esercizio: Contatore pari e dispari
 
 **Esempio di esecuzione:**
 
 ```text
-Quanti valori vuoi inserire? 6
-Valore 1: 5
-Valore 2: 12
-Valore 3: 7
-Valore 4: 8
-Valore 5: 3
-Valore 6: 14
+Inserisci numeri positivi (0 per terminare):
+Numero: 12
+Numero: 5
+Numero: 8
+Numero: 7
+Numero: 14
+Numero: 3
+Numero: 0
 
-Valori pari (ordine normale): 12 8 14
-Valori dispari (ordine inverso): 3 7 5
+Numeri pari: 3 (somma: 34)
+Numeri dispari: 3 (somma: 15)
 ```
 
-**Suggerimento:** Usa `if (vett[i] % 2 == 0)` per verificare se un numero è pari.
+**Suggerimento:** Usa `if (num % 2 == 0)` per verificare se un numero è pari.
 
 ---
 
-# Esercizio: Numeri maggiori della media
+# Esercizio: Fattoriale con validazione
 
-**Obiettivo:** Calcolare la media di un array e identificare valori sopra la media
+**Obiettivo:** Calcolare il fattoriale di un numero con validazione input
 
 **Requisiti:**
 
-1. Chiedi all'utente quanti numeri reali vuole inserire (massimo 100)
-2. Leggi tutti i numeri e salvali in un array
-3. Calcola la media aritmetica
-4. Conta e stampa quanti numeri sono maggiori della media
-5. Stampa i numeri che sono maggiori della media
+1. Chiedi all'utente un numero intero tra 0 e 12
+2. Se il numero non è valido, continua a chiederlo (usa `do-while`)
+3. Calcola il fattoriale del numero (n! = 1 × 2 × 3 × ... × n)
+4. Stampa il risultato
+5. Nota: 0! = 1 per definizione
 
 ---
 
-# Esercizio: Numeri maggiori della media
+# Esercizio: Fattoriale con validazione
 
 **Esempio di esecuzione:**
 
 ```text
-Quanti numeri vuoi inserire? 5
-Numero 1: 10.5
-Numero 2: 8.0
-Numero 3: 12.3
-Numero 4: 7.2
-Numero 5: 11.0
+Calcolo del fattoriale
+Inserisci un numero (0-12): 15
+Errore! Numero troppo grande. Riprova.
+Inserisci un numero (0-12): -3
+Errore! Numero negativo. Riprova.
+Inserisci un numero (0-12): 5
 
-Media: 9.80
-Numeri maggiori della media: 3
-Valori: 10.50 12.30 11.00
+5! = 1 × 2 × 3 × 4 × 5 = 120
 ```
 
-**Suggerimento:** Calcola prima la somma, poi dividi per N per ottenere la media.
-
----
-layout: figure-side
-figureUrl: "/Sieve_of_Eratosthenes_animation.gif"
-figureCaption: "source: wikipedia.org"
+**Suggerimento:** Usa una variabile `factorial = 1` e moltiplica in un ciclo `for`.
 
 ---
 
-# Il crivello di Eratostene
-
-Il crivello di [Eratostene](https://it.wikipedia.org/wiki/Crivello_di_Eratostene) è un metodo che consente di trovare i numeri primi fino ad un certo n prefissato.
-
-**Algoritmo:**
-
-- Si scrivono tutti i numeri naturali a partire da 2 fino a n
-- Si cancellano tutti i multipli del primo numero
-- Si passa al successivo numero non cancellato e si ripete l'operazione con i numeri che seguono
-
----
-
-# Esercizio: Crivello di Eratostene
+# Esercizio: Verifica numero primo
 
 <div class="exercise-box">
 
-**Obiettivo:** Implementare l'algoritmo del crivello di Eratostene
+**Obiettivo:** Verificare se un numero è primo
 
 **Requisiti:**
 
-1. Chiedi all'utente un numero n positivo
-2. Crea un array booleano di dimensione n+1
-3. Implementa l'algoritmo del crivello:
-   - Inizializza tutti i valori a 1 (primo potenziale)
-   - Per ogni numero i da 2 a √n:
-     - Se i è marcato come primo, marca tutti i suoi multipli come non primi
-4. Stampa tutti i numeri primi trovati
+1. Chiedi all'utente un numero intero positivo maggiore di 1
+2. Verifica se il numero è primo usando un ciclo
+3. Un numero è primo se è divisibile solo per 1 e per se stesso
+4. Stampa se il numero è primo o no
+5. Bonus: mostra il primo divisore trovato se non è primo
 
 **Esempio di esecuzione:**
 
 ```text
-Inserisci un numero n: 30
-Numeri primi fino a 30:
-2 3 5 7 11 13 17 19 23 29
+Inserisci un numero: 17
+17 è un numero primo
+
+Inserisci un numero: 24
+24 non è primo (divisibile per 2)
 ```
 
-**Suggerimento:** Usa un array `int primi[n+1]` dove `primi[i] = 1` significa che i è primo.
+**Suggerimento:** Usa un ciclo `for` da 2 a n-1 e controlla `if (n % i == 0)` per trovare divisori.
 
 Vedi `example08` per la soluzione completa.
 

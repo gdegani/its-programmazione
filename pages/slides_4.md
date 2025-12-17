@@ -251,7 +251,7 @@ int vett[5] = {0};  // ✅ Tutti gli elementi a 0
 
 # Esercizi
 
-- Scrivere un programma che chieda quanti valori verranno introdotti dalla tastiera (max 100), li chieda tutti e successivamente visualizzi prima tutti i valori pari nell’ordine in cui sono stati inseriti e poi tutti i valori dispari nell’ordine inverso. *(see example07)*
+- Scrivere un programma che chieda quanti valori verranno introdotti dalla tastiera (max 100), li chieda tutti e successivamente visualizzi prima tutti i valori pari nell'ordine in cui sono stati inseriti e poi tutti i valori dispari nell'ordine inverso. *(vedi esempio example07)*
 - Scrivere un programma che, dati in input N numeri reali, con N che al massimo vale 100, stampi quanti di essi sono maggiori della media e successivamente li stampi a video
 
 ---
@@ -273,7 +273,7 @@ Il crivello di [Eratostene](https://it.wikipedia.org/wiki/Crivello_di_Eratostene
 
 # Esercizio
 
-Scrivere un programma che richieda un numero n positivo e, usando il crivello di Eratostene, trovi e stampi i numeri primi minori o uguali a n *(see example08)*.
+Scrivere un programma che richieda un numero n positivo e, usando il crivello di Eratostene, trovi e stampi i numeri primi minori o uguali a n *(vedi esempio example08)*.
 
 ---
 
@@ -622,33 +622,6 @@ figureUrl: /string_string1.png
 
 ---
 
-```mermaid {scale: 0.9, alt: 'A diagram'}
-block-beta
-    columns 2
-    c11["0x22fdd0"] c12["0x22fdd3"]
-    c21["0x22fdd1"] c22[" "]
-    c31["0x22fdd2"] c32[" "]
-    c41["0x22fdd3"] c42["C"]
-
-    c12 --> c42
-```
-
----
-
-```mermaid {scale: 0.9, alt: 'A diagram'}
-sequenceDiagram
-    main ->> stdio: printf()
-    activate stdio
-    stdio -->> main: return
-    deactivate stdio
-    main ->> stdio: strlen()
-    activate stdio
-    stdio -->> main: return
-    deactivate stdio
-```
-
----
-
 # Esercizi stringhe
 
 <Transform :scale='0.7' >
@@ -665,14 +638,14 @@ sequenceDiagram
 
 ---
 
-# Esempio 11
+# Esempio 11: Manipolazione stringhe
 
 <Transform :scale='0.9' >
 <<< @/snippets/example11/main.c c {*}{lines:true}
 </Transform>
 ---
 
-# Esempio 12
+# Esempio 12: Elaborazione stringhe
 
 <Transform :scale='0.4' >
 <<< @/snippets/example12/main.c c {*}{lines:true}
