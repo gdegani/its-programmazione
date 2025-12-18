@@ -35,25 +35,30 @@ Ing. Giancarlo Degani
 ---
 src: ./pages/slides_1.md
 title: Fondamenti di informatica
+
 ---
 
 ---
 src: ./pages/slides_2.md
 title: Introduzione al C
+
 ---
 
 ---
 src: ./pages/slides_3.md
 title: Cicli
+
 ---
 
 ---
 src: ./pages/slides_4.md
 title: Arrays
+
 ---
 
 ---
 src: ./pages/slides_5.md
+title: enum and functions
 
 ---
 
