@@ -1063,7 +1063,7 @@ layout: two-cols
 ---
 
 # Esempio pratico: Analisi di sequenze
-
+<Transform :scale='0.8'>
 ```c
 #include <stdio.h>
 
@@ -1092,6 +1092,7 @@ int main(void) {
         }
     } while (num != 0);
 ```
+</Transform>
 
 ::right::
 

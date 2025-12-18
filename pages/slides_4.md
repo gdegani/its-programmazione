@@ -624,32 +624,19 @@ figureUrl: /string_string1.png
 
 # Esercizi stringhe
 
-<Transform :scale='0.7' >
 <<< @/snippets/example09/main.c c {*}{lines:true}
-</Transform>
 
 ---
 
 # Esercizi stringhe
 
-<Transform :scale='0.5' >
 <<< @/snippets/example10/main.c c {*}{lines:true}
-</Transform>
 
 ---
 
 # Esempio 11: Manipolazione stringhe
 
-<Transform :scale='0.9' >
 <<< @/snippets/example11/main.c c {*}{lines:true}
-</Transform>
----
-
-# Esempio 12: Elaborazione stringhe
-
-<Transform :scale='0.4' >
-<<< @/snippets/example12/main.c c {*}{lines:true}
-</Transform>
 
 ---
 
