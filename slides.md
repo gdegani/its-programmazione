@@ -70,7 +70,13 @@ src: ./pages/slides_6.md
 ---
 src: ./pages/slides_7.md
 
---- -->
+---
+
+---
+src: ./pages/slides_8.md
+title: AI assisted development
+
+---
 
 ---
 layout: center

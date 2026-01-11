@@ -5,7 +5,7 @@ coverDate: ""
 
 ---
 
-# 7 -  Fondamenti di Informatica
+# 7 -  Allocazione dinamica della memoria
 
 Ing. Giancarlo Degani
 

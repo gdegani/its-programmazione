@@ -517,8 +517,8 @@ char str[MAX_LENGHT+1] = {‘H’,’e’,’l’,’l’,’o’} ;
 - La dimensione massima viene solitamente gestita con #define
 - La lunghezza della stringa è data dal numero di caratteri fino al null escluso
 - La stringa è un vettore, posso quindi usare la notazione dei vettori per accedere ai singoli caratteri
-  - str[0] è il primo carattere
-  - str[1] è il secondo carattere
+  - str\[0\] è il primo carattere
+  - str\[1\] è il secondo carattere
 
 ---
 
@@ -637,69 +637,3 @@ figureUrl: /string_string1.png
 # Esempio 11: Manipolazione stringhe
 
 <<< @/snippets/example11/main.c c {*}{lines:true}
-
----
-
-# Soluzioni degli esercizi
-
-Le seguenti slide contengono le soluzioni degli esercizi proposti durante la lezione.
-
----
-
-# Soluzione es. carrello
-
-<<< @/snippets/example04/main.c#sample c {*}{lines:true,maxHeight:'400px'}
-
----
-title: output carrello
-
----
-
-```txt
-Inserisci il numero di oggetti nel carrello: 12
-Inserisci il prezzo unitario degli oggetti: 1000
-
-===== Dettaglio del Carrello =====
-Numero di oggetti: 12
-Prezzo unitario: 1000.00
-Totale prima dello sconto: 12000.00
-Sconto applicato: 1200.00
-Imponibile (dopo sconto): 10800.00
-IVA (22%): 2376.00
-Totale lordo: 13176.00
-==============================
-
-```
-
----
-
-# Soluzione es. radice
-
-<<< @/snippets/example05/main.c#snippet c {*}{lines:true,maxHeight:'400px'}
-
----
-title: output radice
-
----
-
-```txt
-Inserisci un numero maggiore di 1: 5
-Punto medio: 3.0000000
-Punto medio: 2.0000000
-Punto medio: 2.5000000
-Punto medio: 2.2500000
-Punto medio: 2.1250000
-Punto medio: 2.1875000
-Punto medio: 2.2187500
-Punto medio: 2.2360535
-Punto medio: 2.2360687
-Punto medio: 2.2360611
-Punto medio: 2.2360649
-Punto medio: 2.2360668
-Punto medio: 2.2360678
-Punto medio: 2.2360682
-Punto medio: 2.2360680
-Punto medio: 2.2360679
-Punto medio: 2.2360680
-La radice quadrata approssimata di 5.0 è: 2.2360680
-```
