@@ -1,6 +1,5 @@
 ---
 layout: cover
-
 coverDate:
 
 ---

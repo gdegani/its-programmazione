@@ -25,6 +25,7 @@ themeConfig:
   paginationX: r
   paginationY: b
   paginationPagesDisabled: "1"
+lineNumbers: true
 
 ---
 
