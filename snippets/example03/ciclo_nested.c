@@ -7,10 +7,10 @@ int main(void)
     int i, j;
     for (i = 1; i <= 4; i++)
     {
-        // Ciclo esterno
+        // Outer loop
         for (j = 1; j <4 ; j++)
         {
-            // Ciclo interno
+            // Inner loop
             printf("%d,%d ", i, j);
         }
         printf("\n");

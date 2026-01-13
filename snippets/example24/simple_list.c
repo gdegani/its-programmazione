@@ -97,7 +97,7 @@ void printAll() {
     p = head;
     int counter = 0;
     if (p == NULL) {
-        printf("Lista vuota!\n");
+        printf("Empty list!\n");
     }
     while (p != NULL) { // scroll the entire list
         printf("%d) ", counter++);

@@ -7,17 +7,17 @@ int main(void) {
     int arr[MAX_SIZE];
 
     // Request the number of elements (N < 100)
-    printf("Inserisci il numero di elementi (N < 100): ");
+    printf("Enter the number of elements (N < 100): ");
     scanf("%d", &n);
 
     // Check if N is greater than or equal to 100
     if (n >= 100) {
-        printf("Errore: N deve essere minore di 100.\n");
+        printf("Error: N must be less than 100.\n");
         return 1;
     }
 
     // Request N integer numbers
-    printf("Inserisci %d numeri interi:\n", n);
+    printf("Enter %d integers:\n", n);
     for (i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
@@ -35,7 +35,7 @@ int main(void) {
     }
 
     // Print the sorted array
-    printf("Vettore ordinato:\n");
+    printf("Sorted array:\n");
     for (i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }

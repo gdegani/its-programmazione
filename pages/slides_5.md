@@ -308,7 +308,9 @@ int main(void) {
 - Il **valore di ritorno** può essere usato direttamente
 
 ---
+layout: two-cols
 
+---
 # Variabili locali
 
 Le variabili dichiarate dentro una funzione sono **locali**:
@@ -338,14 +340,19 @@ int main(void) {
 }
 ```
 
+::right::
+
 **Output:**
 
-```
+```text
 main: x = 5
 funzione_a: x = 10
 funzione_b: x = 20
 main: x = 5
 ```
+
+---
+layout: two-cols
 
 ---
 
@@ -372,15 +379,51 @@ int main(void) {
 }
 ```
 
+::right::
+
 **Output:**
 
-```
+```text
 Prima: x = 5
 Dentro la funzione: n = 6
 Dopo: x = 5
 ```
 
 La funzione modifica solo la **copia** del parametro, non l'originale!
+
+---
+
+# Introduzione ai Puntatori
+
+Un **puntatore** è una variabile che memorizza l'**indirizzo di memoria** di un'altra variabile.
+
+## Concetti chiave
+
+**Indirizzo di memoria**: Ogni variabile è memorizzata a un indirizzo in RAM
+- Operatore `&`: ottiene l'indirizzo di una variabile
+- Operatore `*`: accede al valore memorizzato a un indirizzo (dereferenzazione)
+
+## Dichiarazione di un puntatore
+
+```c
+int *ptr;        // ptr è un puntatore a un intero
+char *ptr_char;  // puntatore a un carattere
+```
+
+---
+
+# Introduzione ai Puntatori
+
+## Esempio base
+
+```c
+int x = 10;
+int *ptr = &x;   // ptr memorizza l'indirizzo di x
+
+printf("Valore di x: %d\n", x);        // Output: 10
+printf("Indirizzo di x: %p\n", &x);    // Output: 0x7fff5fbff8ac (esempio)
+printf("Valore puntato: %d\n", *ptr);  // Output: 10
+```
 
 ---
 
@@ -445,6 +488,9 @@ Dopo: x = 20, y = 10
 ```
 
 ---
+layout: two-cols
+
+---
 
 # Array come parametri
 
@@ -465,7 +511,11 @@ void moltiplica_per_2(int arr[], int size) {
         arr[i] *= 2;  // Modifica l'array originale!
     }
 }
+```
 
+::right::
+
+```c
 int main(void) {
     int numeri[] = {1, 2, 3, 4, 5};
     int size = 5;
@@ -483,38 +533,42 @@ int main(void) {
 ```
 
 ---
+layout: two-cols
 
-# Funzioni void
+---
 
-Le funzioni `void` non restituiscono alcun valore:
+# Void Functions
+
+Functions with `void` return type do not return any value:
 
 ```c
 #include <stdio.h>
 
-void saluta(const char *nome) {
-    printf("Ciao, %s!\n", nome);
+void greet(const char *name) {
+    printf("Hello, %s!\n", name);
 }
 
-void stampa_linea(void) {
+void print_line(void) {
     printf("====================\n");
 }
 
 int main(void) {
-    stampa_linea();
-    saluta("Mario");
-    saluta("Luigi");
-    stampa_linea();
+    print_line();
+    greet("Mario");
+    greet("Luigi");
+    print_line();
     
     return 0;
 }
 ```
 
+::right::
 **Output:**
 
-```
+```text
 ====================
-Ciao, Mario!
-Ciao, Luigi!
+Hello, Mario!
+Hello, Luigi!
 ====================
 ```
 
@@ -552,9 +606,9 @@ int min(int a, int b) {
 
 ---
 
-# Progetti multi-file: uso
+# Multi-file Projects: Usage
 
-## File principale (main.c)
+## Main file (main.c)
 
 ```c
 #include <stdio.h>
@@ -563,25 +617,25 @@ int min(int a, int b) {
 int main(void) {
     int a = 10, b = 20;
     
-    printf("Massimo tra %d e %d: %d\n", a, b, max(a, b));
-    printf("Minimo tra %d e %d: %d\n", a, b, min(a, b));
+    printf("Maximum of %d and %d: %d\n", a, b, max(a, b));
+    printf("Minimum of %d and %d: %d\n", a, b, min(a, b));
     
     return 0;
 }
 ```
 
-## Compilazione
+## Compilation
 
 ```bash
 gcc -c utility.c -o utility.o
 gcc -c main.c -o main.o
-gcc utility.o main.o -o programma
+gcc utility.o main.o -o program
 ```
 
-O in un solo comando:
+Or in a single command:
 
 ```bash
-gcc main.c utility.c -o programma
+gcc main.c utility.c -o program
 ```
 
 ---

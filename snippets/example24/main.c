@@ -5,10 +5,10 @@
 int main() {
 
     int v;
-    char scelta[5];
+    char choice[5];
 
     do {
-        printf("Operazioni possibili:\n");
+        printf("Available operations:\n");
         printf("a. AddToHead\n");
         printf("b. AddToTail\n");
         printf("c. RemoveFromHead\n");
@@ -16,35 +16,35 @@ int main() {
         printf("e. ClearAll\n");
         printf("p. PrintAll\n");
         printf("x. Exit\n");
-        printf("\nScelta: ");
-        scanf("%s", scelta);
+        printf("\nChoice: ");
+        scanf("%s", choice);
 
-        switch (scelta[0]) {
+        switch (choice[0]) {
             case 'a':
             case 'A':
-                printf("Valore da inserire: ");
+                printf("Value to insert: ");
                 scanf("%d", &v);
                 int returnValue = AddToHead(v);
                 if (returnValue == LIST_ERROR)
-                    printf("Errore!\n");
+                    printf("Error!\n");
                 break;
             case 'b':
-                printf("Valore da inserire: ");
+                printf("Value to insert: ");
                 scanf("%d", &v);
                 if (AddToTail(v) == LIST_ERROR)
-                    printf("Errore!\n");
+                    printf("Error!\n");
                 break;
             case 'c':
                 if (RemoveFromHead(&v) == LIST_ERROR)
-                    printf("Errore!\n");
+                    printf("Error!\n");
                 else
-                    printf("Valore prelevato: %d\n", v);
+                    printf("Extracted value: %d\n", v);
                 break;
             case 'd':
                 if (RemoveFromTail(&v) == LIST_ERROR)
-                    printf("Errore!\n");
+                    printf("Error!\n");
                 else
-                    printf("Valore prelevato: %d\n", v);
+                    printf("Extracted value: %d\n", v);
                 break;
             case 'e':
                 ClearAll();
@@ -53,6 +53,6 @@ int main() {
                 printAll();
                 break;
         }
-    } while (scelta[0] != 'x');
+    } while (choice[0] != 'x');
     return EXIT_SUCCESS;
 }

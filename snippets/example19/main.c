@@ -9,14 +9,14 @@ struct Student {
 
 // Function that takes a struct as argument
 void printStudent(struct Student s) {
-    printf("Nome: %s\n", s.name);
-    printf("Età: %d\n", s.age);
-    printf("Voto: %.2f\n", s.grade);
+    printf("Name: %s\n", s.name);
+    printf("Age: %d\n", s.age);
+    printf("Grade: %.2f\n", s.grade);
 }
 
 int main() {
     // Declaration and initialization of a struct
-    struct Student student1 = {"Marco Rossi", 20, 28.5};
+    struct Student student1 = {"John Smith", 20, 28.5};
 
     // Call function with struct as argument
     printStudent(student1);
