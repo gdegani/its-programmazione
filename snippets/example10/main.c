@@ -1,15 +1,24 @@
 #include <stdio.h>
+#include <string.h>
 
-void increment(int *value) {
-    (*value)++;
-}
-
+/* String length and concatenation */
 int main() {
-    int number = 10;
+    char greeting[50] = "Hello";
+    char name[30] = "World";
     
-    printf("Before: number = %d\n", number);
-    increment(&number);
-    printf("After: number = %d\n", number);
-
+    /* Find length of string */
+    int len_greeting = strlen(greeting);
+    printf("Length of '%s': %d\n", greeting, len_greeting);
+    
+    /* Concatenate strings */
+    strcat(greeting, " ");
+    strcat(greeting, name);
+    printf("Combined: %s\n", greeting);
+    
+    /* Copy string */
+    char copy[50];
+    strcpy(copy, greeting);
+    printf("Copy: %s\n", copy);
+    
     return 0;
 }

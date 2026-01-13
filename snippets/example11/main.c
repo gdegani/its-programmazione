@@ -1,17 +1,27 @@
 #include <stdio.h>
+#include <string.h>
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
+/* Simple string usage and basic operations */
 int main() {
-    int x = 10, y = 20;
+    char name[50];
     
-    printf("Before swap: x = %d, y = %d\n", x, y);
-    swap(&x, &y);
-    printf("After swap: x = %d, y = %d\n", x, y);
-
+    /* Read string from user */
+    printf("Enter your name: ");
+    scanf("%s", name);
+    
+    /* Display string */
+    printf("Hello, %s!\n", name);
+    
+    /* Get string length */
+    int length = strlen(name);
+    printf("Your name has %d characters\n", length);
+    
+    /* Display each character */
+    printf("Characters: ");
+    for (int i = 0; i < length; i++) {
+        printf("%c ", name[i]);
+    }
+    printf("\n");
+    
     return 0;
 }

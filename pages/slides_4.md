@@ -584,22 +584,6 @@ fgets(buffer, 50, stdin);  // ✅ Sicuro: specifica la dimensione massima
 **Regola d'oro**: Usare sempre le versioni con 'n' che limitano la dimensione!
 
 ---
-
-# I/O di stringhe
-
-## puts(nome_stringa)
-
-Visualizza *nome_stringa* e aggiunge un '\n' alla fine.
-
-## gets(nome_stringa)
-
-Legge da tastiera tutta la stringa in input fino al ritorno a capo incluso , la mette in *nome_stringa* senza il '\n' ed aggiunge '\0' alla fine.
-
-## printf("%s", nome_stringa)
-
-%s visualizza la stringa *nome_stringa* fino al '\0'
-
----
 layout: figure
 figureCaption: "source: cpprefence.com"
 figureUrl: /string_ctype.png
@@ -621,18 +605,35 @@ figureUrl: /string_string1.png
 
 ---
 
-# Esercizi stringhe
-
-<<< @/snippets/example09/main.c c {*}{lines:true}
-
----
-
-# Esercizi stringhe
+# Esempio stringhe 1
 
 <<< @/snippets/example10/main.c c {*}{lines:true}
 
 ---
 
-# Esempio 11: Manipolazione stringhe
+# Esempio stringhe 2
 
 <<< @/snippets/example11/main.c c {*}{lines:true}
+
+---
+
+# Esercizio 1: Contare le vocali
+
+Scrivere un programma che:
+
+- Legge una stringa da input (max 100 caratteri)
+- Conta quante vocali (a, e, i, o, u) sono presenti
+- Stampa il risultato
+
+---
+
+# Esercizio 2: Invertire una stringa
+
+Scrivere un programma che:
+
+- Legge una stringa da input (max 100 caratteri)
+- Determina la lunghezza della stringa
+- Stampa i caratteri in ordine inverso (dal fine all'inizio)
+- Stampa anche la stringa invertita su una sola riga
+
+**Suggerimento**: Usa un loop che parte dalla fine della stringa verso l'inizio

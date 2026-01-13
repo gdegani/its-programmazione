@@ -10,27 +10,6 @@ Ing. Giancarlo Degani
 
 ---
 
-# Argomenti della lezione
-
-In questa lezione tratteremo:
-
-## Enumerazioni (enum)
-
-- Cosa sono e perché usarle
-- Sintassi e definizione
-- Valori e assegnazioni
-- Utilizzo con switch
-
-## Funzioni
-
-- Dichiarazione vs definizione
-- Parametri e valori di ritorno
-- Passaggio per valore
-- Array come parametri
-- Progetti multi-file
-
----
-
 # Cos'è un'enumerazione?
 
 Le **enumerazioni** (enum) permettono di definire un insieme di costanti intere con nomi significativi.
