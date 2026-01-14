@@ -457,7 +457,7 @@ char character = 0x41;  // assegnazione con codice ASCII esadecimale
 # Stringhe
 
 - Sono vettori di **char**  terminate dal carattere **null**
-- Null è un carattere speciale rappresentato con **\\0** (Ottale) o **Ox00** (Esadecimale)
+- Null è un carattere speciale rappresentato con **\\0** (Ottale) o **0x00** (Esadecimale)
 - Attenzione:
 
 |Simbolo|Decimale|Esadecimale|
