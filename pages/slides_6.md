@@ -11,29 +11,6 @@ Ing. Giancarlo Degani
 
 ---
 
-# Argomenti della lezione
-
-In questa lezione tratteremo:
-
-## Strutture (struct)
-
-- Cosa sono e perché usarle
-- Dichiarazione e definizione
-- Accesso ai membri
-- Strutture e funzioni
-- Strutture e puntatori
-- Typedef con strutture
-
-## Files di testo
-
-- Concetto di file e stream
-- Apertura e chiusura di file
-- Lettura e scrittura
-- Modalità di apertura
-- Gestione degli errori
-
----
-
 # Cos'è una struttura?
 
 Una **struttura** (struct) è un tipo di dato composito che raggruppa variabili di tipi diversi sotto un unico nome.
