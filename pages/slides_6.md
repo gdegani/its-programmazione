@@ -125,7 +125,6 @@ s1.eta++;
 
 # Esempio completo: struct Student
 
-````md magic-move {lines: true}
 ```c
 #include <stdio.h>
 
@@ -145,6 +144,10 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+# Esempio completo: struct Student
 
 ```c
 #include <stdio.h>
@@ -170,31 +173,6 @@ int main() {
     return 0;
 }
 ```
-````
-
----
-
-# Strutture e funzioni
-
-Le strutture possono essere passate alle funzioni **per valore** o **per riferimento**.
-
-## Passaggio per valore
-
-```c
-void printStudent(struct Student s) {
-    printf("Nome: %s\n", s.nome);
-    printf("Età: %d\n", s.eta);
-    printf("Voto: %.2f\n", s.voto);
-}
-
-int main() {
-    struct Student s1 = {"Marco", 20, 28.5};
-    printStudent(s1);  // Copia l'intera struttura
-    return 0;
-}
-```
-
-**Nota**: passare per valore copia tutta la struttura (può essere costoso per strutture grandi!).
 
 ---
 
@@ -221,6 +199,30 @@ int main() {
     return 0;
 }
 ```
+
+---
+
+# Strutture e funzioni
+
+Le strutture possono essere passate alle funzioni **per valore** o **per riferimento**.
+
+## Passaggio per valore
+
+```c
+void printStudent(struct Student s) {
+    printf("Nome: %s\n", s.nome);
+    printf("Età: %d\n", s.eta);
+    printf("Voto: %.2f\n", s.voto);
+}
+
+int main() {
+    struct Student s1 = {"Marco", 20, 28.5};
+    printStudent(s1);  // Copia l'intera struttura
+    return 0;
+}
+```
+
+**Nota**: passare per valore copia tutta la struttura (può essere costoso per strutture grandi!).
 
 ---
 
@@ -305,6 +307,9 @@ int main() {
 ```
 
 ---
+layout: two-cols
+
+---
 
 # Array di strutture
 
@@ -330,53 +335,16 @@ int main() {
     strcpy(classe[1].nome, "Anna");
     classe[1].eta = 19;
     classe[1].voto = 27.0;
-    
+```
+
+::right::
+
+```c
     // Stampa tutti gli studenti
     for (int i = 0; i < 2; i++) {
         printf("%s: %.1f\n", classe[i].nome, classe[i].voto);
     }
     
-    return 0;
-}
-```
-
----
-
-# Strutture e memoria dinamica
-
-Esempio di allocazione dinamica di array di strutture:
-
-```c {all|1-5|11-13|16-20|23}
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct {
-    char materia[30];
-    int voto;
-} Corso;
-
-int main() {
-    int n;
-    printf("Numero di corsi: ");
-    scanf("%d", &n);
-    
-    // Alloca memoria per n corsi
-    Corso *corsi = (Corso *)malloc(n * sizeof(Corso));
-    
-    // Input dati
-    for (int i = 0; i < n; i++) {
-        printf("Materia %d: ", i+1);
-        scanf("%s", corsi[i].materia);
-        printf("Voto: ");
-        scanf("%d", &corsi[i].voto);
-    }
-    
-    // Visualizza
-    for (int i = 0; i < n; i++) {
-        printf("%s: %d\n", corsi[i].materia, corsi[i].voto);
-    }
-    
-    free(corsi);
     return 0;
 }
 ```
@@ -462,18 +430,17 @@ int fclose(FILE *stream);
 
 ```c
 FILE *file = fopen("dati.txt", "r");
-
 if (file == NULL) {
     perror("Errore apertura file");
     return 1;
 }
 
 // ... operazioni sul file ...
-
 fclose(file);  // Chiude il file
 ```
 
 **Perché è importante?**
+
 - Libera le risorse di sistema
 - Garantisce che i dati vengano scritti su disco
 - Previene perdite di dati
@@ -682,10 +649,13 @@ if (ferror(file)) {
 ```
 
 ---
+layout: two-cols
+
+---
 
 # Esempio completo: lettura file
 
-```c {all|1-4|6-12|14-19|21-26|28}
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -705,7 +675,11 @@ int main(void) {
     while ((ch = fgetc(file)) != EOF) {
         putchar(ch);
     }
-    
+```
+
+::right::
+
+```c
     if (ferror(file)) {
         printf("\nErrore durante la lettura!\n");
     } else if (feof(file)) {
@@ -718,26 +692,23 @@ int main(void) {
 ```
 
 ---
+layout: two-cols
+
+---
 
 # Esempio: struct e file - parsing CSV
 
-```c {all|5-9|11-28|30-40}
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
+<Transform :scale="0.9">
+```c
 typedef struct {
     unsigned int id;
     char nome[50];
     unsigned int voto;
 } Record;
-
 void parseLine(char *line, Record *record) {
     int counter = 0;
-    char *token;
-    char *rest = line;
-    
-    while ((token = strsep(&rest, ";")) != NULL && counter < 3) {
+    char *token = strtok(line, ";");
+    while (token != NULL && counter < 3) {
         switch (counter) {
             case 0:
                 record->id = atoi(token);
@@ -750,35 +721,69 @@ void parseLine(char *line, Record *record) {
                 break;
         }
         counter++;
+        token = strtok(NULL, ";");
     }
 }
+```
+</Transform>
+::right::
 
+<Transform :scale="0.9">
+```c
 int main() {
     FILE *file = fopen("studenti.csv", "r");
     if (file == NULL) {
         perror("Errore apertura file");
         return EXIT_FAILURE;
     }
-    
+
     char line[100];
     Record studente;
     
     while (fgets(line, 100, file) != NULL) {
         parseLine(line, &studente);
-        printf("ID: %d, Nome: %s, Voto: %d\n",
+        printf("ID: %u, Nome: %s, Voto: %u\n",
                studente.id, studente.nome, studente.voto);
     }
     
     fclose(file);
     return EXIT_SUCCESS;
 }
+
 ```
+
+</Transform>
+
+---
+
+# Ordinamento con qsort()
+
+`qsort()` ordina un array generico usando una funzione di confronto:
+
+```c
+#include <stdlib.h>
+
+int compareInt(const void *a, const void *b) {
+    const int *pa = a;
+    const int *pb = b;
+    return (*pa > *pb) - (*pa < *pb);  // Ordine crescente
+}
+
+int main(void) {
+    int values[] = {4, 1, 3};
+    qsort(values, 3, sizeof(int), compareInt);
+    return 0;
+}
+```
+
+In `qsort(base, n, size, compare)`, `compare` riceve due puntatori a elementi e deve restituire un valore `<0`, `0` o `>0`.
 
 ---
 
 # Esempio: filtrare e ordinare dati
 
 Completo esempio che:
+
 1. Legge record da file
 2. Filtra i record con voto >= 18
 3. Ordina i record per voto decrescente
@@ -852,5 +857,3 @@ Vedi: `snippets/example20/main.c` per l'implementazione completa.
 
 1. Salvare un array di strutture su file e rileggerlo.
 2. Implementare un semplice database di contatti (nome, telefono, email) con salvataggio su file.
-
----

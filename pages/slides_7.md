@@ -135,6 +135,52 @@ p[12] = 19;
 ```
 
 ---
+
+# Strutture e memoria dinamica
+
+Esempio di allocazione dinamica di array di strutture:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+  char materia[30];
+  int voto;
+} Corso;
+
+int main() {
+  int n;
+  printf("Numero di corsi: ");
+  scanf("%d", &n);
+    
+  // Alloca memoria per n corsi
+  Corso *corsi = (Corso *)malloc(n * sizeof(Corso));
+```
+
+::right::
+  
+```c
+
+  // Input dati
+  for (int i = 0; i < n; i++) {
+    printf("Materia %d: ", i+1);
+    scanf("%s", corsi[i].materia);
+    printf("Voto: ");
+    scanf("%d", &corsi[i].voto);
+  }
+    
+  // Visualizza
+  for (int i = 0; i < n; i++) {
+    printf("%s: %d\n", corsi[i].materia, corsi[i].voto);
+  }
+    
+  free(corsi);
+  return 0;
+}
+```
+
+---
 layout: two-cols
 
 ---
