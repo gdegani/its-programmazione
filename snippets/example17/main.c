@@ -27,6 +27,12 @@ int main(void) {
         max_attempts = MAX_ATTEMPTS;
     }
 
+    // Validate that max_number is at least 1
+    if (max_number < 1) {
+        printf("Invalid maximum number (%d). Using default value of %d.\n", max_number, MAX_NUMBER);
+        max_number = MAX_NUMBER;
+    }
+
     srand(time(NULL)); // Seed the random number generator
     number = rand() % (max_number + 1); // Generate a random number between 0 and max_number
 
