@@ -5,7 +5,7 @@ theme: academic
 # like them? see https://unsplash.com/collections/94734566/slidev
 #background: /logo-ITS.png
 
-coverDate: "2025"
+coverDate: "2025-2026"
 # some information about your slides (markdown enabled)
 title: Elementi di programmazione e gestione dati
 
@@ -70,12 +70,6 @@ src: ./pages/slides_6.md
 
 ---
 src: ./pages/slides_7.md
-
----
-
----
-src: ./pages/slides_8.md
-title: AI assisted development
 
 ---
 

@@ -9,6 +9,7 @@ static struct nodo {
 } *head = NULL, *p, *q; // 3 pointers to a nodo
 // #endregion snippet1
 
+// #region snippet2
 int AddToHead(int inputValue) {
     void * puntatore =  malloc(sizeof(struct nodo));
     p = (struct nodo *) puntatore;
@@ -23,6 +24,9 @@ int AddToHead(int inputValue) {
         return LIST_ERROR;
     }
 }
+// #endregion snippet2
+
+// #region snippet3
 
 int RemoveFromHead(int *v) {
     if (head != NULL) {
@@ -35,7 +39,9 @@ int RemoveFromHead(int *v) {
     } else
         return LIST_ERROR;
 }
+// #endregion snippet3
 
+// #region snippet4
 int AddToTail(int v) {
     if (head == NULL) // if the list is empty just add a new item
         return AddToHead(v);
@@ -54,7 +60,9 @@ int AddToTail(int v) {
             return LIST_ERROR;
     }
 }
+// #endregion snippet4
 
+// #region snippet5
 int RemoveFromTail(int *v) {
     if (head == NULL) {
         return LIST_ERROR; // cannot remove from an empty list
@@ -76,13 +84,15 @@ int RemoveFromTail(int *v) {
         return LIST_OK;
     }
 }
-
+// #endregion snippet5
+// #region snippet6
 void ClearAll(void) {
     int v;
     while (RemoveFromHead(&v) != LIST_ERROR);
     printAll();
 }
-
+// #endregion snippet6
+// #region snippet7
 /**
  * Print a single node
  * @param item pointer to the node
@@ -92,7 +102,8 @@ void printItem(struct nodo *item) {
         printf("address: [%p], value: [%d], next: [%p]", (void *) item, item->value, (void *) item->next);
     }
 }
-
+// #endregion snippet7
+// #region snippet8
 void printAll() {
     p = head;
     int counter = 0;
@@ -106,4 +117,4 @@ void printAll() {
         p = p->next;
     }
 }
-
+// #endregion snippet8
