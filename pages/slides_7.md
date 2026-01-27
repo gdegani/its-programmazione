@@ -23,7 +23,7 @@ Ing. Giancarlo Degani
 
 # Allocazione statica
 
-- Usata per variabili static o locali
+- Usata per variabili globali
 - Avviene durante la compilazione
 - Non può essere rilasciata o deallocata durante l’esecuzione del programma
 
@@ -47,10 +47,10 @@ Ing. Giancarlo Degani
 
 # Funzioni di gestione della memoria
 
-- Allocano un generico blocco contiguo di byte
+- Riservano un generico blocco contiguo di byte
 - Restituiscono l’indirizzo di memoria (di tipo puntatore-a-void) del primo byte del blocco
 - Il blocco di byte non ha di per sé alcun tipo, il cast sul puntatore restituito fa sì che il blocco di byte sia considerato dal compilatore come avente il tipo indicato nel cast
-- Non si può applicare l’operatore **sizeof** a un blocco di memoria allocato dinamicamente in quanto sizeof viene valutato dal compilatore
+- Non si può applicare l’operatore **sizeof** a un blocco di memoria allocato dinamicamente in quanto sizeof viene valutato durante la compilazione, non durante l'esecuzione.
 
 ---
 
@@ -60,6 +60,8 @@ Ing. Giancarlo Degani
   - The malloc() function allocates size bytes of memory and returns a pointer to the allocated memory.
 - **void \* calloc(size_t count, size_t size);**
   - The calloc() function contiguously allocates enough space for count objects that are size bytes of memory each and returns a pointer to the allocated memory.  The allocated memory is filled with bytes of value zero
+- **void \* realloc(void *ptr, size_t size);**
+  - The realloc() function changes the size of the memory block pointed to by ptr to size bytes, preserving the existing contents up to the minimum of the old and new sizes; if ptr is NULL, realloc() behaves like malloc().
 - **void free(void \*ptr);**
   - The free() function deallocates the memory allocation pointed to by ptr. If ptr is a NULL pointer, no operation is performed.
 
@@ -94,22 +96,27 @@ free(p);
 
 # Esempi di allocazione
 
-## Vettore unidimensionale
+## Vettore di interi
 
 <br>
 
-- Istanziazione di una variabile scalare:
+- Istanziazione di un vettore di int di dimensione 100:
 
 ```c
-int *p;
-p=(int *)malloc(sizeof(int)*100);
+int *p = (int *)malloc(sizeof(int) * 100);
 ```
 
 - Utilizzo:
 
 ```c
-*(p+12) = 19;
+*(p + 12) = 19;
 p[12] = 19;
+```
+
+- Deallocazione:
+
+```c
+free(p);
 ```
 
 ---
@@ -120,18 +127,28 @@ p[12] = 19;
 
 <br>
 
-- Istanziazione di una variabile scalare:
+- Istanziazione di un vettore di strutture:
 
 ```c
-int *p;
-p=(int *)malloc(sizeof(int)*100);
+typedef struct {
+  double x;
+  double y;
+} Point;
+
+Point *p = (Point *)malloc(sizeof(Point) * 100);
 ```
 
 - Utilizzo:
 
 ```c
-*(p+12) = 19;
-p[12] = 19;
+p[12].x = 1.5;
+p[12].y = 2.5;
+```
+
+- Deallocazione:
+
+```c
+free(p);
 ```
 
 ---
@@ -207,7 +224,7 @@ layout: two-cols
 
 # Esercizio
 
-Si scriva un programma che ordini in senso crescente i valori contenuti in un file di testo e li scriva in un’altro. Non è noto a priori quanti siano i valori contenuti nel file.
+Si scriva un programma che ordini in senso crescente i valori contenuti in un file di testo e li scriva in un altro. Non è noto a priori quanti siano i valori contenuti nel file.
 Si utilizzi una funzione per l’ordinamento. Il programma, per allocare un vettore dinamico di dimensione appropriata, nel main:
 
 - conta quanti sono i valori leggendoli dal file e scartandoli
@@ -372,3 +389,64 @@ x. Exit
 Scelta:
 
 ```
+
+---
+
+# Soluzione 1/7
+
+<<< @/snippets/example24/simple_list.c#snippet1 c
+
+---
+
+# Soluzione 2/7
+
+<<< @/snippets/example24/simple_list.c#snippet2 c
+
+---
+
+# Soluzione 3/7
+
+<<< @/snippets/example24/simple_list.c#snippet3 c
+
+---
+
+# Soluzione 4/7
+
+<<< @/snippets/example24/simple_list.c#snippet4 c
+
+---
+
+# Soluzione 5/7
+
+<<< @/snippets/example24/simple_list.c#snippet5 c
+
+---
+
+# Soluzione 6/7
+
+<<< @/snippets/example24/simple_list.c#snippet6 c
+
+---
+
+# Soluzione 7/7
+
+<<< @/snippets/example24/simple_list.c#snippet7 c
+
+---
+
+# Esercizio: indovina il numero
+
+- Scrivere un programma “Indovina il numero” che:
+  - chiede all’utente il valore massimo e il numero massimo di tentativi
+  - genera un numero casuale in [0, max]
+  - richiede i tentativi all’utente indicando se il numero inserito è troppo alto o troppo basso
+  - termina con messaggio di successo o di esaurimento tentativi mostrando la soluzione
+- Confrontare la propria soluzione con l’esempio in `snippets/example17/main.c`.
+
+---
+
+# Esercizi aggiuntivi
+
+- Scrivere un programma che legga da un file di testo una sequenza di interi (numero di valori ignoto), li memorizzi in un vettore allocato dinamicamente e stampi media, minimo e massimo. Usare `realloc` per crescere il vettore mentre si legge il file.
+- Leggere da un file di testo una lista di nomi (max 30 caratteri ciascuno), salvarli in un array di stringhe allocato dinamicamente e scrivere su un secondo file solo i nomi che iniziano per vocale. Gestire correttamente la deallocazione di tutte le stringhe.
+- Implementare una rubrica semplice: leggere righe "nome numero" da un file, memorizzarle in un array di struct allocato dinamicamente, ordinare per nome e riscrivere su un nuovo file la rubrica ordinata. Prevedere il controllo di errori di apertura file e di allocazione.
