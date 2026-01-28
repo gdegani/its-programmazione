@@ -444,7 +444,7 @@ Scelta:
 - Confrontare la propria soluzione con l’esempio in `snippets/example17/main.c`.
 
 ```c
-   srand(time(NULL)); // Seed the random number generator
+    srand(time(NULL)); // Seed the random number generator
     number = rand() % (max_number + 1); // Generate a random number between 0 and max_number
 
 ```
