@@ -227,7 +227,7 @@ layout: two-cols
 Si scriva un programma che ordini in senso crescente i valori contenuti in un file di testo e li scriva in un altro. Non è noto a priori quanti siano i valori contenuti nel file.
 Si utilizzi una funzione per l’ordinamento. Il programma, per allocare un vettore dinamico di dimensione appropriata, nel main:
 
-- conta quanti sono i valori leggendoli dal file e scartandoli
+- conta quanti sono i valori leggendoli dal file
 - crea il vettore dinamico di dimensione adeguata
 - lo riempie rileggendo il file
 - lo passa alla funzione di ordinamento
@@ -442,6 +442,12 @@ Scelta:
   - richiede i tentativi all’utente indicando se il numero inserito è troppo alto o troppo basso
   - termina con messaggio di successo o di esaurimento tentativi mostrando la soluzione
 - Confrontare la propria soluzione con l’esempio in `snippets/example17/main.c`.
+
+```c
+   srand(time(NULL)); // Seed the random number generator
+    number = rand() % (max_number + 1); // Generate a random number between 0 and max_number
+
+```
 
 ---
 
