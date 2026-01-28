@@ -21,6 +21,13 @@ int main(void) {
         max_attempts = MAX_ATTEMPTS; // use default on invalid input
     }
 
+    /* Ensure positive values to avoid undefined behavior in modulo and loop */
+    if (max_number < 1) {
+        max_number = 1;
+    }
+    if (max_attempts < 1) {
+        max_attempts = 1;
+    }
     srand(time(NULL)); // Seed the random number generator
     number = rand() % (max_number + 1); // Generate a random number between 0 and max_number
 
