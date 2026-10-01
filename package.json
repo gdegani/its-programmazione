@@ -24,7 +24,7 @@
   "devDependencies": {
     "@slidev/types": "^52.11.5",
     "dompurify": "^3.3.0",
-    "esbuild": "^0.25.11",
+    "esbuild": "^0.27.3",
     "playwright-chromium": "^1.58.1"
   },
   "pnpm": {
