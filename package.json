@@ -15,7 +15,7 @@
     "check:language": "node scripts/check-language.js"
   },
   "dependencies": {
-    "@slidev/cli": "52.11.5",
+    "@slidev/cli": "52.12.0",
     "@slidev/theme-default": "^0.25.0",
     "@slidev/theme-seriph": "^0.25.0",
     "slidev-theme-academic": "^2.1.0",
