@@ -28,10 +28,8 @@
     "esbuild": "^0.27.3",
     "playwright-chromium": "^1.58.2"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "playwright-chromium"
-    ]
+  "allowScripts": {
+    "esbuild": true,
+    "playwright-chromium": true
   }
 }

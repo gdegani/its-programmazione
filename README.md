@@ -39,8 +39,8 @@ Gli esempi non sono mai copiati nelle slide: stanno in `snippets/` e vengono inc
 
 ### Requisiti
 
-- Node.js (versione LTS)
-- Per l'export in PDF: il browser Chromium di Playwright, da installare una volta (e di nuovo dopo ogni aggiornamento di `playwright-chromium`):
+- Node.js (versione LTS) con npm, l'unico gestore di pacchetti usato dal progetto
+- Per l'export in PDF: il browser Chromium di Playwright. `npm install` lo scarica in automatico, perché lo script di installazione di `playwright-chromium` è autorizzato in `allowScripts` di [`package.json`](package.json). Se manca, si installa a mano:
 
   ```bash
   npx playwright install chromium
