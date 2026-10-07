@@ -46,6 +46,8 @@ slides-export.pdf
 snippets/*/main
 snippets/*/*.exe
 snippets/*/*.out
+*.o
+*.dSYM/
 
 ## Release artifacts (scripts/release.sh)
 /release/

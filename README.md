@@ -28,7 +28,7 @@ Le slide sono realizzate con il framework [Slidev](https://sli.dev).
 | [`slides.md`](slides.md) | Punto di ingresso delle slide: configurazione e inclusione delle sezioni |
 | [`pages/`](pages/) | Sezioni del corso (`slides_N.md`) |
 | [`snippets/`](snippets/) | Esempi in C, un progetto CMake per cartella (`exampleNN/`) |
-| [`components/`](components/), [`layouts/`](layouts/) | Componenti e layout Vue per Slidev |
+| [`layouts/`](layouts/) | Layout Vue personalizzati per Slidev |
 | [`public/`](public/) | Immagini usate nelle slide |
 | [`scripts/`](scripts/) | Script di supporto: verifica degli snippet, controllo della lingua, release |
 | [`schedule.md`](schedule.md) | Programma del corso |
