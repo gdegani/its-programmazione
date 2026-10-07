@@ -16,7 +16,7 @@ Ing. Giancarlo Degani
 - **Programma:**
   - Prima parte: cultura informatica
   - Seconda parte: programmazione in linguaggio 'C'
-- **Durata:** 30 ore
+- **Durata:** 40 ore (10 lezioni da 4 ore)
 - **Verifica:** test finale con domande a risposta multipla
 
 ---

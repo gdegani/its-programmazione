@@ -5,7 +5,7 @@ theme: academic
 # like them? see https://unsplash.com/collections/94734566/slidev
 #background: /logo-ITS.png
 
-coverDate: "2025-2026"
+coverDate: "2026-2027"
 # some information about your slides (markdown enabled)
 title: Elementi di programmazione e gestione dati
 
