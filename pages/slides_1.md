@@ -16,8 +16,11 @@ Ing. Giancarlo Degani
 - **Programma:**
   - Prima parte: cultura informatica
   - Seconda parte: programmazione in linguaggio 'C'
-- **Durata:** 40 ore (10 lezioni da 4 ore)
-- **Verifica:** test finale con domande a risposta multipla
+- **Durata:** 30 ore (7 lezioni da 4 ore e 1 da 2 ore)
+- **Verifica:** test finale di 20 domande a risposta multipla
+  - 10 domande di teoria: 1 punto ciascuna
+  - 10 domande su un esempio di codice da interpretare: 2 punti ciascuna
+- **Dopo il corso:** modulo "Programmazione assistita dall'AI" (16 ore)
 
 ---
 

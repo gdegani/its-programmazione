@@ -1,12 +1,14 @@
 # Corso: Elementi di programmazione e gestione dati
 
 **Docente:** Ing. Giancarlo Degani  
-**Durata totale:** 40 ore (10 lezioni da 4 ore)  
+**Durata totale:** 30 ore (7 lezioni da 4 ore e 1 da 2 ore)  
 **Anno accademico:** 2026/2027
+
+Il corso è la prima parte di un percorso di 46 ore. Prosegue con il modulo "Programmazione assistita dall'AI" (16 ore), che usa come base il C imparato qui.
 
 ## Impostazione delle lezioni
 
-Ogni lezione dura 4 ore: circa **1h30 di teoria**, divisa in blocchi da 20-30 minuti alternati a brevi esercizi, e circa **2h30 di pratica** al computer.
+Ogni lezione da 4 ore comprende circa **1h30 di teoria**, divisa in blocchi da 20-30 minuti alternati a brevi esercizi, e circa **2h30 di pratica** al computer.
 
 La classe ha preparazioni diverse: chi parte da zero, chi ha già visto Arduino, chi programma in un altro linguaggio. Per questo:
 
@@ -18,18 +20,16 @@ La classe ha preparazioni diverse: chi parte da zero, chi ha già visto Arduino,
 
 ## Programma del corso
 
-| Lezione | Argomenti | Contenuti principali | Materiale |
-| :---: | --- | --- | --- |
-| **1** | **Algoritmi e primo programma** | • Presentazione del corso e test d'ingresso<br>• Strumenti: CLion<br>• Algoritmi ed esecutori<br>• Diagrammi di flusso<br>• Primo programma in C: `printf` | Slides 1, Slides 2 (Hello World), Example 00-01 |
-| **2** | **Variabili, tipi e input/output** | • Tipi primitivi e modificatori<br>• Variabili e costanti<br>• Operatori aritmetici e di assegnamento<br>• Conversioni di tipo<br>• `printf` e `scanf`<br>• Le fasi della compilazione, in breve | Slides 2, Examples 25-28 |
-| **3** | **Istruzioni condizionali** | • Operatori relazionali e logici<br>• `if`, `if-else` e annidamento<br>• `switch`, `break`, fall-through<br>• Esercizi su tre livelli | Slides 3, Example 04 |
-| **4** | **Cicli e debugger** | • `for`, `while`, `do-while`<br>• `break` e `continue`, cicli annidati<br>• Errori comuni nei cicli<br>• Debugger di CLion: breakpoint, esecuzione passo passo, watch | Slides 3, Example 03 |
-| **5** | **Vettori, matrici e stringhe** | • Vettori: dichiarazione, accesso, iterazione<br>• Matrici<br>• Stringhe e terminatore `\0`<br>• `string.h`, `ctype.h`, sicurezza con le stringhe | Slides 4 |
-| **6** | **Funzioni e progetti multi-file** | • Dichiarazione e definizione di funzioni<br>• Parametri, valori di ritorno, passaggio per valore<br>• Introduzione ai puntatori<br>• Header, include guards, progetti multi-file<br>• Build: preprocessing, linking, CMake | Slides 5, Slides 2 (build) |
-| **7** | **Bit, registri e macchine a stati** | • Binario, esadecimale, complemento a 2<br>• `stdint.h`: tipi a dimensione fissa<br>• Operatori bit a bit e maschere<br>• `enum` e macchina a stati con `switch`<br>• Dal C ad Arduino (simulatore Wokwi) | Slides 1, Slides 5, nuove slide |
-| **8** | **Strutture e file: gestione dati** | • `struct` e `typedef`<br>• Array di strutture<br>• Lettura e scrittura di file<br>• Analisi di dati di macchina da file CSV | Slides 6 |
-| **9** | **Progetto integrato** | • Ripasso guidato degli argomenti del corso<br>• Sviluppo del progetto "monitor di linea"<br>• Debugging e test del proprio codice | Tutte le slide |
-| **10** | **Chiusura del progetto e verifica** | • Completamento e presentazione del progetto<br>• Verifica finale | — |
+| Lezione | Ore | Argomenti | Contenuti principali | Materiale |
+| :---: | :---: | --- | --- | --- |
+| **1** | 4 | **Algoritmi e primo programma** | • Presentazione del corso e test d'ingresso<br>• Strumenti: CLion<br>• Algoritmi ed esecutori<br>• Diagrammi di flusso<br>• Primo programma in C: `printf` | Slides 1, Slides 2, Example 00-01 |
+| **2** | 4 | **Variabili, tipi e input/output** | • Tipi primitivi e modificatori<br>• Variabili e costanti<br>• Operatori aritmetici e di assegnamento<br>• Conversioni di tipo<br>• `printf` e `scanf`<br>• Le fasi della compilazione, in breve | Slides 2, Examples 25-28 |
+| **3** | 4 | **Condizioni, cicli e debugger** | • Operatori relazionali e logici<br>• `if`, `if-else`, `switch`<br>• `for`, `while`, `do-while`, `break`, `continue`<br>• Errori comuni nei cicli<br>• Debugger di CLion: breakpoint, passo passo | Slides 3, Examples 03-04 |
+| **4** | 4 | **Vettori, matrici e stringhe** | • Vettori: dichiarazione, accesso, iterazione<br>• Matrici<br>• Stringhe e terminatore `\0`<br>• `string.h`, `ctype.h`, sicurezza con le stringhe | Slides 4 |
+| **5** | 4 | **Funzioni e progetti multi-file** | • Dichiarazione e definizione di funzioni<br>• Parametri, valori di ritorno, passaggio per valore<br>• Introduzione ai puntatori<br>• Header, include guards, progetti multi-file<br>• Build: preprocessing, linking, CMake | Slides 5, Slides 2 |
+| **6** | 4 | **Bit, registri e macchine a stati** | • Binario, esadecimale, complemento a 2<br>• `stdint.h`: tipi a dimensione fissa<br>• Operatori bit a bit e maschere<br>• `enum` e macchina a stati con `switch`<br>• Dal C ad Arduino (simulatore Wokwi) | Slides 1, Slides 5, nuove slide |
+| **7** | 4 | **Strutture e file: gestione dati** | • `struct` e `typedef`<br>• Vettori di strutture<br>• Lettura e scrittura di file<br>• Analisi di dati di macchina da file CSV<br>• Chiusura del progetto | Slides 6 |
+| **8** | 2 | **Ripasso e verifica** | • Ripasso guidato<br>• Verifica finale | — |
 
 ### Approfondimento facoltativo
 
@@ -50,8 +50,13 @@ Per chi è più avanti: allocazione dinamica della memoria e liste concatenate (
 
 ## Modalità di valutazione
 
-- **Verifica finale:** test a risposta multipla.
-- **Pesi delle voci di valutazione:** da definire.
+Il voto è dato dalla verifica finale: un test di **20 domande a risposta multipla**, per un totale di **30 punti**.
+
+| Tipo di domanda | Numero | Punti per domanda | Totale |
+| --- | :---: | :---: | :---: |
+| Teoria | 10 | 1 | 10 |
+| Interpretazione di un esempio di codice | 10 | 2 | 20 |
+| **Totale** | **20** | | **30** |
 
 ---
 
