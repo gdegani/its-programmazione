@@ -11,8 +11,6 @@ Ing. Giancarlo Degani
 
 ---
 
----
-
 # Codifiche numeriche
 
 |Sistema|Base|Simboli|
@@ -371,3 +369,27 @@ typedef enum {
 
 Mese corrente = MARZO;  // Tipo Mese invece di enum Mese
 ```
+
+---
+
+# Esercizio 3: Validazione con enum
+
+Crea un sistema di validazione età usando enum:
+
+```c
+typedef enum {
+    MINORE,
+    ADULTO,
+    ANZIANO
+} CategoriaEta;
+
+CategoriaEta classifica_eta(int anni);
+```
+
+**Requisiti:**
+
+- MINORE: età < 18
+- ADULTO: 18 ≤ età < 65
+- ANZIANO: età ≥ 65
+
+**Bonus:** Usa switch per stampare un messaggio appropriato

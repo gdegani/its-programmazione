@@ -605,30 +605,6 @@ Somma da 1 a 10: 55
 - Inizializza `sum = 0` prima del ciclo
 
 ---
-
-# Esempi pratici di FOR
-
-## Calcolare la somma dei primi N numeri
-
-```c
-int n = 100;
-int sum = 0;
-
-for (int i = 1; i <= n; i++) {
-    sum += i;
-}
-printf("Somma da 1 a %d = %d\n", n, sum);  // 5050
-```
-
-## Stampare la tabellina del 7
-
-```c
-for (int i = 1; i <= 10; i++) {
-    printf("7 x %d = %d\n", i, 7 * i);
-}
-```
-
----
 layout: two-cols
 
 ---
@@ -713,25 +689,6 @@ I due esempi a fianco sono equivalenti.
 <<< @/snippets/example03/ciclo_for_while.c#ciclo c {*}{lines:true}
 
 </Transform>
-
----
-
-# Quando usare FOR vs WHILE
-
-| Situazione | Ciclo consigliato | Esempio |
-|------------|------------------|---------|
-| **Numero di iterazioni noto** | `for` | "Stampa i numeri da 1 a 100" |
-| **Iterazione su range/sequenza** | `for` | "Itera da inizio a fine" |
-| **Contatore esplicito necessario** | `for` | "Calcola fattoriale di n" |
-| **Numero di iterazioni sconosciuto** | `while` | "Leggi input fino a 0" |
-| **Condizione complessa** | `while` | "Continua finché errore < 0.001" |
-| **Almeno una iterazione necessaria** | `do-while` | "Menu: chiedi scelta fino a 'exit'" |
-
-## Regola generale
-
-- **FOR**: "per ogni elemento da A a B"
-- **WHILE**: "finché vale questa condizione"
-- **DO-WHILE**: "fai almeno una volta, poi finché vale condizione"
 
 ---
 layout: two-cols
@@ -855,25 +812,6 @@ do {
 | **Minimo iterazioni** | 0 | 0 | 1 |
 | **Uso tipico** | Iterazioni contate | Condizione complessa | Menu, validazione input |
 | **Sintassi** | Compatta (tutto in una riga) | Più esplicita | Simile a while |
-
----
-
-# Esempio equivalente
-
-```c
-// FOR
-for (int i = 0; i < 3; i++) printf("%d ", i);
-
-// WHILE
-int i = 0;
-while (i < 3) { printf("%d ", i); i++; }
-
-// DO-WHILE
-int i = 0;
-do { printf("%d ", i); i++; } while (i < 3);
-
-// Tutti stampano: 0 1 2
-```
 
 ---
 
@@ -1056,63 +994,6 @@ for (int row = 1; row <= 5; row++) {
 // * * * *
 // * * * * *
 ```
-
----
-layout: two-cols
-
----
-
-# Esempio pratico: Analisi di sequenze
-```c
-#include <stdio.h>
-
-int main(void) {
-    int num, count = 0;
-    int sum = 0, max = 0, min = 0;
-    
-    printf("Inserisci numeri positivi ");
-    printf("(0 per terminare):\n");
-    
-    do {
-        printf("Numero %d: ", count + 1);
-        scanf("%d", &num);
-        
-        if (num > 0) {
-            sum += num;
-            count++;
-            
-            if (count == 1) {
-                max = num;
-                min = num;
-            } else {
-                if (num > max) max = num;
-                if (num < min) min = num;
-            }
-        }
-    } while (num != 0);
-```
-
-::right::
-
-```c
-    // Print results
-    if (count > 0) {
-        float avg = (float)sum / count;
-        printf("\n=== Riepilogo ===\n");
-        printf("Numeri: %d\n", count);
-        printf("Somma: %d\n", sum);
-        printf("Media: %.2f\n", avg);
-        printf("Massimo: %d\n", max);
-        printf("Minimo: %d\n", min);
-    } else {
-        printf("Nessun numero.\n");
-    }
-    
-    return 0;
-}
-```
-
-Calcola statistiche su numeri inseriti dall'utente usando `do-while`
 
 ---
 
@@ -1337,31 +1218,33 @@ printf("Risultato finale: sum=%d\n", sum);
 
 ---
 
-# Debugging dei cicli
+# Il debugger di CLion
 
-## 4. Usare un debugger (GDB/CLion)
+Un debugger permette di fermare il programma e osservarne l'esecuzione passo per passo.
+
+1. **Breakpoint**: clic nel margine a sinistra della riga, dove il programma deve fermarsi
+2. **Avvio**: *Debug* (icona con l'insetto) al posto di *Run*
+3. **Passo per passo**:
+   - *Step Over* (F8): esegue la riga corrente
+   - *Step Into* (F7): entra nella funzione chiamata
+   - *Resume* (F9): prosegue fino al prossimo breakpoint
+4. **Variables** e **Watches**: valori delle variabili a ogni passo
+
+---
+
+# Il debugger di CLion: demo sul ciclo
 
 ```c
-// Metti breakpoint nel ciclo
-for (int i = 0; i < n; i++) {
-    int value = array[i] * 2;  // <-- breakpoint qui
-    // Ispeziona i e value ad ogni iterazione
+int sum = 0;
+for (int i = 1; i <= 5; i++) {
+    sum += i;      // <-- breakpoint qui
 }
+printf("%d\n", sum);
 ```
 
-## 5. Aggiungere controlli temporanei
-
-```c
-int iterations = 0;
-while (condition) {
-    iterations++;
-    if (iterations > 1000) {
-        printf("ERRORE: troppe iterazioni!\n");
-        break;  // Esci per evitare loop infinito
-    }
-    // ... codice normale ...
-}
-```
+- Osservare `i` e `sum` a ogni iterazione con *Resume*
+- *Breakpoint condizionale* (clic destro sul breakpoint): fermarsi solo quando `i == 4`
+- In coppia: il *navigator* prevede il valore di `sum` prima di ogni passo, il *driver* controlla nella finestra *Variables*
 
 ---
 
