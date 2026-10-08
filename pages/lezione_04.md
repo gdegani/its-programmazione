@@ -13,16 +13,16 @@ Ing. Giancarlo Degani
 
 # Perché abbiamo bisogno dei vettori?
 
-Immaginiamo di dover gestire i voti di 100 studenti:
+Immaginiamo di dover gestire 100 letture di temperatura di un sensore:
 
 ```c
 // ❌ Senza vettori - IMPRATICABILE!
-int voto1, voto2, voto3, voto4, voto5, voto6, voto7, voto8, voto9, voto10;
-int voto11, voto12, voto13, voto14, voto15, voto16, voto17, voto18, voto19, voto20;
+double temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10;
+double temp11, temp12, temp13, temp14, temp15, temp16, temp17, temp18, temp19, temp20;
 // ... altre 80 variabili!
 
 // Calcolare la media?
-float media = (voto1 + voto2 + voto3 + ... + voto100) / 100;  // ❌ Impraticabile!
+double media = (temp1 + temp2 + temp3 + ... + temp100) / 100;  // ❌ Impraticabile!
 ```
 
 **Problema**: Impossibile gestire grandi quantità di dati dello stesso tipo!
@@ -33,20 +33,20 @@ float media = (voto1 + voto2 + voto3 + ... + voto100) / 100;  // ❌ Impraticabi
 
 ```c
 // ✅ Con i vettori - SEMPLICE!
-int voti[100];
+double temp[100];
 
-// Lettura dei voti
+// Lettura delle misure
 for (int i = 0; i < 100; i++) {
-    printf("Inserisci voto studente %d: ", i + 1);
-    scanf("%d", &voti[i]);
+    printf("Inserisci misura %d: ", i + 1);
+    scanf("%lf", &temp[i]);
 }
 
 // Calcolo della media
-int somma = 0;
+double somma = 0;
 for (int i = 0; i < 100; i++) {
-    somma += voti[i];
+    somma += temp[i];
 }
-float media = somma / 100.0;
+double media = somma / 100.0;
 ```
 
 **Soluzione**: Un solo nome per gestire molti valori dello stesso tipo!
@@ -251,8 +251,8 @@ int vett[5] = {0};  // ✅ Tutti gli elementi a 0
 
 # Esercizi
 
-- Scrivere un programma che chieda quanti valori verranno introdotti dalla tastiera (max 100), li chieda tutti e successivamente visualizzi prima tutti i valori pari nell'ordine in cui sono stati inseriti e poi tutti i valori dispari nell'ordine inverso. *(vedi esempio example07)*
-- Scrivere un programma che, dati in input N numeri reali, con N che al massimo vale 100, stampi quanti di essi sono maggiori della media e successivamente li stampi a video
+- Scrivere un programma che chieda quante letture di temperatura verranno introdotte dalla tastiera (max 100), le chieda tutte e successivamente visualizzi prima quelle sopra una soglia di allarme (50 °C) nell'ordine in cui sono state inserite e poi le altre nell'ordine inverso.
+- Scrivere un programma che, date in input N misure reali, con N che al massimo vale 100, stampi quante di esse sono maggiori della media e successivamente le stampi a video
 
 ---
 layout: figure-side

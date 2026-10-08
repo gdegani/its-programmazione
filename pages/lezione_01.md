@@ -63,21 +63,6 @@ image: /clion_license.png
 - <https://archive.org/details/Apress.Beginning.C.5th.Edition.2013>
 
 ---
-hide: true
-layout: quote
-
----
-
-# quote
-
-<br>
-<br>
-<br>
-“Algoritmi + Strutture Dati = Programmi”
-
-*Niklaus Wirth*
-
----
 
 # Pair Programming
 
@@ -200,117 +185,6 @@ flowchart LR
 - Cambiano a seconda del linguaggio utilizzato, ma solitamente usano l’operatore “=”.
   - x=5 assegna il valore 5 alla variabile x.
   - y=x assegna il valore contenuto nella variabile x alla variabile y.
-
----
-
-# ESPRESSIONI ARITMETICHE
-
-Sono costituite da:
-
-- Operandi: variabili, costanti, espressioni aritmetiche
-- Operatori: addizione ‘+’, sottrazione ‘-‘, moltiplicazione ‘*’, divisione intera ‘/‘, resto o modulo ‘%’
-- Parentesi: per definire l’ordine con cui vengono elaborate
-- Risultato: un numero
-
----
-
-# ESEMPI
-
-|||
-|:---|:---|
-| X = 5 |Assegna alla variabile x il valore 5|
-|X = 5+3|Assegna ad x il valore 8|
-|Y = 5%3|Assegna ad y il valore 2|
-|X = X *3|Assegna ad x il valore precedente moltiplicato per 3|
-
----
-
-# ESPRESSIONI RELAZIONALI
-
-Sono costituite da:
-
-- Operandi: variabili, costanti, espressioni.
-- Operatori: uguaglianza ==, disuguaglianza !=, maggiore di >, minore di <.
-- Parentesi: per definire l’ordine con cui vengono elaborate.
-- Risultato: vero o falso.
-
----
-
-# ESEMPI
-
-|||
-|:---|:---|
-|X = 5|Assegna alla variabile x il valore 5|
-|X == 5|Vero|
-|X != 5|Falso|
-|X > 0|Vero|
-
----
-
-# ESPRESSIONI LOGICHE
-
-Sono costituite da:
-
-- Operandi: variabili, costanti, espressioni
-- Operatori: somma logica (OR), moltiplicazione logica (AND), negazione (NOT)
-- Parentesi: per definire l’ordine con cui vengono elaborate
-- Risultato: un valore logico, vero o falso
-
----
-layout: two-cols-header
-
----
-
-# Operatori logici
-
-::left::
-
-## Negazione
-
-|A|**NOT** A|
-|---|---|
-|0|1|
-|1|0|
-
-::right::
-
-## Moltiplicazione
-
-|A|B|A **AND** B|
-|---|---|---|
-|0|0|0|
-|0|1|0|
-|1|0|0|
-|1|1|1|
-
----
-layout: two-cols-header
-
----
-
-# Operatori logici
-
-::left::
-
-## Somma
-
-|A|B|A **OR** B|
-|---|---|---|
-|0|0|0|
-|0|1|1|
-|1|0|1|
-|1|1|1|
-
-::right::
-
-## Disuguaglianza
-
-|A|B|A **XOR** B|
-|---|---|---|
-|0|0|0|
-|0|1|1|
-|1|0|1|
-|1|1|0|
 
 ---
 
@@ -459,142 +333,6 @@ flowchart TD
 ```
 
 ---
-layout: two-cols
-
----
-
-# Esempio: CALCOLO DEL FATTORIALE
-
-Dato un numero intero, calcolarne il fattoriale.
-
-- Input: un numero intero maggiore o uguale a zero
-- Algoritmo: moltiplico n per tutti i numeri minori di n, fino a 2
-
-::right::
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-$$
-n! =
-\begin{cases}
-1 & \text{se } n = 0 \\
-n \times (n-1) \times \cdots \times 2 \times 1 & \text{se } n > 0
-\end{cases}
-$$
-
----
-
-# Esempio: CALCOLO DEL FATTORIALE
-
-```mermaid {scale: 0.5, alt: 'A diagram'}
-flowchart LR
-    Start([Start]) --> InputNum[/Input n/]
-    InputNum --> Initialize[Set factorial = 1]
-    Initialize --> Check{Is n >= 0?}
-    Check -- No --> Error[/Display "Invalid input. n must be non-negative."/]
-    Error ---> End([End])
-    Check -- Yes --> LoopStart[Set i = 1]
-    LoopStart --> LoopCheck{Is i <= n?}
-    LoopCheck -- Yes --> Multiply[Set factorial = factorial * i]
-    Multiply --> Increment[Incrementa i di 1]
-    Increment --> LoopCheck
-    LoopCheck -- No --> OutputResult[/Output factorial/]
-    OutputResult ---> End([End])
-```
-
----
-
-# Esempio: CALCOLO DEL FATTORIALE
-
-<div class="absolute right-30px bottom-30px">
-```mermaid {scale: 0.9, alt: 'A diagram'}
-flowchart LR
-    Start([Start]) --> InputNum[/Input n/]
-    InputNum --> Initialize[Set factorial = 1]
-    Initialize --> Check{Is n >= 0?}
-    Check -- No --> Error[/Display "Invalid input. n must be non-negative."/]
-    Error ---> End([End])
-    Check -- Yes --> LoopStart[Set i = 1]
-    LoopStart --> LoopCheck{Is i <= n?}
-    LoopCheck -- Yes --> Multiply[Set factorial = factorial * i]
-    Multiply --> Increment[Incrementa i di 1]
-    Increment --> LoopCheck
-    LoopCheck -- No --> OutputResult[/Output factorial/]
-    OutputResult ---> End([End])
-```
-</div>
-
----
-
-# ESERCIZIO
-
-Rappresentare un algoritmo per il calcolo del costo di un prodotto che soddisfi i seguenti requisiti:
-
-- Input: costo unitario, quantità acquistata
-- Se il numero di elementi acquistati è superiore a 10, applicare uno sconto del 20%
-- Output: costo totale
-
----
-layout: two-cols
-
----
-
-# flow-chart
-
-Flowchart della soluzione
-
-::right::
-
-```mermaid {scale: 0.7, alt: 'A diagram'}
-flowchart TD
-    A((Inizio)) --> B[/Ricevi costo unitario e quantità acquistata/]
-    B --> C{Quantità > 10?}
-    C -->|Sì| D[Calcola sconto: totale = costo_unitario * quantità * 0.8]
-    C -->|No| E[Calcola totale: totale = costo_unitario * quantità]
-    D --> F[/Mostra il totale/]
-    E --> F
-    F --> G((Fine))
-```
-
----
-
-# ESERCIZIO
-
-Rappresentare un algoritmo per il calcolo della potenza n-esima di un numero intero che soddisfi i seguenti requisiti:
-
-- Input: numero, potenza
-- Output: numero^potenza
-- Usare solo le operazioni elementari: +, -, *, /
-
----
-layout: two-cols
-
----
-
-# flow-chart
-
-Flowchart della soluzione
-
-::right::
-
-```mermaid {scale: 0.7, alt: 'A diagram'}
-flowchart TD
-    A([Inizio]) --> B[/Ricevi numero e potenza/]
-    B --> C[Imposta risultato = 1]
-    C --> D{Potenza > 0?}
-    D -->|Sì| E[Moltiplica: risultato = risultato * numero]
-    E --> F[Decrementa potenza: potenza = potenza - 1]
-    F --> D
-    D -->|No| G[/Mostra risultato/]
-    G --> H([Fine])
-```
-
----
 layout: center
 
 ---
@@ -657,24 +395,6 @@ Velocità di esecuzione:
 - L’interprete deve tradurre il programma ogni volta che lo esegue.
 - Il programma compilato viene tradotto solo una volta.
 - Il compilatore è più efficiente ed ottimizza il codice tradotto.
-
----
-
-# Pro e contro
-
-Prerequisiti:
-
-- L’interprete deve essere installato su ogni macchina che userà il programma.
-- Il compilatore viene acquistato ed usato solo dal programmatore.
-
----
-
-# Pro e contro
-
-Proprietà intellettuale:
-
-- L’interprete richiede la distribuzione del codice sorgente in chiaro.
-- Il programma compilato può essere distribuito in linguaggio macchina, senza il codice sorgente.
 
 ---
 
@@ -902,4 +622,85 @@ printf("Backslash: \\\n");      // \\ = backslash
 Hello, World!
 
 Process finished with exit code 0
+```
+
+---
+layout: two-cols
+
+---
+
+# Esempio: CALCOLO DEL FATTORIALE
+
+Dato un numero intero, calcolarne il fattoriale.
+
+- Input: un numero intero maggiore o uguale a zero
+- Algoritmo: moltiplico n per tutti i numeri minori di n, fino a 2
+
+::right::
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+$$
+n! =
+\begin{cases}
+1 & \text{se } n = 0 \\
+n \times (n-1) \times \cdots \times 2 \times 1 & \text{se } n > 0
+\end{cases}
+$$
+
+---
+
+# Esempio: CALCOLO DEL FATTORIALE
+
+```mermaid {scale: 0.5, alt: 'A diagram'}
+flowchart LR
+    Start([Start]) --> InputNum[/Input n/]
+    InputNum --> Initialize[Set factorial = 1]
+    Initialize --> Check{Is n >= 0?}
+    Check -- No --> Error[/Display "Invalid input. n must be non-negative."/]
+    Error ---> End([End])
+    Check -- Yes --> LoopStart[Set i = 1]
+    LoopStart --> LoopCheck{Is i <= n?}
+    LoopCheck -- Yes --> Multiply[Set factorial = factorial * i]
+    Multiply --> Increment[Incrementa i di 1]
+    Increment --> LoopCheck
+    LoopCheck -- No --> OutputResult[/Output factorial/]
+    OutputResult ---> End([End])
+```
+
+---
+
+# ESERCIZIO
+
+Rappresentare un algoritmo per il calcolo del costo di un prodotto che soddisfi i seguenti requisiti:
+
+- Input: costo unitario, quantità acquistata
+- Se il numero di elementi acquistati è superiore a 10, applicare uno sconto del 20%
+- Output: costo totale
+
+---
+layout: two-cols
+
+---
+
+# flow-chart
+
+Flowchart della soluzione
+
+::right::
+
+```mermaid {scale: 0.7, alt: 'A diagram'}
+flowchart TD
+    A((Inizio)) --> B[/Ricevi costo unitario e quantità acquistata/]
+    B --> C{Quantità > 10?}
+    C -->|Sì| D[Calcola sconto: totale = costo_unitario * quantità * 0.8]
+    C -->|No| E[Calcola totale: totale = costo_unitario * quantità]
+    D --> F[/Mostra il totale/]
+    E --> F
+    F --> G((Fine))
 ```

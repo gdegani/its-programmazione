@@ -416,104 +416,6 @@ Hello, Luigi!
 
 ---
 
-# Progetti multi-file
-
-Per progetti grandi, dividere il codice in più file:
-
-## File header (utility.h)
-
-```c
-#ifndef UTILITY_H
-#define UTILITY_H
-
-int max(int a, int b);
-int min(int a, int b);
-
-#endif
-```
-
-## File sorgente (utility.c)
-
-```c
-#include "utility.h"
-
-int max(int a, int b) {
-    return a > b ? a : b;
-}
-
-int min(int a, int b) {
-    return a < b ? a : b;
-}
-```
-
----
-
-# Multi-file Projects: Usage
-
-## Main file (main.c)
-
-```c
-#include <stdio.h>
-#include "utility.h"
-
-int main(void) {
-    int a = 10, b = 20;
-    
-    printf("Maximum of %d and %d: %d\n", a, b, max(a, b));
-    printf("Minimum of %d and %d: %d\n", a, b, min(a, b));
-    
-    return 0;
-}
-```
-
-## Compilation
-
-```bash
-gcc -c utility.c -o utility.o
-gcc -c main.c -o main.o
-gcc utility.o main.o -o program
-```
-
-Or in a single command:
-
-```bash
-gcc main.c utility.c -o program
-```
-
----
-
-# Include guards
-
-Gli **include guards** prevengono inclusioni multiple:
-
-```c
-#ifndef NOME_FILE_H
-#define NOME_FILE_H
-
-// Dichiarazioni...
-
-#endif
-```
-
-## Perché sono necessari?
-
-Senza include guards, includere lo stesso file più volte causa errori di ridefinizione.
-
-## Esempio
-
-```c
-// config.h
-#ifndef CONFIG_H
-#define CONFIG_H
-
-#define MAX_SIZE 100
-typedef struct { int x, y; } Point;
-
-#endif
-```
-
----
-
 # Header files (.h) vs Implementation (.c)
 
 Un programma C è solitamente diviso in due tipi di file:
@@ -581,6 +483,38 @@ int main(void) {
 gcc -c math_utils.c -o math_utils.o
 gcc -c main.c -o main.o
 gcc math_utils.o main.o -o program
+```
+
+---
+
+# Include guards
+
+Gli **include guards** prevengono inclusioni multiple:
+
+```c
+#ifndef NOME_FILE_H
+#define NOME_FILE_H
+
+// Dichiarazioni...
+
+#endif
+```
+
+## Perché sono necessari?
+
+Senza include guards, includere lo stesso file più volte causa errori di ridefinizione.
+
+## Esempio
+
+```c
+// config.h
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define MAX_SIZE 100
+typedef struct { int x, y; } Point;
+
+#endif
 ```
 
 ---
@@ -1106,38 +1040,7 @@ int main(void) {
 
 ---
 
-# Esercizio 3: Validazione con enum
-
-Crea un sistema di validazione età usando enum:
-
-```c
-typedef enum {
-    MINORE,
-    ADULTO,
-    ANZIANO
-} CategoriaEta;
-
-CategoriaEta classifica_eta(int anni);
-```
-
-**Requisiti:**
-
-- MINORE: età < 18
-- ADULTO: 18 ≤ età < 65
-- ANZIANO: età ≥ 65
-
-**Bonus:** Usa switch per stampare un messaggio appropriato
-
----
-
 # Riepilogo
-
-## Enumerazioni
-
-- Definiscono insiemi di costanti intere con nomi significativi
-- Migliorano la leggibilità del codice
-- Funzionano bene con `switch`
-- `typedef` semplifica l'uso
 
 ## Funzioni
 
@@ -1146,6 +1049,7 @@ CategoriaEta classifica_eta(int anni);
 - Array sempre passati per riferimento
 - Progetti multi-file usano header (.h) e sorgenti (.c)
 - Include guards prevengono inclusioni multiple
+- CMake automatizza la compilazione di progetti con più file
 
 ---
 
@@ -1158,10 +1062,3 @@ CategoriaEta classifica_eta(int anni);
 3. **Documentazione** - commenta cosa fa la funzione, non come
 4. **Limita i parametri** - massimo 4-5 parametri per leggibilità
 5. **Usa const** per parametri che non devono essere modificati
-
-## Enum
-
-1. **Nomi in MAIUSCOLO** per i valori
-2. **typedef** per tipi usati frequentemente
-3. **Valori espliciti** quando il valore numerico è importante
-4. **Commenti** per chiarire significati non ovvi

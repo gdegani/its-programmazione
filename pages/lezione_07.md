@@ -147,35 +147,6 @@ int main() {
 
 ---
 
-# Esempio completo: struct Student
-
-```c
-#include <stdio.h>
-#include <string.h>
-
-struct Student {
-    char nome[50];
-    int eta;
-    float voto;
-};
-
-int main() {
-    struct Student studente1;
-    
-    strcpy(studente1.nome, "Anna Verdi");
-    studente1.eta = 19;
-    studente1.voto = 27.0;
-    
-    printf("Nome: %s\n", studente1.nome);
-    printf("Età: %d\n", studente1.eta);
-    printf("Voto: %.2f\n", studente1.voto);
-    
-    return 0;
-}
-```
-
----
-
 # Strutture e puntatori
 
 L'**operatore freccia** `->` accede ai membri tramite puntatore:
@@ -274,36 +245,6 @@ typedef struct {
 } Student;
 
 Student s1;  // Più semplice!
-```
-
----
-
-# Typedef: esempio completo
-
-```c
-#include <stdio.h>
-
-typedef struct {
-    int x;
-    int y;
-} Punto;
-
-typedef struct {
-    Punto alto_sx;
-    Punto basso_dx;
-} Rettangolo;
-
-int main() {
-    Punto p1 = {10, 20};
-    Rettangolo r1 = {{0, 10}, {20, 0}};
-    
-    printf("Punto: (%d, %d)\n", p1.x, p1.y);
-    printf("Rettangolo: (%d,%d) - (%d,%d)\n",
-           r1.alto_sx.x, r1.alto_sx.y,
-           r1.basso_dx.x, r1.basso_dx.y);
-    
-    return 0;
-}
 ```
 
 ---
@@ -447,65 +388,6 @@ fclose(file);  // Chiude il file
 
 ---
 
-# Lettura da file: fgetc()
-
-`fgetc()` legge un carattere alla volta dal file:
-
-```c
-int fgetc(FILE *stream);
-```
-
-Restituisce il carattere letto come `int`, oppure `EOF` (End Of File) quando il file è terminato.
-
-## Esempio: stampare il contenuto di un file
-
-```c
-FILE *file = fopen("input.txt", "r");
-if (file == NULL) {
-    perror("Errore apertura file");
-    return 1;
-}
-
-int ch;
-while ((ch = fgetc(file)) != EOF) {
-    putchar(ch);  // Stampa a schermo
-}
-
-fclose(file);
-```
-
----
-
-# Scrittura su file: fputc()
-
-`fputc()` scrive un carattere alla volta sul file:
-
-```c
-int fputc(int c, FILE *stream);
-```
-
-## Esempio: copiare un file carattere per carattere
-
-```c
-FILE *input = fopen("input.txt", "r");
-FILE *output = fopen("output.txt", "w");
-
-if (input == NULL || output == NULL) {
-    perror("Errore apertura file");
-    return 1;
-}
-
-int ch;
-while ((ch = fgetc(input)) != EOF) {
-    fputc(ch, output);
-}
-
-fclose(input);
-fclose(output);
-```
-
----
-
 # Lettura da file: fgets()
 
 `fgets()` legge una riga intera (fino a `\n` o EOF):
@@ -531,34 +413,6 @@ char line[100];
 while (fgets(line, 100, file) != NULL) {
     printf("%s", line);  // line contiene già \n
 }
-
-fclose(file);
-```
-
----
-
-# Scrittura su file: fputs()
-
-`fputs()` scrive una stringa su file:
-
-```c
-int fputs(const char *str, FILE *stream);
-```
-
-**Nota**: `fputs()` **non** aggiunge automaticamente `\n`.
-
-## Esempio
-
-```c
-FILE *file = fopen("output.txt", "w");
-if (file == NULL) {
-    perror("Errore apertura file");
-    return 1;
-}
-
-fputs("Prima riga\n", file);
-fputs("Seconda riga\n", file);
-fputs("Terza riga\n", file);
 
 fclose(file);
 ```
@@ -649,155 +503,26 @@ if (ferror(file)) {
 ```
 
 ---
-layout: two-cols
 
----
+# Leggere una riga e scomporla: fgets() + sscanf()
 
-# Esempio completo: lettura file
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-#define FILENAME "input.txt"
-
-int main(void) {
-    FILE *file;
-    
-    file = fopen(FILENAME, "r");
-    if (file == NULL) {
-        perror("Errore apertura file");
-        return EXIT_FAILURE;
-    }
-    
-    char ch;
-    printf("Contenuto del file:\n");
-    while ((ch = fgetc(file)) != EOF) {
-        putchar(ch);
-    }
-```
-
-::right::
+`fgets()` legge una riga intera in un buffer; `sscanf()` ne estrae i campi, come `scanf()` ma da una stringa:
 
 ```c
-    if (ferror(file)) {
-        printf("\nErrore durante la lettura!\n");
-    } else if (feof(file)) {
-        printf("\nFile letto completamente.\n");
-    }
-    
-    fclose(file);
-    return EXIT_SUCCESS;
-}
-```
+char line[100];
+long timestamp;
+int sensor_id;
+double value;
 
----
-layout: two-cols
-
----
-
-# Esempio: struct e file - parsing CSV
-
-<Transform :scale="0.9">
-```c
-typedef struct {
-    unsigned int id;
-    char nome[50];
-    unsigned int voto;
-} Record;
-void parseLine(char *line, Record *record) {
-    int counter = 0;
-    char *token = strtok(line, ";");
-    while (token != NULL && counter < 3) {
-        switch (counter) {
-            case 0:
-                record->id = atoi(token);
-                break;
-            case 1:
-                strcpy(record->nome, token);
-                break;
-            case 2:
-                record->voto = atoi(token);
-                break;
-        }
-        counter++;
-        token = strtok(NULL, ";");
+while (fgets(line, sizeof(line), file) != NULL) {
+    if (sscanf(line, "%ld;%d;%lf", &timestamp, &sensor_id, &value) == 3) {
+        // riga valida: i tre campi sono stati letti
     }
 }
 ```
-</Transform>
-::right::
 
-<Transform :scale="0.9">
-```c
-int main() {
-    FILE *file = fopen("studenti.csv", "r");
-    if (file == NULL) {
-        perror("Errore apertura file");
-        return EXIT_FAILURE;
-    }
-
-    char line[100];
-    Record studente;
-    
-    while (fgets(line, 100, file) != NULL) {
-        parseLine(line, &studente);
-        printf("ID: %u, Nome: %s, Voto: %u\n",
-               studente.id, studente.nome, studente.voto);
-    }
-    
-    fclose(file);
-    return EXIT_SUCCESS;
-}
-
-```
-
-</Transform>
-
----
-
-# Ordinamento con qsort()
-
-`qsort()` ordina un array generico usando una funzione di confronto:
-
-```c
-#include <stdlib.h>
-
-int compareInt(const void *a, const void *b) {
-    const int *pa = a;
-    const int *pb = b;
-    return (*pa > *pb) - (*pa < *pb);  // Ordine crescente
-}
-
-int main(void) {
-    int values[] = {4, 1, 3};
-    qsort(values, 3, sizeof(int), compareInt);
-    return 0;
-}
-```
-
-In `qsort(base, n, size, compare)`, `compare` riceve due puntatori a elementi e deve restituire un valore `<0`, `0` o `>0`.
-
----
-
-# Esempio: filtrare e ordinare dati
-
-Completo esempio che:
-
-1. Legge record da file
-2. Filtra i record con voto >= 18
-3. Ordina i record per voto decrescente
-4. Scrive i risultati su file output
-
-```c
-// File: input.txt
-// 1;Marco;28
-// 2;Anna;15
-// 3;Luca;30
-// 4;Sara;22
-```
-
-Vedi: `snippets/example20/main.c` per l'implementazione completa.
+- `sscanf()` restituisce il numero di campi letti: se non è 3, la riga è malformata
+- Formato del file `readings.csv`: `timestamp;sensor_id;value`
 
 ---
 
@@ -826,8 +551,8 @@ Vedi: `snippets/example20/main.c` per l'implementazione completa.
 
 - **fopen()**: aprire un file con modalità (`r`, `w`, `a`, ...)
 - **fclose()**: chiudere un file (sempre!)
-- **fgetc()/fputc()**: lettura/scrittura carattere per carattere
-- **fgets()/fputs()**: lettura/scrittura stringhe
+- **fgets()**: lettura di una riga
+- **sscanf()**: estrazione dei campi da una riga
 - **fscanf()/fprintf()**: lettura/scrittura formattata
 - **perror()**: gestione errori
 
@@ -836,27 +561,6 @@ Vedi: `snippets/example20/main.c` per l'implementazione completa.
 - Controlla sempre il valore di ritorno di `fopen()`
 - Chiudi sempre i file con `fclose()`
 - Usa `perror()` per messaggi di errore chiari
-
----
-
-# Esercizi consigliati
-
-## Strutture
-
-1. Creare una struttura `Libro` con titolo, autore, anno e prezzo. Scrivere funzioni per stampare e modificare un libro.
-2. Creare un array di strutture `Studente` e scrivere funzioni per calcolare la media dei voti.
-3. Implementare una struttura `Data` con giorno, mese, anno e funzioni per validare e confrontare date.
-
-## File
-
-1. Scrivere un programma che legge un file di testo e conta il numero di parole.
-2. Copiare un file di testo in un altro file, convertendo tutte le lettere in maiuscolo.
-3. Leggere un file CSV con dati di studenti e calcolare la media dei voti.
-
-## Combinati
-
-1. Salvare un array di strutture su file e rileggerlo.
-2. Implementare un semplice database di contatti (nome, telefono, email) con salvataggio su file.
 
 ---
 
@@ -1160,23 +864,31 @@ Cambio il valore di Head
 ![Rimozione dalla testa](/list6.png)
 
 ---
-
-# Liste bidirezionali
-
-Situazione iniziale con una lista non vuota
-
-![Rimozione dalla testa](/list7.png)
+layout: two-cols
 
 ---
 
-# Liste di liste
+# Esempio: misure da file in una lista
 
-- Posso suddividere la lista in parti per rendere più veloce la navigazione all’interno della lista
-- Uso un algoritmo di hashing per definire il partizionamento e quindi la ricerca
-<Transform :scale="0.7" >
+Le misure del file `readings.csv` vengono caricate in una lista concatenata di `struct`:
 
-![Rimozione dalla testa](/list8.png)
-</Transform>
+```text
+1000;1;21.5
+1005;2;22.1
+1010;1;21.9
+1015;2;25.4
+1020;1;22.3
+```
+
+::right::
+
+<<< @/snippets/example30/main.c#snippet1 c {*}{lines:true}
+
+---
+
+# Esempio: lettura del file e statistiche
+
+<<< @/snippets/example30/main.c#snippet2 c {*}{lines:true,maxHeight:'420px'}
 
 ---
 layout: two-cols
@@ -1283,20 +995,22 @@ Scelta:
 
 ---
 
-# Esercizio: indovina il numero
+# Liste bidirezionali
 
-- Scrivere un programma “Indovina il numero” che:
-  - chiede all’utente il valore massimo e il numero massimo di tentativi
-  - genera un numero casuale in [0, max]
-  - richiede i tentativi all’utente indicando se il numero inserito è troppo alto o troppo basso
-  - termina con messaggio di successo o di esaurimento tentativi mostrando la soluzione
-- Confrontare la propria soluzione con l’esempio in `snippets/example17/main.c`.
+Situazione iniziale con una lista non vuota
 
-```c
-    srand(time(NULL)); // Seed the random number generator
-    number = rand() % (max_number + 1); // Generate a random number between 0 and max_number
+![Rimozione dalla testa](/list7.png)
 
-```
+---
+
+# Liste di liste
+
+- Posso suddividere la lista in parti per rendere più veloce la navigazione all’interno della lista
+- Uso un algoritmo di hashing per definire il partizionamento e quindi la ricerca
+<Transform :scale="0.7" >
+
+![Rimozione dalla testa](/list8.png)
+</Transform>
 
 ---
 
