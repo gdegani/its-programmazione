@@ -41,7 +41,7 @@ CC-->OF@{ shape: doc, label: "Object file" }
 
 # Elementi base del linguaggio C
 
-Dopo aver visto come si compila un programma C, vediamo ora gli elementi fondamentali del linguaggio:
+Vediamo gli elementi fondamentali del linguaggio:
 
 - **Tipi di dato primitivi**: int, float, double, char
 - **Variabili**: dichiarazione e inizializzazione
@@ -652,63 +652,3 @@ scanf("%s", &name);     // ❌ ERRORE (name è già un puntatore)
 // scanf("%s") si ferma al primo spazio!
 // Input: "John Doe" → legge solo "John"
 ```
-
----
-
-# Esempio completo: calcolatrice semplice
-
-```c
-#include <stdio.h>
-
-int main(void) {
-    float num1, num2, result;
-    char operator;
-    
-    printf("Enter first number: ");
-    scanf("%f", &num1);
-        
-    printf("Enter second number: ");
-    scanf("%f", &num2);
-    
-    // Calcola in base all'operatore (verrà spiegato con if/switch)
-    result = num1 + num2;  // Semplificato per ora
-    
-    printf("Result: %.2f\n", result);
-    
-    return 0;
-}
-```
-
-**Nota:** La gestione dei diversi operatori richiede `if` o `switch` (prossime lezioni).
-
----
-
-# Esercizio: Calcola la media
-
-**Obiettivo:** Scrivere un programma che legge 3 numeri dall'utente e calcola la loro media
-
-**Passi da seguire:**
-
-1. Crea un nuovo progetto C in CLion: `calcola_media`
-2. Dichiara 3 variabili di tipo `float` per i numeri (esempio: `num1`, `num2`, `num3`)
-3. Dichiara una variabile `float` per la media (esempio: `media`)
-4. Usa `printf()` per chiedere all'utente di inserire il primo numero
-5. Usa `scanf("%f", &num1)` per leggere il primo numero
-6. Ripeti i passi 4-5 per il secondo e terzo numero
-7. Calcola la media: `media = (num1 + num2 + num3) / 3.0`
-8. Stampa il risultato con `printf("La media è: %.2f\n", media)`
-
----
-
-# Esercizio: Calcola la media
-
-**Esempio di esecuzione:**
-
-```text
-Inserisci il primo numero: 8.5
-Inserisci il secondo numero: 7.0
-Inserisci il terzo numero: 9.5
-La media è: 8.33
-```
-
-**Suggerimento:** Ricorda di includere `#include <stdio.h>` all'inizio del file!
