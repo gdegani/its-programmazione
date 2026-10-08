@@ -698,7 +698,6 @@ layout: two-cols
 
 # Esempio: struct e file - parsing CSV
 
-<Transform :scale="0.9">
 ```c
 typedef struct {
     unsigned int id;
@@ -725,10 +724,8 @@ void parseLine(char *line, Record *record) {
     }
 }
 ```
-</Transform>
 ::right::
 
-<Transform :scale="0.9">
 ```c
 int main() {
     FILE *file = fopen("studenti.csv", "r");
@@ -751,8 +748,6 @@ int main() {
 }
 
 ```
-
-</Transform>
 
 ---
 

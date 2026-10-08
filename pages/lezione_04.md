@@ -311,7 +311,6 @@ int matrice [ 5 ][ 10 ];
 
 Come per i vettori, il ciclo **for** si presta per attraversare righe e colonne:
 
-<Transform :scale="1.3">
 ```c
 int matrice[RIGHE][COLONNE];
 for (r=0; r<RIGHE; r++)
@@ -321,7 +320,6 @@ for (r=0; r<RIGHE; r++)
     printf("\n");
 }
 ```
-</Transform>
 
 ---
 
