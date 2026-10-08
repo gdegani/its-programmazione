@@ -34,42 +34,44 @@ lineNumbers: true
 Ing. Giancarlo Degani
 
 ---
-src: ./pages/slides_1.md
-title: Fondamenti di informatica
+src: ./pages/lezione_01.md
+title: Fondamenti di informatica e primo programma
 
 ---
 
 ---
-src: ./pages/slides_2.md
-title: Introduzione al C
+src: ./pages/lezione_02.md
+title: Variabili, tipi, operatori e input
 
 ---
 
 ---
-src: ./pages/slides_3.md
-title: Cicli
+src: ./pages/lezione_03.md
+title: Istruzioni condizionali e cicli
 
 ---
 
 ---
-src: ./pages/slides_4.md
-title: Arrays
+src: ./pages/lezione_04.md
+title: Vettori, matrici e stringhe
 
 ---
 
 ---
-src: ./pages/slides_5.md
-title: enum and functions
+src: ./pages/lezione_05.md
+title: Funzioni, puntatori e progetti multi-file
 
 ---
 
 ---
-src: ./pages/slides_6.md
+src: ./pages/lezione_06.md
+title: Bit, enumerazioni e macchine a stati
 
 ---
 
 ---
-src: ./pages/slides_7.md
+src: ./pages/lezione_07.md
+title: Strutture, memoria dinamica, liste e file
 
 ---
 

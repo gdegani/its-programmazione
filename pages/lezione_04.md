@@ -1,10 +1,11 @@
 ---
 layout: cover
+transition:
 coverDate:
 
 ---
 
-# 4 - Vettori, Matrici e Stringhe
+# 4 - Vettori, matrici e stringhe
 
 Ing. Giancarlo Degani
 

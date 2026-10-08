@@ -91,7 +91,7 @@ git switch master                # back to the current edition
 All'avvio di un nuovo anno accademico, su `master`:
 
 1. Aggiornare `coverDate` in [`slides.md`](slides.md) (es. `coverDate: "2026-2027"`). Lo script di release lo controlla.
-2. Aggiornare durata e modalità di verifica nella slide "Il corso" ([`pages/slides_1.md`](pages/slides_1.md)) e in [`schedule.md`](schedule.md).
+2. Aggiornare durata e modalità di verifica nella slide "Il corso" ([`pages/lezione_01.md`](pages/lezione_01.md)) e in [`schedule.md`](schedule.md).
 
 ### Fine dell'edizione: archiviazione
 
