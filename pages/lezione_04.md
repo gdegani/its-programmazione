@@ -85,6 +85,7 @@ contigue e successive
 - Poiché ciascun elemento del vettore è del tipo indicato nella definizione, può essere utilizzato in tutti i contesti in cui si può usare una variabile di quel tipo
 
 <Transform :scale="1.3" >
+
 ```c
 int vett[10];
 scanf("%d", &vett[4]);
@@ -311,6 +312,8 @@ int matrice [ 5 ][ 10 ];
 
 Come per i vettori, il ciclo **for** si presta per attraversare righe e colonne:
 
+<Transform :scale="1.3">
+
 ```c
 int matrice[RIGHE][COLONNE];
 for (r=0; r<RIGHE; r++)
@@ -320,6 +323,8 @@ for (r=0; r<RIGHE; r++)
     printf("\n");
 }
 ```
+
+</Transform>
 
 ---
 
@@ -504,11 +509,13 @@ Esempi:
 - Inizializzazione
 
 <Transform :scale="1.4">
+
 ```c
 #define MAX_LENGHT 100
 char str[100] = “Hello”;
 char str[MAX_LENGHT+1] = {‘H’,’e’,’l’,’l’,’o’} ;
 ```
+
 </Transform>
 <br>
 

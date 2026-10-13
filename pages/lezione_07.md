@@ -908,6 +908,7 @@ layout: two-cols
 <Transform :scale="1.7" >
 
 <<< @/snippets/example24/demo.h#snippet1 c {*}{lines:true}
+
 </Transform>
 
 ---
@@ -1010,6 +1011,7 @@ Situazione iniziale con una lista non vuota
 <Transform :scale="0.7" >
 
 ![Rimozione dalla testa](/list8.png)
+
 </Transform>
 
 ---
