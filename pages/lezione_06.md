@@ -282,9 +282,9 @@ Gli shift spostano i bit e riempiono con zeri:
 
 ```c
 uint8_t x = 0x0B;      // 0000 1011
-x << 2;                // 0010 1100 (0x2C): moltiplica per 4
-x >> 1;                // 0000 0101 (0x05): divide per 2
-1u << 3;               // 0000 1000 (0x08): il bit 3 acceso
+x << 2;                // 0010 1100 (0x2C): multiply by 4
+x >> 1;                // 0000 0101 (0x05): divide by 2
+1u << 3;               // 0000 1000 (0x08): bit 3 is set
 ```
 
 ---
