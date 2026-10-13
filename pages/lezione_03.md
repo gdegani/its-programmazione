@@ -1,7 +1,7 @@
 ---
 layout: cover
-coverDate:
 transition:
+coverDate:
 
 ---
 
