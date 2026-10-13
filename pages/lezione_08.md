@@ -28,7 +28,7 @@ Test di **20 domande a risposta multipla**, 30 punti in totale.
 
 # Esempio: domanda di teoria
 
-Qual è la differenza tra `&` e `&&`?
+Quando sono usati tra due espressioni intere, qual è la differenza tra `&` e `&&`?
 
 - **A)** Nessuna, sono due modi di scrivere lo stesso operatore
 - **B)** `&` agisce sui singoli bit, `&&` è l'AND logico tra due condizioni
