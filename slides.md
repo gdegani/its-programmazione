@@ -26,7 +26,9 @@ themeConfig:
   paginationY: b
   paginationPagesDisabled: "1"
 lineNumbers: true
-
+fonts:
+  sans: 'Noto Sans Variable'
+  provider: none # Tell Slidev not to use Google Fonts CDN
 ---
 
 # Elementi di programmazione e gestione dati
