@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# Archive a finished edition of the course:
+# Archive a finished edition of the course (the same script is used by
+# its-programmazione and its-programmazione-ai: keep the two copies identical):
 #   1. pre-flight checks (master, clean tree, in sync with origin, tag free)
 #   2. export the slides to PDF
 #   3. generate the release notes (or use the ones provided)
@@ -59,8 +60,12 @@ COVER_DATE="$START_YEAR-$(( 10#$START_YEAR + 1 ))"
 ROOT=$(git rev-parse --show-toplevel)
 cd "$ROOT"
 
+REPO=$(basename "$ROOT")
+COURSE_TITLE=$(sed -n 's/^title: *//p' slides.md | head -1)
+[ -n "$COURSE_TITLE" ] || die "title not found in slides.md"
+
 OUT_DIR="release"
-PDF_BASE="$OUT_DIR/its-programmazione-$TAG"
+PDF_BASE="$OUT_DIR/$REPO-$TAG"
 PDF="$PDF_BASE.pdf"
 
 # --- Pre-flight checks -------------------------------------------------------
@@ -131,7 +136,7 @@ if [ -z "$NOTES_FILE" ]; then
         | grep -v -i -E '^- (bump|merge|chores?$|cleanup$)' || true)
 
     {
-        echo "Corso \"Elementi di programmazione e gestione dati\" - ITS Meccatronico Veneto, edizione $START_YEAR/$END_YY."
+        echo "Corso \"$COURSE_TITLE\" - ITS Meccatronico Veneto, edizione $START_YEAR/$END_YY."
         echo
         echo "## $CHANGES_TITLE"
         echo
