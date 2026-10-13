@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # Il corso
 
@@ -23,6 +26,9 @@ Ing. Giancarlo Degani
 - **Dopo il corso:** modulo "Programmazione assistita dall'AI" (16 ore)
 
 ---
+level: 2
+
+---
 
 # Strumenti
 
@@ -33,6 +39,7 @@ Ing. Giancarlo Degani
 ---
 layout: image-right
 image: /clion1.png
+level: 2
 
 ---
 
@@ -44,6 +51,7 @@ image: /clion1.png
 ---
 layout: image-right
 image: /clion_license.png
+level: 2
 
 ---
 
@@ -55,12 +63,18 @@ image: /clion_license.png
 - <https://www.jetbrains.com>
 
 ---
+level: 2
+
+---
 
 # Riferimenti
 
 - <https://cppreference.com/w/c.html>
 - <https://en.wikibooks.org/wiki/C_Programming>
 - <https://archive.org/details/Apress.Beginning.C.5th.Edition.2013>
+
+---
+level: 2
 
 ---
 
@@ -81,6 +95,9 @@ Due programmatori lavorano insieme allo stesso computer per scrivere codice.
 **Durante le esercitazioni in aula lavorerete in coppia seguendo questa metodologia.**
 
 ---
+level: 2
+
+---
 
 # Pair Programming: Driver e Navigator
 
@@ -92,6 +109,9 @@ Due programmatori lavorano insieme allo stesso computer per scrivere codice.
 - Si concentra sulla sintassi e sui dettagli tecnici
 - Implementa ciò che viene discusso
 - **Focus tattico**: come scrivere il codice
+
+---
+level: 2
 
 ---
 
@@ -110,11 +130,17 @@ Due programmatori lavorano insieme allo stesso computer per scrivere codice.
 **⏱️ Importante:** Scambiatevi i ruoli ogni 15-20 minuti!
 
 ---
+level: 2
+
+---
 
 # ALGORITMO
 
 - Il termine deriva dalla trascrizione latina del nome del matematico persiano al-Khwarizmi, vissuto nel IX secolo d.C. È considerato uno dei primi autori ad aver fatto riferimento a questo concetto, scrivendo il libro “Regole di ripristino e riduzione”.
 - In matematica e informatica, un algoritmo è la specificazione di una sequenza finita di operazioni (dette anche istruzioni) che consente di risolvere una classe di problemi specifici o di calcolare il risultato di un'espressione matematica.
+
+---
+level: 2
 
 ---
 
@@ -129,6 +155,7 @@ Due programmatori lavorano insieme allo stesso computer per scrivere codice.
 ---
 layout: image-right
 image: /human_computer.png
+level: 2
 
 ---
 
@@ -137,6 +164,9 @@ image: /human_computer.png
 - Il linguaggio che possono comprendere (italiano, inglese, C, TypeScript, ecc.)
 - Le azioni che possono eseguire
 - Le regole che associano alle istruzioni fornite le azioni da eseguire
+
+---
+level: 2
 
 ---
 
@@ -153,6 +183,9 @@ flowchart LR
 ```
 
 ---
+level: 2
+
+---
 
 # ESEMPIO
 
@@ -167,6 +200,9 @@ flowchart LR
 ```
 
 ---
+level: 2
+
+---
 
 # STRUTTURE DATI
 
@@ -178,6 +214,9 @@ flowchart LR
     - es. variabili per numeri interi, numeri reali, sequenze di numeri, etc...
 
 ---
+level: 2
+
+---
 
 # ISTRUZIONI DI ASSEGNAZIONE
 
@@ -185,6 +224,9 @@ flowchart LR
 - Cambiano a seconda del linguaggio utilizzato, ma solitamente usano l’operatore “=”.
   - x=5 assegna il valore 5 alla variabile x.
   - y=x assegna il valore contenuto nella variabile x alla variabile y.
+
+---
+level: 2
 
 ---
 
@@ -199,8 +241,12 @@ layout: image
 image: /flowchart.png
 backgroundSize: contain
 title: Simboli flowchart
+level: 2
 
 ---
+
+---
+level: 2
 
 ---
 
@@ -219,6 +265,7 @@ flowchart LR
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -241,6 +288,7 @@ flowchart TD
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -263,6 +311,7 @@ flowchart TD
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -286,6 +335,7 @@ flowchart TD
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -310,6 +360,7 @@ flowchart TD
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -334,12 +385,16 @@ flowchart TD
 
 ---
 layout: center
+level: 2
 
 ---
 
 # “Algoritmi + Strutture Dati = Programmi”
 
 ## Niklaus Wirth
+
+---
+level: 2
 
 ---
 
@@ -351,6 +406,7 @@ layout: center
 ---
 layout: image-right
 image: /pancake.png
+level: 2
 
 ---
 
@@ -363,12 +419,18 @@ image: /pancake.png
   - Pancake
 
 ---
+level: 2
+
+---
 
 # Problema
 
 - Per fornire istruzioni a un computer è necessario utilizzare un linguaggio comune.
 - Il computer comprende solo sequenze di 0 e 1, ovvero sequenze binarie.
 - Il programmatore comprende il linguaggio naturale: “fai, leggi, scrivi.”
+
+---
+level: 2
 
 ---
 
@@ -380,11 +442,17 @@ image: /pancake.png
 - Il linguaggio di programmazione è un linguaggio compreso sia dal computer che dal programmatore.
 
 ---
+level: 2
+
+---
 
 # Traduttori in linguaggio macchina
 
 - Interprete: Le istruzioni vengono tradotte una alla volta ed eseguite immediatamente dal calcolatore.
 - Compilatore: Tutte le istruzioni vengono tradotte in linguaggio macchina e memorizzate in un file eseguibile dal calcolatore (programma).
+
+---
+level: 2
 
 ---
 
@@ -395,6 +463,9 @@ Velocità di esecuzione:
 - L’interprete deve tradurre il programma ogni volta che lo esegue.
 - Il programma compilato viene tradotto solo una volta.
 - Il compilatore è più efficiente ed ottimizza il codice tradotto.
+
+---
+level: 2
 
 ---
 
@@ -412,6 +483,7 @@ Il documento contenente le istruzioni scritte in un linguaggio di programmazione
 ---
 layout: image-right
 image: /binary.png
+level: 2
 
 ---
 
@@ -421,6 +493,7 @@ Sequenza binaria comprensibile solo da uno specifico microprocessore o da una fa
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -434,6 +507,7 @@ Stampa la scritta “hello world” in linguaggio assembly per microprocessore I
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -447,6 +521,7 @@ Stampa la scritta “hello world”.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -461,6 +536,7 @@ Stampa la scritta “hello world” in Python.
 ---
 layout: image-right
 image: /kernighan.png
+level: 2
 
 ---
 
@@ -472,6 +548,9 @@ image: /kernighan.png
 - Codice molto efficiente
 
 ---
+level: 2
+
+---
 
 # Il linguaggio C, caratteristiche
 
@@ -479,6 +558,9 @@ image: /kernighan.png
 - Tantissime librerie disponibili
 - Linguaggio procedurale, non ad oggetti (Aggiunti nel C++)
 - Gestione della memoria “manuale” (Non c’è garbage collector)
+
+---
+level: 2
 
 ---
 
@@ -489,6 +571,9 @@ image: /kernighan.png
 - Le funzioni sono raccolte e distribuite sotto forma di librerie
 
 ---
+level: 2
+
+---
 
 # Come si scrive un programma?
 
@@ -497,16 +582,25 @@ image: /kernighan.png
 - CLion è un IDE specifico per C/C++
 
 ---
+level: 2
+
+---
 
 # hello, world
 
 <<< @/snippets/example01/main.c txt {all}{lines:true}
 
 ---
+level: 2
+
+---
 
 # hello, world
 
 <<< @/snippets/example01/main.c c {all|1-4|6-7|9-15|17-18|19|all}{lines:true}
+
+---
+level: 2
 
 ---
 
@@ -530,6 +624,9 @@ printf("formato", argomenti...);
 | `%s` | stringa | `printf("%s", "Hello");` → `Hello` |
 | `%lf` | double (con scanf) | `scanf("%lf", &d);` |
 | `%%` | Carattere % | `printf("%%");` → `%` |
+
+---
+level: 2
 
 ---
 
@@ -562,6 +659,9 @@ int main(void) {
 ```
 
 ---
+level: 2
+
+---
 
 # printf(): controllo formato
 
@@ -592,6 +692,9 @@ printf("Backslash: \\\n");      // \\ = backslash
 ```
 
 ---
+level: 2
+
+---
 
 # Esercizio: Il tuo primo programma in CLion (parte 1)
 
@@ -607,6 +710,9 @@ printf("Backslash: \\\n");      // \\ = backslash
    - Linguaggio: **C**
    - Standard: **C11**
 5. Clicca su **Create**
+
+---
+level: 2
 
 ---
 
@@ -626,6 +732,7 @@ Process finished with exit code 0
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -654,6 +761,9 @@ n \times (n-1) \times \cdots \times 2 \times 1 & \text{se } n > 0
 $$
 
 ---
+level: 2
+
+---
 
 # Esempio: CALCOLO DEL FATTORIALE
 
@@ -674,6 +784,9 @@ flowchart LR
 ```
 
 ---
+level: 2
+
+---
 
 # ESERCIZIO
 
@@ -685,6 +798,7 @@ Rappresentare un algoritmo per il calcolo del costo di un prodotto che soddisfi 
 
 ---
 layout: two-cols
+level: 2
 
 ---
 

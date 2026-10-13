@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # La verifica finale
 
@@ -25,6 +28,9 @@ Test di **20 domande a risposta multipla**, 30 punti in totale.
 - Prima il test, poi la discussione con la classe
 
 ---
+level: 2
+
+---
 
 # Esempio: domanda di teoria
 
@@ -36,6 +42,9 @@ Quando sono usati tra due espressioni intere, qual è la differenza tra `&` e `&
 - **D)** `&&` agisce sui singoli bit, `&` è l'AND logico
 
 Risposta corretta: **B**.
+
+---
+level: 2
 
 ---
 
@@ -63,12 +72,18 @@ Che cosa stampa il programma?
 Risposta corretta: **B**. Per rispondere si segue il programma passo per passo, come con il debugger.
 
 ---
+level: 2
+
+---
 
 # Come affrontare le domande su codice
 
 - Simulare il programma **a mano**, annotando il valore delle variabili a ogni passo
 - Controllare i casi limite: primo e ultimo indice, condizioni con `=` o `==`, `&` o `&&`
 - Non fidarsi della prima impressione: leggere tutte le risposte prima di scegliere
+
+---
+level: 2
 
 ---
 
@@ -78,6 +93,9 @@ Risposta corretta: **B**. Per rispondere si segue il programma passo per passo, 
 - Gli errori più frequenti e le loro cause
 - Domande e dubbi sugli argomenti del corso
 - Commenti della classe sul corso: che cosa ha funzionato e che cosa cambiare
+
+---
+level: 2
 
 ---
 

@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # Creazione di un eseguibile
 
@@ -17,6 +20,9 @@ Il processo di creazione di un eseguibile a partire dai sorgenti è composto da 
 
 - **compilazione**: il sorgente viene compilato, ma alcune parti (le “funzioni di base”) sono ancora mancanti; viene generato un file intermedio detto file oggetto
 - **linking**: il file oggetto e le librerie vengono unite (collegate – “link”) così da aggiungere al file oggetto le parti mancanti e costituire un unico file eseguibile. La fase di link può creare un eseguibile collegando insieme più file oggetto e più librerie.
+
+---
+level: 2
 
 ---
 
@@ -38,6 +44,9 @@ CC-->OF@{ shape: doc, label: "Object file" }
 ```
 
 ---
+level: 2
+
+---
 
 # Elementi base del linguaggio C
 
@@ -50,6 +59,9 @@ Vediamo gli elementi fondamentali del linguaggio:
 - **Operatori relazionali**: ==, !=, <, >, <=, >=
 - **Operatori logici**: &&, ||, !
 - **Input/Output di base**: printf(), scanf()
+
+---
+level: 2
 
 ---
 
@@ -68,6 +80,9 @@ Il C fornisce alcuni tipi di dato di base per rappresentare numeri e caratteri:
 Usa `sizeof(tipo)` per conoscere la dimensione esatta.
 
 ---
+level: 2
+
+---
 
 # Modificatori di tipo
 
@@ -84,6 +99,9 @@ I modificatori `signed`, `unsigned`, `short`, `long` cambiano il range dei tipi 
 
 - Quando il valore non può mai essere negativo (es. dimensioni, contatori)
 - Per raddoppiare il massimo valore positivo rappresentabile
+
+---
+level: 2
 
 ---
 
@@ -111,6 +129,9 @@ char initial;
 - Non usare parole chiave C (`int`, `for`, `if`...)
 
 ---
+level: 2
+
+---
 
 # Dichiarazione di variabili
 
@@ -135,6 +156,9 @@ float sensor_value;
 #define MAX_SIZE 100
 #define PI 3.14159
 ```
+
+---
+level: 2
 
 ---
 
@@ -166,6 +190,9 @@ float a, b = 2.5, c;    // Solo b è inizializzata!
 **⚠️ IMPORTANTE:** Inizializzare sempre le variabili prima di usarle!
 
 ---
+level: 2
+
+---
 
 # Costanti
 
@@ -195,6 +222,9 @@ const char NEWLINE = '\n';
 **Differenza:** `#define` è una sostituzione testuale, `const` è una variabile read-only con tipo.
 
 ---
+level: 2
+
+---
 
 # Operatore di assegnamento
 
@@ -220,6 +250,9 @@ if (x == 5)     // ✅ Confronto: è vero?
 ```
 
 ---
+level: 2
+
+---
 
 # Assegnamenti composti
 
@@ -234,6 +267,9 @@ Gli operatori composti combinano un'operazione aritmetica con l'assegnamento:
 | `%=` | `x = x % y` | `x %= 3` | x = resto di x/3 |
 
 ---
+level: 2
+
+---
 
 # Esempio
 
@@ -244,6 +280,9 @@ count *= 2;     // count = 30
 count -= 10;    // count = 20
 count /= 4;     // count = 5
 ```
+
+---
+level: 2
 
 ---
 
@@ -277,6 +316,9 @@ count++;            // ✅ Più idiomatico
 ```
 
 ---
+level: 2
+
+---
 
 # Operatori aritmetici
 
@@ -298,6 +340,9 @@ float b = 7 / 2;        // b = 3.0 (divisione intera, poi conversione)
 float c = 7.0 / 2;      // c = 3.5 (almeno un float → divisione reale)
 float d = (float)7 / 2; // d = 3.5 (cast esplicito)
 ```
+
+---
+level: 2
 
 ---
 
@@ -324,6 +369,9 @@ result = 7 + 3 * 2 - 1;     // 12
 ```
 
 **Consiglio:** Usa le parentesi per chiarezza, anche se non necessarie!
+
+---
+level: 2
 
 ---
 
@@ -355,6 +403,9 @@ float result3 = (float)(a / b); // 3.0 (divisione intera, poi cast!)
 ```
 
 ---
+level: 2
+
+---
 
 # Esempi di conversioni di tipo
 
@@ -381,6 +432,9 @@ double d = 5 + 2.5;     // 5 → 5.0, poi 5.0 + 2.5 = 7.5
 **⚠️ Il troncamento non arrotonda:** `3.9 → 3`, non `4`!
 
 ---
+level: 2
+
+---
 
 # Operatori relazionali
 
@@ -403,6 +457,9 @@ Gli operatori relazionali confrontano due valori e restituiscono un valore boole
 if (x = 5)    // ❌ Assegnamento! (sempre vero, perché 5 ≠ 0)
 if (x == 5)   // ✅ Confronto
 ```
+
+---
+level: 2
 
 ---
 
@@ -431,6 +488,9 @@ int result9 = (f1 == f2);       // Potrebbe essere 0! (errore di arrotondamento)
 ```
 
 ---
+level: 2
+
+---
 
 # Operatori logici
 
@@ -453,6 +513,9 @@ int result3 = !a;       // 0 (falso: NOT di vero)
 int result4 = !b;       // 1 (vero: NOT di falso)
 int result5 = a && a;   // 1 (vero: entrambi veri)
 ```
+
+---
+level: 2
 
 ---
 
@@ -482,6 +545,9 @@ int result5 = a && a;   // 1 (vero: entrambi veri)
 |---|----|
 | 0 | 1 |
 | 1 | 0 |
+
+---
+level: 2
 
 ---
 
@@ -514,6 +580,9 @@ Se il primo operando è vero, il secondo **non viene valutato** (tanto il risult
 **Utile per:** evitare errori (divisione per 0, accessi a puntatori NULL, ecc.)
 
 ---
+level: 2
+
+---
 
 # Esempi di operatori logici
 
@@ -539,6 +608,9 @@ int result5 = (a != 0) && (100 / a > 5);  // 0 (non valuta 100/a: evita errore!)
 ```
 
 ---
+level: 2
+
+---
 
 # Precedenza degli operatori (completa)
 
@@ -560,6 +632,9 @@ int result5 = (a != 0) && (100 / a > 5);  // 0 (non valuta 100/a: evita errore!)
 int x = 5 > 3 && 2 < 4;     // 1 (vero: confronti prima, poi &&)
 int y = (5 > 3) && (2 < 4); // 1 (più chiaro!)
 ```
+
+---
+level: 2
 
 ---
 
@@ -593,6 +668,9 @@ scanf(" %c", &grade);       // Legge un carattere (spazio prima per ignorare whi
 ```
 
 ---
+level: 2
+
+---
 
 # scanf(): esempi completi
 
@@ -621,6 +699,9 @@ int main(void) {
 
 **⚠️ Validazione input:** `scanf()` non verifica che l'input sia valido!  
 (Per esempio, se si aspetta un numero e l'utente inserisce una lettera)
+
+---
+level: 2
 
 ---
 

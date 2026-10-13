@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # Controllo del flusso di esecuzione
 
@@ -30,6 +33,9 @@ Ripetere blocchi di codice **più volte**
 - `for`, `while`, `do-while`
 
 Queste strutture sono fondamentali per scrivere programmi che prendono decisioni e automatizzano operazioni ripetitive.
+
+---
+level: 2
 
 ---
 
@@ -55,6 +61,7 @@ if (age >= 18 && score > 80) {  // Entrambe le condizioni devono essere vere
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -74,6 +81,9 @@ flowchart TD
     Condition -- No --> J
     J --> End([End])
 ```
+
+---
+level: 2
 
 ---
 
@@ -96,6 +106,7 @@ if (condizione) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -139,6 +150,9 @@ if (x > 0) {
 ```
 
 ---
+level: 2
+
+---
 
 # Esempio pratico: IF
 
@@ -150,6 +164,7 @@ Le parentesi `{}` sono richieste avendo un blocco di più istruzioni.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -173,6 +188,7 @@ flowchart TD
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -204,6 +220,9 @@ if (age >= 18) {
 ```
 
 ---
+level: 2
+
+---
 
 # IF-ELSE annidati (nested)
 
@@ -231,6 +250,9 @@ if (voto >= 90) {
 - Si ferma alla prima condizione vera
 
 ---
+level: 2
+
+---
 
 # Quando usare IF vs IF-ELSE vs IF annidati
 
@@ -240,6 +262,9 @@ if (voto >= 90) {
 | Due alternative mutualmente esclusive | `if-else` | "Maggiorenne o minorenne" |
 | Più di due alternative ordinate | `if-else if-else` | "Voto: eccellente, buono, sufficiente, insufficiente" |
 | Molte alternative su stesso valore | `switch` | "Menu con 5+ opzioni numerate" |
+
+---
+level: 2
 
 ---
 
@@ -262,6 +287,9 @@ Scrivere un programma per la gestione elementare di un carrello della spesa.
 Stampare il dettaglio del carrello, l'imponibile, l'IVA, ed il totale lordo
 
 ---
+level: 2
+
+---
 
 # ESERCIZIO: Output richiesto
 
@@ -278,6 +306,9 @@ Totale lordo: 2635.20
 ```
 
 **Suggerimento:** Usa `if` per verificare se applicare lo sconto, poi calcola IVA e totale.
+
+---
+level: 2
 
 ---
 
@@ -299,6 +330,9 @@ switch (espressione) {
         blocco di default;
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -323,6 +357,9 @@ switch (x) {
 }
 // Output: Due, Tre (fall-through)
 ```
+
+---
+level: 2
 
 ---
 
@@ -350,6 +387,9 @@ switch (choice) {
         printf("Opzione non valida\n");
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -385,6 +425,7 @@ switch (grade) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -418,6 +459,9 @@ Risultato: 15.00
 ```
 
 ---
+level: 2
+
+---
 
 # Quando usare IF vs SWITCH
 
@@ -442,6 +486,9 @@ switch (day_of_week) {
     ...
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -469,6 +516,9 @@ printf("100\n");
 - Errori di battitura
 
 ---
+level: 2
+
+---
 
 # ITERAZIONI: introduzione
 
@@ -482,6 +532,7 @@ printf("100\n");
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -521,6 +572,9 @@ flowchart TD
 ```
 
 ---
+level: 2
+
+---
 
 # Anatomia del ciclo FOR
 
@@ -545,6 +599,9 @@ for (int i = 0;     i < 10;            i++) {
     printf("%d\n", i);  // ← Eseguito 10 volte (i = 0,1,2,...,9)
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -575,6 +632,7 @@ for (int i = 10; i > 0; i--) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -606,6 +664,7 @@ Somma da 1 a 10: 55
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -637,6 +696,7 @@ flowchart TD
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -656,6 +716,7 @@ Terminato il ciclo, il valore di `i` è 1001.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -673,6 +734,7 @@ Somma dei valori introdotti finché non viene immesso il valore 0.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -692,6 +754,7 @@ I due esempi a fianco sono equivalenti.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -725,6 +788,7 @@ flowchart TD
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -741,6 +805,9 @@ Anche questo esempio è equivalente ai precedenti, ma garantisce almeno una esec
 <<< @/snippets/example03/ciclo_do_while.c#ciclo c {*}{lines:true}
 
 </Transform>
+
+---
+level: 2
 
 ---
 
@@ -778,6 +845,9 @@ int main(void) {
 ```
 
 ---
+level: 2
+
+---
 
 # DO-WHILE: caso d'uso tipico - Menu
 
@@ -803,6 +873,9 @@ do {
 ```
 
 ---
+level: 2
+
+---
 
 # Confronto tra i tre tipi di ciclo
 
@@ -812,6 +885,9 @@ do {
 | **Minimo iterazioni** | 0 | 0 | 1 |
 | **Uso tipico** | Iterazioni contate | Condizione complessa | Menu, validazione input |
 | **Sintassi** | Compatta (tutto in una riga) | Più esplicita | Simile a while |
+
+---
+level: 2
 
 ---
 
@@ -852,6 +928,9 @@ int main(void) {
 **Mostra come usare `while`, `continue` e validazione input.**
 
 ---
+level: 2
+
+---
 
 # Controllo del flusso nei cicli: BREAK e CONTINUE
 
@@ -878,6 +957,9 @@ for (int i = 0; i < 10; i++) {
 }
 // Output: 1 3 5 7 9
 ```
+
+---
+level: 2
 
 ---
 
@@ -910,6 +992,7 @@ for (int i = 1; i <= 100; i++) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -926,6 +1009,9 @@ layout: two-cols
 <<< @/snippets/example03/ciclo_nested.c#ciclo c {*}{lines:true}
 
 </Transform>
+
+---
+level: 2
 
 ---
 
@@ -945,6 +1031,9 @@ for (int row = 0; row < 3; row++) {
 // * * * * *
 // * * * * *
 ```
+
+---
+level: 2
 
 ---
 
@@ -975,6 +1064,9 @@ Crea un programma che stampa la tavola pitagorica (tabellina) da 1 a 10.
 </div>
 
 ---
+level: 2
+
+---
 
 # CICLI ANNIDATI: esempi pratici
 
@@ -994,6 +1086,9 @@ for (int row = 1; row <= 5; row++) {
 // * * * *
 // * * * * *
 ```
+
+---
+level: 2
 
 ---
 
@@ -1025,6 +1120,7 @@ printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -1054,6 +1150,9 @@ Output: Trovato il numero 7!
 **Suggerimento:** Usa una variabile `trovato` per tracciare se hai trovato il numero.
 
 ---
+level: 2
+
+---
 
 # Errori comuni nei cicli
 
@@ -1079,6 +1178,7 @@ I cicli sono potenti ma anche una fonte frequente di bug. Ecco i problemi più c
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -1112,6 +1212,7 @@ for (int i = 0; i < 10; i++) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -1165,6 +1266,9 @@ while (i < 10) {
 ```
 
 ---
+level: 2
+
+---
 
 # Come evitare errori nei cicli
 
@@ -1174,6 +1278,9 @@ while (i < 10) {
 | **Ciclo infinito** | • Verifica che la condizione possa diventare falsa<br>• Assicurati che l'incremento vada nella direzione giusta | `while (x > 0)` → serve `x--` non `x++` |
 | **Variabili non inizializzate** | • Sempre inizializzare variabili di accumulazione<br>• Contatori iniziano a 0, somme a 0, prodotti a 1 | `int sum = 0;` prima del ciclo |
 | **Modifica indice nel ciclo** | • Non modificare la variabile di controllo del `for` nel corpo<br>• Usa variabili separate se necessario | Evita `for (int i = 0; i < n; i++) { i++; }` |
+
+---
+level: 2
 
 ---
 
@@ -1202,6 +1309,9 @@ printf("Risultato finale: sum=%d\n", sum);
 **Output aiuta a vedere cosa succede step-by-step!**
 
 ---
+level: 2
+
+---
 
 # Debugging dei cicli
 
@@ -1215,6 +1325,9 @@ printf("Risultato finale: sum=%d\n", sum);
 
 - Simula 2-3 iterazioni su carta
 - Verifica i valori delle variabili
+
+---
+level: 2
 
 ---
 
@@ -1231,6 +1344,9 @@ Un debugger permette di fermare il programma e osservarne l'esecuzione passo per
 4. **Variables** e **Watches**: valori delle variabili a ogni passo
 
 ---
+level: 2
+
+---
 
 # Il debugger di CLion: demo sul ciclo
 
@@ -1245,6 +1361,9 @@ printf("%d\n", sum);
 - Osservare `i` e `sum` a ogni iterazione con *Resume*
 - *Breakpoint condizionale* (clic destro sul breakpoint): fermarsi solo quando `i == 4`
 - In coppia: il *navigator* prevede il valore di `sum` prima di ogni passo, il *driver* controlla nella finestra *Variables*
+
+---
+level: 2
 
 ---
 
@@ -1273,6 +1392,9 @@ while (count > 0) {
     count = count + 1;  // ❌ Errore?
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -1304,6 +1426,9 @@ while (count > 0) {
 ```
 
 ---
+level: 2
+
+---
 
 # Riepilogo: Controllo del flusso
 
@@ -1326,6 +1451,9 @@ while (count > 0) {
 - **continue**: salta all'iterazione successiva
 
 ---
+level: 2
+
+---
 
 # Best practices
 
@@ -1346,6 +1474,9 @@ while (count > 0) {
 **Esercitati con esempi reali per consolidare i concetti!**
 
 ---
+level: 2
+
+---
 
 # Esercizio: Contatore pari e dispari
 
@@ -1358,6 +1489,9 @@ while (count > 0) {
 3. Conta quanti numeri pari e quanti dispari sono stati inseriti
 4. Calcola la somma separata dei pari e dei dispari
 5. Stampa i risultati
+
+---
+level: 2
 
 ---
 
@@ -1382,6 +1516,9 @@ Numeri dispari: 3 (somma: 15)
 **Suggerimento:** Usa `if (num % 2 == 0)` per verificare se un numero è pari.
 
 ---
+level: 2
+
+---
 
 # Esercizio: Fattoriale con validazione
 
@@ -1394,6 +1531,9 @@ Numeri dispari: 3 (somma: 15)
 3. Calcola il fattoriale del numero (n! = 1 × 2 × 3 × ... × n)
 4. Stampa il risultato
 5. Nota: 0! = 1 per definizione
+
+---
+level: 2
 
 ---
 
@@ -1413,6 +1553,9 @@ Inserisci un numero (0-12): 5
 ```
 
 **Suggerimento:** Usa una variabile `factorial = 1` e moltiplica in un ciclo `for`.
+
+---
+level: 2
 
 ---
 

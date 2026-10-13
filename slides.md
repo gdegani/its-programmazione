@@ -29,11 +29,22 @@ lineNumbers: true
 fonts:
   sans: 'Noto Sans Variable'
   provider: none # Tell Slidev not to use Google Fonts CDN
+hideInToc: true
 ---
 
 # Elementi di programmazione e gestione dati
 
 Ing. Giancarlo Degani
+
+---
+layout: table-of-contents
+hideInToc: true
+
+---
+
+# Indice
+
+<Toc maxDepth="1" />
 
 ---
 src: ./pages/lezione_01.md
@@ -85,6 +96,7 @@ title: Ripasso e verifica finale
 
 ---
 layout: center
+hideInToc: true
 
 ---
 

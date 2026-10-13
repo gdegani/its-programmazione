@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # Codifiche numeriche
 
@@ -21,6 +24,9 @@ Ing. Giancarlo Degani
 |Esadecimale|16|\{0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F\}|
 
 ---
+level: 2
+
+---
 
 # Esempi
 
@@ -30,6 +36,9 @@ Ing. Giancarlo Degani
 |10|1010|A|
 |16|1 0000|10|
 |255|1111 1111|FF|
+
+---
+level: 2
 
 ---
 
@@ -60,6 +69,7 @@ $$
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -89,6 +99,9 @@ $$
 | 1 / 2    | 0      | 1 ← MSB |
 
 ---
+level: 2
+
+---
 
 # CONVERSIONE IN ESADECIMALE
 
@@ -98,6 +111,9 @@ $$
 $${all}
 255_{10} = 1111;1111_2 = FF_{16}
 $$
+
+---
+level: 2
 
 ---
 
@@ -114,6 +130,9 @@ $$
 |Terabyte - TB|(2<sup>10</sup>)<sup>4</sup>|1 099 511 627 776|
 
 ---
+level: 2
+
+---
 
 # Rappresentazione di interi in modulo e segno
 
@@ -123,6 +142,9 @@ $$
   - 0: numero positivo
   - 1: numero negativo
 - I bit da 0 a 30 rappresentano il valore assoluto del numero.
+
+---
+level: 2
 
 ---
 
@@ -138,6 +160,9 @@ Si possono rappresentare i seguenti numeri:
 |Indice|31|30|29|…|3|2|1|0|
 
 ---
+level: 2
+
+---
 
 # Il complemento a due
 
@@ -149,6 +174,9 @@ Si possono rappresentare i seguenti numeri:
   - Aggiungere il valore 1: 1111 1011 (che rappresenta -5).
 
 ---
+level: 2
+
+---
 
 # Rappresentazione di interi in complemento a 2
 
@@ -157,6 +185,9 @@ Si possono rappresentare i seguenti numeri:
   - I numeri negativi sono rappresentati in complemento a due.
 - Con n bit si possono rappresentare numeri da -2<sup>n-1</sup> a 2<sup>n-1</sup>-1.
   - Con 8 bit, ad esempio, si possono rappresentare i numeri da -128 a +127.
+
+---
+level: 2
 
 ---
 
@@ -171,6 +202,7 @@ layout: image
 image: /ascii.png
 backgroundSize: contain
 title: Tabella ASCII
+level: 2
 
 ---
 
@@ -187,6 +219,9 @@ Un byte con valore `0xA5`:
 - Una cifra esadecimale corrisponde a **4 bit**: `A` = `1010`, `5` = `0101`
 - Il bit 0 è il meno significativo, a destra
 - In C l'esadecimale si scrive con il prefisso `0x`: `0xA5`, `0x0F`, `0xFF`
+
+---
+level: 2
 
 ---
 
@@ -210,6 +245,9 @@ La dimensione di `int` dipende dalla macchina: 16 bit su molti microcontrollori,
 Per i registri e per i dati binari si usano i tipi **senza segno** (`uint…`).
 
 ---
+level: 2
+
+---
 
 # Operatori bit a bit
 
@@ -228,6 +266,7 @@ Agiscono sui singoli bit di un intero, un bit alla volta.
 
 ---
 layout: two-cols-header
+level: 2
 
 ---
 
@@ -264,6 +303,9 @@ layout: two-cols-header
 | 1 | 0 |
 
 ---
+level: 2
+
+---
 
 # Esempi su 8 bit
 
@@ -288,6 +330,9 @@ x >> 1;                // 0000 0101 (0x05): divide by 2
 ```
 
 ---
+level: 2
+
+---
 
 # Operazioni su un singolo bit
 
@@ -304,6 +349,7 @@ Gli altri bit non cambiano mai.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -326,6 +372,7 @@ Le maschere hanno un nome, così il codice si legge.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -347,6 +394,7 @@ ALARM: temperature too high
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -368,6 +416,7 @@ Una scheda con sensori invia un frame da 16 bit:
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -386,6 +435,9 @@ raw value = 2620
 voltage   = 2.111 V
 new frame = 0x2A3C
 ```
+
+---
+level: 2
 
 ---
 
@@ -417,6 +469,9 @@ enum giorni_settimana {
 ```
 
 ---
+level: 2
+
+---
 
 # Enumerazioni: sintassi
 
@@ -437,6 +492,9 @@ enum nome_tipo {
 - I nomi devono essere **unici** nello stesso scope
 - Migliorano la **leggibilità** del codice
 - Evitano "numeri magici" nel codice
+
+---
+level: 2
 
 ---
 
@@ -465,6 +523,9 @@ enum HttpStatus {
 - Puoi mescolare valori espliciti e automatici
 
 ---
+level: 2
+
+---
 
 # Enumerazioni: valori duplicati
 
@@ -483,6 +544,9 @@ enum Stato {
 
 - `SPENTO` e `OFF` hanno lo stesso valore (0)
 - Utile per alias o compatibilità
+
+---
+level: 2
 
 ---
 
@@ -513,6 +577,9 @@ void stampa_azione(enum Semaforo stato) {
     }
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -547,6 +614,9 @@ Mese corrente = MARZO;  // Tipo Mese invece di enum Mese
 ```
 
 ---
+level: 2
+
+---
 
 # Macchine a stati
 
@@ -564,6 +634,9 @@ stateDiagram-v2
 Esempio: il ciclo di un nastro trasportatore.
 
 ---
+level: 2
+
+---
 
 # Macchina a stati in C: stati ed eventi
 
@@ -571,6 +644,9 @@ Esempio: il ciclo di un nastro trasportatore.
 - Una funzione riceve lo stato corrente e l'evento e restituisce il nuovo stato
 
 <<< @/snippets/example33/main.c#snippet1 c {*}{lines:true}
+
+---
+level: 2
 
 ---
 
@@ -582,6 +658,7 @@ Un `switch` sullo stato, un `if` sull'evento:
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -604,6 +681,9 @@ event 6 -> IDLE
 ```
 
 L'evento 3 (`START`) in stato `FAULT` viene ignorato: serve prima un `RESET`.
+
+---
+level: 2
 
 ---
 
@@ -630,6 +710,9 @@ AgeCategory classify_age(int years);
 **Bonus:** Usa switch per stampare un messaggio appropriato
 
 ---
+level: 2
+
+---
 
 # Esercizio in coppia: bit e macchine a stati
 
@@ -642,6 +725,9 @@ Partendo dagli esempi della lezione:
 Ogni coppia lavora sul proprio portatile; ruoli di *driver* e *navigator* a rotazione.
 
 ---
+level: 2
+
+---
 
 # volatile
 
@@ -651,6 +737,9 @@ I registri hardware e le variabili modificate da un interrupt possono cambiare *
 
 - Senza `volatile` il compilatore, ottimizzando, potrebbe leggere la variabile una volta sola e non accorgersi del cambiamento
 - Per ora ci basta riconoscerlo: lo ritroverete programmando microcontrollori
+
+---
+level: 2
 
 ---
 

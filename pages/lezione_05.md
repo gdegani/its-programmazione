@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # Funzioni in C
 
@@ -19,6 +22,9 @@ Ing. Giancarlo Degani
 - **Modularità**: dividere problemi complessi in parti più semplici
 - **Leggibilità**: codice più chiaro e organizzato
 - **Manutenibilità**: più facile correggere e aggiornare
+
+---
+level: 2
 
 ---
 
@@ -39,6 +45,9 @@ int main(void) {
     return 0;
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -65,6 +74,9 @@ float area_triangolo(float base, float altezza) {
 ## Regola
 
 Una funzione deve essere **dichiarata o definita** prima di essere chiamata
+
+---
+level: 2
 
 ---
 
@@ -100,6 +112,9 @@ int moltiplicazione(int a, int b) {
 ```
 
 ---
+level: 2
+
+---
 
 # Componenti di una funzione
 
@@ -117,6 +132,9 @@ tipo_ritorno nome_funzione(tipo_param1 param1, tipo_param2 param2) {
 | **parametri** | Lista di input (può essere vuota) |
 | **corpo** | Blocco di istruzioni |
 | **return** | Valore restituito (obbligatorio se tipo_ritorno ≠ void) |
+
+---
+level: 2
 
 ---
 
@@ -151,6 +169,7 @@ int main(void) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -196,6 +215,7 @@ main: x = 5
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -235,6 +255,9 @@ Dopo: x = 5
 La funzione modifica solo la **copia** del parametro, non l'originale!
 
 ---
+level: 2
+
+---
 
 # Introduzione ai Puntatori
 
@@ -255,6 +278,9 @@ char *ptr_char;  // puntatore a un carattere
 ```
 
 ---
+level: 2
+
+---
 
 # Introduzione ai Puntatori
 
@@ -268,6 +294,9 @@ printf("Valore di x: %d\n", x);        // Output: 10
 printf("Indirizzo di x: %p\n", &x);    // Output: 0x7fff5fbff8ac (esempio)
 printf("Valore puntato: %d\n", *ptr);  // Output: 10
 ```
+
+---
+level: 2
 
 ---
 
@@ -299,6 +328,9 @@ int main(void) {
 Prima: x = 5
 Dopo: x = 6
 ```
+
+---
+level: 2
 
 ---
 
@@ -333,6 +365,7 @@ Dopo: x = 20, y = 10
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -378,6 +411,7 @@ int main(void) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -417,6 +451,9 @@ Hello, Luigi!
 ```
 
 ---
+level: 2
+
+---
 
 # Header files (.h) vs Implementation (.c)
 
@@ -436,6 +473,7 @@ Un programma C è solitamente diviso in due tipi di file:
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -488,6 +526,9 @@ gcc math_utils.o main.o -o program
 ```
 
 ---
+level: 2
+
+---
 
 # Include guards
 
@@ -520,6 +561,9 @@ typedef struct { int x, y; } Point;
 ```
 
 ---
+level: 2
+
+---
 
 # Errori di compilazione vs Errori di linking
 
@@ -539,6 +583,7 @@ typedef struct { int x, y; } Point;
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -596,6 +641,9 @@ collect2: error: ld returned
 ```
 
 ---
+level: 2
+
+---
 
 # Come riconoscere gli errori
 
@@ -604,6 +652,9 @@ collect2: error: ld returned
 | **Preprocessore** | Prima della compilazione | `fatal error: file.h: No such file` | Verifica percorsi `#include` |
 | **Compilazione** | Creazione file `.o` | `error: expected ';'`<br>`error: undeclared identifier` | Correggi sintassi e dichiarazioni |
 | **Linking** | Creazione eseguibile | `undefined reference to 'func'`<br>`multiple definition of 'var'` | Implementa funzioni mancanti<br>Rimuovi definizioni duplicate |
+
+---
+level: 2
 
 ---
 
@@ -626,6 +677,7 @@ flowchart LR
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -652,6 +704,7 @@ gcc -E hello.c -o hello.i
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -674,6 +727,9 @@ gcc -S hello.i -o hello.asm
 ::right::
 
 <<< @/snippets/example02/main.asm c {all}{lines:true}
+
+---
+level: 2
 
 ---
 
@@ -700,6 +756,9 @@ as hello.asm -o hello.o
 **Output:** File `.o` (binario non eseguibile, mancano i link)
 
 ---
+level: 2
+
+---
 
 # Fase 4: Linking
 
@@ -717,6 +776,9 @@ gcc hello.o -o hello
 - **Crea l'entry point:** definisce dove inizia l'esecuzione (`_start` → `main`)
 
 **Output:** File eseguibile (`a.out`, `hello.exe`)
+
+---
+level: 2
 
 ---
 
@@ -739,6 +801,7 @@ I **build systems** automatizzano il processo:
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -792,6 +855,7 @@ target: dependencies
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -842,6 +906,9 @@ cmake --build .
 - Più facile da leggere rispetto a Makefile complessi
 
 ---
+level: 2
+
+---
 
 # CMakeLists.txt: struttura tipica
 
@@ -874,6 +941,7 @@ target_link_libraries(my_app m)
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -898,6 +966,9 @@ Ogni esempio in `snippets/exampleNN/` usa questa struttura:
 **Ogni esempio è indipendente** e può essere compilato separatamente.
 
 ---
+level: 2
+
+---
 
 # Test automatici: perché
 
@@ -918,6 +989,9 @@ flowchart LR
 ```
 
 Ogni volta che si modifica il codice si rilanciano i test: se qualcosa si è rotto, lo si scopre subito.
+
+---
+level: 2
 
 ---
 
@@ -941,6 +1015,7 @@ int main(void) {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -957,6 +1032,9 @@ Sono **funzioni pure**: dato lo stesso ingresso restituiscono sempre lo stesso r
 <<< @/snippets/example34/sensor.c c {*}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Esempio: il file di test
 
@@ -967,6 +1045,7 @@ Sono **funzioni pure**: dato lo stesso ingresso restituiscono sempre lo stesso r
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -990,6 +1069,9 @@ Se un `assert` fallisce, `ctest` segnala il test come **Failed**. In CLion si us
 <<< @/snippets/example34/CMakeLists.txt cmake {*}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Esercizio in coppia: scrivere prima i test
 
@@ -998,6 +1080,9 @@ Il *navigator* scrive i test (compresi i casi limite) **prima** che il *driver* 
 - **Base:** aggiungere a `test_sensor.c` un test per un valore intermedio di `adc_to_celsius` (per esempio `2048`)
 - **Standard:** scrivere `is_in_range(value, min, max)` con almeno quattro test, bordi compresi
 - **Sfida:** scrivere `average(const double *values, int n)` e decidere, con un test, che cosa restituire se `n` è 0
+
+---
+level: 2
 
 ---
 
@@ -1009,6 +1094,7 @@ Il *navigator* scrive i test (compresi i casi limite) **prima** che il *driver* 
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -1028,6 +1114,7 @@ flowchart TB
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -1054,6 +1141,7 @@ flowchart TB
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -1089,6 +1177,9 @@ flowchart TB
 ```
 
 ---
+level: 2
+
+---
 
 # Esercizio 1: Funzione potenza
 
@@ -1114,6 +1205,9 @@ int main(void) {
     return 0;
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -1143,6 +1237,9 @@ int main(void) {
 ```
 
 ---
+level: 2
+
+---
 
 # Riepilogo
 
@@ -1155,6 +1252,9 @@ int main(void) {
 - Include guards prevengono inclusioni multiple
 - CMake automatizza la compilazione di progetti con più file
 - Un test automatico chiama una funzione con valori noti e controlla il risultato (`assert`, `ctest`)
+
+---
+level: 2
 
 ---
 
