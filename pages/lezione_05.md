@@ -623,100 +623,6 @@ flowchart LR
 **4. Linker** → Collega file oggetto e librerie → eseguibile finale
 
 ---
-layout: two-cols
-
----
-
-# Fase 1: Preprocessing
-
-Comando:
-
-```sh
-gcc -E hello.c -o hello.i
-```
-
-**Cosa fa:**
-
-- Espande le direttive `#include`
-- Processa le macro `#define`
-- Rimuove i commenti
-- Gestisce `#ifdef`, `#ifndef`
-
-::right::
-
-**Output:** File `.i` (codice C espanso)
-
-<<< @/snippets/example02/main.i#snippet c {all}{lines:true}
-
----
-layout: two-cols
-
----
-
-# Fase 2: Compilazione → Assembly
-
-Comando:
-
-```sh
-gcc -S hello.i -o hello.asm
-```
-
-**Cosa fa:**
-
-- Analizza sintassi e semantica del C
-- Ottimizza il codice
-- Traduce in linguaggio assembly (mnemonico per CPU)
-
-**Output:** File `.s`/`.asm` (assembly leggibile)
-
-::right::
-
-<<< @/snippets/example02/main.asm c {all}{lines:true}
-
----
-
-# Fase 3: Assemblaggio
-
-Comando:
-
-```sh
-gcc -c hello.c -o hello.o
-```
-
-oppure (da assembly):
-
-```sh
-as hello.asm -o hello.o
-```
-
-**Cosa fa:**
-
-- Converte istruzioni assembly in codice binario (opcodes)
-- Crea la tabella dei simboli (funzioni, variabili globali)
-- Produce codice **relocatable** (indirizzi non ancora definitivi)
-
-**Output:** File `.o` (binario non eseguibile, mancano i link)
-
----
-
-# Fase 4: Linking
-
-Comando:
-
-```sh
-gcc hello.o -o hello
-```
-
-**Cosa fa:**
-
-- **Risolve i simboli esterni:** collega chiamate a funzioni (`printf`, librerie)
-- **Rialloca indirizzi:** assegna indirizzi di memoria definitivi
-- **Collega librerie:** include codice da librerie statiche o riferimenti a dinamiche
-- **Crea l'entry point:** definisce dove inizia l'esecuzione (`_start` → `main`)
-
-**Output:** File eseguibile (`a.out`, `hello.exe`)
-
----
 
 # Build systems: automatizzare la compilazione
 
@@ -897,6 +803,108 @@ Ogni esempio in `snippets/exampleNN/` usa questa struttura:
 
 ---
 
+# Test automatici: perché
+
+Finora abbiamo controllato i programmi **a mano**: eseguirli, guardare l'output, confrontarlo con quello atteso. Con molte funzioni diventa lento e si dimentica qualcosa.
+
+Un **test automatico** è un piccolo programma che:
+
+1. chiama una funzione con **valori noti**
+2. confronta il risultato con quello **atteso**
+3. segnala l'errore se i due valori sono diversi
+
+```mermaid {scale: 0.8, alt: 'Test flow: known input to function, result compared with expected value'}
+flowchart LR
+    A[/Valori noti/] --> B[Funzione da testare]
+    B --> C{Uguale all'atteso?}
+    C -->|Sì| D([Test superato])
+    C -->|No| E([Test fallito])
+```
+
+Ogni volta che si modifica il codice si rilanciano i test: se qualcosa si è rotto, lo si scopre subito.
+
+---
+
+# assert
+
+`assert` (da `assert.h`) controlla una condizione: se è vera il programma continua, se è falsa **si ferma** indicando condizione, file e riga.
+
+```c
+#include <assert.h>
+
+int main(void) {
+    assert(2 + 2 == 4);   // vera: il programma continua
+    assert(2 + 2 == 5);   // falsa: il programma si ferma qui
+    return 0;
+}
+```
+
+- Un test fallito si nota perché il programma termina con un errore
+- Il primo `assert` fallito interrompe il programma: gli altri non vengono eseguiti
+- Con la compilazione in modalità *Release* gli `assert` vengono disattivati: i test si eseguono in *Debug*
+
+---
+layout: two-cols
+
+---
+
+# La funzione da testare
+
+Il modulo `sensor` converte la lettura di un sensore e controlla una soglia.
+
+Sono **funzioni pure**: dato lo stesso ingresso restituiscono sempre lo stesso risultato, senza leggere dalla tastiera né stampare. Per questo sono facili da testare.
+
+::right::
+
+<<< @/snippets/example34/sensor.h c {*}{lines:true}
+
+<<< @/snippets/example34/sensor.c c {*}{lines:true}
+
+---
+
+# Esempio: il file di test
+
+<<< @/snippets/example34/test_sensor.c c {*}{lines:true}
+
+- Si testano i **valori noti** e i **casi limite**: il minimo, il massimo e il valore esattamente sulla soglia
+- `main` restituisce `0` se tutti gli `assert` passano
+
+---
+layout: two-cols
+
+---
+
+# CTest: eseguire i test
+
+Due righe in `CMakeLists.txt` registrano il test; `ctest` lo esegue.
+
+```sh
+ctest
+```
+
+```text
+1/1 Test #1: sensor ......   Passed
+100% tests passed, 0 tests failed out of 1
+```
+
+Se un `assert` fallisce, `ctest` segnala il test come **Failed**. L'IDE mostra i test in un pannello dedicato.
+
+::right::
+
+<<< @/snippets/example34/CMakeLists.txt cmake {*}{lines:true}
+
+---
+
+# Esercizio in coppia: scrivere prima i test
+
+Il *navigator* scrive i test (compresi i casi limite) **prima** che il *driver* scriva la funzione.
+
+- **Base:** aggiungere a `test_sensor.c` un test per un valore intermedio di `adc_to_celsius` (per esempio `2048`)
+- **Standard:** scrivere `is_in_range(value, min, max)` con almeno quattro test, bordi compresi
+- **Sfida:** scrivere `average(const double *values, int n)` e decidere, con un test, che cosa restituire se `n` è 0
+
+---
+
 # Librerie
 
 - In un linguaggio ad alto livello le funzioni di base sono fornite dal linguaggio ( lettura da tastiera, scrittura su schermo, lettura/scrittura da file)
@@ -1050,6 +1058,7 @@ int main(void) {
 - Progetti multi-file usano header (.h) e sorgenti (.c)
 - Include guards prevengono inclusioni multiple
 - CMake automatizza la compilazione di progetti con più file
+- Un test automatico chiama una funzione con valori noti e controlla il risultato (`assert`, `ctest`)
 
 ---
 
@@ -1062,3 +1071,97 @@ int main(void) {
 3. **Documentazione** - commenta cosa fa la funzione, non come
 4. **Limita i parametri** - massimo 4-5 parametri per leggibilità
 5. **Usa const** per parametri che non devono essere modificati
+
+---
+layout: two-cols
+
+---
+
+# Fase 1: Preprocessing
+
+Comando:
+
+```sh
+gcc -E hello.c -o hello.i
+```
+
+**Cosa fa:**
+
+- Espande le direttive `#include`
+- Processa le macro `#define`
+- Rimuove i commenti
+- Gestisce `#ifdef`, `#ifndef`
+
+::right::
+
+**Output:** File `.i` (codice C espanso)
+
+<<< @/snippets/example02/main.i#snippet c {all}{lines:true}
+
+---
+layout: two-cols
+
+---
+
+# Fase 2: Compilazione → Assembly
+
+Comando:
+
+```sh
+gcc -S hello.i -o hello.asm
+```
+
+**Cosa fa:**
+
+- Analizza sintassi e semantica del C
+- Ottimizza il codice
+- Traduce in linguaggio assembly (mnemonico per CPU)
+
+**Output:** File `.s`/`.asm` (assembly leggibile)
+
+::right::
+
+<<< @/snippets/example02/main.asm c {all}{lines:true}
+
+---
+
+# Fase 3: Assemblaggio
+
+Comando:
+
+```sh
+gcc -c hello.c -o hello.o
+```
+
+oppure (da assembly):
+
+```sh
+as hello.asm -o hello.o
+```
+
+**Cosa fa:**
+
+- Converte istruzioni assembly in codice binario (opcodes)
+- Crea la tabella dei simboli (funzioni, variabili globali)
+- Produce codice **relocatable** (indirizzi non ancora definitivi)
+
+**Output:** File `.o` (binario non eseguibile, mancano i link)
+
+---
+
+# Fase 4: Linking
+
+Comando:
+
+```sh
+gcc hello.o -o hello
+```
+
+**Cosa fa:**
+
+- **Risolve i simboli esterni:** collega chiamate a funzioni (`printf`, librerie)
+- **Rialloca indirizzi:** assegna indirizzi di memoria definitivi
+- **Collega librerie:** include codice da librerie statiche o riferimenti a dinamiche
+- **Crea l'entry point:** definisce dove inizia l'esecuzione (`_start` → `main`)
+
+**Output:** File eseguibile (`a.out`, `hello.exe`)

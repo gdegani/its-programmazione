@@ -174,42 +174,218 @@ title: Tabella ASCII
 
 ---
 
----
+# Dal numero al registro
 
-# UNICODE
+Un microcontrollore comanda l'hardware scrivendo **registri**: gruppi di 8, 16 o 32 bit, ognuno con un significato.
 
-- Unicode è uno standard per la rappresentazione e gestione di testi di ogni lingua e simboli utilizzati in tutto il mondo. È stato creato per risolvere i problemi di compatibilità tra i diversi sistemi di codifica (come ASCII o Latin-1).
-- Ogni carattere in Unicode è identificato da un numero unico chiamato code-point. Questi numeri possono essere rappresentati nel computer con varie codifiche, tra cui le più comuni sono UTF-8, UTF-16 e UTF-32.
-- Supporta anche la rappresentazione di alfabeti complessi come il cinese, il giapponese e il coreano.
+Un byte con valore `0xA5`:
 
----
+| bit | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
+| --- | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+| valore | 1 | 0 | 1 | 0 | 0 | 1 | 0 | 1 |
 
-# UNICODE - Codifiche
-
-**UTF-8 (8-bit Unicode Transformation Format)**
-
-- Codifica a lunghezza variabile: usa da 1 a 4 byte per carattere
-- Retrocompatibile con ASCII (i primi 128 caratteri sono identici)
-- Più efficiente per testi in lingue occidentali
-- Standard dominante su Internet (oltre 98% dei siti web)
-
-**UTF-16 (16-bit Unicode Transformation Format)**
-
-- Codifica a lunghezza variabile: usa 2 o 4 byte per carattere
-- Più efficiente per lingue asiatiche (cinese, giapponese, coreano)
-- Utilizzato internamente da Java, C#, Windows e JavaScript
-- Richiede più spazio per testi in lingue occidentali rispetto a UTF-8
+- Una cifra esadecimale corrisponde a **4 bit**: `A` = `1010`, `5` = `0101`
+- Il bit 0 è il meno significativo, a destra
+- In C l'esadecimale si scrive con il prefisso `0x`: `0xA5`, `0x0F`, `0xFF`
 
 ---
 
-# UNICODE
+# Tipi a dimensione fissa: stdint.h
 
-- Gestisce simboli matematici, emoticon e caratteri speciali.
-- È essenziale per l’internazionalizzazione e lo sviluppo di applicazioni moderne, soprattutto con la diffusione di Internet.
-- Esempi di code-point:
-  - Carattere “A” → U+0041
-  - Carattere “😊” → U+1F60A
-  
+La dimensione di `int` dipende dalla macchina: 16 bit su molti microcontrollori, 32 bit su un PC. Per i registri serve una dimensione certa.
+
+```c
+#include <stdint.h>
+```
+
+| Tipo | Bit | Valori |
+| --- | :-: | --- |
+| `uint8_t` | 8 | 0 … 255 |
+| `int8_t` | 8 | -128 … 127 |
+| `uint16_t` | 16 | 0 … 65535 |
+| `int16_t` | 16 | -32768 … 32767 |
+| `uint32_t` | 32 | 0 … 4294967295 |
+| `int32_t` | 32 | -2147483648 … 2147483647 |
+
+Per i registri e per i dati binari si usano i tipi **senza segno** (`uint…`).
+
+---
+
+# Operatori bit a bit
+
+Agiscono sui singoli bit di un intero, un bit alla volta.
+
+| Operatore | Nome | Effetto |
+| :-: | --- | --- |
+| `&` | AND | 1 solo se entrambi i bit sono 1 |
+| `\|` | OR | 1 se almeno un bit è 1 |
+| `^` | XOR | 1 se i bit sono diversi |
+| `~` | NOT | inverte ogni bit |
+| `<<` | shift a sinistra | sposta i bit a sinistra |
+| `>>` | shift a destra | sposta i bit a destra |
+
+⚠️ Non confondere `&` con `&&` e `|` con `||`: i primi lavorano sui bit, i secondi sono operatori logici.
+
+---
+layout: two-cols-header
+
+---
+
+# Tabelle di verità bit a bit
+
+::left::
+
+| A | B | A `&` B |
+| :-: | :-: | :-: |
+| 0 | 0 | 0 |
+| 0 | 1 | 0 |
+| 1 | 0 | 0 |
+| 1 | 1 | 1 |
+
+| A | B | A `\|` B |
+| :-: | :-: | :-: |
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 1 |
+
+::right::
+
+| A | B | A `^` B |
+| :-: | :-: | :-: |
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+| A | `~`A |
+| :-: | :-: |
+| 0 | 1 |
+| 1 | 0 |
+
+---
+
+# Esempi su 8 bit
+
+```text
+  1100 1010            1100 1010            1100 1010
+& 0000 1111          | 0000 1111          ^ 0000 1111
+  ---------            ---------            ---------
+  0000 1010            1100 1111            1100 0101
+```
+
+```text
+~ 1100 1010 = 0011 0101
+```
+
+Gli shift spostano i bit e riempiono con zeri:
+
+```c
+uint8_t x = 0x0B;      // 0000 1011
+x << 2;                // 0010 1100 (0x2C): moltiplica per 4
+x >> 1;                // 0000 0101 (0x05): divide per 2
+1u << 3;               // 0000 1000 (0x08): il bit 3 acceso
+```
+
+---
+
+# Operazioni su un singolo bit
+
+Per agire sul bit `n` di una variabile `reg` si usa una **maschera** `(1u << n)`:
+
+| Operazione | Codice | Effetto |
+| --- | --- | --- |
+| Set (accendere) | `reg \|= (1u << n);` | porta il bit a 1 |
+| Clear (spegnere) | `reg &= ~(1u << n);` | porta il bit a 0 |
+| Toggle (invertire) | `reg ^= (1u << n);` | inverte il bit |
+| Test (leggere) | `if (reg & (1u << n))` | vero se il bit è 1 |
+
+Gli altri bit non cambiano mai.
+
+---
+layout: two-cols
+
+---
+
+# Esempio: byte di stato di una macchina
+
+Ogni bit del byte di stato ha un significato:
+
+| Bit | Significato |
+| :-: | --- |
+| 0 | porta aperta |
+| 1 | emergenza |
+| 2 | motore attivo |
+| 3 | allarme temperatura |
+
+Le maschere hanno un nome, così il codice si legge.
+
+::right::
+
+<<< @/snippets/example31/main.c#snippet1 c {*}{lines:true}
+
+---
+layout: two-cols
+
+---
+
+# Byte di stato: operazioni
+
+<<< @/snippets/example31/main.c#snippet2 c {*}{lines:true}
+
+::right::
+
+Output:
+
+```text
+start          00000000  (0x00)
+motor, door    00000101  (0x05)
+door closed    00000100  (0x04)
+over temp      00001100  (0x0C)
+ALARM: temperature too high
+```
+
+---
+layout: two-cols
+
+---
+
+# Esempio: estrarre i campi da un frame
+
+Una scheda con sensori invia un frame da 16 bit:
+
+| Bit | Campo |
+| :-: | --- |
+| 15 … 12 | numero del sensore (4 bit) |
+| 11 … 0 | valore dell'ADC (12 bit) |
+
+- **Shift** per portare il campo in fondo
+- **Maschera** `&` per tenere solo i suoi bit
+
+::right::
+
+<<< @/snippets/example32/main.c#snippet1 c {*}{lines:true}
+
+---
+layout: two-cols
+
+---
+
+# Esempio: i campi del frame
+
+<<< @/snippets/example32/main.c#snippet2 c {*}{lines:true}
+
+::right::
+
+Output:
+
+```text
+frame     = 0x5A3C
+sensor id = 5
+raw value = 2620
+voltage   = 2.111 V
+new frame = 0x2A3C
+```
 
 ---
 
@@ -372,7 +548,66 @@ Mese corrente = MARZO;  // Tipo Mese invece di enum Mese
 
 ---
 
-# Esercizio 3: Validazione con enum
+# Macchine a stati
+
+Una macchina ha un numero finito di **stati**. Un **evento** la fa passare da uno stato a un altro.
+
+```mermaid {scale: 0.8, alt: 'State machine of a conveyor belt'}
+stateDiagram-v2
+    [*] --> IDLE
+    IDLE --> RUNNING: START
+    RUNNING --> IDLE: STOP
+    RUNNING --> FAULT: FAULT
+    FAULT --> IDLE: RESET
+```
+
+Esempio: il ciclo di un nastro trasportatore.
+
+---
+
+# Macchina a stati in C: stati ed eventi
+
+- Gli **stati** e gli **eventi** sono due `enum`
+- Una funzione riceve lo stato corrente e l'evento e restituisce il nuovo stato
+
+<<< @/snippets/example33/main.c#snippet1 c {*}{lines:true}
+
+---
+
+# Macchina a stati in C: la transizione
+
+Un `switch` sullo stato, un `if` sull'evento:
+
+<<< @/snippets/example33/main.c#snippet3 c {*}{lines:true}
+
+---
+layout: two-cols
+
+---
+
+# Macchina a stati: simulazione
+
+<<< @/snippets/example33/main.c#snippet2 c {*}{lines:true}
+
+::right::
+
+Output:
+
+```text
+start: IDLE
+event 1 -> RUNNING
+event 2 -> FAULT
+event 3 -> FAULT
+event 4 -> IDLE
+event 5 -> RUNNING
+event 6 -> IDLE
+```
+
+L'evento 3 (`START`) in stato `FAULT` viene ignorato: serve prima un `RESET`.
+
+---
+
+# Esercizio: validazione con enum
 
 Crea un sistema di validazione età usando enum:
 
@@ -393,3 +628,38 @@ CategoriaEta classifica_eta(int anni);
 - ANZIANO: età ≥ 65
 
 **Bonus:** Usa switch per stampare un messaggio appropriato
+
+---
+
+# Esercizio in coppia: bit e macchine a stati
+
+Partendo dagli esempi della lezione:
+
+- **Base:** aggiungere al byte di stato un bit "finecorsa raggiunto" e scrivere le istruzioni per accenderlo, spegnerlo e leggerlo
+- **Standard:** scrivere una funzione che estrae dal frame a 16 bit i due campi e li stampa; verificare con `0x1FFF` e `0xA001`
+- **Sfida:** aggiungere alla macchina a stati lo stato `PAUSED` (da `RUNNING` con l'evento `PAUSE`, ritorno con `RESUME`) e simulare una sequenza di eventi
+
+Ogni coppia lavora sul proprio portatile; ruoli di *driver* e *navigator* a rotazione.
+
+---
+
+# volatile
+
+I registri hardware e le variabili modificate da un interrupt possono cambiare **fuori dal controllo del programma**.
+
+<<< @/snippets/example35/main.c#snippet1 c {*}{lines:true}
+
+- Senza `volatile` il compilatore, ottimizzando, potrebbe leggere la variabile una volta sola e non accorgersi del cambiamento
+- Per ora ci basta riconoscerlo: lo ritroverete programmando microcontrollori
+
+---
+
+# Riepilogo: bit, enum e macchine a stati
+
+- **Esadecimale**: una cifra = 4 bit; prefisso `0x`
+- **`stdint.h`**: tipi a dimensione fissa (`uint8_t`, `uint16_t`, `uint32_t`)
+- **Operatori**: `&`, `|`, `^`, `~`, `<<`, `>>`
+- **Un bit**: set `|=`, clear `&= ~`, toggle `^=`, test `&`, sempre con una maschera `(1u << n)`
+- **Campi di un frame**: shift e maschera
+- **`enum`** per stati ed eventi; **`switch`** per le transizioni
+- **`volatile`** per i valori che cambiano fuori dal programma
