@@ -4,3 +4,4 @@ project(example30 C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(example30 main.c)
+configure_file(readings.csv readings.csv COPYONLY)
