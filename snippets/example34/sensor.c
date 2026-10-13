@@ -1,6 +1,6 @@
 #include "sensor.h"
 
-double adc_to_celsius(uint16_t raw) {
+double adc_to_celsius(int raw) {
     return raw * 100.0 / 4095.0;
 }
 

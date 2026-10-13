@@ -16,13 +16,13 @@ Ing. Giancarlo Degani
 Immaginiamo di dover gestire 100 letture di temperatura di un sensore:
 
 ```c
-// ❌ Senza vettori - IMPRATICABILE!
+// ❌ Without arrays - IMPRACTICAL!
 double temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10;
 double temp11, temp12, temp13, temp14, temp15, temp16, temp17, temp18, temp19, temp20;
-// ... altre 80 variabili!
+// ... 80 more variables!
 
-// Calcolare la media?
-double media = (temp1 + temp2 + temp3 + ... + temp100) / 100;  // ❌ Impraticabile!
+// How do we compute the average?
+double average = (temp1 + temp2 + ... + temp100) / 100;  // ❌ Impractical!
 ```
 
 **Problema**: Impossibile gestire grandi quantità di dati dello stesso tipo!
@@ -32,21 +32,21 @@ double media = (temp1 + temp2 + temp3 + ... + temp100) / 100;  // ❌ Impraticab
 # La soluzione: Vettori (Arrays)
 
 ```c
-// ✅ Con i vettori - SEMPLICE!
+// ✅ With arrays - SIMPLE!
 double temp[100];
 
-// Lettura delle misure
+// Read the readings
 for (int i = 0; i < 100; i++) {
-    printf("Inserisci misura %d: ", i + 1);
+    printf("Enter reading %d: ", i + 1);
     scanf("%lf", &temp[i]);
 }
 
-// Calcolo della media
-double somma = 0;
+// Compute the average
+double sum = 0;
 for (int i = 0; i < 100; i++) {
-    somma += temp[i];
+    sum += temp[i];
 }
-double media = somma / 100.0;
+double average = sum / 100.0;
 ```
 
 **Soluzione**: Un solo nome per gestire molti valori dello stesso tipo!
