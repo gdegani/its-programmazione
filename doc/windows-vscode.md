@@ -153,7 +153,7 @@ Provare almeno questi casi, perché sono quelli in cui Windows si comporta in mo
 | `gcc` non riconosciuto | PATH non aggiornato o finestra non riaperta | Ripetere il passo 3 e riaprire le finestre |
 | CMake non trova alcun kit | Toolchain non nel PATH di VS Code | Chiudere VS Code del tutto e riaprirlo da una nuova PowerShell |
 | `pacman` non trova i pacchetti | Database non aggiornato | Rieseguire `pacman -Syu` in **MSYS2 UCRT64** |
-| Errore di permessi nell'esecuzione | L'antivirus blocca l'eseguibile appena creato | Escludere la cartella degli esempi da Windows Defender |
+| Errore di permessi nell'esecuzione | L'antivirus blocca l'eseguibile appena creato | Controllare la notifica di Windows Security e chiedere all'amministratore di autorizzare il singolo eseguibile; non escludere l'intera cartella |
 | Il debug non parte | `gdb` non trovato | Usare il file `.vscode/settings.json` del passo 7 |
 | Il terminale mostra solo l'output a fine programma | Buffer di `stdout` con output reindirizzato | Eseguire dal terminale integrato, non da *Debug Console*; annotare il caso |
 
