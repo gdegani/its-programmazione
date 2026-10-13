@@ -64,14 +64,12 @@ level: 2
 
 ---
 level: 2
-
 ---
 
 # Riferimenti
 
 - <https://cppreference.com/w/c.html>
 - <https://en.wikibooks.org/wiki/C_Programming>
-- <https://archive.org/details/Apress.Beginning.C.5th.Edition.2013>
 
 ---
 level: 2
