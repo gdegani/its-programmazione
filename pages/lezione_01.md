@@ -64,6 +64,7 @@ level: 2
 
 ---
 level: 2
+
 ---
 
 # Riferimenti
@@ -173,6 +174,7 @@ level: 2
 <br>
 <br>
 <br>
+
 ```mermaid {scale: 1.2, alt: 'A diagram'}
 flowchart LR
   A[/Dati in ingresso/] --> B[Computer]
@@ -190,6 +192,7 @@ level: 2
 <br>
 <br>
 <br>
+
 ```mermaid {scale: 1.2, alt: 'A diagram'}
 flowchart LR
   A[/Base=7, Altezza=2/] --> B[Computer]
@@ -750,6 +753,7 @@ Dato un numero intero, calcolarne il fattoriale.
 <br>
 <br>
 <br>
+
 $$
 n! =
 \begin{cases}
