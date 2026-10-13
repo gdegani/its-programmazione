@@ -31,7 +31,7 @@ La classe ha preparazioni diverse: chi parte da zero, chi ha già nozioni di ele
 | **5** | 4 | **Funzioni, puntatori e test** | • Dichiarazione e definizione di funzioni<br>• Parametri, valori di ritorno, passaggio per valore<br>• Puntatori: operatori `&` e `*`<br>• Header, include guards, progetti multi-file<br>• Build: preprocessing, linking, CMake<br>• Test automatici: `assert` e CTest | `lezione_05`, Example 34 |
 | **6** | 4 | **Bit, registri e macchine a stati** | • Binario, esadecimale, complemento a 2<br>• `stdint.h`: tipi a dimensione fissa<br>• Operatori bit a bit e maschere<br>• `enum` e macchina a stati con `switch`<br>• Esempi: byte di stato e frame di un sensore | `lezione_06`, Examples 31-33, 35 |
 | **7** | 4 | **Strutture, liste e file: gestione dati** | • `struct` e `typedef`<br>• Allocazione dinamica: `malloc` e `free`<br>• Liste concatenate<br>• Lettura di dati di macchina da file CSV<br>• Chiusura del progetto | `lezione_07`, Examples 24, 30 |
-| **8** | 2 | **Ripasso e verifica** | • Ripasso guidato<br>• Verifica finale | `lezione_08` |
+| **8** | 2 | **Verifica finale e discussione** | • Test finale a risposta multipla<br>• Correzione e discussione con la classe | `lezione_08` |
 
 ### Approfondimento facoltativo
 
