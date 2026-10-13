@@ -886,9 +886,29 @@ Le misure del file `readings.csv` vengono caricate in una lista concatenata di `
 
 ---
 
-# Esempio: lettura del file e statistiche
+# Esempio: inserimento in testa
 
-<<< @/snippets/example30/main.c#snippet2 c {*}{lines:true,maxHeight:'420px'}
+<<< @/snippets/example30/main.c#snippet3 c {*}{lines:true}
+
+---
+
+# Esempio: liberare la lista
+
+Ogni nodo allocato con `malloc` va liberato con `free`.
+
+<<< @/snippets/example30/main.c#snippet4 c {*}{lines:true}
+
+---
+
+# Esempio: lettura del file
+
+<<< @/snippets/example30/main.c#snippet2 c {*}{lines:true}
+
+---
+
+# Esempio: statistiche e pulizia
+
+<<< @/snippets/example30/main.c#snippet5 c {*}{lines:true}
 
 ---
 layout: two-cols

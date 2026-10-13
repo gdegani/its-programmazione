@@ -625,6 +625,100 @@ flowchart LR
 **4. Linker** → Collega file oggetto e librerie → eseguibile finale
 
 ---
+layout: two-cols
+
+---
+
+# Fase 1: Preprocessing
+
+Comando:
+
+```sh
+gcc -E hello.c -o hello.i
+```
+
+**Cosa fa:**
+
+- Espande le direttive `#include`
+- Processa le macro `#define`
+- Rimuove i commenti
+- Gestisce `#ifdef`, `#ifndef`
+
+::right::
+
+**Output:** File `.i` (codice C espanso)
+
+<<< @/snippets/example02/main.i#snippet c {all}{lines:true}
+
+---
+layout: two-cols
+
+---
+
+# Fase 2: Compilazione → Assembly
+
+Comando:
+
+```sh
+gcc -S hello.i -o hello.asm
+```
+
+**Cosa fa:**
+
+- Analizza sintassi e semantica del C
+- Ottimizza il codice
+- Traduce in linguaggio assembly (mnemonico per CPU)
+
+**Output:** File `.s`/`.asm` (assembly leggibile)
+
+::right::
+
+<<< @/snippets/example02/main.asm c {all}{lines:true}
+
+---
+
+# Fase 3: Assemblaggio
+
+Comando:
+
+```sh
+gcc -c hello.c -o hello.o
+```
+
+oppure (da assembly):
+
+```sh
+as hello.asm -o hello.o
+```
+
+**Cosa fa:**
+
+- Converte istruzioni assembly in codice binario (opcodes)
+- Crea la tabella dei simboli (funzioni, variabili globali)
+- Produce codice **relocatable** (indirizzi non ancora definitivi)
+
+**Output:** File `.o` (binario non eseguibile, mancano i link)
+
+---
+
+# Fase 4: Linking
+
+Comando:
+
+```sh
+gcc hello.o -o hello
+```
+
+**Cosa fa:**
+
+- **Risolve i simboli esterni:** collega chiamate a funzioni (`printf`, librerie)
+- **Rialloca indirizzi:** assegna indirizzi di memoria definitivi
+- **Collega librerie:** include codice da librerie statiche o riferimenti a dinamiche
+- **Crea l'entry point:** definisce dove inizia l'esecuzione (`_start` → `main`)
+
+**Output:** File eseguibile (`a.out`, `hello.exe`)
+
+---
 
 # Build systems: automatizzare la compilazione
 
@@ -835,8 +929,8 @@ Ogni volta che si modifica il codice si rilanciano i test: se qualcosa si è rot
 #include <assert.h>
 
 int main(void) {
-    assert(2 + 2 == 4);   // vera: il programma continua
-    assert(2 + 2 == 5);   // falsa: il programma si ferma qui
+    assert(2 + 2 == 4);   // true: the program continues
+    assert(2 + 2 == 5);   // false: the program stops here
     return 0;
 }
 ```
@@ -1073,97 +1167,3 @@ int main(void) {
 3. **Documentazione** - commenta cosa fa la funzione, non come
 4. **Limita i parametri** - massimo 4-5 parametri per leggibilità
 5. **Usa const** per parametri che non devono essere modificati
-
----
-layout: two-cols
-
----
-
-# Fase 1: Preprocessing
-
-Comando:
-
-```sh
-gcc -E hello.c -o hello.i
-```
-
-**Cosa fa:**
-
-- Espande le direttive `#include`
-- Processa le macro `#define`
-- Rimuove i commenti
-- Gestisce `#ifdef`, `#ifndef`
-
-::right::
-
-**Output:** File `.i` (codice C espanso)
-
-<<< @/snippets/example02/main.i#snippet c {all}{lines:true}
-
----
-layout: two-cols
-
----
-
-# Fase 2: Compilazione → Assembly
-
-Comando:
-
-```sh
-gcc -S hello.i -o hello.asm
-```
-
-**Cosa fa:**
-
-- Analizza sintassi e semantica del C
-- Ottimizza il codice
-- Traduce in linguaggio assembly (mnemonico per CPU)
-
-**Output:** File `.s`/`.asm` (assembly leggibile)
-
-::right::
-
-<<< @/snippets/example02/main.asm c {all}{lines:true}
-
----
-
-# Fase 3: Assemblaggio
-
-Comando:
-
-```sh
-gcc -c hello.c -o hello.o
-```
-
-oppure (da assembly):
-
-```sh
-as hello.asm -o hello.o
-```
-
-**Cosa fa:**
-
-- Converte istruzioni assembly in codice binario (opcodes)
-- Crea la tabella dei simboli (funzioni, variabili globali)
-- Produce codice **relocatable** (indirizzi non ancora definitivi)
-
-**Output:** File `.o` (binario non eseguibile, mancano i link)
-
----
-
-# Fase 4: Linking
-
-Comando:
-
-```sh
-gcc hello.o -o hello
-```
-
-**Cosa fa:**
-
-- **Risolve i simboli esterni:** collega chiamate a funzioni (`printf`, librerie)
-- **Rialloca indirizzi:** assegna indirizzi di memoria definitivi
-- **Collega librerie:** include codice da librerie statiche o riferimenti a dinamiche
-- **Crea l'entry point:** definisce dove inizia l'esecuzione (`_start` → `main`)
-
-**Output:** File eseguibile (`a.out`, `hello.exe`)

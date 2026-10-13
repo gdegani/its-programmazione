@@ -8,7 +8,9 @@ typedef struct Reading {
     double value;
     struct Reading *next;
 } Reading;
+// #endregion snippet1
 
+// #region snippet3
 // Insert a new reading at the head of the list
 Reading *push(Reading *head, long timestamp, int sensor_id, double value) {
     Reading *node = malloc(sizeof(Reading));
@@ -22,7 +24,9 @@ Reading *push(Reading *head, long timestamp, int sensor_id, double value) {
     node->next = head;
     return node;
 }
+// #endregion snippet3
 
+// #region snippet4
 void free_list(Reading *head) {
     while (head != NULL) {
         Reading *next = head->next;
@@ -30,7 +34,7 @@ void free_list(Reading *head) {
         head = next;
     }
 }
-// #endregion snippet1
+// #endregion snippet4
 
 // #region snippet2
 int main(void) {
@@ -57,7 +61,9 @@ int main(void) {
         return EXIT_FAILURE;
     }
     fclose(file);
+    // #endregion snippet2
 
+    // #region snippet5
     int count = 0;
     double sum = 0.0;
     double max = 0.0;
@@ -75,5 +81,5 @@ int main(void) {
 
     free_list(head);
     return EXIT_SUCCESS;
+    // #endregion snippet5
 }
-// #endregion snippet2

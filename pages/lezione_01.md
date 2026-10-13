@@ -254,11 +254,11 @@ layout: two-cols
 
 ```mermaid {scale: 0.9, alt: 'A diagram'}
 flowchart TD
-    Start([Start]) --> Condition{Is condition verified?}
-    Condition -- Yes --> Action1[Action if True]
-    Condition -- No --> Action2[Action if False]
-    Action1 --> End([End])
-    Action2 --> End([End])
+    Start([Inizio]) --> Condition{La condizione è verificata?}
+    Condition -- Sì --> Action1[Azione se vera]
+    Condition -- No --> Action2[Azione se falsa]
+    Action1 --> End([Fine])
+    Action2 --> End([Fine])
 ```
 
 ---
@@ -659,18 +659,18 @@ $$
 
 ```mermaid {scale: 0.5, alt: 'A diagram'}
 flowchart LR
-    Start([Start]) --> InputNum[/Input n/]
-    InputNum --> Initialize[Set factorial = 1]
-    Initialize --> Check{Is n >= 0?}
-    Check -- No --> Error[/Display "Invalid input. n must be non-negative."/]
-    Error ---> End([End])
-    Check -- Yes --> LoopStart[Set i = 1]
-    LoopStart --> LoopCheck{Is i <= n?}
-    LoopCheck -- Yes --> Multiply[Set factorial = factorial * i]
+    Start([Inizio]) --> InputNum[/Leggi n/]
+    InputNum --> Initialize[fattoriale = 1]
+    Initialize --> Check{n >= 0?}
+    Check -- No --> Error[/Mostra: n deve essere non negativo/]
+    Error ---> End([Fine])
+    Check -- Sì --> LoopStart[i = 1]
+    LoopStart --> LoopCheck{i <= n?}
+    LoopCheck -- Sì --> Multiply[fattoriale = fattoriale * i]
     Multiply --> Increment[Incrementa i di 1]
     Increment --> LoopCheck
-    LoopCheck -- No --> OutputResult[/Output factorial/]
-    OutputResult ---> End([End])
+    LoopCheck -- No --> OutputResult[/Mostra fattoriale/]
+    OutputResult ---> End([Fine])
 ```
 
 ---

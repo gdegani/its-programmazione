@@ -613,19 +613,19 @@ Crea un sistema di validazione età usando enum:
 
 ```c
 typedef enum {
-    MINORE,
-    ADULTO,
-    ANZIANO
-} CategoriaEta;
+    MINOR,
+    ADULT,
+    SENIOR
+} AgeCategory;
 
-CategoriaEta classifica_eta(int anni);
+AgeCategory classify_age(int years);
 ```
 
 **Requisiti:**
 
-- MINORE: età < 18
-- ADULTO: 18 ≤ età < 65
-- ANZIANO: età ≥ 65
+- `MINOR`: età < 18
+- `ADULT`: 18 ≤ età < 65
+- `SENIOR`: età ≥ 65
 
 **Bonus:** Usa switch per stampare un messaggio appropriato
 
