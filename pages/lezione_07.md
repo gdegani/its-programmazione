@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # Cos'è una struttura?
 
@@ -39,6 +42,9 @@ struct Student {
 
 struct Student studente1, studente2;  // Due variabili dello stesso tipo
 ```
+
+---
+level: 2
 
 ---
 
@@ -71,6 +77,9 @@ struct Rettangolo {
 **Nota**: il `;` finale dopo la `}` è obbligatorio!
 
 ---
+level: 2
+
+---
 
 # Inizializzazione di una struttura
 
@@ -92,6 +101,9 @@ struct Student s2 = {"Anna"}; // eta=0, voto=0.0
 // Dichiarazione senza inizializzazione
 struct Student s3;
 ```
+
+---
+level: 2
 
 ---
 
@@ -122,6 +134,9 @@ s1.eta++;
 **Nota sulla sicurezza**: `strcpy` può causare buffer overflow se la stringa sorgente è più lunga del buffer destinazione. In codice di produzione, preferire `strncpy` o controllare sempre la dimensione!
 
 ---
+level: 2
+
+---
 
 # Esempio completo: struct Student
 
@@ -144,6 +159,9 @@ int main() {
     return 0;
 }
 ```
+
+---
+level: 2
 
 ---
 
@@ -172,6 +190,9 @@ int main() {
 ```
 
 ---
+level: 2
+
+---
 
 # Strutture e funzioni
 
@@ -196,6 +217,9 @@ int main() {
 **Nota**: passare per valore copia tutta la struttura (può essere costoso per strutture grandi!).
 
 ---
+level: 2
+
+---
 
 # Operatori per le strutture
 
@@ -218,6 +242,9 @@ ptr->eta = 20;           // Equivale a (*ptr).eta = 20
 ```
 
 **Regola**: usa `.` con variabili, `->` con puntatori.
+
+---
+level: 2
 
 ---
 
@@ -249,6 +276,7 @@ Student s1;  // Più semplice!
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -291,6 +319,9 @@ int main() {
 ```
 
 ---
+level: 2
+
+---
 
 # Files in C: concetto di stream
 
@@ -311,6 +342,9 @@ Per lavorare con i file si usa un puntatore di tipo `FILE *`:
 ```c
 FILE *file;
 ```
+
+---
+level: 2
 
 ---
 
@@ -337,6 +371,9 @@ if (file == NULL) {
 **Importante**: controlla sempre se `fopen()` restituisce `NULL` (file non trovato, permessi insufficienti, ecc.).
 
 ---
+level: 2
+
+---
 
 # Modalità di apertura dei file
 
@@ -356,6 +393,9 @@ FILE *f1 = fopen("input.txt", "r");    // Solo lettura
 FILE *f2 = fopen("output.txt", "w");   // Scrittura (sovrascrive)
 FILE *f3 = fopen("log.txt", "a");      // Aggiunge alla fine
 ```
+
+---
+level: 2
 
 ---
 
@@ -385,6 +425,9 @@ fclose(file);  // Chiude il file
 - Libera le risorse di sistema
 - Garantisce che i dati vengano scritti su disco
 - Previene perdite di dati
+
+---
+level: 2
 
 ---
 
@@ -418,6 +461,9 @@ fclose(file);
 ```
 
 ---
+level: 2
+
+---
 
 # Lettura formattata: fscanf()
 
@@ -447,6 +493,9 @@ fclose(file);
 **Nota**: `fscanf()` restituisce il numero di elementi letti con successo.
 
 ---
+level: 2
+
+---
 
 # Scrittura formattata: fprintf()
 
@@ -471,6 +520,9 @@ fprintf(file, "%-10s %-5d\n", "Anna", 30);
 
 fclose(file);
 ```
+
+---
+level: 2
 
 ---
 
@@ -503,6 +555,9 @@ if (ferror(file)) {
 ```
 
 ---
+level: 2
+
+---
 
 # Leggere una riga e scomporla: fgets() + sscanf()
 
@@ -525,6 +580,9 @@ while (fgets(line, sizeof(line), file) != NULL) {
 - Formato del file `readings.csv`: `timestamp;sensor_id;value`
 
 ---
+level: 2
+
+---
 
 # Riepilogo: strutture
 
@@ -542,6 +600,9 @@ while (fgets(line, sizeof(line), file) != NULL) {
 - Per rappresentare **entità complesse** (studente, punto, rettangolo, ...)
 - Per **raggruppare dati correlati**
 - Per **migliorare la leggibilità** del codice
+
+---
+level: 2
 
 ---
 
@@ -563,6 +624,9 @@ while (fgets(line, sizeof(line), file) != NULL) {
 - Usa `perror()` per messaggi di errore chiari
 
 ---
+level: 2
+
+---
 
 # Allocazione della memoria
 
@@ -573,12 +637,18 @@ while (fgets(line, sizeof(line), file) != NULL) {
 - **Deallocare** memoria significa rilasciare questa memoria al sistema operativo per renderla disponibile ad altri programmi
 
 ---
+level: 2
+
+---
 
 # Allocazione statica
 
 - Usata per variabili globali
 - Avviene durante la compilazione
 - Non può essere rilasciata o deallocata durante l’esecuzione del programma
+
+---
+level: 2
 
 ---
 
@@ -589,12 +659,18 @@ while (fgets(line, sizeof(line), file) != NULL) {
 - Viene gestita automaticamente dal compilatore
 
 ---
+level: 2
+
+---
 
 # Allocazione dinamica
 
 - La memoria viene allocata a run-time
 - Può essere deallocata a run-time
 - La responsabilità della deallocazione è del programmatore
+
+---
+level: 2
 
 ---
 
@@ -604,6 +680,9 @@ while (fgets(line, sizeof(line), file) != NULL) {
 - Restituiscono l’indirizzo di memoria (di tipo puntatore-a-void) del primo byte del blocco
 - Il blocco di byte non ha di per sé alcun tipo, il cast sul puntatore restituito fa sì che il blocco di byte sia considerato dal compilatore come avente il tipo indicato nel cast
 - Non si può applicare l’operatore **sizeof** a un blocco di memoria allocato dinamicamente in quanto sizeof viene valutato durante la compilazione, non durante l'esecuzione.
+
+---
+level: 2
 
 ---
 
@@ -617,6 +696,9 @@ while (fgets(line, sizeof(line), file) != NULL) {
   - The realloc() function changes the size of the memory block pointed to by ptr to size bytes, preserving the existing contents up to the minimum of the old and new sizes; if ptr is NULL, realloc() behaves like malloc().
 - **void free(void \*ptr);**
   - The free() function deallocates the memory allocation pointed to by ptr. If ptr is a NULL pointer, no operation is performed.
+
+---
+level: 2
 
 ---
 
@@ -646,6 +728,9 @@ free(p);
 ```
 
 ---
+level: 2
+
+---
 
 # Esempi di allocazione
 
@@ -671,6 +756,9 @@ p[12] = 19;
 ```c
 free(p);
 ```
+
+---
+level: 2
 
 ---
 
@@ -703,6 +791,9 @@ p[12].y = 2.5;
 ```c
 free(p);
 ```
+
+---
+level: 2
 
 ---
 
@@ -752,6 +843,7 @@ int main() {
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -762,16 +854,25 @@ layout: two-cols
 <<< @/snippets/example23/main.c c {all}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Esempio
 
 <<< @/snippets/example22/main.c#part1 c {all}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Esempio
 
 <<< @/snippets/example22/main.c#part2 c {all}{lines:true, startLine:17}
+
+---
+level: 2
 
 ---
 
@@ -787,6 +888,9 @@ Si utilizzi una funzione per l’ordinamento. Il programma, per allocare un vett
 - scrive il file di output con il contenuto del vettore riordinato
 
 ---
+level: 2
+
+---
 
 # Liste
 
@@ -794,6 +898,9 @@ Si utilizzi una funzione per l’ordinamento. Il programma, per allocare un vett
 - Il collegamento è costituito da un puntatore all’area di memoria contenente l’elemento successivo della lista
 
 ![Liste](/list1.png)
+
+---
+level: 2
 
 ---
 
@@ -805,6 +912,7 @@ Si utilizzi una funzione per l’ordinamento. Il programma, per allocare un vett
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -821,12 +929,18 @@ layout: two-cols
 <<< @/snippets/example24/simple_list.c#snippet1 c {*}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Inserimento in testa alla lista 1
 
 Situazione iniziale con una lista non vuota
 
 ![Inserimento in testa alla lista](/list2.png)
+
+---
+level: 2
 
 ---
 
@@ -837,6 +951,9 @@ Creo una nuova variabile per contenere il nuovo elemento della lista
 ![Inserimento in testa alla lista](/list3.png)
 
 ---
+level: 2
+
+---
 
 # Inserimento in testa alla lista 3
 
@@ -845,12 +962,18 @@ Copio il valore ed il puntatore alla testa della lista nel nuovo elemento
 ![Inserimento in testa alla lista](/list4.png)
 
 ---
+level: 2
+
+---
 
 # Inserimento in testa alla lista 4
 
 Cambio il valore di Head
 
 ![Inserimento in testa alla lista](/list5.png)
+
+---
+level: 2
 
 ---
 
@@ -865,6 +988,7 @@ Cambio il valore di Head
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -885,10 +1009,16 @@ Le misure del file `readings.csv` vengono caricate in una lista concatenata di `
 <<< @/snippets/example30/main.c#snippet1 c {*}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Esempio: inserimento in testa
 
 <<< @/snippets/example30/main.c#snippet3 c {*}{lines:true}
+
+---
+level: 2
 
 ---
 
@@ -899,10 +1029,16 @@ Ogni nodo allocato con `malloc` va liberato con `free`.
 <<< @/snippets/example30/main.c#snippet4 c {*}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Esempio: lettura del file
 
 <<< @/snippets/example30/main.c#snippet2 c {*}{lines:true}
+
+---
+level: 2
 
 ---
 
@@ -912,6 +1048,7 @@ Ogni nodo allocato con `malloc` va liberato con `free`.
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -932,6 +1069,9 @@ layout: two-cols
 </Transform>
 
 ---
+level: 2
+
+---
 
 # Esempio di menù
 
@@ -949,6 +1089,9 @@ x. Exit
 Scelta:
 
 ```
+
+---
+level: 2
 
 ---
 
@@ -973,10 +1116,16 @@ Scelta:
 ```
 
 ---
+level: 2
+
+---
 
 # Soluzione 1/7
 
 <<< @/snippets/example24/simple_list.c#snippet1 c
+
+---
+level: 2
 
 ---
 
@@ -985,10 +1134,16 @@ Scelta:
 <<< @/snippets/example24/simple_list.c#snippet2 c
 
 ---
+level: 2
+
+---
 
 # Soluzione 3/7
 
 <<< @/snippets/example24/simple_list.c#snippet3 c
+
+---
+level: 2
 
 ---
 
@@ -997,10 +1152,16 @@ Scelta:
 <<< @/snippets/example24/simple_list.c#snippet4 c
 
 ---
+level: 2
+
+---
 
 # Soluzione 5/7
 
 <<< @/snippets/example24/simple_list.c#snippet5 c
+
+---
+level: 2
 
 ---
 
@@ -1009,10 +1170,16 @@ Scelta:
 <<< @/snippets/example24/simple_list.c#snippet6 c
 
 ---
+level: 2
+
+---
 
 # Soluzione 7/7
 
 <<< @/snippets/example24/simple_list.c#snippet7 c
+
+---
+level: 2
 
 ---
 
@@ -1021,6 +1188,9 @@ Scelta:
 Situazione iniziale con una lista non vuota
 
 ![Rimozione dalla testa](/list7.png)
+
+---
+level: 2
 
 ---
 
@@ -1033,6 +1203,9 @@ Situazione iniziale con una lista non vuota
 ![Rimozione dalla testa](/list8.png)
 
 </Transform>
+
+---
+level: 2
 
 ---
 

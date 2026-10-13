@@ -10,6 +10,9 @@ coverDate:
 Ing. Giancarlo Degani
 
 ---
+level: 2
+
+---
 
 # Perché abbiamo bisogno dei vettori?
 
@@ -26,6 +29,9 @@ double average = (temp1 + temp2 + ... + temp100) / 100;  // ❌ Impractical!
 ```
 
 **Problema**: Impossibile gestire grandi quantità di dati dello stesso tipo!
+
+---
+level: 2
 
 ---
 
@@ -52,6 +58,9 @@ double average = sum / 100.0;
 **Soluzione**: Un solo nome per gestire molti valori dello stesso tipo!
 
 ---
+level: 2
+
+---
 
 # Vettori
 
@@ -76,6 +85,9 @@ int numeri[ 3 ] = { 0, 1, 2 };
 - L'ultimo elemento ha indice N-1 ( N è la dimensione del vettore )
 
 ---
+level: 2
+
+---
 
 # Vettori
 
@@ -96,6 +108,7 @@ x = vett[4] * 5;
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -140,6 +153,7 @@ block-beta
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -169,6 +183,9 @@ for (i=N-1; i>=0; i--){
 </Transform>
 
 ---
+level: 2
+
+---
 
 # Operazioni comuni con i vettori
 
@@ -187,6 +204,9 @@ printf("Massimo: %d\n", max);  // Output: 9
 ```
 
 ---
+level: 2
+
+---
 
 # Operazioni comuni con i vettori
 
@@ -203,6 +223,9 @@ for (int i = 0; i < 5/2; i++) {
 }
 // Risultato: {5, 4, 3, 2, 1}
 ```
+
+---
+level: 2
 
 ---
 
@@ -232,6 +255,9 @@ for (int i = 0; i < 5; i++) {
 ```
 
 ---
+level: 2
+
+---
 
 # Errori comuni con i vettori
 
@@ -249,6 +275,9 @@ int vett[5] = {0};  // ✅ Tutti gli elementi a 0
 ```
 
 ---
+level: 2
+
+---
 
 # Esercizi
 
@@ -259,6 +288,7 @@ int vett[5] = {0};  // ✅ Tutti gli elementi a 0
 layout: figure-side
 figureUrl: "/Sieve_of_Eratosthenes_animation.gif"
 figureCaption: "source: wikipedia.org"
+level: 2
 
 ---
 
@@ -271,16 +301,25 @@ Il crivello di [Eratostene](https://it.wikipedia.org/wiki/Crivello_di_Eratostene
 - si passa al successivo numero non cancellato e si ripete l'operazione con i numeri che seguono
 
 ---
+level: 2
+
+---
 
 # Esercizio
 
 Scrivere un programma che richieda un numero n positivo e, usando il crivello di Eratostene, trovi e stampi i numeri primi minori o uguali a n *(vedi esempio example08)*.
 
 ---
+level: 2
+
+---
 
 # Soluzione crivello di Eratostene
 
 <<< @/snippets/example08/main.c c {*}{lines:true,maxHeight:'400px'}
+
+---
+level: 2
 
 ---
 
@@ -307,6 +346,9 @@ int matrice [ 5 ][ 10 ];
 ```
 
 ---
+level: 2
+
+---
 
 # Matrici
 
@@ -327,6 +369,9 @@ for (r=0; r<RIGHE; r++)
 </Transform>
 
 ---
+level: 2
+
+---
 
 # Operazioni con le matrici
 
@@ -342,6 +387,9 @@ for (int c = 0; c < 4; c++) {
 }
 printf("Somma riga %d: %d\n", riga, somma);  // Output: 26
 ```
+
+---
+level: 2
 
 ---
 
@@ -362,6 +410,9 @@ for (int r = 0; r < 2; r++) {
 ```
 
 ---
+level: 2
+
+---
 
 # Operazioni con le matrici
 
@@ -379,6 +430,7 @@ printf("Somma diagonale: %d\n", somma_diag);  // Output: 15 (1+5+9)
 
 ---
 layout: two-cols
+level: 2
 
 ---
 
@@ -406,6 +458,9 @@ int matrice [2][3] = {1,2,3,4,5,6};
 |**1**|4|5|6|
 
 ---
+level: 2
+
+---
 
 # Matrici
 
@@ -419,6 +474,9 @@ int matrice [DIM_1][DIM_2]...[DIM_N] ;
 - Non è possibile copiare o confrontare due
 generici vettori (multidimensionali) usando gli
 operatori = o == sui nomi dei vettori stessi
+
+---
+level: 2
 
 ---
 
@@ -442,6 +500,9 @@ char character = 0x41;  // assegnazione con codice ASCII esadecimale
 </Transform>
 
 ---
+level: 2
+
+---
 
 # Caratteri
 
@@ -457,6 +518,9 @@ char character = 0x41;  // assegnazione con codice ASCII esadecimale
   - \\t - tabulazione
 
 ---
+level: 2
+
+---
 
 # Stringhe
 
@@ -468,6 +532,9 @@ char character = 0x41;  // assegnazione con codice ASCII esadecimale
 |---|---|---|
 |Null|0|0x00|
 |'0' (zero)|48|0x30|
+
+---
+level: 2
 
 ---
 
@@ -482,6 +549,9 @@ Esempio:
 |**Char**|H|e|l|l|o|!|**\0**|
 |**Dec**|72|101|108|108|111|33|**0**|
 |**Hex**|48|65|6C|6C|6F|21|**0**|
+
+---
+level: 2
 
 ---
 
@@ -501,6 +571,9 @@ Esempi:
 
 - Le stringhe variabili sono vettori di char di dimensione nota al momento della compilazione.
 - il vettore deve contenere anche il terminatore null.
+
+---
+level: 2
 
 ---
 
@@ -526,6 +599,9 @@ char str[MAX_LENGHT+1] = {‘H’,’e’,’l’,’l’,’o’} ;
   - str\[1\] è il secondo carattere
 
 ---
+level: 2
+
+---
 
 # Stringhe variabili
 
@@ -534,6 +610,9 @@ char str[MAX_LENGHT+1] = {‘H’,’e’,’l’,’l’,’o’} ;
   - "a" è una stringa di 2 char, il carattere 'a' ed il terminatore \0
 - Come per i vettori, il nome della stringa rappresenta per il compilatore una variabile contenente l'indirizzo di memoria del primo carattere della stringa.
 - Una stringa non può essere copiata con l'operatore '=', devo usare delle funzioni apposite.
+
+---
+level: 2
 
 ---
 
@@ -553,6 +632,9 @@ scanf("%s", nome);  // Può sovrascrivere memoria adiacente!
 char nome[10];
 scanf("%9s", nome);  // ✅ Legge al massimo 9 caratteri + \0
 ```
+
+---
+level: 2
 
 ---
 
@@ -575,6 +657,9 @@ fgets(buffer, 50, stdin);  // ✅ Sicuro: specifica la dimensione massima
 ```
 
 ---
+level: 2
+
+---
 
 # ⚠️ Sicurezza con le stringhe
 
@@ -593,6 +678,7 @@ fgets(buffer, 50, stdin);  // ✅ Sicuro: specifica la dimensione massima
 layout: figure
 figureCaption: "source: cpprefence.com"
 figureUrl: /string_ctype.png
+level: 2
 
 ---
 
@@ -604,10 +690,14 @@ layout: figure
 figureCaption: "source: cpprefence.com"
 
 figureUrl: /string_string1.png
+level: 2
 
 ---
 
 # Stringhe - string.h
+
+---
+level: 2
 
 ---
 
@@ -616,10 +706,16 @@ figureUrl: /string_string1.png
 <<< @/snippets/example10/main.c c {*}{lines:true}
 
 ---
+level: 2
+
+---
 
 # Esempio stringhe 2
 
 <<< @/snippets/example11/main.c c {*}{lines:true}
+
+---
+level: 2
 
 ---
 
@@ -630,6 +726,9 @@ Scrivere un programma che:
 - Legge una stringa da input (max 100 caratteri)
 - Conta quante vocali (a, e, i, o, u) sono presenti
 - Stampa il risultato
+
+---
+level: 2
 
 ---
 
