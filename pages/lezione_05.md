@@ -887,7 +887,7 @@ ctest
 100% tests passed, 0 tests failed out of 1
 ```
 
-Se un `assert` fallisce, `ctest` segnala il test come **Failed**. L'IDE mostra i test in un pannello dedicato.
+Se un `assert` fallisce, `ctest` segnala il test come **Failed**. In CLion si usa la configurazione *All CTest*, che mostra i risultati in un pannello dedicato.
 
 ::right::
 

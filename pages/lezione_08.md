@@ -5,7 +5,7 @@ coverDate:
 
 ---
 
-# 8 - Ripasso e verifica finale
+# 8 - Verifica finale e discussione
 
 Ing. Giancarlo Degani
 
@@ -22,7 +22,7 @@ Test di **20 domande a risposta multipla**, 30 punti in totale.
 | **Totale** | **20** | | **30** |
 
 - Il voto del corso è il punteggio del test
-- Prima del test: ripasso guidato, in coppia
+- Prima il test, poi la discussione con la classe
 
 ---
 
@@ -64,65 +64,26 @@ Risposta corretta: **B**. Per rispondere si segue il programma passo per passo, 
 
 ---
 
-# Ripasso: lezioni 1 e 2
+# Come affrontare le domande su codice
 
-**Algoritmi e primo programma**
-
-- Algoritmo, esecutore, flowchart (selezione e cicli)
-- Struttura di un programma C, `#include`, `main`, `printf`
-
-**Variabili, tipi e input**
-
-- Tipi primitivi, variabili, costanti, `cast`
-- Operatori aritmetici, relazionali, logici; precedenza
-- `printf` e `scanf` con i formati
+- Simulare il programma **a mano**, annotando il valore delle variabili a ogni passo
+- Controllare i casi limite: primo e ultimo indice, condizioni con `=` o `==`, `&` o `&&`
+- Non fidarsi della prima impressione: leggere tutte le risposte prima di scegliere
 
 ---
 
-# Ripasso: lezioni 3 e 4
+# Dopo il test: discussione
 
-**Condizioni e cicli**
-
-- `if`, `if-else`, `switch` (e `break`)
-- `for`, `while`, `do-while`, `break`, `continue`
-- Errori tipici: off-by-one, cicli infiniti
-
-**Vettori, matrici e stringhe**
-
-- Indici da 0, limiti, nessuna copia con `=`
-- Stringhe: terminatore `\0`, `string.h`, sicurezza (`gets` mai)
+- Correzione delle domande, una alla volta
+- Gli errori più frequenti e le loro cause
+- Domande e dubbi sugli argomenti del corso
+- Commenti della classe sul corso: che cosa ha funzionato e che cosa cambiare
 
 ---
 
-# Ripasso: lezioni 5 e 6
+# Che cosa viene dopo
 
-**Funzioni e puntatori**
+Il corso prosegue con il modulo **"Programmazione assistita dall'AI"** (16 ore, 4 lezioni).
 
-- Prototipo e definizione, passaggio per valore
-- Puntatori: `&` e `*`, modifica di variabili esterne, array come parametri
-- Header, include guards, CMake, test con `assert`
-
-**Bit e macchine a stati**
-
-- Esadecimale, complemento a 2, `stdint.h`
-- Set, clear, toggle e test di un bit; campi di un frame
-- `enum` e macchina a stati con `switch`
-
----
-
-# Ripasso: lezione 7
-
-**Strutture, memoria dinamica, liste e file**
-
-- `struct`, `typedef`, accesso con `.` e `->`
-- `malloc` e `free`: ogni allocazione ha la sua liberazione
-- Lista concatenata: nodo, `next`, inserimento in testa, scorrimento
-- File: `fopen`, `fclose`, `fgets`, `sscanf`, `fprintf`, controllo degli errori
-
----
-
-# Come prepararsi al test
-
-- Per le domande su codice: simulare il programma **a mano**, annotando il valore delle variabili a ogni passo
-- Rileggere gli esempi della lezione con la domanda "che cosa stampa?"
-- Ricontrollare gli errori comuni: indici, `=` contro `==`, `&` contro `&&`, memoria non liberata
+- Si lavora sul codice C scritto in questo corso: il progetto diventa il caso di studio
+- Prima dell'inizio: richiedere la licenza gratuita di GitHub Education per Copilot, perché la verifica dello stato di studente può richiedere alcuni giorni

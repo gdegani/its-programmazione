@@ -2,7 +2,9 @@
 
 Guida per preparare da zero un portatile Windows 10/11 (64 bit) per il corso: compilatore C, CMake, debugger e VS Code.
 
-> **Stato:** bozza da provare su una macchina virtuale. I comandi seguono la documentazione ufficiale di MSYS2 e di VS Code ma non sono ancora stati verificati su Windows. Gli esiti della prova vanno annotati nella tabella in fondo.
+> **Stato (2026-10-13):** sospesa. Il corso resta su CLion; questa guida serve se si riconsidera VS Code. Prove fatte su una VM ARM64: il debug con `gdb` si blocca (limite dell'emulazione x64) e la rete con Cato impedisce `pacman`; da riprovare su una macchina x64.
+>
+> Bozza da provare su una macchina virtuale. I comandi seguono la documentazione ufficiale di MSYS2 e di VS Code ma non sono ancora stati verificati su Windows. Gli esiti della prova vanno annotati nella tabella in fondo.
 
 ## Che cosa si installa
 
