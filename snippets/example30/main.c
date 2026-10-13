@@ -13,7 +13,8 @@ typedef struct Reading {
 Reading *push(Reading *head, long timestamp, int sensor_id, double value) {
     Reading *node = malloc(sizeof(Reading));
     if (node == NULL) {
-        return head;
+        perror("Cannot allocate reading");
+        exit(EXIT_FAILURE);
     }
     node->timestamp = timestamp;
     node->sensor_id = sensor_id;
