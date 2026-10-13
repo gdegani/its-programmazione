@@ -26,7 +26,7 @@ Le slide sono realizzate con il framework [Slidev](https://sli.dev).
 | Percorso | Contenuto |
 | --- | --- |
 | [`slides.md`](slides.md) | Punto di ingresso delle slide: configurazione e inclusione delle sezioni |
-| [`pages/`](pages/) | Sezioni del corso (`slides_N.md`) |
+| [`pages/`](pages/) | Una sezione per lezione (`lezione_NN.md`) |
 | [`snippets/`](snippets/) | Esempi in C, un progetto CMake per cartella (`exampleNN/`) |
 | [`layouts/`](layouts/) | Layout Vue personalizzati per Slidev |
 | [`public/`](public/) | Immagini usate nelle slide |
