@@ -516,7 +516,7 @@ double value;
 
 while (fgets(line, sizeof(line), file) != NULL) {
     if (sscanf(line, "%ld;%d;%lf", &timestamp, &sensor_id, &value) == 3) {
-        // riga valida: i tre campi sono stati letti
+        // valid row: all three fields were read
     }
 }
 ```
