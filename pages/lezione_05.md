@@ -153,6 +153,7 @@ int main(void) {
 layout: two-cols
 
 ---
+
 # Variabili locali
 
 Le variabili dichiarate dentro una funzione sono **locali**:
@@ -242,6 +243,7 @@ Un **puntatore** è una variabile che memorizza l'**indirizzo di memoria** di un
 ## Concetti chiave
 
 **Indirizzo di memoria**: Ogni variabile è memorizzata a un indirizzo in RAM
+
 - Operatore `&`: ottiene l'indirizzo di una variabile
 - Operatore `*`: accede al valore memorizzato a un indirizzo (dereferenzazione)
 
@@ -293,7 +295,7 @@ int main(void) {
 
 **Output:**
 
-```
+```text
 Prima: x = 5
 Dopo: x = 6
 ```
@@ -324,7 +326,7 @@ int main(void) {
 
 **Output:**
 
-```
+```text
 Prima: x = 10, y = 20
 Dopo: x = 20, y = 10
 ```

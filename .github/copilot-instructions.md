@@ -1,119 +1,54 @@
-# Project Overview
-This project contains the slides for the course "Elementi di programmazione e gestione dati" taught by Ing. Giancarlo Degani. The slides are created using Slidev, a framework for building presentation slides with Markdown and Vue.js.
+# Project overview
 
-# writing style and conventions
-All the slides are written in Italian.
-All the code examples and snippets in the slides are written in the C programming language with the purpose of teaching programming concepts and data management techniques. All the example and snippets must use english comments and identifiers to ensure clarity and consistency in coding practices.
-Preferably use headers in the slides instead of enphasizing text with bold or italics.
-Avoid using embedded HTML in the slides, prefer pure Markdown and Vue components when needed.
-When adding a new example or snippet, ensure it does not require topic not yet covered in the course.
+Slides and examples for the course "Elementi di programmazione e gestione dati" (30 hours, 7 lessons of 4 hours and 1 of 2 hours), taught by
+Ing. Giancarlo Degani at ITS Meccatronico Veneto. The slides are built with Slidev. The course has a mechatronics flavour: examples use
+sensor readings, machine states and production data.
 
-# Copilot instructions for this Slidev + C course repository
+The AI is not covered here: it belongs to the follow-up module, in the `its-programmazione-ai` repository.
 
-Purpose
-- This file provides human-facing guidance about how GitHub Copilot is used
-	in this repository. The machine-readable configuration is `.github/copilot.yml`.
+# Repository layout
 
-Project context (Slidev specifics)
-- Slides are authored with Slidev (sli.dev). Key entry files and locations:
-	- primary slide entry: `slides.md`
-	- modular slide pages: `pages/*.md` (imported into `slides.md`)
-	- reusable UI: `components/*.vue` and `layouts/*.vue`
-	- static assets: `public/`
-	- examples/snippets: `snippets/*/` (one folder per example)
-	- the examples should never be inlined in the slides; they are always
-		 in separate files under `snippets/` and referenced from the slides in order to have a working code example that can be compiled and tested separately.
-	- Slidev config: `slidev.config.js` / `slidev.config.ts` (or project `package.json` scripts)
+* `slides.md`: entry point (configuration and lesson list)
+* `pages/lezione_NN.md`: one file per lesson (01 to 08)
+* `snippets/exampleNN/`: examples (`main.c` and `CMakeLists.txt`)
+* `schedule.md`: course schedule and assessment
+* `scripts/`: `build-snippets.js` (compile all examples), `check-language.js` (English identifiers and comments), `release.sh` (archive an edition)
+* `public/`: images, `layouts/`: custom layouts
 
-Why this matters for Copilot
-- Slidev combines Markdown and Vue. Copilot should prefer Markdown-focused
-	suggestions when editing slides, and language-appropriate suggestions when
-	editing snippets (C) or Vue components (Vue/JS).
+Useful commands: `npm run dev`, `npm run build`, `npm run check:snippets`, `npm run check:language`.
 
-Recommendations for snippet authors
-- Use explicit code fences with a language tag for all code blocks to give
-	Copilot the right context. For C code use:
+# Course-specific rules
 
-	```c
-	/* One-line header describing the objective
-		 Expected function: int func(...)
-		 Learning objective: explain what is being taught */
-	int func(int a, int b) {
-		// implementation
-	}
-	```
+* The final assessment is a multiple-choice test, so exercises and examples must be solvable by reading and running code, without external libraries.
+* Automated tests, when shown, use `assert` and CTest only.
 
-- Add a short README or header comment inside each `snippets/exampleNN/`
-	folder describing the learning objective and expected entry point(s).
+# Common conventions
 
-Header comment template (copy into `main.c` or the top C file)
-/*
- * Example: Reverse a null-terminated string in-place
- * Expected function: void reverse_str(char *s);
- * Learning objective: pointer manipulation, loop invariants, edge cases
- */
+This section is identical in `its-programmazione` and `its-programmazione-ai`: keep the two copies aligned.
 
-How to test Copilot suggestion changes
-1. Ensure you are signed into GitHub Copilot in your editor (VS Code).
-2. Open a representative file:
-	 - slide content: `slides.md` or a file in `pages/` to test Markdown suggestions.
-	 - snippet code: `snippets/exampleNN/main.c` to test C suggestions.
-3. For snippet tests: add the header comment template above and type the
-	 expected function signature; trigger completion and accept the top suggestion.
-4. When changing `.github/copilot.yml`, push the change to a branch and include
-	 a short test plan in the PR describing which files you tested and the
-	 observed suggestion differences (screenshot or short note is fine).
+## Language
 
-Recommended prompt examples for authors
-- "Write a short, well-commented C function that reverses a string in-place.
-	Keep it under 40 lines and add a short comment explaining time/space complexity."
-- "Refactor the following C function to add boundary checks and explain the
-	changes in comments above the function."
+* Slide text is in Italian.
+* Code is C. Identifiers, comments and output strings in the examples are in English, with no Italian words in the code.
 
-Suggested file globs for `.github/copilot.yml`
-- include:
-	- "**/*.md"
-	- "slides.md"
-	- "pages/**"
-	- "components/**/*.vue"
-	- "layouts/**/*.vue"
-	- "snippets/**/**/*.c"
-	- "slidev.config.*"
-	- "package.json"
-- exclude (build/IDE noise):
-	- "**/cmake-build-debug/**"
-	- "**/node_modules/**"
-	- "**/.vscode/**"
-	- "**/.git/**"
-	- "**/*.png"
-	- "**/*.jpg"
+## Slides
 
-PR checklist for changes to Copilot config
-- Edit `.github/copilot.yml` on a branch and open a PR.
-- In the PR description include:
-	- Motivation for the change (why adjust weights/rules).
-	- Minimal test plan (which file(s) to open and what to type).
-	- Expected effect on suggestions and a brief before/after note or screenshot.
+* Slides are Slidev (Markdown + Vue). Prefer headers over bold or italics for emphasis.
+* Avoid embedded HTML: use pure Markdown and Slidev/Vue components.
+* Keep slides concise: few bullets, short lines. Every slide must be fully visible, with nothing overflowing or overlapping. Split long code over several slides, or use a two-column layout (in two columns keep code lines under about 55 characters).
+* Use Mermaid for diagrams.
+* Do not suggest external interactive tools (Miro and similar): use what Slidev provides.
 
-Tooling and editor tips
-- Recommend using the Slidev VS Code extension and the Slidev Prettier plugin
-	for consistent formatting. Slidev uses Shiki for syntax highlighting; explicit
-	language fences help both highlighting and suggestion context.
+## Examples
 
-Licensing and safety
-- If Copilot suggests long verbatim blocks that resemble third-party code,
-	verify licenses and add attribution where required. Prefer short, original
-	instructional examples.
+* Examples live in `snippets/*/`, one folder per example, each a standalone CMake project that compiles on its own. Slides include them with `<<< @/snippets/...`, using `// #region name` to show only a part. Inline code in slides is limited to tiny fragments.
+* One example illustrates one concept, and uses only topics already covered in the course.
 
-Consolidation note
-- We have `.github/COPILOT_README.md` and this `copilot-instructions.md`.
-	Consider keeping a single, canonical human-facing file (or clearly
-	cross-reference them) to avoid duplicated or inconsistent guidance.
+## Course setup
 
-Where things live (quick reference)
-- Slides: `slides.md`, `pages/`, `components/`, `layouts/`
-- Snippets/examples: `snippets/*/` (one folder per example)
-- Machine config: `.github/copilot.yml`
-- Human guidance: `.github/COPILOT_README.md` and this file
+* All the exercises are done in class, in pairs (pair programming), on the classroom laptops with CLion. There is no homework.
+* npm is the only package manager.
 
--- end
+## Before finishing a change
+
+* Run markdownlint (configuration in `.markdownlint.json`, identical in both repositories) and a full `npm run build`.
