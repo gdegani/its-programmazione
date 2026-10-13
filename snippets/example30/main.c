@@ -49,6 +49,12 @@ int main(void) {
             head = push(head, timestamp, sensor_id, value);
         }
     }
+    if (ferror(file)) {
+        perror("Cannot read readings.csv");
+        fclose(file);
+        free_list(head);
+        return EXIT_FAILURE;
+    }
     fclose(file);
 
     int count = 0;
