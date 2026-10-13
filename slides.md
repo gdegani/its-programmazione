@@ -14,11 +14,11 @@ class: text-center
 download: false
 # https://sli.dev/features/drawing
 drawings:
-  persist: true
+  persist: false
   enabled: dev
   syncAll: false
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
-transition: slide-left
+transition: slide-up
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 themeConfig:
@@ -72,6 +72,12 @@ title: Bit, enumerazioni e macchine a stati
 ---
 src: ./pages/lezione_07.md
 title: Strutture, memoria dinamica, liste e file
+
+---
+
+---
+src: ./pages/lezione_08.md
+title: Ripasso e verifica finale
 
 ---
 
