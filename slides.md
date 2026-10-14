@@ -37,7 +37,6 @@ hideInToc: true
 Ing. Giancarlo Degani
 
 ---
-layout: table-of-contents
 hideInToc: true
 
 ---
