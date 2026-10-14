@@ -18,8 +18,10 @@ level: 2
 
 Il processo di creazione di un eseguibile a partire dai sorgenti è composto da 2 fasi:
 
-- **compilazione**: il sorgente viene compilato, ma alcune parti (le “funzioni di base”) sono ancora mancanti; viene generato un file intermedio detto file oggetto
-- **linking**: il file oggetto e le librerie vengono unite (collegate – “link”) così da aggiungere al file oggetto le parti mancanti e costituire un unico file eseguibile. La fase di link può creare un eseguibile collegando insieme più file oggetto e più librerie.
+- **compilazione**: il preprocessore espande le direttive come `#include`, poi il compilatore traduce il sorgente. Mancano ancora alcune parti (le "funzioni di base", come `printf`) e viene generato un file intermedio detto file oggetto
+- **linking**: il file oggetto e le librerie vengono unite (collegate, "link") così da aggiungere le parti mancanti e costituire un unico file eseguibile. Il link può unire più file oggetto e più librerie.
+
+Le fasi nel dettaglio sono in lezione 5.
 
 ---
 level: 2
@@ -28,7 +30,7 @@ level: 2
 
 # Processo di build di un programma C
 
-```mermaid {scale: 0.9, alt: 'Compilation pipeline diagram showing source files and headers flowing through preprocessor, compiler, assembler, and linker stages to create executable'}
+```mermaid {scale: 0.8, alt: 'Compilation pipeline diagram showing source files and headers flowing through preprocessor and compiler, then, with libraries, through the linker to create the executable'}
 flowchart LR
 SF@{ shape: doc, label: "Source file" }
 HF@{ shape: docs, label: "Header files" }
@@ -52,13 +54,76 @@ level: 2
 
 Vediamo gli elementi fondamentali del linguaggio:
 
-- **Tipi di dato primitivi**: int, float, double, char
-- **Variabili**: dichiarazione e inizializzazione
-- **Operatori aritmetici**: +, -, *, /, %
-- **Operatori di assegnamento**: =, +=, -=, *=, /=
-- **Operatori relazionali**: ==, !=, <, >, <=, >=
-- **Operatori logici**: &&, ||, !
-- **Input/Output di base**: printf(), scanf()
+- Output: `printf()`
+- Tipi di dato primitivi: `int`, `float`, `double`, `char`
+- Variabili e costanti: dichiarazione e inizializzazione
+- Operatori di assegnamento e aritmetici
+- Input: `scanf()`
+- Operatori relazionali e logici
+
+---
+level: 2
+
+---
+
+# Output: printf()
+
+`printf()` stampa testo formattato sullo standard output (il terminale):
+
+```c
+printf("format", arguments...);
+```
+
+## Specificatori di formato
+
+| Specificatore | Tipo | Esempio |
+| --- | --- | --- |
+| `%d` o `%i` | `int` | `printf("%d", 42);` → `42` |
+| `%u` | `unsigned int` | `printf("%u", 7u);` → `7` |
+| `%ld` | `long` | `printf("%ld", 100000L);` → `100000` |
+| `%f` | `float` e `double` | `printf("%f", 3.14);` → `3.140000` |
+| `%c` | `char` | `printf("%c", 'A');` → `A` |
+| `%s` | stringa | `printf("%s", "Hello");` → `Hello` |
+| `%%` | il carattere `%` | `printf("%%");` → `%` |
+
+---
+level: 2
+
+---
+
+# printf(): esempio
+
+<<< @/snippets/example36/main.c#snippet1 c {*}{lines:true}
+
+## Output
+
+```txt
+Machine started
+Speed: 1500 rpm
+Temperature: 72.500000
+Status: R
+1500 rpm at 72.5 C, status R
+```
+
+---
+level: 2
+
+---
+
+# printf(): controllo del formato
+
+Larghezza del campo e numero di decimali:
+
+<<< @/snippets/example36/main.c#snippet2 c {*}{lines:true}
+
+## Output
+
+```txt
+[ 1500]
+[1500  ]
+[72.50]
+[   72.50]
+```
 
 ---
 level: 2
@@ -70,14 +135,15 @@ level: 2
 Il C fornisce alcuni tipi di dato di base per rappresentare numeri e caratteri:
 
 | Tipo | Descrizione | Dimensione tipica | Range (esempio) |
-|------|-------------|-------------------|-----------------|
-| `char` | Carattere/byte | 1 byte | -128 a 127 o 0 a 255 |
-| `int` | Intero | 4 byte | -2.147.483.648 a 2.147.483.647 |
-| `float` | Numero reale precisione singola | 4 byte | ±3.4 × 10<sup>±38</sup> (~7 cifre) |
-| `double` | Numero reale precisione doppia | 8 byte | ±1.7 × 10<sup>±308</sup> (~15 cifre) |
+| --- | --- | --- | --- |
+| `char` | Carattere/byte | 1 byte | da -128 a 127 oppure da 0 a 255 |
+| `int` | Intero | 4 byte | da -2.147.483.648 a 2.147.483.647 |
+| `float` | Reale a precisione singola | 4 byte | $\pm 3.4 \times 10^{38}$ (circa 7 cifre) |
+| `double` | Reale a precisione doppia | 8 byte | $\pm 1.7 \times 10^{308}$ (circa 15 cifre) |
 
-**Nota:** Le dimensioni possono variare a seconda dell'architettura (32/64 bit).  
-Usa `sizeof(tipo)` per conoscere la dimensione esatta.
+## Nota
+
+Le dimensioni dipendono dall'architettura (32 o 64 bit). `sizeof(tipo)` restituisce la dimensione esatta.
 
 ---
 level: 2
@@ -89,15 +155,15 @@ level: 2
 I modificatori `signed`, `unsigned`, `short`, `long` cambiano il range dei tipi interi:
 
 | Tipo | Dimensione | Range |
-|------|------------|-------|
-| `short int` (o `short`) | 2 byte | -32.768 a 32.767 |
-| `unsigned int` | 4 byte | 0 a 4.294.967.295 |
-| `long int` (o `long`) | 4 o 8 byte | Dipende dall'architettura |
-| `long long int` | 8 byte | -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807 |
+| --- | --- | --- |
+| `short int` (o `short`) | 2 byte | da -32.768 a 32.767 |
+| `unsigned int` | 4 byte | da 0 a 4.294.967.295 |
+| `long int` (o `long`) | 4 o 8 byte | dipende dall'architettura |
+| `long long int` | 8 byte | da -9.223.372.036.854.775.808 a 9.223.372.036.854.775.807 |
 
-**Quando usare `unsigned`:**
+## Quando usare unsigned
 
-- Quando il valore non può mai essere negativo (es. dimensioni, contatori)
+- Quando il valore non può mai essere negativo (dimensioni, contatori)
 - Per raddoppiare il massimo valore positivo rappresentabile
 
 ---
@@ -107,54 +173,48 @@ level: 2
 
 # Dichiarazione di variabili
 
-**Sintassi:**
+## Sintassi
 
 ```c
-tipo nome_variabile;
+type variable_name;
 ```
 
-**Esempi:**
+## Esempi
 
 ```c
-int age;
-double pi;
-char initial;
+int rpm;
+double voltage;
+char status;
 ```
 
-**Regole per i nomi:**
+## Regole per i nomi
 
-- Iniziano con lettera o underscore `_`
+- Iniziano con una lettera o con underscore `_`
 - Contengono lettere, cifre, underscore
-- Case-sensitive: `count` ≠ `Count`
-- Non usare parole chiave C (`int`, `for`, `if`...)
+- Distinguono maiuscole e minuscole: `count` ≠ `Count`
+- Non possono essere parole chiave (`int`, `for`, `if`...)
 
 ---
 level: 2
 
 ---
 
-# Dichiarazione di variabili
-
-**Buone pratiche:**
+# Dichiarazione di variabili: buone pratiche
 
 ```c
-// ✅ Nomi descrittivi
-int student_count;
-float average_grade;
+// ✅ Descriptive names
+int motor_speed;
+float average_temperature;
 double exchange_rate;
 
-// ❌ Nomi poco chiari
+// ❌ Unclear names
 int x;
 float f;
 double d;
 
-// ✅ Snake_case (comune in C)
+// ✅ snake_case (common in C)
 int max_temperature;
 float sensor_value;
-
-// Costanti in MAIUSCOLO
-#define MAX_SIZE 100
-#define PI 3.14159
 ```
 
 ---
@@ -164,30 +224,30 @@ level: 2
 
 # Inizializzazione di variabili
 
-**Dichiarazione senza inizializzazione:**
+## Senza inizializzazione
 
 ```c
-int count;              // Valore indefinito (garbage)
-float temperature;      // ⚠️ Non inizializzata!
+int count;              // undefined value (garbage)
+float temperature;      // ⚠️ not initialized!
 ```
 
-**Dichiarazione con inizializzazione:**
+## Con inizializzazione
 
 ```c
-int count = 0;              // Inizializzata a 0
-float temperature = 20.5;   // Inizializzata a 20.5
-double pi = 3.14159;        // Inizializzata a 3.14159
-char grade = 'A';           // Inizializzata a 'A'
+int count = 0;
+float temperature = 20.5;
+double v_ref = 3.3;
+char status = 'R';
 ```
 
-**Inizializzazione multipla:**
+## Inizializzazione multipla
 
 ```c
 int x = 10, y = 20, z = 30;
-float a, b = 2.5, c;    // Solo b è inizializzata!
+float a, b = 2.5, c;    // only b is initialized!
 ```
 
-**⚠️ IMPORTANTE:** Inizializzare sempre le variabili prima di usarle!
+⚠️ Inizializzare sempre le variabili prima di usarle.
 
 ---
 level: 2
@@ -196,30 +256,28 @@ level: 2
 
 # Costanti
 
-Le costanti sono valori che non possono essere modificati durante l'esecuzione:
+Le costanti sono valori che non possono cambiare durante l'esecuzione.
 
-**Metodo 1: `#define` (direttiva preprocessore)**
-
-```c
-#define PI 3.14159
-#define MAX_STUDENTS 50
-#define GREETING "Hello, World!"
-
-// Uso:
-float area = PI * radius * radius;
-```
-
-**Metodo 2: `const` (qualificatore di tipo)**
+## Metodo 1: #define (direttiva del preprocessore)
 
 ```c
-const double PI = 3.14159;
-const int MAX_STUDENTS = 50;
-const char NEWLINE = '\n';
-
-// PI = 3.14;  // ❌ ERRORE: non si può modificare
+#define ADC_MAX 4095
+#define MAX_SENSORS 8
+#define GREETING "Hello, world!"
 ```
 
-**Differenza:** `#define` è una sostituzione testuale, `const` è una variabile read-only con tipo.
+## Metodo 2: const (qualificatore di tipo)
+
+```c
+const double V_REF = 3.3;
+const int MAX_SENSORS = 8;
+
+// V_REF = 5.0;  // ❌ ERROR: a constant cannot be modified
+```
+
+## Differenza
+
+`#define` è una sostituzione di testo, `const` è una variabile in sola lettura con un tipo.
 
 ---
 level: 2
@@ -232,21 +290,23 @@ L'operatore `=` assegna un valore a una variabile:
 
 ```c
 int x;
-x = 10;         // Assegna 10 a x
+x = 10;         // assign 10 to x
 
-int y = 20;     // Dichiarazione + assegnamento
+int y = 20;     // declaration + assignment
 
-// Assegnamenti multipli (da destra a sinistra)
+// multiple assignment (right to left)
 int a, b, c;
-a = b = c = 5;  // Tutti valgono 5
+a = b = c = 5;  // all three are 5
 ```
 
-**⚠️ Attenzione:** `=` è assegnamento, `==` è confronto!
+## Attenzione
+
+`=` è l'assegnamento, `==` è il confronto:
 
 ```c
 int x = 10;
-x = 5;          // ✅ Assegnamento: x diventa 5
-if (x == 5)     // ✅ Confronto: è vero?
+x = 5;          // ✅ assignment: x becomes 5
+if (x == 5)     // ✅ comparison: is x equal to 5?
 ```
 
 ---
@@ -259,26 +319,19 @@ level: 2
 Gli operatori composti combinano un'operazione aritmetica con l'assegnamento:
 
 | Operatore | Equivalente | Esempio | Risultato |
-|-----------|-------------|---------|-----------|
-| `+=` | `x = x + y` | `x += 5` | Aggiunge 5 a x |
-| `-=` | `x = x - y` | `x -= 3` | Sottrae 3 da x |
-| `*=` | `x = x * y` | `x *= 2` | Moltiplica x per 2 |
-| `/=` | `x = x / y` | `x /= 4` | Divide x per 4 |
-| `%=` | `x = x % y` | `x %= 3` | x = resto di x/3 |
-
----
-level: 2
-
----
-
-# Esempio
+| --- | --- | --- | --- |
+| `+=` | `x = x + y` | `x += 5` | aggiunge 5 a x |
+| `-=` | `x = x - y` | `x -= 3` | sottrae 3 da x |
+| `*=` | `x = x * y` | `x *= 2` | moltiplica x per 2 |
+| `/=` | `x = x / y` | `x /= 4` | divide x per 4 |
+| `%=` | `x = x % y` | `x %= 3` | x diventa il resto di x / 3 |
 
 ```c
 int count = 10;
-count += 5;     // count = 15
-count *= 2;     // count = 30
-count -= 10;    // count = 20
-count /= 4;     // count = 5
+count += 5;     // 15
+count *= 2;     // 30
+count -= 10;    // 20
+count /= 4;     // 5
 ```
 
 ---
@@ -288,31 +341,28 @@ level: 2
 
 # Operatori di incremento e decremento
 
-Gli operatori `++` e `--` aumentano o diminuiscono di 1:
+Gli operatori `++` e `--` aumentano o diminuiscono di 1.
 
-**Post-incremento/decremento:**
-
-```c
-int x = 5;
-int y = x++;    // y = 5, poi x = 6 (usa poi incrementa)
-int z = x--;    // z = 6, poi x = 5 (usa poi decrementa)
-```
-
-**Pre-incremento/decremento:**
+## Post-incremento e post-decremento
 
 ```c
 int x = 5;
-int y = ++x;    // x = 6, poi y = 6 (incrementa poi usa)
-int z = --x;    // x = 5, poi z = 5 (decrementa poi usa)
+int y = x++;    // y = 5, then x = 6 (use, then increment)
+int z = x--;    // z = 6, then x = 5 (use, then decrement)
 ```
 
-**Uso tipico (equivalenti):**
+## Pre-incremento e pre-decremento
 
 ```c
-count = count + 1;
-count += 1;
-count++;            // ✅ Più idiomatico
-++count;            // ✅ Stesso effetto se usato da solo
+int x = 5;
+int y = ++x;    // x = 6, then y = 6 (increment, then use)
+int z = --x;    // x = 5, then z = 5 (decrement, then use)
+```
+
+## Uso tipico
+
+```c
+count++;        // same as count = count + 1
 ```
 
 ---
@@ -325,20 +375,19 @@ level: 2
 Il C fornisce gli operatori aritmetici standard:
 
 | Operatore | Operazione | Esempio | Risultato |
-|-----------|------------|---------|-----------|
+| --- | --- | --- | --- |
 | `+` | Addizione | `5 + 3` | `8` |
 | `-` | Sottrazione | `5 - 3` | `2` |
 | `*` | Moltiplicazione | `5 * 3` | `15` |
-| `/` | Divisione | `7 / 2` | `3` (interi!) |
+| `/` | Divisione | `7 / 2` | `3` (tra interi!) |
 | `%` | Modulo (resto) | `7 % 2` | `1` |
 
-**⚠️ Divisione tra interi:**
+## Divisione tra interi
 
 ```c
-int a = 7 / 2;          // a = 3 (tronca, non arrotonda!)
-float b = 7 / 2;        // b = 3.0 (divisione intera, poi conversione)
-float c = 7.0 / 2;      // c = 3.5 (almeno un float → divisione reale)
-float d = (float)7 / 2; // d = 3.5 (cast esplicito)
+int a = 7 / 2;          // 3 (truncated, not rounded)
+float b = 7 / 2;        // 3.0 (integer division, then conversion)
+float c = 7.0 / 2;      // 3.5 (one real operand: real division)
 ```
 
 ---
@@ -348,58 +397,54 @@ level: 2
 
 # Precedenza degli operatori aritmetici
 
-Gli operatori seguono le regole matematiche standard:
+Gli operatori seguono le regole della matematica.
 
-**Precedenza (dal più alto al più basso):**
+## Precedenza (dalla più alta alla più bassa)
 
-1. **Parentesi** `( )`
-2. **Unari** `+`, `-`, `++`, `--`
-3. **Moltiplicazione/Divisione/Modulo** `*`, `/`, `%`
-4. **Addizione/Sottrazione** `+`, `-`
-
-**Esempi:**
+1. Parentesi `( )`
+2. Unari `+`, `-`, `++`, `--`
+3. Moltiplicazione, divisione, modulo `*`, `/`, `%`
+4. Addizione, sottrazione `+`, `-`
 
 ```c
 int result;
-result = 2 + 3 * 4;         // 14 (non 20!)
+result = 2 + 3 * 4;         // 14 (not 20!)
 result = (2 + 3) * 4;       // 20
-result = 10 - 4 / 2;        // 8 (non 3!)
+result = 10 - 4 / 2;        // 8 (not 3!)
 result = (10 - 4) / 2;      // 3
-result = 7 + 3 * 2 - 1;     // 12
 ```
 
-**Consiglio:** Usa le parentesi per chiarezza, anche se non necessarie!
+Nel dubbio, usare le parentesi: il codice è più chiaro.
 
 ---
 level: 2
 
 ---
 
-# Conversioni di tipo (cast)
+# Conversioni di tipo
 
-Quando si mescolano tipi diversi, C effettua conversioni automatiche:
+Quando si mescolano tipi diversi, il C converte automaticamente.
 
-**Conversione implicita (promozione):**
+## Conversione implicita (promozione)
 
 ```c
 int i = 5;
 float f = 2.0;
-float result = i + f;   // i viene convertito a float → 7.0
+float result = i + f;   // i becomes float: 7.0
 ```
 
-**Regola generale:** Il tipo "più piccolo" viene promosso al tipo "più grande":
+Il tipo "più piccolo" viene promosso al tipo "più grande":
 
 ```txt
 char → int → long → float → double
 ```
 
-**Conversione esplicita (cast):**
+## Conversione esplicita (cast)
 
 ```c
 int a = 7, b = 2;
-float result = (float)a / b;    // 3.5 (cast di a a float)
-float result2 = a / (float)b;   // 3.5 (cast di b a float)
-float result3 = (float)(a / b); // 3.0 (divisione intera, poi cast!)
+float r1 = (float)a / b;     // 3.5
+float r2 = (float)(a / b);   // 2.0: integer division first, then cast!
 ```
 
 ---
@@ -413,23 +458,151 @@ level: 2
 int x = 5, y = 2;
 float a, b;
 
-// Divisione tra interi
-a = x / y;              // a = 3.0 (divisione intera, poi conversione)
+a = x / y;                // 2.0 (integer division, then conversion)
+b = (float)x / y;         // 2.5
+b = (float)x / (float)y;  // 2.5
 
-// Divisione con almeno un float
-b = (float)x / y;       // b = 2.5 (x convertito a float)
-b = x / (float)y;       // b = 2.5 (y convertito a float)
-b = (float)x / (float)y;// b = 2.5 (entrambi convertiti)
+int z = 3.9;              // 3 (the decimal part is dropped)
+int w = (int)3.9;         // 3 (explicit cast, no warning)
 
-// Troncamento da float a int
-int z = 3.9;            // z = 3 (parte decimale scartata!)
-int w = (int)3.9;       // w = 3 (cast esplicito)
-
-// Promozione automatica
-double d = 5 + 2.5;     // 5 → 5.0, poi 5.0 + 2.5 = 7.5
+double d = 5 + 2.5;       // 7.5 (5 is promoted to 5.0)
 ```
 
-**⚠️ Il troncamento non arrotonda:** `3.9 → 3`, non `4`!
+## Il troncamento non arrotonda
+
+`3.9` diventa `3`, non `4`.
+
+---
+level: 2
+
+---
+
+# Esempio: lettura di un ADC
+
+Un convertitore analogico-digitale a 12 bit restituisce un valore da 0 a 4095. Con una tensione di riferimento di 3,3 V:
+
+<<< @/snippets/example38/main.c#snippet1 c {*}{lines:true}
+
+## Output
+
+```txt
+Raw value: 2048
+Wrong voltage: 0.00 V
+Right voltage: 1.65 V
+```
+
+La divisione tra interi azzera il risultato: basta un `(float)` per correggerlo.
+
+---
+level: 2
+
+---
+
+# Input: scanf()
+
+`scanf()` legge input formattato dallo standard input (la tastiera):
+
+```c
+scanf("format", &variable);
+```
+
+⚠️ Prima del nome della variabile si scrive `&` (l'indirizzo della variabile).
+
+## Specificatori
+
+| Tipo | Specificatore | Esempio |
+| --- | --- | --- |
+| `int` | `%d` | `scanf("%d", &rpm);` |
+| `float` | `%f` | `scanf("%f", &temperature);` |
+| `double` | `%lf` | `scanf("%lf", &voltage);` |
+| `char` | `" %c"` | `scanf(" %c", &status);` |
+
+Lo spazio prima di `%c` ignora gli spazi e gli invii rimasti nell'input.
+
+---
+level: 2
+
+---
+
+# scanf(): esempio completo
+
+<<< @/snippets/example37/main.c#snippet1 c {*}{lines:true}
+
+## Esempio di esecuzione
+
+```txt
+Enter first temperature: 70
+Enter second temperature: 73
+Average: 71.50
+```
+
+---
+level: 2
+
+---
+
+# scanf(): lettura multipla
+
+## Più valori sulla stessa riga
+
+```c
+int x, y, z;
+printf("Enter three numbers: ");
+scanf("%d %d %d", &x, &y, &z);      // input: 10 20 30
+```
+
+## Separatori specifici
+
+<<< @/snippets/example37/main.c#snippet2 c {*}{lines:true}
+
+## Attenzione
+
+`scanf()` non controlla che l'input sia valido: se si aspetta un numero e l'utente scrive una lettera, la variabile resta invariata. Le stringhe con `scanf` si vedranno in lezione 4.
+
+---
+level: 2
+
+---
+
+# Esercizio 1: da Celsius a Fahrenheit
+
+Livello base, in coppia.
+
+Scrivere un programma che:
+
+- legge una temperatura in gradi Celsius (`float`)
+- stampa il valore in gradi Fahrenheit con un decimale
+
+La formula è `F = C * 9 / 5 + 32`.
+
+## Prove
+
+- `0` → `32.0`
+- `100` → `212.0`
+- `-40` → `-40.0`
+
+---
+level: 2
+
+---
+
+# Esercizio 2: da ADC a temperatura
+
+Livello standard, in coppia.
+
+Un sensore di temperatura analogico fornisce 10 mV per ogni grado Celsius. Il convertitore è a 12 bit (0-4095) con riferimento a 3,3 V.
+
+Scrivere un programma che:
+
+- legge il valore grezzo dell'ADC (`int`)
+- calcola la tensione in volt
+- calcola e stampa la temperatura in gradi Celsius con un decimale
+
+## Prove
+
+- `0` → `0.0`
+- `2048` → `165.0`
+- `4095` → `330.0`
 
 ---
 level: 2
@@ -438,24 +611,22 @@ level: 2
 
 # Operatori relazionali
 
-Gli operatori relazionali confrontano due valori e restituiscono un valore booleano:
+Gli operatori relazionali confrontano due valori. In C `0` è falso e qualsiasi altro valore è vero:
 
 | Operatore | Significato | Esempio | Risultato |
-|-----------|-------------|---------|-----------|
-| `==` | Uguale a | `5 == 5` | vero (1) |
-| `!=` | Diverso da | `5 != 3` | vero (1) |
-| `<` | Minore di | `3 < 5` | vero (1) |
-| `>` | Maggiore di | `5 > 3` | vero (1) |
-| `<=` | Minore o uguale | `3 <= 3` | vero (1) |
-| `>=` | Maggiore o uguale | `5 >= 5` | vero (1) |
+| --- | --- | --- | --- |
+| `==` | uguale a | `5 == 5` | vero (1) |
+| `!=` | diverso da | `5 != 3` | vero (1) |
+| `<` | minore di | `3 < 5` | vero (1) |
+| `>` | maggiore di | `5 > 3` | vero (1) |
+| `<=` | minore o uguale | `3 <= 3` | vero (1) |
+| `>=` | maggiore o uguale | `5 >= 5` | vero (1) |
 
-**In C:** `0` = falso, qualsiasi altro valore (tipicamente `1`) = vero
-
-**⚠️ Errore comune:**
+## Errore comune
 
 ```c
-if (x = 5)    // ❌ Assegnamento! (sempre vero, perché 5 ≠ 0)
-if (x == 5)   // ✅ Confronto
+if (x = 5)    // ❌ assignment: always true, because 5 is not 0
+if (x == 5)   // ✅ comparison
 ```
 
 ---
@@ -465,27 +636,13 @@ level: 2
 
 # Esempi di operatori relazionali
 
-```c
-int a = 10, b = 20, c = 10;
+<<< @/snippets/example39/main.c#snippet1 c {*}{lines:true}
 
-// Confronti semplici
-int result1 = (a == c);     // 1 (vero)
-int result2 = (a == b);     // 0 (falso)
-int result3 = (a != b);     // 1 (vero)
-int result4 = (a < b);      // 1 (vero)
-int result5 = (b > a);      // 1 (vero)
-int result6 = (a <= c);     // 1 (vero)
+## Attenzione ai numeri reali
 
-// Confronti con espressioni
-int x = 5, y = 10;
-int result7 = (x + 5 == y);     // 1 (vero: 10 == 10)
-int result8 = (x * 2 > y);      // 0 (falso: 10 > 10)
+<<< @/snippets/example39/main.c#snippet3 c {*}{lines:true}
 
-// ⚠️ Confronto tra float (problema di precisione)
-float f1 = 0.1 + 0.2;
-float f2 = 0.3;
-int result9 = (f1 == f2);       // Potrebbe essere 0! (errore di arrotondamento)
-```
+Il confronto di uguaglianza tra numeri reali è inaffidabile per via degli errori di arrotondamento.
 
 ---
 level: 2
@@ -494,57 +651,52 @@ level: 2
 
 # Operatori logici
 
-Gli operatori logici combinano espressioni booleane:
+Gli operatori logici combinano espressioni:
 
 | Operatore | Nome | Descrizione | Esempio | Risultato |
-|-----------|------|-------------|---------|-----------|
-| `&&` | AND logico | Vero se **entrambi** veri | `1 && 1` | `1` |
-| `\|\|` | OR logico | Vero se **almeno uno** vero | `0 \|\| 1` | `1` |
-| `!` | NOT logico | Inverte il valore | `!1` | `0` |
+| --- | --- | --- | --- | --- |
+| `&&` | AND | vero se **entrambi** veri | `1 && 1` | `1` |
+| `\|\|` | OR | vero se **almeno uno** vero | `0 \|\| 1` | `1` |
+| `!` | NOT | inverte il valore | `!1` | `0` |
 
-**Esempi:**
+## Esempi
 
 ```c
 int a = 1, b = 0;
 
-int result1 = a && b;   // 0 (falso: non entrambi veri)
-int result2 = a || b;   // 1 (vero: almeno uno vero)
-int result3 = !a;       // 0 (falso: NOT di vero)
-int result4 = !b;       // 1 (vero: NOT di falso)
-int result5 = a && a;   // 1 (vero: entrambi veri)
+int r1 = a && b;   // 0
+int r2 = a || b;   // 1
+int r3 = !a;       // 0
+int r4 = !b;       // 1
 ```
 
 ---
+layout: two-cols-header
 level: 2
 
 ---
 
 # Tabelle di verità
 
-**AND logico (`&&`):**
+`!` inverte il valore: `!0` è `1` e `!1` è `0`.
 
-| A | B | A && B |
-|---|---|--------|
+::left::
+
+| A | B | A `&&` B |
+| :-: | :-: | :-: |
 | 0 | 0 | 0 |
 | 0 | 1 | 0 |
 | 1 | 0 | 0 |
 | 1 | 1 | 1 |
 
-**OR logico (`||`):**
+::right::
 
-| A | B | A \|\| B |
-|---|---|---------|
+| A | B | A `\|\|` B |
+| :-: | :-: | :-: |
 | 0 | 0 | 0 |
 | 0 | 1 | 1 |
 | 1 | 0 | 1 |
 | 1 | 1 | 1 |
-
-**NOT logico (`!`):**
-
-| A | !A |
-|---|----|
-| 0 | 1 |
-| 1 | 0 |
 
 ---
 level: 2
@@ -553,58 +705,43 @@ level: 2
 
 # Short-circuit evaluation
 
-Gli operatori `&&` e `||` valutano da sinistra a destra e si fermano appena possibile:
+Gli operatori `&&` e `||` valutano da sinistra a destra e si fermano appena il risultato è noto.
 
-**AND logico (`&&`):**
+## AND
 
 ```c
 int x = 0, y = 5;
-if (x != 0 && y / x > 2) {  // ✅ Non valuta y/x (x è 0, evita divisione per 0!)
+if (x != 0 && y / x > 2) {  // y / x is NOT evaluated: no division by zero
     // ...
 }
 ```
 
-Se il primo operando è falso, il secondo **non viene valutato** (tanto il risultato è già falso).
+Se il primo operando è falso, il secondo non viene valutato.
 
-**OR logico (`||`):**
+## OR
 
 ```c
-int age = 25;
-if (age < 18 || age > 65) {  // Se age < 18 è vero, non controlla age > 65
+if (temperature < 0 || temperature > 100) {  // the second test is skipped if the first is true
     // ...
 }
 ```
 
-Se il primo operando è vero, il secondo **non viene valutato** (tanto il risultato è già vero).
-
-**Utile per:** evitare errori (divisione per 0, accessi a puntatori NULL, ecc.)
+Se il primo operando è vero, il secondo non viene valutato.
 
 ---
 level: 2
 
 ---
 
-# Esempi di operatori logici
+# Esempio: condizioni di una macchina
 
-```c
-int age = 25;
-int has_license = 1;  // vero
-int has_car = 0;      // falso
+<<< @/snippets/example39/main.c#snippet2 c {*}{lines:true}
 
-// Combinazioni di condizioni
-int can_drive = (age >= 18) && has_license;        // 1 (vero)
-int needs_transport = !has_car || (age < 16);      // 1 (vero: non ha macchina)
+## Output
 
-// Espressioni complesse
-int x = 10, y = 20, z = 30;
-int result1 = (x < y) && (y < z);                  // 1 (vero: 10 < 20 < 30)
-int result2 = (x > y) || (z > y);                  // 1 (vero: z > y)
-int result3 = !(x == y);                           // 1 (vero: x diverso da y)
-int result4 = (x < y) && (y < z) && (x < z);       // 1 (vero: tutti veri)
-
-// Short-circuit
-int a = 0;
-int result5 = (a != 0) && (100 / a > 5);  // 0 (non valuta 100/a: evita errore!)
+```txt
+Motor can run: 1
+Must stop: 0
 ```
 
 ---
@@ -614,23 +751,23 @@ level: 2
 
 # Precedenza degli operatori (completa)
 
-**Precedenza (dal più alto al più basso):**
+## Dalla più alta alla più bassa
 
-1. **Parentesi, chiamate di funzione** `()` `[]`
-2. **Unari** `!` `++` `--` `+` `-` `(tipo)` (cast)
-3. **Moltiplicativi** `*` `/` `%`
-4. **Additivi** `+` `-`
-5. **Relazionali** `<` `<=` `>` `>=`
-6. **Uguaglianza** `==` `!=`
-7. **AND logico** `&&`
-8. **OR logico** `||`
-9. **Assegnamento** `=` `+=` `-=` `*=` `/=` `%=`
+1. Parentesi e accesso `()` `[]`
+2. Unari `!` `++` `--` `+` `-` `(tipo)`
+3. Moltiplicativi `*` `/` `%`
+4. Additivi `+` `-`
+5. Relazionali `<` `<=` `>` `>=`
+6. Uguaglianza `==` `!=`
+7. AND logico `&&`
+8. OR logico `||`
+9. Assegnamento `=` `+=` `-=` `*=` `/=` `%=`
 
-**Consiglio:** In caso di dubbio, usa le parentesi!
+Nel dubbio, usare le parentesi:
 
 ```c
-int x = 5 > 3 && 2 < 4;     // 1 (vero: confronti prima, poi &&)
-int y = (5 > 3) && (2 < 4); // 1 (più chiaro!)
+int x = 5 > 3 && 2 < 4;     // 1: comparisons first, then &&
+int y = (5 > 3) && (2 < 4); // 1: clearer
 ```
 
 ---
@@ -638,181 +775,14 @@ level: 2
 
 ---
 
-# Input/Output: printf()
+# Esercizio 3: controllo delle misure
 
-`printf()` stampa testo formattato sullo standard output (terminale):
+Livello sfida, in coppia. Si usano solo espressioni: ogni risultato si stampa come `0` o `1`.
 
-**Sintassi:**
+Scrivere un programma che legge due misure di temperatura (`float`) e stampa:
 
-```c
-printf("formato", argomenti...);
-```
+- `1` se entrambe sono comprese tra 0 e 100, altrimenti `0`
+- `1` se almeno una è fuori dall'intervallo, altrimenti `0`
+- `1` se differiscono di più di 5 gradi, altrimenti `0`
 
-**Specificatori di formato:**
-
-| Specificatore | Tipo | Esempio |
-|---------------|------|---------|
-| `%d` o `%i` | int | `printf("%d", 42);` → `42` |
-| `%f` | float/double | `printf("%f", 3.14);` → `3.140000` |
-| `%c` | char | `printf("%c", 'A');` → `A` |
-| `%s` | stringa | `printf("%s", "Hello");` → `Hello` |
-| `%lf` | double (con scanf) | `scanf("%lf", &d);` |
-| `%%` | Carattere % | `printf("%%");` → `%` |
-
----
-level: 2
-
----
-
-# printf(): esempi
-
-```c
-#include <stdio.h>
-
-int main(void) {
-    int age = 25;
-    float height = 1.75;
-    char grade = 'A';
-    
-    // Stampa semplice
-    printf("Hello, World!\n");
-    
-    // Stampa con variabili
-    printf("Age: %d\n", age);                    // Age: 25
-    printf("Height: %f\n", height);              // Height: 1.750000
-    printf("Grade: %c\n", grade);                // Grade: A
-    
-    // Formattazione decimali
-    printf("Height: %.2f\n", height);            // Height: 1.75
-    
-    // Multipli argomenti
-    printf("Age: %d, Height: %.2f, Grade: %c\n", age, height, grade);
-    
-    return 0;
-}
-```
-
----
-level: 2
-
----
-
-# printf(): controllo formato
-
-**Larghezza campo:**
-
-```c
-int x = 42;
-printf("%5d\n", x);     //    42 (5 caratteri, allineato a destra)
-printf("%-5d\n", x);    // 42    (5 caratteri, allineato a sinistra)
-```
-
-**Precisione decimali:**
-
-```c
-float pi = 3.14159265;
-printf("%.2f\n", pi);   // 3.14 (2 decimali)
-printf("%.4f\n", pi);   // 3.1416 (4 decimali, arrotonda!)
-printf("%8.2f\n", pi);  //     3.14 (8 caratteri totali, 2 decimali)
-```
-
----
-level: 2
-
----
-
-# Input/Output: scanf()
-
-`scanf()` legge input formattato dallo standard input (tastiera):
-
-**Sintassi:**
-
-```c
-scanf("formato", &variabile);
-```
-
-**⚠️ IMPORTANTE:** Si usa `&` (indirizzo) prima del nome della variabile!
-
-**Esempi:**
-
-```c
-int age;
-float height;
-char grade;
-
-printf("Enter age: ");
-scanf("%d", &age);          // Legge un intero
-
-printf("Enter height: ");
-scanf("%f", &height);       // Legge un float
-
-printf("Enter grade: ");
-scanf(" %c", &grade);       // Legge un carattere (spazio prima per ignorare whitespace)
-```
-
----
-level: 2
-
----
-
-# scanf(): esempi completi
-
-```c
-#include <stdio.h>
-
-int main(void) {
-    int num1, num2;
-    float result;
-    
-    // Legge due numeri
-    printf("Enter first number: ");
-    scanf("%d", &num1);
-    
-    printf("Enter second number: ");
-    scanf("%d", &num2);
-    
-    // Calcola la media
-    result = (float)(num1 + num2) / 2;
-    
-    printf("Average: %.2f\n", result);
-    
-    return 0;
-}
-```
-
-**⚠️ Validazione input:** `scanf()` non verifica che l'input sia valido!  
-(Per esempio, se si aspetta un numero e l'utente inserisce una lettera)
-
----
-level: 2
-
----
-
-# scanf(): lettura multipla
-
-**Lettura multipla sulla stessa riga:**
-
-```c
-int x, y, z;
-printf("Enter three numbers: ");
-scanf("%d %d %d", &x, &y, &z);      // Input: 10 20 30
-```
-
-**Lettura con separatori specifici:**
-
-```c
-int day, month, year;
-printf("Enter date (dd/mm/yyyy): ");
-scanf("%d/%d/%d", &day, &month, &year);  // Input: 25/12/2023
-```
-
-**⚠️ Problemi comuni:**
-
-```c
-char name[50];
-scanf("%s", name);      // ✅ Per array non serve &
-scanf("%s", &name);     // ❌ ERRORE (name è già un puntatore)
-
-// scanf("%s") si ferma al primo spazio!
-// Input: "John Doe" → legge solo "John"
-```
+Suggerimento: la differenza in valore assoluto si ottiene senza funzioni con due confronti.
