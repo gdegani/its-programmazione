@@ -138,6 +138,21 @@ level: 2
 - In matematica e informatica, un algoritmo è la specificazione di una sequenza finita di operazioni (dette anche istruzioni) che consente di risolvere una classe di problemi specifici o di calcolare il risultato di un'espressione matematica.
 
 ---
+layout: image-right
+image: /pancake.png
+level: 2
+
+---
+
+# Ricetta
+
+- Input:
+  - Lista di ingredienti
+  - Procedimento da eseguire
+- Output:
+  - Pancake
+
+---
 level: 2
 
 ---
@@ -196,7 +211,7 @@ level: 2
 flowchart LR
   A[/Base=7, Altezza=2/] -- Dati in ingresso --> B[Computer]
   C[/Area del rettangolo, A=B*H/] -- Algoritmo --> B
-  B --> D[/A=14/]
+  B -- Risultato --> D[/A=14/]
 ```
 
 ---
@@ -319,7 +334,7 @@ level: 2
 
 ---
 
-# Ciclo While
+# Iterazione - Ciclo while
 
 - Viene valutata una condizione.
 - Se la condizione è vera, viene eseguita l’azione e poi viene rivalutata la condizione.
@@ -343,7 +358,7 @@ level: 2
 
 ---
 
-# Ciclo do while
+# Iterazione - Ciclo do while
 
 - Viene eseguita l’azione.
 - Se la condizione è vera, l’azione viene eseguita nuovamente e poi viene rivalutata la condizione.
@@ -368,7 +383,7 @@ level: 2
 
 ---
 
-# Ciclo for
+# Iterazione - Ciclo for
 
 - Viene valutata la condizione e, se vera, si esegue l’azione.
 - L’azione viene eseguita un numero finito di volte.
@@ -388,6 +403,95 @@ flowchart TD
 ```
 
 ---
+layout: two-cols
+level: 2
+
+---
+
+# Esempio: CALCOLO DEL FATTORIALE
+
+Dato un numero intero, calcolarne il fattoriale.
+
+- Input: un numero intero maggiore o uguale a zero
+- Algoritmo: moltiplico n per tutti i numeri minori di n, fino a 2
+
+::right::
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+$$
+n! =
+\begin{cases}
+1 & \text{se } n = 0 \\
+n \times (n-1) \times \cdots \times 2 \times 1 & \text{se } n > 0
+\end{cases}
+$$
+
+---
+level: 2
+
+---
+
+# Esempio: CALCOLO DEL FATTORIALE
+
+```mermaid {scale: 0.5, alt: 'A diagram'}
+flowchart LR
+    Start([Inizio]) --> InputNum[/Leggi n/]
+    InputNum --> Check{n >= 0?}
+    Check -- No --> Error[/Mostra: n deve essere non negativo/]
+    Error ---> End([Fine])
+    Check -- Sì --> Initialize[fattoriale = 1<br>i = 1]
+    Initialize --> LoopCheck{i <= n?}
+    LoopCheck -- Sì --> Multiply[fattoriale = fattoriale * i]
+    Multiply --> Increment[Incrementa i di 1]
+    Increment --> LoopCheck
+    LoopCheck -- No --> OutputResult[/Mostra fattoriale/]
+    OutputResult ---> End([Fine])
+```
+
+---
+level: 2
+
+---
+
+# ESERCIZIO
+
+Rappresentare un algoritmo per il calcolo del costo di un prodotto che soddisfi i seguenti requisiti:
+
+- Input: costo unitario, quantità acquistata
+- Se il numero di elementi acquistati è superiore a 10, applicare uno sconto del 20%
+- Output: costo totale
+
+---
+layout: two-cols
+level: 2
+
+---
+
+# flow-chart
+
+Flowchart della soluzione
+
+::right::
+
+```mermaid {scale: 0.6, alt: 'A diagram'}
+flowchart TD
+    A([Inizio]) --> B[/Leggi costo unitario<br>e quantità/]
+    B --> C{Quantità > 10?}
+    C -->|Sì| D[totale = costo * quantità * 0.8]
+    C -->|No| E[totale = costo * quantità]
+    D --> F[/Mostra il totale/]
+    E --> F
+    F --> G([Fine])
+```
+
+---
 layout: center
 level: 2
 
@@ -402,25 +506,11 @@ level: 2
 
 ---
 
-# Programmazione
+# Programma e programmazione
 
-- Il programma è una sequenza di istruzioni che produce un obiettivo desiderato in un tempo finito, implementando un algoritmo.
+- Il programma è una sequenza di istruzioni elementari che implementa un algoritmo e produce il risultato desiderato in un tempo finito.
+- Il programma è scritto da un programmatore per risolvere un problema.
 - La programmazione è il processo che porta alla realizzazione di un programma o software.
-
----
-layout: image-right
-image: /pancake.png
-level: 2
-
----
-
-# Ricetta
-
-- Input:
-  - Lista di ingredienti
-  - Procedimento da eseguire
-- Output:
-  - Pancake
 
 ---
 level: 2
@@ -432,57 +522,7 @@ level: 2
 - Per fornire istruzioni a un computer è necessario utilizzare un linguaggio comune.
 - Il computer comprende solo sequenze di 0 e 1, ovvero sequenze binarie.
 - Il programmatore comprende il linguaggio naturale: “fai, leggi, scrivi.”
-
----
-level: 2
-
----
-
-# Programma
-
-- Il computer mette a disposizione delle istruzioni elementari.
-- Il programma è una sequenza di istruzioni elementari scritta da un programmatore per risolvere un problema.
-- Il programmatore utilizza un linguaggio di programmazione per fornire la sequenza di istruzioni al computer, ovvero per scrivere il programma.
 - Il linguaggio di programmazione è un linguaggio compreso sia dal computer che dal programmatore.
-
----
-level: 2
-
----
-
-# Traduttori in linguaggio macchina
-
-- Interprete: Le istruzioni vengono tradotte una alla volta ed eseguite immediatamente dal calcolatore.
-- Compilatore: Tutte le istruzioni vengono tradotte in linguaggio macchina e memorizzate in un file eseguibile dal calcolatore (programma).
-
----
-level: 2
-
----
-
-# Pro e contro
-
-Velocità di esecuzione:
-
-- L’interprete deve tradurre il programma ogni volta che lo esegue.
-- Il programma compilato viene tradotto solo una volta.
-- Il compilatore è più efficiente ed ottimizza il codice tradotto.
-
----
-level: 2
-
----
-
-# Linguaggi di programmazione
-
-Calcolatore e programmatore, per comprendersi, devono avere un linguaggio comune:
-
-- Linguaggi a basso livello: (es. Assembly)
-- Linguaggi ad alto livello: (es. JavaScript, Python)
-- Linguaggi compilati: (es. TypeScript, Java)
-- Linguaggi interpretati: (es. JavaScript, Python)
-
-Il documento contenente le istruzioni scritte in un linguaggio di programmazione si chiama **codice sorgente**.
 
 ---
 layout: image-right
@@ -536,6 +576,45 @@ Stampa la scritta “hello world” in Python.
 ::right::
 
 <<< @/snippets/example00/hello.py py {all}{lines:true}
+
+---
+level: 2
+
+---
+
+# Linguaggi di programmazione
+
+Calcolatore e programmatore, per comprendersi, devono avere un linguaggio comune:
+
+- Linguaggi a basso livello: (es. Assembly)
+- Linguaggi ad alto livello: (es. JavaScript, Python)
+- Linguaggi compilati: (es. TypeScript, Java)
+- Linguaggi interpretati: (es. JavaScript, Python)
+
+Il documento contenente le istruzioni scritte in un linguaggio di programmazione si chiama **codice sorgente**.
+
+---
+level: 2
+
+---
+
+# Traduttori in linguaggio macchina
+
+- **Interprete:** Le istruzioni vengono tradotte una alla volta ed eseguite immediatamente dal calcolatore.
+- **Compilatore:** Tutte le istruzioni vengono tradotte in linguaggio macchina e memorizzate in un file eseguibile dal calcolatore (programma).
+
+---
+level: 2
+
+---
+
+# Pro e contro
+
+Velocità di esecuzione:
+
+- L’interprete deve tradurre il programma ogni volta che lo esegue.
+- Il programma compilato viene tradotto solo una volta.
+- Il compilatore è più efficiente ed ottimizza il codice tradotto.
 
 ---
 layout: image-right
@@ -608,98 +687,6 @@ level: 2
 
 ---
 
-# Input/Output: printf()
-
-`printf()` stampa testo formattato sullo standard output (terminale):
-
-**Sintassi:**
-
-```c
-printf("formato", argomenti...);
-```
-
-**Specificatori di formato:**
-
-| Specificatore | Tipo | Esempio |
-|---------------|------|---------|
-| `%d` o `%i` | int | `printf("%d", 42);` → `42` |
-| `%f` | float/double | `printf("%f", 3.14);` → `3.140000` |
-| `%c` | char | `printf("%c", 'A');` → `A` |
-| `%s` | stringa | `printf("%s", "Hello");` → `Hello` |
-| `%lf` | double (con scanf) | `scanf("%lf", &d);` |
-| `%%` | Carattere % | `printf("%%");` → `%` |
-
----
-level: 2
-
----
-
-# printf(): esempi
-
-```c
-#include <stdio.h>
-
-int main(void) {
-    int age = 25;
-    float height = 1.75;
-    char grade = 'A';
-    
-    // Stampa semplice
-    printf("Hello, World!\n");
-    
-    // Stampa con variabili
-    printf("Age: %d\n", age);                    // Age: 25
-    printf("Height: %f\n", height);              // Height: 1.750000
-    printf("Grade: %c\n", grade);                // Grade: A
-    
-    // Formattazione decimali
-    printf("Height: %.2f\n", height);            // Height: 1.75
-    
-    // Multipli argomenti
-    printf("Age: %d, Height: %.2f, Grade: %c\n", age, height, grade);
-    
-    return 0;
-}
-```
-
----
-level: 2
-
----
-
-# printf(): controllo formato
-
-**Larghezza campo:**
-
-```c
-int x = 42;
-printf("%5d\n", x);     //    42 (5 caratteri, allineato a destra)
-printf("%-5d\n", x);    // 42    (5 caratteri, allineato a sinistra)
-```
-
-**Precisione decimali:**
-
-```c
-float pi = 3.14159265;
-printf("%.2f\n", pi);   // 3.14 (2 decimali)
-printf("%.4f\n", pi);   // 3.1416 (4 decimali, arrotonda!)
-printf("%8.2f\n", pi);  //     3.14 (8 caratteri totali, 2 decimali)
-```
-
-**Caratteri speciali:**
-
-```c
-printf("Line 1\nLine 2\n");     // \n = newline
-printf("Tab\there\n");          // \t = tab
-printf("Quote: \"\n");          // \" = virgolette
-printf("Backslash: \\\n");      // \\ = backslash
-```
-
----
-level: 2
-
----
-
 # Esercizio: Il tuo primo programma in CLion (parte 1)
 
 **Obiettivo:** Creare ed eseguire il programma "Hello, World!" usando CLion
@@ -735,91 +722,21 @@ Process finished with exit code 0
 ```
 
 ---
-layout: two-cols
 level: 2
 
 ---
 
-# Esempio: CALCOLO DEL FATTORIALE
+# printf(): stampare testo
 
-Dato un numero intero, calcolarne il fattoriale.
+`printf()` stampa testo sullo standard output (terminale).
 
-- Input: un numero intero maggiore o uguale a zero
-- Algoritmo: moltiplico n per tutti i numeri minori di n, fino a 2
+Alcuni caratteri speciali:
 
-::right::
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-$$
-n! =
-\begin{cases}
-1 & \text{se } n = 0 \\
-n \times (n-1) \times \cdots \times 2 \times 1 & \text{se } n > 0
-\end{cases}
-$$
-
----
-level: 2
-
----
-
-# Esempio: CALCOLO DEL FATTORIALE
-
-```mermaid {scale: 0.5, alt: 'A diagram'}
-flowchart LR
-    Start([Inizio]) --> InputNum[/Leggi n/]
-    InputNum --> Initialize[fattoriale = 1]
-    Initialize --> Check{n >= 0?}
-    Check -- No --> Error[/Mostra: n deve essere non negativo/]
-    Error ---> End([Fine])
-    Check -- Sì --> LoopStart[i = 1]
-    LoopStart --> LoopCheck{i <= n?}
-    LoopCheck -- Sì --> Multiply[fattoriale = fattoriale * i]
-    Multiply --> Increment[Incrementa i di 1]
-    Increment --> LoopCheck
-    LoopCheck -- No --> OutputResult[/Mostra fattoriale/]
-    OutputResult ---> End([Fine])
+```c
+printf("Line 1\nLine 2\n");     // \n = newline
+printf("Tab\there\n");          // \t = tab
+printf("Quote: \"\n");          // \" = double quote
+printf("Backslash: \\\n");      // \\ = backslash
 ```
 
----
-level: 2
-
----
-
-# ESERCIZIO
-
-Rappresentare un algoritmo per il calcolo del costo di un prodotto che soddisfi i seguenti requisiti:
-
-- Input: costo unitario, quantità acquistata
-- Se il numero di elementi acquistati è superiore a 10, applicare uno sconto del 20%
-- Output: costo totale
-
----
-layout: two-cols
-level: 2
-
----
-
-# flow-chart
-
-Flowchart della soluzione
-
-::right::
-
-```mermaid {scale: 0.7, alt: 'A diagram'}
-flowchart TD
-    A((Inizio)) --> B[/Ricevi costo unitario e quantità acquistata/]
-    B --> C{Quantità > 10?}
-    C -->|Sì| D[Calcola sconto: totale = costo_unitario * quantità * 0.8]
-    C -->|No| E[Calcola totale: totale = costo_unitario * quantità]
-    D --> F[/Mostra il totale/]
-    E --> F
-    F --> G((Fine))
-```
+I valori numerici e la formattazione si vedono nella prossima lezione.
