@@ -375,7 +375,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 0.7, alt: 'A diagram'}
+```mermaid {scale: 0.6, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> Inizializzazione[Inizializza Contatore=1]
