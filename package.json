@@ -11,7 +11,9 @@
     "export:schedule": "npx md-to-pdf schedule.md",
     "release": "bash scripts/release.sh",
     "check:snippets": "node scripts/build-snippets.js",
-    "check:language": "node scripts/check-language.js"
+    "check:language": "node scripts/check-language.js",
+    "sync:agents": "node scripts/sync-agents.mjs",
+    "check:agents": "node scripts/sync-agents.mjs --check"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans": "^5.3.0",
