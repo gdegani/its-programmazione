@@ -638,6 +638,89 @@ level: 2
 
 ---
 
+# Input/Output: printf()
+
+`printf()` stampa testo formattato sullo standard output (terminale):
+
+**Sintassi:**
+
+```c
+printf("formato", argomenti...);
+```
+
+**Specificatori di formato:**
+
+| Specificatore | Tipo | Esempio |
+|---------------|------|---------|
+| `%d` o `%i` | int | `printf("%d", 42);` → `42` |
+| `%f` | float/double | `printf("%f", 3.14);` → `3.140000` |
+| `%c` | char | `printf("%c", 'A');` → `A` |
+| `%s` | stringa | `printf("%s", "Hello");` → `Hello` |
+| `%lf` | double (con scanf) | `scanf("%lf", &d);` |
+| `%%` | Carattere % | `printf("%%");` → `%` |
+
+---
+level: 2
+
+---
+
+# printf(): esempi
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    int age = 25;
+    float height = 1.75;
+    char grade = 'A';
+    
+    // Stampa semplice
+    printf("Hello, World!\n");
+    
+    // Stampa con variabili
+    printf("Age: %d\n", age);                    // Age: 25
+    printf("Height: %f\n", height);              // Height: 1.750000
+    printf("Grade: %c\n", grade);                // Grade: A
+    
+    // Formattazione decimali
+    printf("Height: %.2f\n", height);            // Height: 1.75
+    
+    // Multipli argomenti
+    printf("Age: %d, Height: %.2f, Grade: %c\n", age, height, grade);
+    
+    return 0;
+}
+```
+
+---
+level: 2
+
+---
+
+# printf(): controllo formato
+
+**Larghezza campo:**
+
+```c
+int x = 42;
+printf("%5d\n", x);     //    42 (5 caratteri, allineato a destra)
+printf("%-5d\n", x);    // 42    (5 caratteri, allineato a sinistra)
+```
+
+**Precisione decimali:**
+
+```c
+float pi = 3.14159265;
+printf("%.2f\n", pi);   // 3.14 (2 decimali)
+printf("%.4f\n", pi);   // 3.1416 (4 decimali, arrotonda!)
+printf("%8.2f\n", pi);  //     3.14 (8 caratteri totali, 2 decimali)
+```
+
+---
+level: 2
+
+---
+
 # Input/Output: scanf()
 
 `scanf()` legge input formattato dallo standard input (tastiera):
