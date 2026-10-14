@@ -245,6 +245,10 @@ level: 2
 
 ---
 
+<div class="absolute bottom-2 left-4 text-xs text-gray-400">
+source: wikipedia.org
+</div>
+
 ---
 level: 2
 
@@ -252,7 +256,7 @@ level: 2
 
 # Esempio di flowchart
 
-```mermaid {scale: 1, alt: 'A diagram'}
+```mermaid {scale: 0.7, alt: 'A diagram'}
 flowchart LR
 
     Start([Inizio]) --> Input[/Input/]
@@ -323,7 +327,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 1, alt: 'A diagram'}
+```mermaid {scale: 0.9, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
@@ -348,7 +352,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'A diagram'}
+```mermaid {scale: 0.8, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
