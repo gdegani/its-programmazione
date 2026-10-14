@@ -23,7 +23,6 @@ level: 2
 - **Verifica:** test finale di 20 domande a risposta multipla
   - 10 domande di teoria: 1 punto ciascuna
   - 10 domande su un esempio di codice da interpretare: 2 punti ciascuna
-- **Dopo il corso:** modulo "Programmazione assistita dall'AI" (16 ore)
 
 ---
 level: 2
@@ -193,10 +192,10 @@ level: 2
 <br>
 <br>
 
-```mermaid {scale: 1.2, alt: 'A diagram'}
+```mermaid {scale: 0.9, alt: 'A diagram'}
 flowchart LR
-  A[/Base=7, Altezza=2/] --> B[Computer]
-  C[/Area del rettangolo, A=B*H/] --> B
+  A[/Base=7, Altezza=2/] -- Dati in ingresso --> B[Computer]
+  C[/Area del rettangolo, A=B*H/] -- Algoritmo --> B
   B --> D[/A=14/]
 ```
 
