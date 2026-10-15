@@ -21,26 +21,26 @@ Una **struttura** (struct) è un tipo di dato composito che raggruppa variabili 
 ## Problema senza struct
 
 ```c
-// Dati di uno studente
-char nome[50];
-int eta;
-float voto;
+// Data of one student
+char name[50];
+int age;
+float grade;
 
-char nome2[50];  // Per un secondo studente...
-int eta2;
-float voto2;
+char name2[50];  // For a second student...
+int age2;
+float grade2;
 ```
 
 ## Soluzione con struct
 
 ```c
 struct Student {
-    char nome[50];
-    int eta;
-    float voto;
+    char name[50];
+    int age;
+    float grade;
 };
 
-struct Student studente1, studente2;  // Due variabili dello stesso tipo
+struct Student student1, student2;  // Two variables of the same type
 ```
 
 ---
@@ -53,24 +53,24 @@ level: 2
 ## Sintassi base
 
 ```c
-struct nome_struttura {
-    tipo1 membro1;
-    tipo2 membro2;
-    // ... altri membri
+struct struct_name {
+    type1 member1;
+    type2 member2;
+    // ... other members
 };
 ```
 
 ## Esempio completo
 
 ```c
-struct Punto {
+struct Point {
     int x;
     int y;
 };
 
-struct Rettangolo {
-    struct Punto alto_sx;
-    struct Punto basso_dx;
+struct Rectangle {
+    struct Point top_left;
+    struct Point bottom_right;
 };
 ```
 
@@ -87,18 +87,18 @@ level: 2
 
 ```c
 struct Student {
-    char nome[50];
-    int eta;
-    float voto;
+    char name[50];
+    int age;
+    float grade;
 };
 
-// Inizializzazione diretta
+// Direct initialization
 struct Student s1 = {"Marco Rossi", 20, 28.5};
 
-// Inizializzazione parziale
-struct Student s2 = {"Anna"}; // eta=0, voto=0.0
+// Partial initialization
+struct Student s2 = {"Anna"}; // age=0, grade=0.0
 
-// Dichiarazione senza inizializzazione
+// Declaration without initialization
 struct Student s3;
 ```
 
@@ -114,19 +114,19 @@ Si usa l'**operatore punto** `.` per accedere ai membri:
 ```c
 struct Student s1;
 
-// Assegnazione
-s1.eta = 20;
-s1.voto = 28.5;
-strcpy(s1.nome, "Marco Rossi");
+// Assignment
+s1.age = 20;
+s1.grade = 28.5;
+strcpy(s1.name, "Marco Rossi");
 
-// Lettura
-printf("Nome: %s\n", s1.nome);
-printf("Età: %d\n", s1.eta);
-printf("Voto: %.2f\n", s1.voto);
+// Reading
+printf("Name: %s\n", s1.name);
+printf("Age: %d\n", s1.age);
+printf("Grade: %.2f\n", s1.grade);
 
-// Modifica
-s1.voto = 30.0;
-s1.eta++;
+// Update
+s1.grade = 30.0;
+s1.age++;
 ```
 
 **Attenzione**: per le stringhe (array di char) si usa `strcpy`, non l'assegnazione diretta!
@@ -144,17 +144,17 @@ level: 2
 #include <stdio.h>
 
 struct Student {
-    char nome[50];
-    int eta;
-    float voto;
+    char name[50];
+    int age;
+    float grade;
 };
 
 int main() {
-    struct Student studente1 = {"Marco Rossi", 20, 28.5};
+    struct Student student1 = {"Marco Rossi", 20, 28.5};
     
-    printf("Nome: %s\n", studente1.nome);
-    printf("Età: %d\n", studente1.eta);
-    printf("Voto: %.2f\n", studente1.voto);
+    printf("Name: %s\n", student1.name);
+    printf("Age: %d\n", student1.age);
+    printf("Grade: %.2f\n", student1.grade);
     
     return 0;
 }
@@ -171,20 +171,20 @@ L'**operatore freccia** `->` accede ai membri tramite puntatore:
 
 ```c
 struct Student {
-    char nome[50];
-    int eta;
-    float voto;
+    char name[50];
+    int age;
+    float grade;
 };
 
 void modifyStudent(struct Student *s) {
-    s->eta = 21;           // Equivale a (*s).eta = 21
-    s->voto = 30.0;        // Equivale a (*s).voto = 30.0
+    s->age = 21;           // Same as (*s).age = 21
+    s->grade = 30.0;        // Same as (*s).grade = 30.0
 }
 
 int main() {
     struct Student s1 = {"Marco", 20, 28.5};
-    modifyStudent(&s1);    // Passa l'indirizzo
-    printf("Nuova età: %d\n", s1.eta);  // Stampa 21
+    modifyStudent(&s1);    // Passes the address
+    printf("New age: %d\n", s1.age);  // Prints 21
     return 0;
 }
 ```
@@ -202,14 +202,14 @@ Le strutture possono essere passate alle funzioni **per valore** o **per riferim
 
 ```c
 void printStudent(struct Student s) {
-    printf("Nome: %s\n", s.nome);
-    printf("Età: %d\n", s.eta);
-    printf("Voto: %.2f\n", s.voto);
+    printf("Name: %s\n", s.name);
+    printf("Age: %d\n", s.age);
+    printf("Grade: %.2f\n", s.grade);
 }
 
 int main() {
     struct Student s1 = {"Marco", 20, 28.5};
-    printStudent(s1);  // Copia l'intera struttura
+    printStudent(s1);  // Copies the whole structure
     return 0;
 }
 ```
@@ -229,7 +229,7 @@ Accede ai membri di una **variabile** di tipo struttura:
 
 ```c
 struct Student s;
-s.eta = 20;
+s.age = 20;
 ```
 
 ## Operatore freccia `->`
@@ -238,7 +238,7 @@ Accede ai membri tramite **puntatore** a struttura:
 
 ```c
 struct Student *ptr = &s;
-ptr->eta = 20;           // Equivale a (*ptr).eta = 20
+ptr->age = 20;           // Same as (*ptr).age = 20
 ```
 
 **Regola**: usa `.` con variabili, `->` con puntatori.
@@ -256,22 +256,22 @@ level: 2
 
 ```c
 struct Student {
-    char nome[50];
-    int eta;
+    char name[50];
+    int age;
 };
 
-struct Student s1;  // Devi scrivere "struct Student"
+struct Student s1;  // You must write "struct Student"
 ```
 
 ## Con typedef
 
 ```c
 typedef struct {
-    char nome[50];
-    int eta;
+    char name[50];
+    int age;
 } Student;
 
-Student s1;  // Più semplice!
+Student s1;  // Simpler!
 ```
 
 ---
@@ -289,29 +289,29 @@ Puoi creare array di strutture per gestire collezioni di dati:
 #include <string.h>
 
 typedef struct {
-    char nome[50];
-    int eta;
-    float voto;
+    char name[50];
+    int age;
+    float grade;
 } Student;
 
 int main() {
-    Student classe[3];
+    Student students[3];
     
-    strcpy(classe[0].nome, "Marco");
-    classe[0].eta = 20;
-    classe[0].voto = 28.5;
+    strcpy(students[0].name, "Marco");
+    students[0].age = 20;
+    students[0].grade = 28.5;
     
-    strcpy(classe[1].nome, "Anna");
-    classe[1].eta = 19;
-    classe[1].voto = 27.0;
+    strcpy(students[1].name, "Anna");
+    students[1].age = 19;
+    students[1].grade = 27.0;
 ```
 
 ::right::
 
 ```c
-    // Stampa tutti gli studenti
+    // Print all the students
     for (int i = 0; i < 2; i++) {
-        printf("%s: %.1f\n", classe[i].nome, classe[i].voto);
+        printf("%s: %.1f\n", students[i].name, students[i].grade);
     }
     
     return 0;
@@ -360,10 +360,10 @@ FILE *fopen(const char *filename, const char *mode);
 
 ```c
 FILE *file;
-file = fopen("dati.txt", "r");
+file = fopen("data.txt", "r");
 
 if (file == NULL) {
-    printf("Errore nell'apertura del file!\n");
+    printf("Error opening the file!\n");
     return 1;
 }
 ```
@@ -389,9 +389,9 @@ level: 2
 ## Esempi
 
 ```c
-FILE *f1 = fopen("input.txt", "r");    // Solo lettura
-FILE *f2 = fopen("output.txt", "w");   // Scrittura (sovrascrive)
-FILE *f3 = fopen("log.txt", "a");      // Aggiunge alla fine
+FILE *f1 = fopen("input.txt", "r");    // Read only
+FILE *f2 = fopen("output.txt", "w");   // Write (overwrites)
+FILE *f3 = fopen("log.txt", "a");      // Appends at the end
 ```
 
 ---
@@ -410,14 +410,14 @@ int fclose(FILE *stream);
 ## Esempio
 
 ```c
-FILE *file = fopen("dati.txt", "r");
+FILE *file = fopen("data.txt", "r");
 if (file == NULL) {
-    perror("Errore apertura file");
+    perror("Error opening file");
     return 1;
 }
 
-// ... operazioni sul file ...
-fclose(file);  // Chiude il file
+// ... operations on the file ...
+fclose(file);  // Closes the file
 ```
 
 **Perché è importante?**
@@ -448,13 +448,13 @@ char *fgets(char *str, int n, FILE *stream);
 ```c
 FILE *file = fopen("input.txt", "r");
 if (file == NULL) {
-    perror("Errore apertura file");
+    perror("Error opening file");
     return 1;
 }
 
 char line[100];
 while (fgets(line, 100, file) != NULL) {
-    printf("%s", line);  // line contiene già \n
+    printf("%s", line);  // line already contains \n
 }
 
 fclose(file);
@@ -476,15 +476,15 @@ int fscanf(FILE *stream, const char *format, ...);
 ## Esempio: leggere numeri da file
 
 ```c
-FILE *file = fopen("numeri.txt", "r");
+FILE *file = fopen("numbers.txt", "r");
 if (file == NULL) {
-    perror("Errore apertura file");
+    perror("Error opening file");
     return 1;
 }
 
-int numero;
-while (fscanf(file, "%d", &numero) == 1) {
-    printf("Letto: %d\n", numero);
+int number;
+while (fscanf(file, "%d", &number) == 1) {
+    printf("Read: %d\n", number);
 }
 
 fclose(file);
@@ -508,13 +508,13 @@ int fprintf(FILE *stream, const char *format, ...);
 ## Esempio: scrivere una tabella
 
 ```c
-FILE *file = fopen("tabella.txt", "w");
+FILE *file = fopen("table.txt", "w");
 if (file == NULL) {
-    perror("Errore apertura file");
+    perror("Error opening file");
     return 1;
 }
 
-fprintf(file, "%-10s %-5s\n", "Nome", "Voto");
+fprintf(file, "%-10s %-5s\n", "Name", "Grade");
 fprintf(file, "%-10s %-5d\n", "Marco", 28);
 fprintf(file, "%-10s %-5d\n", "Anna", 30);
 
@@ -537,9 +537,9 @@ void perror(const char *msg);
 ## Esempio
 
 ```c
-FILE *file = fopen("inesistente.txt", "r");
+FILE *file = fopen("missing.txt", "r");
 if (file == NULL) {
-    perror("Errore");  // Stampa: "Errore: No such file or directory"
+    perror("Error");  // Prints: "Error: No such file or directory"
     return 1;
 }
 ```
@@ -550,7 +550,7 @@ Verifica se si è verificato un errore durante le operazioni:
 
 ```c
 if (ferror(file)) {
-    printf("Si è verificato un errore!\n");
+    printf("An error occurred!\n");
 }
 ```
 
@@ -806,37 +806,37 @@ Esempio di allocazione dinamica di array di strutture:
 #include <stdlib.h>
 
 typedef struct {
-  char materia[30];
-  int voto;
-} Corso;
+  char subject[30];
+  int grade;
+} Course;
 
 int main() {
   int n;
-  printf("Numero di corsi: ");
+  printf("Number of courses: ");
   scanf("%d", &n);
     
-  // Alloca memoria per n corsi
-  Corso *corsi = (Corso *)malloc(n * sizeof(Corso));
+  // Allocate memory for n courses
+  Course *courses = (Course *)malloc(n * sizeof(Course));
 ```
 
 ::right::
   
 ```c
 
-  // Input dati
+  // Read the data
   for (int i = 0; i < n; i++) {
-    printf("Materia %d: ", i+1);
-    scanf("%s", corsi[i].materia);
-    printf("Voto: ");
-    scanf("%d", &corsi[i].voto);
+    printf("Subject %d: ", i+1);
+    scanf("%s", courses[i].subject);
+    printf("Grade: ");
+    scanf("%d", &courses[i].grade);
   }
     
-  // Visualizza
+  // Display
   for (int i = 0; i < n; i++) {
-    printf("%s: %d\n", corsi[i].materia, corsi[i].voto);
+    printf("%s: %d\n", courses[i].subject, courses[i].grade);
   }
     
-  free(corsi);
+  free(courses);
   return 0;
 }
 ```
@@ -1077,7 +1077,7 @@ level: 2
 
 ```txt
 
-Operazioni possibili:
+Available operations:
 a. AddToHead
 b. AddToTail
 c. RemoveFromHead
@@ -1086,7 +1086,7 @@ e. ClearAll
 p. PrintAll
 x. Exit
 
-Scelta:
+Choice:
 
 ```
 
@@ -1102,7 +1102,7 @@ level: 2
 
 0) address: [0x6000039dc000], value: [22222], next: [0x6000039c4000]
 1) address: [0x6000039c4000], value: [11111], next: [0x0]
-Operazioni possibili:
+Available operations:
 a. AddToHead
 b. AddToTail
 c. RemoveFromHead
@@ -1111,7 +1111,7 @@ e. ClearAll
 p. PrintAll
 x. Exit
 
-Scelta:
+Choice:
 
 ```
 

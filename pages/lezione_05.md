@@ -33,15 +33,15 @@ level: 2
 ```c
 #include <stdio.h>
 
-// Funzioni ausiliarie
-int somma(int a, int b) {
+// Helper functions
+int add(int a, int b) {
     return a + b;
 }
 
-// Funzione principale
+// Main function
 int main(void) {
-    int risultato = somma(5, 3);
-    printf("Risultato: %d\n", risultato);
+    int result = add(5, 3);
+    printf("Result: %d\n", result);
     return 0;
 }
 ```
@@ -58,7 +58,7 @@ level: 2
 Indica al compilatore **come** chiamare la funzione (firma):
 
 ```c
-float area_triangolo(float base, float altezza);
+float triangle_area(float base, float height);
 ```
 
 ## Definizione
@@ -66,8 +66,8 @@ float area_triangolo(float base, float altezza);
 Fornisce il **corpo** della funzione (implementazione):
 
 ```c
-float area_triangolo(float base, float altezza) {
-    return base * altezza / 2.0f;
+float triangle_area(float base, float height) {
+    return base * height / 2.0f;
 }
 ```
 
@@ -85,28 +85,28 @@ level: 2
 ```c
 #include <stdio.h>
 
-// Dichiarazioni (prototipi) all'inizio
-int somma(int a, int b);
-int sottrazione(int a, int b);
-int moltiplicazione(int a, int b);
+// Declarations (prototypes) at the top
+int add(int a, int b);
+int subtract(int a, int b);
+int multiply(int a, int b);
 
 int main(void) {
-    printf("5 + 3 = %d\n", somma(5, 3));
-    printf("5 - 3 = %d\n", sottrazione(5, 3));
-    printf("5 * 3 = %d\n", moltiplicazione(5, 3));
+    printf("5 + 3 = %d\n", add(5, 3));
+    printf("5 - 3 = %d\n", subtract(5, 3));
+    printf("5 * 3 = %d\n", multiply(5, 3));
     return 0;
 }
 
-// Definizioni dopo il main
-int somma(int a, int b) {
+// Definitions after main
+int add(int a, int b) {
     return a + b;
 }
 
-int sottrazione(int a, int b) {
+int subtract(int a, int b) {
     return a - b;
 }
 
-int moltiplicazione(int a, int b) {
+int multiply(int a, int b) {
     return a * b;
 }
 ```
@@ -119,9 +119,9 @@ level: 2
 # Componenti di una funzione
 
 ```c
-tipo_ritorno nome_funzione(tipo_param1 param1, tipo_param2 param2) {
-    // Corpo della funzione
-    return valore;  // Opzionale per void
+return_type function_name(param_type1 param1, param_type2 param2) {
+    // Function body
+    return value;  // Optional for void
 }
 ```
 
@@ -143,20 +143,20 @@ level: 2
 ```c
 #include <stdio.h>
 
-int quadrato(int n) {
+int square(int n) {
     return n * n;
 }
 
 int main(void) {
     int x = 5;
-    int risultato = quadrato(x);  // Chiamata alla funzione
+    int result = square(x);  // Function call
     
-    printf("Il quadrato di %d è %d\n", x, risultato);
-    // Output: Il quadrato di 5 è 25
+    printf("The square of %d is %d\n", x, result);
+    // Output: The square of 5 is 25
     
-    // Chiamata diretta in printf
-    printf("Il quadrato di 7 è %d\n", quadrato(7));
-    // Output: Il quadrato di 7 è 49
+    // Direct call inside printf
+    printf("The square of 7 is %d\n", square(7));
+    // Output: The square of 7 is 49
     
     return 0;
 }
@@ -180,23 +180,23 @@ Le variabili dichiarate dentro una funzione sono **locali**:
 ```c
 #include <stdio.h>
 
-void funzione_a(void) {
-    int x = 10;  // x locale a funzione_a
-    printf("funzione_a: x = %d\n", x);
+void function_a(void) {
+    int x = 10;  // x local to function_a
+    printf("function_a: x = %d\n", x);
 }
 
-void funzione_b(void) {
-    int x = 20;  // x locale a funzione_b (diversa dalla x di funzione_a)
-    printf("funzione_b: x = %d\n", x);
+void function_b(void) {
+    int x = 20;  // x local to function_b (different from the x of function_a)
+    printf("function_b: x = %d\n", x);
 }
 
 int main(void) {
-    int x = 5;   // x locale a main
+    int x = 5;   // x local to main
     
     printf("main: x = %d\n", x);
-    funzione_a();
-    funzione_b();
-    printf("main: x = %d\n", x);  // x di main non è cambiato
+    function_a();
+    function_b();
+    printf("main: x = %d\n", x);  // the x of main has not changed
     
     return 0;
 }
@@ -208,8 +208,8 @@ int main(void) {
 
 ```text
 main: x = 5
-funzione_a: x = 10
-funzione_b: x = 20
+function_a: x = 10
+function_b: x = 20
 main: x = 5
 ```
 
@@ -226,17 +226,17 @@ In C, i parametri sono passati **per valore** (copia):
 ```c
 #include <stdio.h>
 
-void incrementa(int n) {
-    n = n + 1;  // Modifica la COPIA di n
-    printf("Dentro la funzione: n = %d\n", n);
+void increment(int n) {
+    n = n + 1;  // Changes the COPY of n
+    printf("Inside the function: n = %d\n", n);
 }
 
 int main(void) {
     int x = 5;
     
-    printf("Prima: x = %d\n", x);
-    incrementa(x);
-    printf("Dopo: x = %d\n", x);  // x NON è cambiato!
+    printf("Before: x = %d\n", x);
+    increment(x);
+    printf("After: x = %d\n", x);  // x has NOT changed!
     
     return 0;
 }
@@ -247,9 +247,9 @@ int main(void) {
 **Output:**
 
 ```text
-Prima: x = 5
-Dentro la funzione: n = 6
-Dopo: x = 5
+Before: x = 5
+Inside the function: n = 6
+After: x = 5
 ```
 
 La funzione modifica solo la **copia** del parametro, non l'originale!
@@ -273,8 +273,8 @@ Un **puntatore** è una variabile che memorizza l'**indirizzo di memoria** di un
 ## Dichiarazione di un puntatore
 
 ```c
-int *ptr;        // ptr è un puntatore a un intero
-char *ptr_char;  // puntatore a un carattere
+int *ptr;        // ptr is a pointer to an int
+char *ptr_char;  // pointer to a char
 ```
 
 ---
@@ -288,11 +288,11 @@ level: 2
 
 ```c
 int x = 10;
-int *ptr = &x;   // ptr memorizza l'indirizzo di x
+int *ptr = &x;   // ptr stores the address of x
 
-printf("Valore di x: %d\n", x);        // Output: 10
-printf("Indirizzo di x: %p\n", &x);    // Output: 0x7fff5fbff8ac (esempio)
-printf("Valore puntato: %d\n", *ptr);  // Output: 10
+printf("Value of x: %d\n", x);        // Output: 10
+printf("Address of x: %p\n", &x);    // Output: 0x7fff5fbff8ac (example)
+printf("Pointed value: %d\n", *ptr);  // Output: 10
 ```
 
 ---
@@ -307,16 +307,16 @@ Per modificare una variabile del chiamante, usa i **puntatori**:
 ```c
 #include <stdio.h>
 
-void incrementa(int *n) {
-    *n = *n + 1;  // Modifica il valore puntato
+void increment(int *n) {
+    *n = *n + 1;  // Changes the pointed value
 }
 
 int main(void) {
     int x = 5;
     
-    printf("Prima: x = %d\n", x);
-    incrementa(&x);  // Passa l'indirizzo di x
-    printf("Dopo: x = %d\n", x);  // x è cambiato!
+    printf("Before: x = %d\n", x);
+    increment(&x);  // Passes the address of x
+    printf("After: x = %d\n", x);  // x has changed!
     
     return 0;
 }
@@ -325,8 +325,8 @@ int main(void) {
 **Output:**
 
 ```text
-Prima: x = 5
-Dopo: x = 6
+Before: x = 5
+After: x = 6
 ```
 
 ---
@@ -339,7 +339,7 @@ level: 2
 ```c
 #include <stdio.h>
 
-void scambia(int *a, int *b) {
+void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
@@ -348,9 +348,9 @@ void scambia(int *a, int *b) {
 int main(void) {
     int x = 10, y = 20;
     
-    printf("Prima: x = %d, y = %d\n", x, y);
-    scambia(&x, &y);
-    printf("Dopo: x = %d, y = %d\n", x, y);
+    printf("Before: x = %d, y = %d\n", x, y);
+    swap(&x, &y);
+    printf("After: x = %d, y = %d\n", x, y);
     
     return 0;
 }
@@ -359,8 +359,8 @@ int main(void) {
 **Output:**
 
 ```text
-Prima: x = 10, y = 20
-Dopo: x = 20, y = 10
+Before: x = 10, y = 20
+After: x = 20, y = 10
 ```
 
 ---
@@ -376,16 +376,16 @@ Gli array sono sempre passati **per riferimento** (come puntatori):
 ```c
 #include <stdio.h>
 
-void stampa_array(int arr[], int size) {
+void print_array(int arr[], int size) {
     for (int i = 0; i < size; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
-void moltiplica_per_2(int arr[], int size) {
+void multiply_by_2(int arr[], int size) {
     for (int i = 0; i < size; i++) {
-        arr[i] *= 2;  // Modifica l'array originale!
+        arr[i] *= 2;  // Changes the original array!
     }
 }
 ```
@@ -394,16 +394,16 @@ void moltiplica_per_2(int arr[], int size) {
 
 ```c
 int main(void) {
-    int numeri[] = {1, 2, 3, 4, 5};
+    int numbers[] = {1, 2, 3, 4, 5};
     int size = 5;
     
-    printf("Originale: ");
-    stampa_array(numeri, size);
+    printf("Original: ");
+    print_array(numbers, size);
     
-    moltiplica_per_2(numeri, size);
+    multiply_by_2(numbers, size);
     
-    printf("Modificato: ");
-    stampa_array(numeri, size);
+    printf("Modified: ");
+    print_array(numbers, size);
     
     return 0;
 }
@@ -535,10 +535,10 @@ level: 2
 Gli **include guards** prevengono inclusioni multiple:
 
 ```c
-#ifndef NOME_FILE_H
-#define NOME_FILE_H
+#ifndef FILE_NAME_H
+#define FILE_NAME_H
 
-// Dichiarazioni...
+// Declarations...
 
 #endif
 ```
@@ -595,7 +595,7 @@ level: 2
 
 int main(void) {
     int x = 5;
-    int y = "hello";  // ❌ Errore!
+    int y = "hello";  // ❌ Error!
     
     printf("%d\n", x + y);
     return 0;
@@ -620,7 +620,7 @@ using type 'char *'
 // main.c
 #include <stdio.h>
 
-// Dichiarazione
+// Declaration
 int add(int a, int b);
 
 int main(void) {
@@ -629,7 +629,7 @@ int main(void) {
     return 0;
 }
 
-// ❌ Manca la definizione!
+// ❌ The definition is missing!
 ```
 
 **Output del linker:**
@@ -1186,22 +1186,22 @@ level: 2
 Scrivi una funzione che calcola la potenza di un numero:
 
 ```c
-int potenza(int base, int esponente);
+int power(int base, int exponent);
 ```
 
 **Requisiti:**
 
-- Calcola `base^esponente` usando un ciclo
+- Calcola `base^exponent` usando un ciclo
 - Gestisci il caso esponente = 0 (risultato = 1)
-- Testa con: `potenza(2, 3)` → 8, `potenza(5, 0)` → 1
+- Testa con: `power(2, 3)` → 8, `power(5, 0)` → 1
 
 **Esempio:**
 
 ```c
 int main(void) {
-    printf("2^3 = %d\n", potenza(2, 3));
-    printf("5^0 = %d\n", potenza(5, 0));
-    printf("3^4 = %d\n", potenza(3, 4));
+    printf("2^3 = %d\n", power(2, 3));
+    printf("5^0 = %d\n", power(5, 0));
+    printf("3^4 = %d\n", power(3, 4));
     return 0;
 }
 ```
@@ -1216,7 +1216,7 @@ level: 2
 Scrivi una funzione che calcola la media di un array:
 
 ```c
-float media(int arr[], int size);
+float average(int arr[], int size);
 ```
 
 **Requisiti:**
@@ -1229,9 +1229,9 @@ float media(int arr[], int size);
 
 ```c
 int main(void) {
-    int voti[] = {18, 24, 30, 27, 22};
-    float m = media(voti, 5);
-    printf("Media voti: %.2f\n", m);  // Output: 24.20
+    int grades[] = {18, 24, 30, 27, 22};
+    float m = average(grades, 5);
+    printf("Average grade: %.2f\n", m);  // Output: 24.20
     return 0;
 }
 ```

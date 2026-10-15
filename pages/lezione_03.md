@@ -54,8 +54,8 @@ level: 2
 ```c
 int age = 25, score = 85;
 
-if (age >= 18 && score > 80) {  // Entrambe le condizioni devono essere vere
-    printf("Ammesso al corso avanzato\n");
+if (age >= 18 && score > 80) {  // Both conditions must be true
+    printf("Admitted to the advanced course\n");
 }
 ```
 
@@ -92,8 +92,8 @@ level: 2
 ## Forma base
 
 ```c
-if (condizione) {
-    // blocco di istruzioni eseguito se condizione è vera
+if (condition) {
+    // statements executed if the condition is true
 }
 ```
 
@@ -115,17 +115,17 @@ level: 2
 ## IF con una sola istruzione
 
 ```c
-if (condizione)
-    istruzione;
+if (condition)
+    statement;
 ```
 
 ## IF con blocco di istruzioni
 
 ```c
-if (condizione) {
-    istruzione_1;
-    istruzione_2;
-    istruzione_3;
+if (condition) {
+    statement_1;
+    statement_2;
+    statement_3;
 }
 ```
 
@@ -134,18 +134,18 @@ if (condizione) {
 ## ⚠️ Errore comune
 
 ```c
-// ❌ ERRORE: ; dopo condizione
+// ❌ ERROR: ; after the condition
 if (x > 0);  {
-    printf("Positivo\n");
+    printf("Positive\n");
 }
-// Il blocco viene SEMPRE eseguito!
+// The block ALWAYS runs!
 ```
 
 ## ✅ Corretto
 
 ```c
 if (x > 0) {
-    printf("Positivo\n");
+    printf("Positive\n");
 }
 ```
 
@@ -195,12 +195,12 @@ level: 2
 # Sintassi dell'istruzione IF-ELSE
 
 ```c
-if (condizione) {
-    // blocco 1: eseguito se 
-    // condizione è vera
+if (condition) {
+    // block 1: executed if
+    // the condition is true
 } else {
-    // blocco 2: eseguito se 
-    // condizione è falsa
+    // block 2: executed if
+    // the condition is false
 }
 ```
 
@@ -212,11 +212,11 @@ if (condizione) {
 int age = 17;
 
 if (age >= 18) {
-    printf("Sei maggiorenne\n");
+    printf("You are an adult\n");
 } else {
-    printf("Sei minorenne\n");
+    printf("You are a minor\n");
 }
-// Output: Sei minorenne
+// Output: You are a minor
 ```
 
 ---
@@ -229,18 +229,33 @@ level: 2
 È possibile annidare più istruzioni if-else per gestire più di due casi:
 
 ```c
-int voto = 75;
+int grade = 75;
 
-if (voto >= 90) {
-    printf("Eccellente\n");
-} else if (voto >= 75) {
-    printf("Buono\n");
-} else if (voto >= 60) {
-    printf("Sufficiente\n");
+if (grade >= 90) {
+    printf("Excellent\n");
+} else if (grade >= 75) {
+    printf("Good\n");
+} else if (grade >= 60) {
+    printf("Sufficient\n");
 } else {
-    printf("Insufficiente\n");
+    printf("Insufficient\n");
 }
-// Output: Buono
+// Output: Good
+```
+
+Lo stesso schema vale per una temperatura: normale, avviso, allarme.
+
+```c
+float temp = 92.5f;
+
+if (temp >= 100.0f) {
+    printf("ALARM\n");
+} else if (temp >= 80.0f) {
+    printf("Warning\n");
+} else {
+    printf("Normal\n");
+}
+// Output: Warning
 ```
 
 ## Nota
@@ -258,10 +273,10 @@ level: 2
 
 | Situazione | Struttura da usare | Esempio |
 |------------|-------------------|---------|
-| Una sola condizione da verificare | `if` | "Stampa un avviso se la temperatura è alta" |
-| Due alternative mutualmente esclusive | `if-else` | "Maggiorenne o minorenne" |
-| Più di due alternative ordinate | `if-else if-else` | "Voto: eccellente, buono, sufficiente, insufficiente" |
-| Molte alternative su stesso valore | `switch` | "Menu con 5+ opzioni numerate" |
+| Una sola condizione da verificare | `if` | "Accendi la ventola se la temperatura è alta" |
+| Due alternative mutualmente esclusive | `if-else` | "Macchina in marcia o ferma", "maggiorenne o minorenne" |
+| Più di due alternative ordinate | `if-else if-else` | "Temperatura: normale, avviso, allarme", "voto" |
+| Molte alternative su stesso valore | `switch` | "Stato della macchina", "menu con 5+ opzioni" |
 
 ---
 level: 2
@@ -294,18 +309,46 @@ level: 2
 # ESERCIZIO: Output richiesto
 
 ```txt
-===== Dettaglio del Carrello =====
-Numero di oggetti: 12
-Prezzo unitario: 200.00
-Totale prima dello sconto: 2400.00
-Sconto applicato: 240.00
-Imponibile (dopo sconto): 2160.00
-IVA (22%): 475.20
-Totale lordo: 2635.20
-===================================
+===== Cart Details =====
+Number of items: 12
+Unit price: 200.00
+Total before discount: 2400.00
+Discount applied: 240.00
+Taxable amount (after discount): 2160.00
+VAT (22%): 475.20
+Gross total: 2635.20
+==============================
 ```
 
 **Suggerimento:** Usa `if` per verificare se applicare lo sconto, poi calcola IVA e totale.
+
+---
+level: 2
+
+---
+
+# ESERCIZIO: Costo di un lotto di produzione
+
+Stesso schema del carrello, applicato a un lotto di pezzi.
+
+## Input richiesto
+
+- Il numero di pezzi del lotto e il costo unitario di produzione
+- Il costo fisso di attrezzaggio della macchina (150.00)
+
+## Calcoli da eseguire
+
+- Se il lotto supera i 500 pezzi, sconto del 5% sul costo dei pezzi
+- Aggiungere il costo di attrezzaggio, poi l'IVA del 22%
+
+## Esempio
+
+```txt
+Pieces: 800   Unit cost: 2.50
+Parts cost: 2000.00   Discount: 100.00
+Setup: 150.00   Taxable amount: 2050.00
+VAT (22%): 451.00     Total: 2501.00
+```
 
 ---
 level: 2
@@ -317,17 +360,17 @@ level: 2
 Quando si devono gestire molti casi basati su un **singolo valore intero**, `switch` è più leggibile di tanti `if-else if`:
 
 ```c
-switch (espressione) {
-    case valore1:
-        blocco di istruzioni;
+switch (expression) {
+    case value1:
+        statements;
         break;
     
-    case valore2:
-        blocco di istruzioni;
+    case value2:
+        statements;
         break;
     
     default:
-        blocco di default;
+        default statements;
 }
 ```
 
@@ -365,28 +408,9 @@ level: 2
 
 # Esempio pratico: SWITCH
 
-```c
-int choice;
-printf("Scegli un'opzione (1-3): ");
-scanf("%d", &choice);
+Stato di una macchina letto da tastiera.
 
-switch (choice) {
-    case 1:
-        printf("Hai scelto l'opzione 1\n");
-        break;
-    
-    case 2:
-        printf("Hai scelto l'opzione 2\n");
-        break;
-    
-    case 3:
-        printf("Hai scelto l'opzione 3\n");
-        break;
-    
-    default:
-        printf("Opzione non valida\n");
-}
-```
+<<< @/snippets/example44/main.c#state c {*}{lines:true}
 
 ---
 level: 2
@@ -399,27 +423,27 @@ level: 2
 
 ```c
 char grade;
-printf("Inserisci il voto (A-F): ");
+printf("Enter the grade (A-F): ");
 scanf(" %c", &grade);
 
 switch (grade) {
     case 'A':
     case 'a':
-        printf("Eccellente!\n");
+        printf("Excellent!\n");
         break;
     
     case 'B':
     case 'b':
-        printf("Buono\n");
+        printf("Good\n");
         break;
     
     case 'C':
     case 'c':
-        printf("Sufficiente\n");
+        printf("Sufficient\n");
         break;
     
     default:
-        printf("Voto non valido\n");
+        printf("Invalid grade\n");
 }
 ```
 
@@ -446,16 +470,16 @@ level: 2
 **Esempio di esecuzione:**
 
 ```text
-=== CALCOLATRICE ===
-1. Somma
-2. Sottrazione
-3. Moltiplicazione
-4. Divisione
-5. Esci
-Scelta: 1
-Primo numero: 10
-Secondo numero: 5
-Risultato: 15.00
+=== CALCULATOR ===
+1. Add
+2. Subtract
+3. Multiply
+4. Divide
+5. Exit
+Choice: 1
+First number: 10
+Second number: 5
+Result: 15.00
 ```
 
 ---
@@ -475,14 +499,14 @@ level: 2
 ## Esempi
 
 ```c
-// ✅ Usa IF per range
+// ✅ Use IF for ranges
 if (age < 18) {...}
 else if (age < 65) {...}
 
-// ✅ Usa SWITCH per valori esatti
+// ✅ Use SWITCH for exact values
 switch (day_of_week) {
-    case 1: ... // Lunedì
-    case 2: ... // Martedì
+    case 1: ... // Monday
+    case 2: ... // Tuesday
     ...
 }
 ```
@@ -505,7 +529,7 @@ printf("0\n");
 printf("1\n");
 printf("2\n");
 printf("3\n");
-// ... 97 righe omesse ...
+// ... 97 lines omitted ...
 printf("100\n");
 ```
 
@@ -543,8 +567,8 @@ Il ciclo **for** ripete l'esecuzione del blocco di istruzioni fintanto che la co
 ## Sintassi
 
 ```c
-for (inizializzazione; condizione; incremento) {
-    blocco di istruzioni
+for (initialization; condition; increment) {
+    statements
 }
 ```
 
@@ -579,8 +603,8 @@ level: 2
 # Anatomia del ciclo FOR
 
 ```c
-for (inizializzazione; condizione; incremento) {
-    blocco di istruzioni
+for (initialization; condition; increment) {
+    statements
 }
 ```
 
@@ -594,7 +618,7 @@ for (inizializzazione; condizione; incremento) {
 ## Esempio annotato
 
 ```c
-//     ↓ inizio      ↓ fino a quando?  ↓ come procede?
+//     ↓ start       ↓ until when?     ↓ how to proceed?
 for (int i = 0;     i < 10;            i++) {
     printf("%d\n", i);  // ← Eseguito 10 volte (i = 0,1,2,...,9)
 }
@@ -610,21 +634,21 @@ level: 2
 ## Dichiarazione della variabile nel for (C99+)
 
 ```c
-for (int i = 0; i < 10; i++) {  // i esiste solo nel ciclo
+for (int i = 0; i < 10; i++) {  // i exists only in the loop
     printf("%d\n", i);
 }
-// printf("%d", i);  // ❌ ERRORE: i non esiste qui
+// printf("%d", i);  // ❌ ERROR: i does not exist here
 ```
 
 ## Incremento diverso
 
 ```c
-// Conta per 2
+// Count by 2
 for (int i = 0; i < 10; i += 2) {
     printf("%d ", i);  // Output: 0 2 4 6 8
 }
 
-// Conta all'indietro
+// Count backwards
 for (int i = 10; i > 0; i--) {
     printf("%d ", i);  // Output: 10 9 8 7 6 5 4 3 2 1
 }
@@ -649,10 +673,11 @@ level: 2
 **Esempio:**
 
 ```text
-Inserisci N: 10
-Somma da 1 a 10: 55
-(Spiegazione: 1+2+3+4+5+6+7+8+9+10 = 55)
+Enter N: 10
+Sum from 1 to 10: 55
 ```
+
+La somma è 1+2+3+4+5+6+7+8+9+10 = 55.
 
 ::right::
 
@@ -677,8 +702,8 @@ level: 2
 ## Sintassi
 
 ```c
-while (condizione) {
-    blocco di istruzioni
+while (condition) {
+    statements
 }
 ```
 
@@ -768,8 +793,8 @@ level: 2
 
 ```c
 do {
-    blocco di istruzioni
-} while (condizione);
+    statements
+} while (condition);
 ```
 
 **Nota:** Il `;` dopo `while` è obbligatorio!
@@ -813,36 +838,9 @@ level: 2
 
 # Esempio pratico: Validazione PIN
 
-```c
-#include <stdio.h>
+Accesso al pannello di una macchina: tre tentativi, poi blocco.
 
-int main(void) {
-    int pin;
-    int attempts = 0;
-    const int CORRECT_PIN = 1234;
-    const int MAX_ATTEMPTS = 3;
-    
-    do {
-        printf("Inserisci il PIN (4 cifre): ");
-        scanf("%d", &pin);
-        attempts++;
-        
-        if (pin == CORRECT_PIN) {
-            printf("✅ Accesso consentito!\n");
-            break;
-        } else {
-            printf("❌ PIN errato. Tentativi rimasti: %d\n", 
-                   MAX_ATTEMPTS - attempts);
-        }
-    } while (attempts < MAX_ATTEMPTS);
-    
-    if (attempts == MAX_ATTEMPTS && pin != CORRECT_PIN) {
-        printf("🔒 Account bloccato!\n");
-    }
-    
-    return 0;
-}
-```
+<<< @/snippets/example41/main.c#pin c {*}{lines:true,maxHeight:'380px'}
 
 ---
 level: 2
@@ -853,24 +851,7 @@ level: 2
 
 Il caso d'uso più comune per `do-while` è un menu che deve essere mostrato almeno una volta:
 
-```c
-int choice;
-do {
-    printf("\n===== MENU =====\n");
-    printf("1. Opzione 1\n");
-    printf("2. Opzione 2\n");
-    printf("3. Esci\n");
-    printf("Scelta: ");
-    scanf("%d", &choice);
-    
-    switch (choice) {
-        case 1: printf("Eseguo opzione 1\n"); break;
-        case 2: printf("Eseguo opzione 2\n"); break;
-        case 3: printf("Arrivederci!\n"); break;
-        default: printf("Scelta non valida\n");
-    }
-} while (choice != 3);
-```
+<<< @/snippets/example46/main.c#menu c {*}{lines:true,maxHeight:'330px'}
 
 ---
 level: 2
@@ -893,39 +874,11 @@ level: 2
 
 # Esempio pratico: Validazione input numerico
 
-```c
-#include <stdio.h>
+Lettura di una temperatura: si ripete finché il valore è un numero nel campo del sensore.
 
-int main(void) {
-    int age;
-    int valid = 0;
-    
-    // Continua a chiedere finché l'input non è valido
-    while (!valid) {
-        printf("Inserisci la tua età (0-120): ");
-        
-        if (scanf("%d", &age) != 1) {
-            // Input non numerico
-            printf("❌ Errore: inserisci un numero!\n");
-            while (getchar() != '\n');  // Pulisci buffer
-            continue;
-        }
-        
-        if (age < 0 || age > 120) {
-            printf("❌ Età non valida! Deve essere tra 0 e 120.\n");
-            continue;
-        }
-        
-        // Input valido!
-        valid = 1;
-        printf("✅ Età registrata: %d anni\n", age);
-    }
-    
-    return 0;
-}
-```
+<<< @/snippets/example42/main.c#validation c {*}{lines:true,maxHeight:'330px'}
 
-**Mostra come usare `while`, `continue` e validazione input.**
+Mostra come usare `while`, `continue` e la validazione dell'input.
 
 ---
 level: 2
@@ -940,7 +893,7 @@ Esce **immediatamente** dal ciclo (for, while, do-while, switch):
 
 ```c
 for (int i = 0; i < 10; i++) {
-    if (i == 5) break;  // Esce quando i vale 5
+    if (i == 5) break;  // Leaves when i is 5
     printf("%d ", i);
 }
 // Output: 0 1 2 3 4
@@ -952,7 +905,7 @@ Salta **l'iterazione corrente** e passa alla successiva:
 
 ```c
 for (int i = 0; i < 10; i++) {
-    if (i % 2 == 0) continue;  // Salta i numeri pari
+    if (i % 2 == 0) continue;  // Skip even numbers
     printf("%d ", i);
 }
 // Output: 1 3 5 7 9
@@ -968,27 +921,38 @@ level: 2
 ## Somma con continue (somma solo dispari)
 
 ```c
-int somma = 0;
+int sum = 0;
 for (int i = 1; i <= 10; i++) {
-    if (i % 2 == 0) continue;  // Salta i numeri pari
-    somma += i;  // Somma solo dispari
+    if (i % 2 == 0) continue;  // Skip even numbers
+    sum += i;  // Add odd numbers only
 }
-printf("Somma dispari: %d\n", somma);  // Output: 25 (1+3+5+7+9)
+printf("Odd sum: %d\n", sum);  // Output: 25 (1+3+5+7+9)
 ```
 
 ## Stampa con break (conteggio fino a limite)
 
 ```c
-int conteggio = 0;
+int count = 0;
 for (int i = 1; i <= 100; i++) {
     printf("%d ", i);
-    conteggio++;
-    if (conteggio == 10) {
-        printf("\n");  // A capo dopo 10 numeri
-        break;  // Esci dal ciclo
+    count++;
+    if (count == 10) {
+        printf("\n");  // New line after 10 numbers
+        break;  // Leave the loop
     }
 }
 ```
+
+---
+level: 2
+
+---
+
+# Esempio pratico: monitor di temperatura
+
+Cinque letture: avviso sopra 80, allarme sopra 100 con `break`, minimo, massimo e somma.
+
+<<< @/snippets/example43/main.c#monitor c {*}{lines:true,maxHeight:'380px'}
 
 ---
 layout: two-cols
@@ -1015,21 +979,16 @@ level: 2
 
 ---
 
-# Cicli annidati: esempi pratici
+# Cicli annidati: sensori e campioni
 
-## Stampa un rettangolo di asterischi (5x3)
+Il ciclo esterno scorre i sensori, quello interno i campioni di ciascun sensore.
 
-```c
-for (int row = 0; row < 3; row++) {
-    for (int col = 0; col < 5; col++) {
-        printf("* ");
-    }
-    printf("\n");
-}
-// Output:
-// * * * * *
-// * * * * *
-// * * * * *
+<<< @/snippets/example45/main.c#nested c {*}{lines:true}
+
+```text
+Sensor 1: 25.5 26.0 26.5 27.0  | average 26.25
+Sensor 2: 30.5 31.0 31.5 32.0  | average 31.25
+Sensor 3: 35.5 36.0 36.5 37.0  | average 36.25
 ```
 
 ---
@@ -1068,7 +1027,7 @@ level: 2
 
 ---
 
-# CICLI ANNIDATI: esempi pratici
+# Cicli annidati: il triangolo
 
 ## Stampa un triangolo
 
@@ -1100,7 +1059,7 @@ level: 2
 for (int i = 0; i < 10; i++) {
     printf("%d ", i);  // ✅ i esiste qui
 }
-// printf("%d", i);  // ❌ ERRORE: i non esiste fuori dal for
+// printf("%d", i);  // ❌ ERROR: i does not exist outside the for
 ```
 
 ## Variabile dichiarata prima del ciclo
@@ -1110,7 +1069,7 @@ int i;
 for (i = 0; i < 10; i++) {
     printf("%d ", i);
 }
-printf("Finale: %d\n", i);  // ✅ i vale 10 (ultimo incremento)
+printf("Final: %d\n", i);  // ✅ i is 10 (last increment)
 ```
 
 ## Buona pratica
@@ -1141,13 +1100,13 @@ level: 2
 **Esempio:**
 
 ```text
-Limite inferiore: 1
-Limite superiore: 20
-Cerca il numero: 7
-Output: Trovato il numero 7!
+Lower bound: 1
+Upper bound: 20
+Number to find: 7
+Output: Found the number 7!
 ```
 
-**Suggerimento:** Usa una variabile `trovato` per tracciare se hai trovato il numero.
+**Suggerimento:** Usa una variabile `found` per tracciare se hai trovato il numero.
 
 ---
 level: 2
@@ -1185,11 +1144,11 @@ level: 2
 # Errore off-by-one: esempi
 
 ```c
-// Volevo stampare da 1 a 10
+// I wanted to print from 1 to 10
 for (int i = 0; i <= 10; i++) {
     printf("%d ", i);
 }
-// Output: 0 1 2 3 4 5 6 7 8 9 10  ❌ 11 numeri!
+// Output: 0 1 2 3 4 5 6 7 8 9 10  ❌ 11 numbers!
 ```
 
 ::right::
@@ -1197,13 +1156,13 @@ for (int i = 0; i <= 10; i++) {
 ## ✅ Corretto: stampa da 1 a 10
 
 ```c
-// Soluzione 1: condizione corretta
+// Solution 1: correct condition
 for (int i = 1; i <= 10; i++) {
     printf("%d ", i);
 }
 // Output: 1 2 3 4 5 6 7 8 9 10  ✅
 
-// Soluzione 2: offset
+// Solution 2: offset
 for (int i = 0; i < 10; i++) {
     printf("%d ", i + 1);
 }
@@ -1224,9 +1183,9 @@ level: 2
 int i = 0;
 while (i < 10) {
     printf("%d\n", i);
-    // ❌ Dimenticato i++!
+    // ❌ Forgot i++!
 }
-// Loop infinito: stampa 0 all'infinito
+// Infinite loop: prints 0 forever
 ```
 
 ## ❌ Condizione sempre vera
@@ -1235,9 +1194,9 @@ while (i < 10) {
 int x = 5;
 while (x > 0) {
     printf("x = %d\n", x);
-    x = x + 1;  // ❌ Aumenta invece di diminuire!
+    x = x + 1;  // ❌ Increases instead of decreasing!
 }
-// x diventa 6, 7, 8... mai < 0
+// x becomes 6, 7, 8... never < 0
 ```
 
 ::right::
@@ -1246,13 +1205,13 @@ while (x > 0) {
 
 ```c
 int count = 0;
-// ❌ Usa = invece di ==
+// ❌ Uses = instead of ==
 while (count = 10) {  
     printf("Count: %d\n", count);
     count++;
 }
-// count = 10 assegna 10 (sempre true)
-// e stampa sempre 10!
+// count = 10 assigns 10 (always true)
+// and always prints 10!
 ```
 
 ## ✅ Corretto
@@ -1261,7 +1220,7 @@ while (count = 10) {
 int i = 0;
 while (i < 10) {
     printf("%d\n", i);
-    i++;  // ✅ Incremento presente
+    i++;  // ✅ Increment present
 }
 ```
 
@@ -1284,26 +1243,26 @@ level: 2
 
 ---
 
-# Debugging dei cicli
+# Debugging dei cicli: stampe di debug
 
 ## Tecniche per trovare errori
 
 ## 1. Stampe di debug strategiche
 
 ```c
-// Prima del ciclo: stampa stato iniziale
-printf("=== INIZIO CICLO ===\n");
-printf("Valori iniziali: i=%d, sum=%d\n", i, sum);
+// Before the loop: print the initial state
+printf("=== LOOP START ===\n");
+printf("Initial values: i=%d, sum=%d\n", i, sum);
 
 for (int i = 0; i < 5; i++) {
     sum += i;
-    // Durante: stampa ad ogni iterazione
-    printf("Iterazione %d: i=%d, sum=%d\n", i+1, i, sum);
+    // During: print at every iteration
+    printf("Iteration %d: i=%d, sum=%d\n", i+1, i, sum);
 }
 
-// Dopo: stampa risultato finale
-printf("=== FINE CICLO ===\n");
-printf("Risultato finale: sum=%d\n", sum);
+// After: print the final result
+printf("=== LOOP END ===\n");
+printf("Final result: sum=%d\n", sum);
 ```
 
 **Output aiuta a vedere cosa succede step-by-step!**
@@ -1313,7 +1272,7 @@ level: 2
 
 ---
 
-# Debugging dei cicli
+# Debugging dei cicli: casi limite
 
 ## 2. Verificare i casi limite
 
@@ -1325,6 +1284,14 @@ level: 2
 
 - Simula 2-3 iterazioni su carta
 - Verifica i valori delle variabili
+
+## Esempio: media di N misure
+
+```c
+float average = sum / n;  // n == 0 ?
+```
+
+Con zero misure la divisione è per zero: controllare `n > 0` prima di dividere.
 
 ---
 level: 2
@@ -1372,24 +1339,24 @@ level: 2
 Identifica e correggi gli errori nei seguenti frammenti di codice:
 
 ```c
-// 1. Somma dei primi N numeri
+// 1. Sum of the first N numbers
 int n = 10;
-int sum;  // ❌ Errore?
+int sum;  // ❌ Error?
 for (int i = 1; i <= n; i++) {
     sum = sum + i;
 }
 
-// 2. Stampa numeri da 1 a 10
-for (int i = 0; i <= 10; i++) {  // ❌ Errore?
+// 2. Print numbers from 1 to 10
+for (int i = 0; i <= 10; i++) {  // ❌ Error?
     printf("%d ", i);
 }
-// Volevo stampare da 1 a 10
+// I wanted to print from 1 to 10
 
-// 3. Conta fino a zero
+// 3. Count down to zero
 int count = 10;
 while (count > 0) {
     printf("%d ", count);
-    count = count + 1;  // ❌ Errore?
+    count = count + 1;  // ❌ Error?
 }
 ```
 
@@ -1401,27 +1368,27 @@ level: 2
 # Soluzioni esercizio
 
 ```c
-// 1. ✅ sum non inizializzato
+// 1. ✅ sum is not initialized
 int n = 10;
-int sum = 0;  // ✅ Inizializza a 0
+int sum = 0;  // ✅ Initialize to 0
 for (int i = 1; i <= n; i++) {
     sum = sum + i;
 }
 
-// 2. ✅ Off-by-one error: i va da 0 a 10 (11 valori invece di 10)
-for (int i = 1; i <= 10; i++) {  // ✅ Inizia da 1 invece di 0
+// 2. ✅ Off-by-one error: i goes from 0 to 10 (11 values instead of 10)
+for (int i = 1; i <= 10; i++) {  // ✅ Start from 1 instead of 0
     printf("%d ", i);
 }
-// Oppure:
-for (int i = 0; i < 10; i++) {  // ✅ Usa < invece di <=
+// Or:
+for (int i = 0; i < 10; i++) {  // ✅ Use < instead of <=
     printf("%d ", i + 1);
 }
 
-// 3. ✅ Ciclo infinito: count aumenta invece di diminuire
+// 3. ✅ Infinite loop: count increases instead of decreasing
 int count = 10;
 while (count > 0) {
     printf("%d ", count);
-    count = count - 1;  // ✅ Decrementa con -1
+    count = count - 1;  // ✅ Decrement with -1
 }
 ```
 
@@ -1500,17 +1467,17 @@ level: 2
 **Esempio di esecuzione:**
 
 ```text
-Inserisci numeri positivi (0 per terminare):
-Numero: 12
-Numero: 5
-Numero: 8
-Numero: 7
-Numero: 14
-Numero: 3
-Numero: 0
+Enter positive numbers (0 to stop):
+Number: 12
+Number: 5
+Number: 8
+Number: 7
+Number: 14
+Number: 3
+Number: 0
 
-Numeri pari: 3 (somma: 34)
-Numeri dispari: 3 (somma: 15)
+Even numbers: 3 (sum: 34)
+Odd numbers: 3 (sum: 15)
 ```
 
 **Suggerimento:** Usa `if (num % 2 == 0)` per verificare se un numero è pari.
@@ -1542,12 +1509,12 @@ level: 2
 **Esempio di esecuzione:**
 
 ```text
-Calcolo del fattoriale
-Inserisci un numero (0-12): 15
-Errore! Numero troppo grande. Riprova.
-Inserisci un numero (0-12): -3
-Errore! Numero negativo. Riprova.
-Inserisci un numero (0-12): 5
+Factorial calculation
+Enter a number (0-12): 15
+Error! Number too large. Try again.
+Enter a number (0-12): -3
+Error! Negative number. Try again.
+Enter a number (0-12): 5
 
 5! = 1 × 2 × 3 × 4 × 5 = 120
 ```
@@ -1576,11 +1543,11 @@ level: 2
 **Esempio di esecuzione:**
 
 ```text
-Inserisci un numero: 17
-17 è un numero primo
+Enter a number: 17
+17 is a prime number
 
-Inserisci un numero: 24
-24 non è primo (divisibile per 2)
+Enter a number: 24
+24 is not prime (divisible by 2)
 ```
 
 **Suggerimento:** Usa un ciclo `for` da 2 a n-1 e controlla `if (n % i == 0)` per trovare divisori.

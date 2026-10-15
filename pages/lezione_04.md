@@ -67,15 +67,15 @@ level: 2
 - Variabile Scalare: contiene 1 singolo valore:
 
 ```c
-tipo identificatore = valore;
-int numero = 3 ;
+type identifier = value;
+int number = 3 ;
 ```
 
 - Variabili vettoriali: contengono più valori dello stesso tipo:
 
 ```c
-tipo identificatore [ dimensione ] = valore;
-int numeri[ 3 ] = { 0, 1, 2 };
+type identifier [ size ] = value;
+int numbers[ 3 ] = { 0, 1, 2 };
 ```
 
 - **dimensione** deve essere una costante intera, positiva, e nota al momento della compilazione
@@ -99,9 +99,9 @@ contigue e successive
 <Transform :scale="1.3" >
 
 ```c
-int vett[10];
-scanf("%d", &vett[4]);
-x = vett[4] * 5;
+int arr[10];
+scanf("%d", &arr[4]);
+x = arr[4] * 5;
 ```
 
 </Transform>
@@ -124,7 +124,7 @@ char c = ‘a’
 - vettore di 5 elementi
 
 ```c
-int numeri[5]= {1,2,3,4,5}
+int numbers[5]= {1,2,3,4,5}
 ```
 
 ::right::
@@ -170,12 +170,12 @@ level: 2
 
 ```c
 #define N 10
-int vett[N];
+int arr[N];
 for (i=0; i<N; i++){
-  scanf("%d", &vett[i]);
+  scanf("%d", &arr[i]);
 }
 for (i=N-1; i>=0; i--){
-  printf("%d\n", vett[i]);
+  printf("%d\n", arr[i]);
 }
 
 ```
@@ -192,12 +192,12 @@ level: 2
 ## Trovare il valore massimo
 
 ```c
-int numeri[5] = {3, 7, 2, 9, 4};
-int max = numeri[0];  // Assume the first is max
+int numbers[5] = {3, 7, 2, 9, 4};
+int max = numbers[0];  // Assume the first is max
 
 for (int i = 1; i < 5; i++) {
-    if (numeri[i] > max) {
-        max = numeri[i];
+    if (numbers[i] > max) {
+        max = numbers[i];
     }
 }
 printf("Massimo: %d\n", max);  // Output: 9
@@ -213,15 +213,15 @@ level: 2
 ## Invertire un vettore
 
 ```c
-int vett[5] = {1, 2, 3, 4, 5};
+int arr[5] = {1, 2, 3, 4, 5};
 int temp;
 
 for (int i = 0; i < 5/2; i++) {
-    temp = vett[i];
-    vett[i] = vett[4 - i];
-    vett[4 - i] = temp;
+    temp = arr[i];
+    arr[i] = arr[4 - i];
+    arr[4 - i] = temp;
 }
-// Risultato: {5, 4, 3, 2, 1}
+// Result: {5, 4, 3, 2, 1}
 ```
 
 ---
@@ -234,8 +234,8 @@ level: 2
 ## ❌ Errore 1: Accesso fuori dai limiti
 
 ```c
-int vett[10];
-vett[10] = 42;  // ❌ ERRORE! L'ultimo indice è 9, non 10
+int arr[10];
+arr[10] = 42;  // ❌ ERROR! The last index is 9, not 10
 ```
 
 ## ❌ Errore 2: Tentare di copiare con =
@@ -243,7 +243,7 @@ vett[10] = 42;  // ❌ ERRORE! L'ultimo indice è 9, non 10
 ```c
 int a[5] = {1, 2, 3, 4, 5};
 int b[5];
-b = a;  // ❌ ERRORE! Non si possono copiare array con =
+b = a;  // ❌ ERROR! Arrays cannot be copied with =
 ```
 
 **Soluzione**: Usare un ciclo per copiare elemento per elemento
@@ -264,14 +264,14 @@ level: 2
 ## ❌ Errore 3: Array non inizializzato
 
 ```c
-int vett[5];
-printf("%d\n", vett[0]);  // ❌ Valore indefinito (garbage)
+int arr[5];
+printf("%d\n", arr[0]);  // ❌ Undefined value (garbage)
 ```
 
 **Soluzione**: Inizializzare sempre gli array
 
 ```c
-int vett[5] = {0};  // ✅ Tutti gli elementi a 0
+int arr[5] = {0};  // ✅ All elements set to 0
 ```
 
 ---
@@ -329,20 +329,20 @@ level: 2
 - Definizione
 
 ```c
-tipo identificatore [ numero_righe ] [ numero_colonne ] ;
+type identifier [ rows ] [ columns ] ;
 ```
 
 - Es: matrice con 10 righe e 20 colonne:
 
 ```c
-int matrice [ 10 ] [ 20 ];
+int matrix [ 10 ] [ 20 ];
 ```
 
 - Gli indici di riga e colonna vanno da 0 a N-1, dove N è la dimensione
 - Matrice con 5 righe ( da 0 a 4) e 10 colonne (da 0 a 9)
 
 ```c
-int matrice [ 5 ][ 10 ];
+int matrix [ 5 ][ 10 ];
 ```
 
 ---
@@ -357,11 +357,11 @@ Come per i vettori, il ciclo **for** si presta per attraversare righe e colonne:
 <Transform :scale="1.3">
 
 ```c
-int matrice[RIGHE][COLONNE];
-for (r=0; r<RIGHE; r++)
+int matrix[ROWS][COLUMNS];
+for (r=0; r<ROWS; r++)
 {
-    for (c=0; c<COLONNE; c++)
-        printf("%d ", matrice[r][c]);
+    for (c=0; c<COLUMNS; c++)
+        printf("%d ", matrix[r][c]);
     printf("\n");
 }
 ```
@@ -378,14 +378,14 @@ level: 2
 ## Somma degli elementi di una riga
 
 ```c
-int matrice[3][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
-int riga = 1;  // Seconda riga
-int somma = 0;
+int matrix[3][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}};
+int row = 1;  // Second row
+int sum = 0;
 
 for (int c = 0; c < 4; c++) {
-    somma += matrice[riga][c];
+    sum += matrix[row][c];
 }
-printf("Somma riga %d: %d\n", riga, somma);  // Output: 26
+printf("Row sum %d: %d\n", row, sum);  // Output: 26
 ```
 
 ---
@@ -399,7 +399,7 @@ level: 2
 
 ```c
 int A[2][3] = {{1, 2, 3}, {4, 5, 6}};
-int T[3][2];  // Trasposta: righe e colonne invertite
+int T[3][2];  // Transpose: rows and columns swapped
 
 for (int r = 0; r < 2; r++) {
     for (int c = 0; c < 3; c++) {
@@ -419,13 +419,13 @@ level: 2
 ## Accesso alla diagonale principale
 
 ```c
-int matrice[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-int somma_diag = 0;
+int matrix[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+int diag_sum = 0;
 
 for (int i = 0; i < 3; i++) {
-    somma_diag += matrice[i][i];  // Elementi sulla diagonale
+    diag_sum += matrix[i][i];  // Elements on the diagonal
 }
-printf("Somma diagonale: %d\n", somma_diag);  // Output: 15 (1+5+9)
+printf("Diagonal sum: %d\n", diag_sum);  // Output: 15 (1+5+9)
 ```
 
 ---
@@ -446,7 +446,7 @@ level: 2
 <Transform :scale="1.3">
 
 ```c
-int matrice [2][3] = {1,2,3,4,5,6};
+int matrix [2][3] = {1,2,3,4,5,6};
 ```
 
 </Transform>
@@ -467,7 +467,7 @@ level: 2
 - Non c'è limite al numero delle dimensioni
 
 ```c
-int matrice [DIM_1][DIM_2]...[DIM_N] ;
+int matrix [DIM_1][DIM_2]...[DIM_N] ;
 ```
 
 - Solitamente si usano costanti simboliche ( #define ) per definire le dimensioni dei vettori o delle matrici
@@ -492,9 +492,9 @@ un numero intero a ciascuno di essi
 ```c
 
 char character;
-char character = 'A'; // assegnazione con carattere
-char character = 65;  // assegnazione con codice ASCII decimale
-char character = 0x41;  // assegnazione con codice ASCII esadecimale
+char character = 'A'; // assignment with a character
+char character = 65;  // assignment with the decimal ASCII code
+char character = 0x41;  // assignment with the hexadecimal ASCII code
 ```
 
 </Transform>
@@ -621,16 +621,16 @@ level: 2
 ## Buffer Overflow
 
 ```c
-char nome[10];
-// ❌ PERICOLO! Se l'utente inserisce più di 9 caratteri
-scanf("%s", nome);  // Può sovrascrivere memoria adiacente!
+char name[10];
+// ❌ DANGER! If the user types more than 9 characters
+scanf("%s", name);  // It can overwrite adjacent memory!
 ```
 
 **Soluzione**: Limitare sempre la lunghezza
 
 ```c
-char nome[10];
-scanf("%9s", nome);  // ✅ Legge al massimo 9 caratteri + \0
+char name[10];
+scanf("%9s", name);  // ✅ Reads at most 9 characters + \0
 ```
 
 ---
@@ -644,7 +644,7 @@ level: 2
 
 ```c
 char buffer[50];
-gets(buffer);  // ❌ VIETATO! Rimosso da C11 per motivi di sicurezza
+gets(buffer);  // ❌ FORBIDDEN! Removed in C11 for security reasons
 ```
 
 **Problema**: `gets()` non controlla la dimensione del buffer → buffer overflow garantito!
@@ -653,7 +653,7 @@ gets(buffer);  // ❌ VIETATO! Rimosso da C11 per motivi di sicurezza
 
 ```c
 char buffer[50];
-fgets(buffer, 50, stdin);  // ✅ Sicuro: specifica la dimensione massima
+fgets(buffer, 50, stdin);  // ✅ Safe: specifies the maximum size
 ```
 
 ---

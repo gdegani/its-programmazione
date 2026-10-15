@@ -23,6 +23,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const SNIPPETS_DIR = join(__dirname, '..', 'snippets');
+const PAGES_DIR = join(__dirname, '..', 'pages');
 
 // Common Italian words used in code
 const ITALIAN_PATTERNS = [
@@ -30,7 +31,7 @@ const ITALIAN_PATTERNS = [
   'somma', 'numero', 'numeri', 'valore', 'valori', 'risultato', 'risultati',
   'contatore', 'elemento', 'elementi', 'utente', 'utenti',
   'nome', 'cognome', 'eta', 'età', 'anni', 'anno',
-  'altezza', 'base', 'area', 'larghezza',
+  'altezza', 'larghezza',
   'testo', 'stringa', 'carattere', 'caratteri',
   'totale', 'prezzo', 'costo', 'sconto', 'imponibile', 'iva',
   'carrello', 'oggetti', 'oggetto', 'quantita', 'quantità',
@@ -55,6 +56,8 @@ const ITALIAN_PATTERNS = [
   'palindroma', 'palindromo',
   'prelevato', 'prelevare',
   'lunga', 'lungo',
+  'voto', 'voti', 'scegli', 'opzione', 'opzioni', 'esci', 'saluta',
+  'conteggio', 'tentativi', 'tentativo', 'pagina', 'riepilogo',
 ];
 
 // ANSI color codes
@@ -126,8 +129,41 @@ function checkFileForItalian(filePath) {
   return issues;
 }
 
+// Extract the lines of the ```c blocks of a slide file, as 'file:line' sources
+function checkSlideFile(filePath) {
+  const lines = readFileSync(filePath, 'utf-8').split('\n');
+  const issues = [];
+  let inC = false;
+  let inOther = false;
+
+  lines.forEach((line, index) => {
+    const fence = line.match(/^\s*```(\w*)/);
+    if (fence) {
+      if (inC || inOther) {
+        inC = inOther = false;
+      } else if (fence[1] === 'c') {
+        inC = true;
+      } else {
+        inOther = true;
+      }
+      return;
+    }
+    if (!inC) return;
+
+    for (const pattern of ITALIAN_PATTERNS) {
+      const match = line.match(new RegExp(`\\b${pattern}\\b`, 'i'));
+      if (match) {
+        issues.push({ line: index + 1, word: match[0], context: line.trim() });
+        break;
+      }
+    }
+  });
+
+  return issues;
+}
+
 function main() {
-  log('\n🔍 Checking C source files for Italian language...\n', 'blue');
+  log('\n🔍 Checking C source files and slide code blocks for Italian language...\n', 'blue');
 
   const snippetDirs = getSnippetDirs();
   const results = {};
@@ -146,6 +182,15 @@ function main() {
         results[key] = issues;
         totalIssues += issues.length;
       }
+    }
+  }
+
+  // Code blocks inside the slides
+  for (const file of readdirSync(PAGES_DIR).filter(f => f.endsWith('.md')).sort()) {
+    const issues = checkSlideFile(join(PAGES_DIR, file));
+    if (issues.length > 0) {
+      results[`pages/${file}`] = issues;
+      totalIssues += issues.length;
     }
   }
 
