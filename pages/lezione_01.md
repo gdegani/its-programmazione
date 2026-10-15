@@ -740,3 +740,28 @@ printf("Backslash: \\\n");      // \\ = backslash
 ```
 
 I valori numerici e la formattazione si vedono nella prossima lezione.
+
+---
+level: 2
+
+---
+
+# Esercizio: la scheda della macchina
+
+Livello base, in coppia: scambiatevi i ruoli a metà esercizio.
+
+Scrivere un programma che stampa con `printf()` esattamente questo testo:
+
+```text
+Machine: "Press 01"
+Path: C:\factory\line1
+Status: READY
+```
+
+## Suggerimento
+
+Servono i caratteri speciali della slide precedente: `\n`, `\"` e `\\`.
+
+## Per chi finisce prima
+
+Stampare anche una quarta riga con un carattere di tabulazione tra `Status:` e `READY`.
