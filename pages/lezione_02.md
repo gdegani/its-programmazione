@@ -503,7 +503,7 @@ level: 2
 
 # Esempio: lettura di un ADC
 
-Un convertitore analogico-digitale a 12 bit restituisce un valore da 0 a 4095. Con una tensione di riferimento di 3,3 V:
+La formula della slide precedente in C, con 12 bit e $V_{REF} = 3.3$ V:
 
 <<< @/snippets/example38/main.c#snippet1 c {*}{lines:true}
 
@@ -530,7 +530,7 @@ level: 2
 scanf("format", &variable);
 ```
 
-⚠️ Prima del nome della variabile si scrive `&` (l'indirizzo della variabile).
+⚠️ Prima del nome della variabile si scrive `&` (per ottenere l'indirizzo della variabile).
 
 ## Specificatori
 
@@ -614,19 +614,19 @@ level: 2
 
 Livello standard, in coppia.
 
-Un sensore di temperatura analogico fornisce 10 mV per ogni grado Celsius. Il convertitore è a 12 bit (0-4095) con riferimento a 3,3 V.
+Un sensore di temperatura (per esempio un LM35) fornisce 10 mV per ogni grado Celsius. È collegato a un ADC a 10 bit con $V_{REF} = 5$ V.
 
 Scrivere un programma che:
 
 - legge il valore grezzo dell'ADC (`int`)
-- calcola la tensione in volt
+- calcola la tensione in volt (attenzione: quanti livelli ha un ADC a 10 bit?)
 - calcola e stampa la temperatura in gradi Celsius con un decimale
 
 ## Prove
 
 - `0` → `0.0`
-- `2048` → `165.0`
-- `4095` → `330.0`
+- `61` → `29.8`
+- `205` → `100.2`
 
 ---
 level: 2
@@ -796,7 +796,7 @@ level: 2
 
 # Esercizio 3: controllo delle misure
 
-Livello sfida, in coppia. Si usano solo espressioni: ogni risultato si stampa come `0` o `1`.
+Livello sfida, in coppia. Senza `if`, che si vedrà nella lezione 3: ogni risultato è il valore (`0` o `1`) di un'espressione con operatori relazionali e logici, stampato con `printf("%d\n", ...)`.
 
 Scrivere un programma che legge due misure di temperatura (`float`) e stampa:
 
