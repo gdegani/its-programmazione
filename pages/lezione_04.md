@@ -37,23 +37,7 @@ level: 2
 
 # La soluzione: Vettori (Arrays)
 
-```c
-// ✅ With arrays - SIMPLE!
-double temp[100];
-
-// Read the readings
-for (int i = 0; i < 100; i++) {
-    printf("Enter reading %d: ", i + 1);
-    scanf("%lf", &temp[i]);
-}
-
-// Compute the average
-double sum = 0;
-for (int i = 0; i < 100; i++) {
-    sum += temp[i];
-}
-double average = sum / 100.0;
-```
+<<< @/snippets/example59/main.c#demo c {*}{lines:true}
 
 **Soluzione**: Un solo nome per gestire molti valori dello stesso tipo!
 
@@ -62,7 +46,7 @@ level: 2
 
 ---
 
-# Vettori
+# Vettori: dichiarazione
 
 - Variabile Scalare: contiene 1 singolo valore:
 
@@ -89,7 +73,7 @@ level: 2
 
 ---
 
-# Vettori
+# Vettori: memoria e accesso
 
 - Gli elementi del vettore sono allocati in locazioni di memoria
 contigue e successive
@@ -112,7 +96,7 @@ level: 2
 
 ---
 
-# Esempi
+# Valori scalari e vettori
 
 - Valori scalari
 
@@ -157,7 +141,7 @@ level: 2
 
 ---
 
-# Vettori
+# Vettori: scorrere con `for`
 
 - I vettori possono essere attraversati agevolmente mediante un ciclo **for**
 - Il nome di un vettore è usato dal compilatore come sinonimo dell’indirizzo di memoria del primo elemento del vettore
@@ -168,17 +152,7 @@ level: 2
 <br>
 <Transform :scale="1.3" >
 
-```c
-#define N 10
-int arr[N];
-for (i=0; i<N; i++){
-  scanf("%d", &arr[i]);
-}
-for (i=N-1; i>=0; i--){
-  printf("%d\n", arr[i]);
-}
-
-```
+<<< @/snippets/example58/main.c#demo c {*}{lines:true}
 
 </Transform>
 
@@ -187,49 +161,29 @@ level: 2
 
 ---
 
-# Operazioni comuni con i vettori
+# Vettori: valore massimo
 
 ## Trovare il valore massimo
 
-```c
-int numbers[5] = {3, 7, 2, 9, 4};
-int max = numbers[0];  // Assume the first is max
-
-for (int i = 1; i < 5; i++) {
-    if (numbers[i] > max) {
-        max = numbers[i];
-    }
-}
-printf("Massimo: %d\n", max);  // Output: 9
-```
+<<< @/snippets/example57/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
 
 ---
 
-# Operazioni comuni con i vettori
+# Vettori: inversione
 
 ## Invertire un vettore
 
-```c
-int arr[5] = {1, 2, 3, 4, 5};
-int temp;
-
-for (int i = 0; i < 5/2; i++) {
-    temp = arr[i];
-    arr[i] = arr[4 - i];
-    arr[4 - i] = temp;
-}
-// Result: {5, 4, 3, 2, 1}
-```
+<<< @/snippets/example56/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
 
 ---
 
-# Errori comuni con i vettori
+# Vettori: accesso fuori dai limiti e copia
 
 ## ❌ Errore 1: Accesso fuori dai limiti
 
@@ -259,7 +213,7 @@ level: 2
 
 ---
 
-# Errori comuni con i vettori
+# Vettori: array non inizializzato
 
 ## ❌ Errore 3: Array non inizializzato
 
@@ -305,7 +259,7 @@ level: 2
 
 ---
 
-# Esercizio
+# Esercizio: crivello di Eratostene
 
 Scrivere un programma che richieda un numero n positivo e, usando il crivello di Eratostene, trovi e stampi i numeri primi minori o uguali a n *(vedi esempio example08)*.
 
@@ -323,7 +277,7 @@ level: 2
 
 ---
 
-# Matrici
+# Matrici: definizione
 
 - Sono variabili vettoriali con due dimensioni
 - Definizione
@@ -350,7 +304,7 @@ level: 2
 
 ---
 
-# Matrici
+# Matrici: scorrere con `for`
 
 Come per i vettori, il ciclo **for** si presta per attraversare righe e colonne:
 
@@ -373,7 +327,7 @@ level: 2
 
 ---
 
-# Operazioni con le matrici
+# Matrici: somma di una riga
 
 ## Somma degli elementi di una riga
 
@@ -393,28 +347,18 @@ level: 2
 
 ---
 
-# Operazioni con le matrici
+# Matrici: trasposta
 
 ## Trasposta di una matrice
 
-```c
-int A[2][3] = {{1, 2, 3}, {4, 5, 6}};
-int T[3][2];  // Transpose: rows and columns swapped
-
-for (int r = 0; r < 2; r++) {
-    for (int c = 0; c < 3; c++) {
-        T[c][r] = A[r][c];
-    }
-}
-// T = {{1, 4}, {2, 5}, {3, 6}}
-```
+<<< @/snippets/example55/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
 
 ---
 
-# Operazioni con le matrici
+# Matrici: diagonale principale
 
 ## Accesso alla diagonale principale
 
@@ -434,7 +378,7 @@ level: 2
 
 ---
 
-# Matrici
+# Matrici: memoria e inizializzazione
 
 - Le matrici sono memorizzate in un’area di memoria contigua per righe
 - La matrice m\[10\]\[20\] è memorizzata come 20 vettori consecutivi di 10 elementi
@@ -462,7 +406,7 @@ level: 2
 
 ---
 
-# Matrici
+# Matrici: dimensioni e costanti
 
 - Non c'è limite al numero delle dimensioni
 
@@ -480,7 +424,7 @@ level: 2
 
 ---
 
-# Caratteri
+# Caratteri: codifica ASCII
 
 - Per memorizzare i simboli grafici corrispondenti ai caratteri bisogna associare
 un numero intero a ciascuno di essi
@@ -504,7 +448,7 @@ level: 2
 
 ---
 
-# Caratteri
+# Caratteri: sequenze di escape
 
 - Caratteri "speciali" sono rappresentati con le sequenze di escape, ovvero premettendo il carattere '\\':
   - \'
@@ -522,7 +466,7 @@ level: 2
 
 ---
 
-# Stringhe
+# Stringhe: terminatore null
 
 - Sono vettori di **char**  terminate dal carattere **null**
 - Null è un carattere speciale rappresentato con **\\0** (Ottale) o **0x00** (Esadecimale)
@@ -538,7 +482,7 @@ level: 2
 
 ---
 
-# Stringhe
+# Stringhe: memoria necessaria
 
 - Poiché le stringhe sono terminate da null, una stringa di n caratteri, richiede n+1 byte di memoria.
 
@@ -555,7 +499,7 @@ level: 2
 
 ---
 
-# Stringhe
+# Stringhe: costanti e variabili
 
 ## Costanti
 
@@ -577,7 +521,7 @@ level: 2
 
 ---
 
-# Stringhe variabili
+# Stringhe variabili: inizializzazione
 
 - Inizializzazione
 
@@ -603,7 +547,7 @@ level: 2
 
 ---
 
-# Stringhe variabili
+# Stringhe variabili: apici e copia
 
 - Attenzione agli apici:
   - 'a' è un carattere che occupa 1 byte
@@ -616,7 +560,7 @@ level: 2
 
 ---
 
-# ⚠️ Sicurezza con le stringhe
+# ⚠️ Stringhe: buffer overflow
 
 ## Buffer Overflow
 
@@ -638,7 +582,7 @@ level: 2
 
 ---
 
-# ⚠️ Sicurezza con le stringhe
+# ⚠️ Stringhe: `gets()` è pericolosa
 
 ## gets() è deprecata e PERICOLOSA!
 
@@ -661,7 +605,7 @@ level: 2
 
 ---
 
-# ⚠️ Sicurezza con le stringhe
+# ⚠️ Stringhe: funzioni sicure e non sicure
 
 ## Funzioni sicure vs non sicure
 
@@ -682,7 +626,7 @@ level: 2
 
 ---
 
-# Stringhe - ctype.h
+# Stringhe: `ctype.h`
 
 ---
 layout: figure
@@ -694,14 +638,14 @@ level: 2
 
 ---
 
-# Stringhe - string.h
+# Stringhe: `string.h`
 
 ---
 level: 2
 
 ---
 
-# Esempio stringhe 1
+# Esempio: stringhe 1
 
 <<< @/snippets/example10/main.c c {*}{lines:true}
 
@@ -710,7 +654,7 @@ level: 2
 
 ---
 
-# Esempio stringhe 2
+# Esempio: stringhe 2
 
 <<< @/snippets/example11/main.c c {*}{lines:true}
 

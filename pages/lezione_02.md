@@ -14,42 +14,6 @@ level: 2
 
 ---
 
-# Creazione di un eseguibile
-
-Il processo di creazione di un eseguibile a partire dai sorgenti è composto da 2 fasi:
-
-- **compilazione**: il preprocessore espande le direttive come `#include`, poi il compilatore traduce il sorgente. Mancano ancora alcune parti (le "funzioni di base", come `printf`) e viene generato un file intermedio detto file oggetto
-- **linking**: il file oggetto e le librerie vengono unite (collegate, "link") così da aggiungere le parti mancanti e costituire un unico file eseguibile. Il link può unire più file oggetto e più librerie.
-
-Le fasi nel dettaglio sono in lezione 5.
-
----
-level: 2
-
----
-
-# Processo di build di un programma C
-
-```mermaid {scale: 0.8, alt: 'Compilation pipeline diagram showing source files and headers flowing through preprocessor and compiler, then, with libraries, through the linker to create the executable'}
-flowchart LR
-SF@{ shape: doc, label: "Source file" }
-HF@{ shape: docs, label: "Header files" }
-SF-->PP[Preprocessor]
-HF-->PP
-PP-->PF@{ shape: doc, label: "Pre-processed file" }
-PF-->CC[Compiler]
-CC-->OF@{ shape: doc, label: "Object file" }
-
-    OFF@{ shape: docs, label: "Object files" }-->LN[Linker]
-    LL@{ shape: docs, label: "Libraries" }--> LN
-    LN -->EF@{ shape: doc, label: "Executable file" }
-```
-
----
-level: 2
-
----
-
 # Elementi base del linguaggio C
 
 Vediamo gli elementi fondamentali del linguaggio:

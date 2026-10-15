@@ -39,23 +39,24 @@ level: 2
 
 ---
 
-# Recap: Condizioni in C
+# Recap: vero e falso in C
 
-**Valori booleani in C:**
+Gli operatori relazionali e logici sono nella lezione 2. Qui conta un solo punto:
 
 - `0` = falso
 - qualsiasi valore ≠ 0 = vero
 
-**Operatori già visti (slides precedenti):**
-
-- Relazionali: `==`, `!=`, `<`, `>`, `<=`, `>=`
-- Logici: `&&` (AND), `||` (OR), `!` (NOT)
+Una condizione può quindi essere anche un valore, non solo un confronto:
 
 ```c
-int age = 25, score = 85;
+int alarm = 1;                    // 1 = alarm active
+float temperature = 92.5f;
 
-if (age >= 18 && score > 80) {  // Both conditions must be true
-    printf("Admitted to the advanced course\n");
+if (alarm && temperature > 80) {  // both must be true
+    printf("Stop the machine\n");
+}
+if (alarm) {                      // same as alarm != 0
+    printf("Alarm is active\n");
 }
 ```
 
@@ -65,7 +66,7 @@ level: 2
 
 ---
 
-# Esecuzione condizionale - IF
+# Esecuzione condizionale: `if`
 
 - Viene valutata una condizione
 - Se la condizione è vera, l'elaborazione prosegue con il blocco di istruzioni
@@ -73,7 +74,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'Flowchart showing if statement control flow'}
+```mermaid {scale: 0.7, alt: 'Flowchart showing if statement control flow'}
 flowchart TD
     Start([Start]) --> Condition{Is condition <br/> verified?}
     Condition -- Yes --> Action1[Action if True]
@@ -87,7 +88,7 @@ level: 2
 
 ---
 
-# Sintassi dell'istruzione IF
+# Sintassi dell'istruzione `if`
 
 ## Forma base
 
@@ -110,7 +111,7 @@ level: 2
 
 ---
 
-# Esempi di IF
+# Esempi di `if`
 
 ## IF con una sola istruzione
 
@@ -154,7 +155,7 @@ level: 2
 
 ---
 
-# Esempio pratico: IF
+# Esempio pratico: `if`
 
 Chiede un numero e, se è positivo, lo stampa.
 
@@ -168,7 +169,7 @@ level: 2
 
 ---
 
-# Esecuzione condizionale - IF-ELSE
+# Esecuzione condizionale: `if-else`
 
 - Se la condizione è verificata esegue il blocco 1
 - Altrimenti esegue il blocco 2
@@ -176,7 +177,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'Flowchart showing if-else statement'}
+```mermaid {scale: 0.7, alt: 'Flowchart showing if-else statement'}
 flowchart TD
     Start([Start]) --> Condition{Is condition <br/> verified?}
     Condition -- Yes --> Action1[Block 1]
@@ -192,7 +193,7 @@ level: 2
 
 ---
 
-# Sintassi dell'istruzione IF-ELSE
+# Sintassi dell'istruzione `if-else`
 
 ```c
 if (condition) {
@@ -224,39 +225,15 @@ level: 2
 
 ---
 
-# IF-ELSE annidati (nested)
+# `if-else` annidati (nested)
 
 È possibile annidare più istruzioni if-else per gestire più di due casi:
 
-```c
-int grade = 75;
-
-if (grade >= 90) {
-    printf("Excellent\n");
-} else if (grade >= 75) {
-    printf("Good\n");
-} else if (grade >= 60) {
-    printf("Sufficient\n");
-} else {
-    printf("Insufficient\n");
-}
-// Output: Good
-```
+<<< @/snippets/example54/main.c#demo c {*}{lines:true}
 
 Lo stesso schema vale per una temperatura: normale, avviso, allarme.
 
-```c
-float temp = 92.5f;
-
-if (temp >= 100.0f) {
-    printf("ALARM\n");
-} else if (temp >= 80.0f) {
-    printf("Warning\n");
-} else {
-    printf("Normal\n");
-}
-// Output: Warning
-```
+<<< @/snippets/example53/main.c#demo c {*}{lines:true}
 
 ## Nota
 
@@ -269,7 +246,7 @@ level: 2
 
 ---
 
-# Quando usare IF vs IF-ELSE vs IF annidati
+# Quando usare `if`, `if-else` o `if` annidati
 
 | Situazione | Struttura da usare | Esempio |
 |------------|-------------------|---------|
@@ -283,7 +260,7 @@ level: 2
 
 ---
 
-# ESERCIZIO: Carrello della spesa
+# Esercizio: carrello della spesa
 
 Scrivere un programma per la gestione elementare di un carrello della spesa.
 
@@ -306,7 +283,7 @@ level: 2
 
 ---
 
-# ESERCIZIO: Output richiesto
+# Esercizio: output richiesto
 
 ```txt
 ===== Cart Details =====
@@ -327,7 +304,7 @@ level: 2
 
 ---
 
-# ESERCIZIO: Costo di un lotto di produzione
+# Esercizio: costo di un lotto di produzione
 
 Stesso schema del carrello, applicato a un lotto di pezzi.
 
@@ -355,7 +332,7 @@ level: 2
 
 ---
 
-# Selezione multipla - SWITCH
+# Selezione multipla: `switch`
 
 Quando si devono gestire molti casi basati su un **singolo valore intero**, `switch` è più leggibile di tanti `if-else if`:
 
@@ -379,7 +356,7 @@ level: 2
 
 ---
 
-# Regole dello SWITCH
+# Regole dello `switch`
 
 ## Caratteristiche
 
@@ -406,7 +383,7 @@ level: 2
 
 ---
 
-# Esempio pratico: SWITCH
+# Esempio pratico: `switch`
 
 Stato di una macchina letto da tastiera.
 
@@ -417,35 +394,11 @@ level: 2
 
 ---
 
-# SWITCH: case multipli per stesso blocco
+# `switch`: più `case` per lo stesso blocco
 
 È possibile avere più `case` che eseguono lo stesso blocco:
 
-```c
-char grade;
-printf("Enter the grade (A-F): ");
-scanf(" %c", &grade);
-
-switch (grade) {
-    case 'A':
-    case 'a':
-        printf("Excellent!\n");
-        break;
-    
-    case 'B':
-    case 'b':
-        printf("Good\n");
-        break;
-    
-    case 'C':
-    case 'c':
-        printf("Sufficient\n");
-        break;
-    
-    default:
-        printf("Invalid grade\n");
-}
-```
+<<< @/snippets/example52/main.c#demo c {*}{lines:true}
 
 ---
 layout: two-cols
@@ -453,7 +406,7 @@ level: 2
 
 ---
 
-# Esercizio: Menu con SWITCH
+# Esercizio: menu con `switch`
 
 **Obiettivo:** Creare un menu interattivo usando `switch` e `do-while`
 
@@ -487,7 +440,7 @@ level: 2
 
 ---
 
-# Quando usare IF vs SWITCH
+# Quando usare `if` o `switch`
 
 | Criterio | IF-ELSE IF | SWITCH |
 |----------|------------|--------|
@@ -516,7 +469,7 @@ level: 2
 
 ---
 
-# ITERAZIONI
+# Iterazioni
 
 ## Problema
 
@@ -544,7 +497,7 @@ level: 2
 
 ---
 
-# ITERAZIONI: introduzione
+# Iterazioni: introduzione
 
 - Si parla di **iterazioni** quando una istruzione, o un blocco di istruzioni, vengono eseguite **più volte**
 - Le strutture iterative sono comunemente dette **cicli** o **loop**
@@ -560,7 +513,7 @@ level: 2
 
 ---
 
-# ITERAZIONI: IL CICLO FOR
+# Iterazioni: il ciclo `for`
 
 Il ciclo **for** ripete l'esecuzione del blocco di istruzioni fintanto che la condizione è verificata.
 
@@ -583,7 +536,7 @@ for (i = 0; i < 100; i++) {
 
 ::right::
 
-```mermaid {scale: 0.7, alt: 'Flowchart showing for loop execution'}
+```mermaid {scale: 0.6, alt: 'Flowchart showing for loop execution'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> Inizializzazione[Inizializza Contatore]
@@ -600,7 +553,7 @@ level: 2
 
 ---
 
-# Anatomia del ciclo FOR
+# Anatomia del ciclo `for`
 
 ```c
 for (initialization; condition; increment) {
@@ -629,7 +582,7 @@ level: 2
 
 ---
 
-# Varianti del ciclo FOR
+# Varianti del ciclo `for`
 
 ## Dichiarazione della variabile nel for (C99+)
 
@@ -642,17 +595,7 @@ for (int i = 0; i < 10; i++) {  // i exists only in the loop
 
 ## Incremento diverso
 
-```c
-// Count by 2
-for (int i = 0; i < 10; i += 2) {
-    printf("%d ", i);  // Output: 0 2 4 6 8
-}
-
-// Count backwards
-for (int i = 10; i > 0; i--) {
-    printf("%d ", i);  // Output: 10 9 8 7 6 5 4 3 2 1
-}
-```
+<<< @/snippets/example51/main.c#demo c {*}{lines:true}
 
 ---
 layout: two-cols
@@ -693,7 +636,7 @@ level: 2
 
 ---
 
-# ITERAZIONI: IL CICLO WHILE
+# Iterazioni: il ciclo `while`
 
 - Esegue un blocco di codice **finché** una certa condizione è verificata
 - Valuta la condizione **prima** di eseguire il blocco
@@ -709,7 +652,7 @@ while (condition) {
 
 ::right::
 
-```mermaid {scale: 1, alt: 'Flowchart showing while loop execution'}
+```mermaid {scale: 0.8, alt: 'Flowchart showing while loop execution'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
@@ -725,7 +668,7 @@ level: 2
 
 ---
 
-# Esempio: il ciclo WHILE
+# Esempio: il ciclo `while`
 
 Stampa i numeri da 0 a 1000.
 
@@ -745,7 +688,7 @@ level: 2
 
 ---
 
-# Esempio: ciclo WHILE con input
+# Esempio: ciclo `while` con input
 
 Somma dei valori introdotti finché non viene immesso il valore 0.
 
@@ -763,7 +706,7 @@ level: 2
 
 ---
 
-# Equivalenza di FOR e WHILE
+# Equivalenza di `for` e `while`
 
 `for` e `while` consentono di esprimere lo stesso comportamento.
 
@@ -783,7 +726,7 @@ level: 2
 
 ---
 
-# ITERAZIONI: IL CICLO DO-WHILE
+# Iterazioni: il ciclo `do-while`
 
 - Esegue un blocco di codice finché una certa condizione è verificata
 - Valuta la condizione **dopo** aver eseguito il blocco
@@ -801,7 +744,7 @@ do {
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'Flowchart showing do-while loop execution'}
+```mermaid {scale: 0.7, alt: 'Flowchart showing do-while loop execution'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
@@ -817,7 +760,7 @@ level: 2
 
 ---
 
-# Esempio: ciclo DO-WHILE
+# Esempio: ciclo `do-while`
 
 Stampa i numeri da 0 a 1000.
 
@@ -836,7 +779,7 @@ level: 2
 
 ---
 
-# Esempio pratico: Validazione PIN
+# Esempio pratico: validazione PIN
 
 Accesso al pannello di una macchina: tre tentativi, poi blocco.
 
@@ -847,7 +790,7 @@ level: 2
 
 ---
 
-# DO-WHILE: caso d'uso tipico - Menu
+# `do-while`: caso d'uso tipico, il menu
 
 Il caso d'uso più comune per `do-while` è un menu che deve essere mostrato almeno una volta:
 
@@ -872,7 +815,7 @@ level: 2
 
 ---
 
-# Esempio pratico: Validazione input numerico
+# Esempio pratico: validazione input numerico
 
 Lettura di una temperatura: si ripete finché il valore è un numero nel campo del sensore.
 
@@ -885,7 +828,7 @@ level: 2
 
 ---
 
-# Controllo del flusso nei cicli: BREAK e CONTINUE
+# Controllo del flusso nei cicli: `break` e `continue`
 
 ## BREAK
 
@@ -916,7 +859,7 @@ level: 2
 
 ---
 
-# Esempi pratici: BREAK e CONTINUE
+# Esempi pratici: `break` e `continue`
 
 ## Somma con continue (somma solo dispari)
 
@@ -931,17 +874,7 @@ printf("Odd sum: %d\n", sum);  // Output: 25 (1+3+5+7+9)
 
 ## Stampa con break (conteggio fino a limite)
 
-```c
-int count = 0;
-for (int i = 1; i <= 100; i++) {
-    printf("%d ", i);
-    count++;
-    if (count == 10) {
-        printf("\n");  // New line after 10 numbers
-        break;  // Leave the loop
-    }
-}
-```
+<<< @/snippets/example50/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -996,7 +929,7 @@ level: 2
 
 ---
 
-# Esercizio: Tabellina interattiva
+# Esercizio: tabellina interattiva
 
 <div class="exercise-box">
 
@@ -1031,20 +964,7 @@ level: 2
 
 ## Stampa un triangolo
 
-```c
-for (int row = 1; row <= 5; row++) {
-    for (int col = 1; col <= row; col++) {
-        printf("* ");
-    }
-    printf("\n");
-}
-// Output:
-// *
-// * *
-// * * *
-// * * * *
-// * * * * *
-```
+<<< @/snippets/example49/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -1083,7 +1003,7 @@ level: 2
 
 ---
 
-# Esercizio: Verifica numero all'interno di range
+# Esercizio: verifica numero all'interno di un intervallo
 
 **Obiettivo:** Usare `break` per uscire da un ciclo di ricerca
 
@@ -1155,19 +1075,7 @@ for (int i = 0; i <= 10; i++) {
 
 ## ✅ Corretto: stampa da 1 a 10
 
-```c
-// Solution 1: correct condition
-for (int i = 1; i <= 10; i++) {
-    printf("%d ", i);
-}
-// Output: 1 2 3 4 5 6 7 8 9 10  ✅
-
-// Solution 2: offset
-for (int i = 0; i < 10; i++) {
-    printf("%d ", i + 1);
-}
-// Output: 1 2 3 4 5 6 7 8 9 10  ✅
-```
+<<< @/snippets/example48/main.c#demo c {*}{lines:true}
 
 ---
 layout: two-cols
@@ -1367,37 +1275,14 @@ level: 2
 
 # Soluzioni esercizio
 
-```c
-// 1. ✅ sum is not initialized
-int n = 10;
-int sum = 0;  // ✅ Initialize to 0
-for (int i = 1; i <= n; i++) {
-    sum = sum + i;
-}
-
-// 2. ✅ Off-by-one error: i goes from 0 to 10 (11 values instead of 10)
-for (int i = 1; i <= 10; i++) {  // ✅ Start from 1 instead of 0
-    printf("%d ", i);
-}
-// Or:
-for (int i = 0; i < 10; i++) {  // ✅ Use < instead of <=
-    printf("%d ", i + 1);
-}
-
-// 3. ✅ Infinite loop: count increases instead of decreasing
-int count = 10;
-while (count > 0) {
-    printf("%d ", count);
-    count = count - 1;  // ✅ Decrement with -1
-}
-```
+<<< @/snippets/example47/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
 
 ---
 
-# Riepilogo: Controllo del flusso
+# Riepilogo: controllo del flusso
 
 ## Istruzioni condizionali
 
@@ -1445,7 +1330,7 @@ level: 2
 
 ---
 
-# Esercizio: Contatore pari e dispari
+# Esercizio: contatore pari e dispari
 
 **Obiettivo:** Contare e sommare valori pari e dispari da input
 
@@ -1462,7 +1347,7 @@ level: 2
 
 ---
 
-# Esercizio: Contatore pari e dispari
+# Esercizio: contatore pari e dispari, esempio
 
 **Esempio di esecuzione:**
 
@@ -1487,7 +1372,7 @@ level: 2
 
 ---
 
-# Esercizio: Fattoriale con validazione
+# Esercizio: fattoriale con validazione
 
 **Obiettivo:** Calcolare il fattoriale di un numero con validazione input
 
@@ -1504,7 +1389,7 @@ level: 2
 
 ---
 
-# Esercizio: Fattoriale con validazione
+# Esercizio: fattoriale con validazione, esempio
 
 **Esempio di esecuzione:**
 
@@ -1526,7 +1411,7 @@ level: 2
 
 ---
 
-# Esercizio: Verifica numero primo
+# Esercizio: verifica numero primo
 
 <div class="exercise-box">
 

@@ -30,21 +30,7 @@ level: 2
 
 ## Struttura di un programma C
 
-```c
-#include <stdio.h>
-
-// Helper functions
-int add(int a, int b) {
-    return a + b;
-}
-
-// Main function
-int main(void) {
-    int result = add(5, 3);
-    printf("Result: %d\n", result);
-    return 0;
-}
-```
+<<< @/snippets/example67/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -82,34 +68,7 @@ level: 2
 
 # Esempio: dichiarazione e definizione
 
-```c
-#include <stdio.h>
-
-// Declarations (prototypes) at the top
-int add(int a, int b);
-int subtract(int a, int b);
-int multiply(int a, int b);
-
-int main(void) {
-    printf("5 + 3 = %d\n", add(5, 3));
-    printf("5 - 3 = %d\n", subtract(5, 3));
-    printf("5 * 3 = %d\n", multiply(5, 3));
-    return 0;
-}
-
-// Definitions after main
-int add(int a, int b) {
-    return a + b;
-}
-
-int subtract(int a, int b) {
-    return a - b;
-}
-
-int multiply(int a, int b) {
-    return a * b;
-}
-```
+<<< @/snippets/example66/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -140,27 +99,7 @@ level: 2
 
 # Chiamata di funzione
 
-```c
-#include <stdio.h>
-
-int square(int n) {
-    return n * n;
-}
-
-int main(void) {
-    int x = 5;
-    int result = square(x);  // Function call
-    
-    printf("The square of %d is %d\n", x, result);
-    // Output: The square of 5 is 25
-    
-    // Direct call inside printf
-    printf("The square of 7 is %d\n", square(7));
-    // Output: The square of 7 is 49
-    
-    return 0;
-}
-```
+<<< @/snippets/example65/main.c#demo c {*}{lines:true}
 
 ## Nota
 
@@ -177,30 +116,7 @@ level: 2
 
 Le variabili dichiarate dentro una funzione sono **locali**:
 
-```c
-#include <stdio.h>
-
-void function_a(void) {
-    int x = 10;  // x local to function_a
-    printf("function_a: x = %d\n", x);
-}
-
-void function_b(void) {
-    int x = 20;  // x local to function_b (different from the x of function_a)
-    printf("function_b: x = %d\n", x);
-}
-
-int main(void) {
-    int x = 5;   // x local to main
-    
-    printf("main: x = %d\n", x);
-    function_a();
-    function_b();
-    printf("main: x = %d\n", x);  // the x of main has not changed
-    
-    return 0;
-}
-```
+<<< @/snippets/example64/main.c#demo c {*}{lines:true}
 
 ::right::
 
@@ -223,24 +139,7 @@ level: 2
 
 In C, i parametri sono passati **per valore** (copia):
 
-```c
-#include <stdio.h>
-
-void increment(int n) {
-    n = n + 1;  // Changes the COPY of n
-    printf("Inside the function: n = %d\n", n);
-}
-
-int main(void) {
-    int x = 5;
-    
-    printf("Before: x = %d\n", x);
-    increment(x);
-    printf("After: x = %d\n", x);  // x has NOT changed!
-    
-    return 0;
-}
-```
+<<< @/snippets/example63/main.c#demo c {*}{lines:true}
 
 ::right::
 
@@ -304,23 +203,7 @@ level: 2
 
 Per modificare una variabile del chiamante, usa i **puntatori**:
 
-```c
-#include <stdio.h>
-
-void increment(int *n) {
-    *n = *n + 1;  // Changes the pointed value
-}
-
-int main(void) {
-    int x = 5;
-    
-    printf("Before: x = %d\n", x);
-    increment(&x);  // Passes the address of x
-    printf("After: x = %d\n", x);  // x has changed!
-    
-    return 0;
-}
-```
+<<< @/snippets/example62/main.c#demo c {*}{lines:true}
 
 **Output:**
 
@@ -336,25 +219,7 @@ level: 2
 
 # Esempio: scambio di valori
 
-```c
-#include <stdio.h>
-
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
-
-int main(void) {
-    int x = 10, y = 20;
-    
-    printf("Before: x = %d, y = %d\n", x, y);
-    swap(&x, &y);
-    printf("After: x = %d, y = %d\n", x, y);
-    
-    return 0;
-}
-```
+<<< @/snippets/example61/main.c#demo c {*}{lines:true}
 
 **Output:**
 
@@ -373,41 +238,11 @@ level: 2
 
 Gli array sono sempre passati **per riferimento** (come puntatori):
 
-```c
-#include <stdio.h>
-
-void print_array(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-}
-
-void multiply_by_2(int arr[], int size) {
-    for (int i = 0; i < size; i++) {
-        arr[i] *= 2;  // Changes the original array!
-    }
-}
-```
+<<< @/snippets/example68/main.c#functions c {*}{lines:true}
 
 ::right::
 
-```c
-int main(void) {
-    int numbers[] = {1, 2, 3, 4, 5};
-    int size = 5;
-    
-    printf("Original: ");
-    print_array(numbers, size);
-    
-    multiply_by_2(numbers, size);
-    
-    printf("Modified: ");
-    print_array(numbers, size);
-    
-    return 0;
-}
-```
+<<< @/snippets/example68/main.c#main c {*}{lines:true}
 
 ---
 layout: two-cols
@@ -419,26 +254,7 @@ level: 2
 
 Functions with `void` return type do not return any value:
 
-```c
-#include <stdio.h>
-
-void greet(const char *name) {
-    printf("Hello, %s!\n", name);
-}
-
-void print_line(void) {
-    printf("====================\n");
-}
-
-int main(void) {
-    print_line();
-    greet("Mario");
-    greet("Luigi");
-    print_line();
-    
-    return 0;
-}
-```
+<<< @/snippets/example60/main.c#demo c {*}{lines:true}
 
 ::right::
 **Output:**
@@ -662,7 +478,7 @@ level: 2
 
 La compilazione è un processo multi-fase che trasforma il codice sorgente in codice macchina:
 
-```mermaid {scale: 0.7, alt: 'Detailed compilation phases flowchart showing transformation from source C file through preprocessing, compilation to assembly, assembling to object code, and linking to executable'}
+```mermaid {scale: 0.6, alt: 'Detailed compilation phases flowchart showing transformation from source C file through preprocessing, compilation to assembly, assembling to object code, and linking to executable'}
 flowchart LR
     A[Source .c] -->|Preprocessor| B[Preprocessed .i]
     B -->|Compiler| C[Assembly .s/.asm]
