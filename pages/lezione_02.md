@@ -54,76 +54,12 @@ level: 2
 
 Vediamo gli elementi fondamentali del linguaggio:
 
-- Output: `printf()`
 - Tipi di dato primitivi: `int`, `float`, `double`, `char`
 - Variabili e costanti: dichiarazione e inizializzazione
+- Output: `printf()`
 - Operatori di assegnamento e aritmetici
 - Input: `scanf()`
 - Operatori relazionali e logici
-
----
-level: 2
-
----
-
-# Output: printf()
-
-`printf()` stampa testo formattato sullo standard output (il terminale):
-
-```c
-printf("format", arguments...);
-```
-
-## Specificatori di formato
-
-| Specificatore | Tipo | Esempio |
-| --- | --- | --- |
-| `%d` o `%i` | `int` | `printf("%d", 42);` → `42` |
-| `%u` | `unsigned int` | `printf("%u", 7u);` → `7` |
-| `%ld` | `long` | `printf("%ld", 100000L);` → `100000` |
-| `%f` | `float` e `double` | `printf("%f", 3.14);` → `3.140000` |
-| `%c` | `char` | `printf("%c", 'A');` → `A` |
-| `%s` | stringa | `printf("%s", "Hello");` → `Hello` |
-| `%%` | il carattere `%` | `printf("%%");` → `%` |
-
----
-level: 2
-
----
-
-# printf(): esempio
-
-<<< @/snippets/example36/main.c#snippet1 c {*}{lines:true}
-
-## Output
-
-```txt
-Machine started
-Speed: 1500 rpm
-Temperature: 72.500000
-Status: R
-1500 rpm at 72.5 C, status R
-```
-
----
-level: 2
-
----
-
-# printf(): controllo del formato
-
-Larghezza del campo e numero di decimali:
-
-<<< @/snippets/example36/main.c#snippet2 c {*}{lines:true}
-
-## Output
-
-```txt
-[ 1500]
-[1500  ]
-[72.50]
-[   72.50]
-```
 
 ---
 level: 2
@@ -202,19 +138,13 @@ level: 2
 # Dichiarazione di variabili: buone pratiche
 
 ```c
-// ✅ Descriptive names
+// ✅ Descriptive names, snake_case
 int motor_speed;
-float average_temperature;
-double exchange_rate;
+float max_temperature;
 
 // ❌ Unclear names
 int x;
 float f;
-double d;
-
-// ✅ snake_case (common in C)
-int max_temperature;
-float sensor_value;
 ```
 
 ---
@@ -278,6 +208,70 @@ const int MAX_SENSORS = 8;
 ## Differenza
 
 `#define` è una sostituzione di testo, `const` è una variabile in sola lettura con un tipo.
+
+---
+level: 2
+
+---
+
+# Output: printf()
+
+`printf()` stampa testo formattato sullo standard output (il terminale):
+
+```c
+printf("format", arguments...);
+```
+
+## Specificatori di formato
+
+| Specificatore | Tipo | Esempio |
+| --- | --- | --- |
+| `%d` o `%i` | `int` | `printf("%d", 42);` → `42` |
+| `%u` | `unsigned int` | `printf("%u", 7u);` → `7` |
+| `%ld` | `long` | `printf("%ld", 100000L);` → `100000` |
+| `%f` | `float` e `double` | `printf("%f", 3.14);` → `3.140000` |
+| `%c` | `char` | `printf("%c", 'A');` → `A` |
+| `%s` | stringa | `printf("%s", "Hello");` → `Hello` |
+| `%%` | il carattere `%` | `printf("%%");` → `%` |
+
+---
+level: 2
+
+---
+
+# printf(): esempio
+
+<<< @/snippets/example36/main.c#snippet1 c {*}{lines:true}
+
+## Output
+
+```txt
+Machine started
+Speed: 1500 rpm
+Temperature: 72.500000
+Status: R
+1500 rpm at 72.5 C, status R
+```
+
+---
+level: 2
+
+---
+
+# printf(): controllo del formato
+
+Larghezza del campo e numero di decimali:
+
+<<< @/snippets/example36/main.c#snippet2 c {*}{lines:true}
+
+## Output
+
+```txt
+[ 1500]
+[1500  ]
+[72.50]
+[   72.50]
+```
 
 ---
 level: 2
@@ -454,23 +448,53 @@ level: 2
 
 # Esempi di conversioni di tipo
 
-```c
-int x = 5, y = 2;
-float a, b;
-
-a = x / y;                // 2.0 (integer division, then conversion)
-b = (float)x / y;         // 2.5
-b = (float)x / (float)y;  // 2.5
-
-int z = 3.9;              // 3 (the decimal part is dropped)
-int w = (int)3.9;         // 3 (explicit cast, no warning)
-
-double d = 5 + 2.5;       // 7.5 (5 is promoted to 5.0)
-```
+<<< @/snippets/example40/main.c#snippet1 c {*}{lines:true}
 
 ## Il troncamento non arrotonda
 
 `3.9` diventa `3`, non `4`.
+
+---
+level: 2
+
+---
+
+# Cos'è un ADC
+
+Un ADC (Analog-to-Digital Converter) converte una tensione analogica in un numero intero, che il programma può leggere. Un sensore (temperatura, pressione, posizione...) produce una tensione che varia con continuità. L'ADC la misura e restituisce un valore grezzo (`raw`).
+
+## Perché 4096 livelli
+
+Il numero di livelli dipende dai bit del convertitore: con $N$ bit ci sono $2^N$ valori, da 0 a $2^N - 1$.
+
+| Bit | Livelli | Valori |
+| --- | --- | --- |
+| 8 | $2^8 = 256$ | da 0 a 255 |
+| 10 | $2^{10} = 1024$ | da 0 a 1023 |
+| 12 | $2^{12} = 4096$ | da 0 a 4095 |
+
+---
+level: 2
+
+---
+
+# La tensione di riferimento
+
+La tensione di riferimento $V_{REF}$ è il "metro" dell'ADC: la tensione massima che sa misurare, a cui corrisponde il valore grezzo massimo.
+
+L'ADC divide l'intervallo da 0 V a $V_{REF}$ nei suoi livelli. Con $V_{REF} = 3.3$ V e 12 bit:
+
+| Tensione sul pin | Valore grezzo |
+| --- | --- |
+| 0 V | 0 |
+| 1,65 V (metà) | circa 2048 |
+| 3,3 V ($V_{REF}$) | 4095 |
+
+$$
+V = \frac{raw}{4095} \times V_{REF}
+$$
+
+Una tensione maggiore di $V_{REF}$ non è misurabile: l'ADC restituisce sempre 4095.
 
 ---
 level: 2
@@ -573,7 +597,7 @@ Scrivere un programma che:
 - legge una temperatura in gradi Celsius (`float`)
 - stampa il valore in gradi Fahrenheit con un decimale
 
-La formula è `F = C * 9 / 5 + 32`.
+La formula è `F = C * 9 / 5 + 32`. Attenzione all'ordine: `9 / 5` tra interi vale 1.
 
 ## Prove
 
@@ -781,7 +805,7 @@ Livello sfida, in coppia. Si usano solo espressioni: ogni risultato si stampa co
 
 Scrivere un programma che legge due misure di temperatura (`float`) e stampa:
 
-- `1` se entrambe sono comprese tra 0 e 100, altrimenti `0`
+- `1` se entrambe sono comprese tra 0 e 100 (estremi inclusi), altrimenti `0`
 - `1` se almeno una è fuori dall'intervallo, altrimenti `0`
 - `1` se differiscono di più di 5 gradi, altrimenti `0`
 
