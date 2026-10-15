@@ -646,12 +646,7 @@ Gli operatori relazionali confrontano due valori. In C `0` è falso e qualsiasi 
 | `<=` | minore o uguale | `3 <= 3` | vero (1) |
 | `>=` | maggiore o uguale | `5 >= 5` | vero (1) |
 
-## Errore comune
-
-```c
-if (x = 5)    // ❌ assignment: always true, because 5 is not 0
-if (x == 5)   // ✅ comparison
-```
+⚠️ Non confondere il confronto `==` con l'assegnamento `=`: `if (x = 5)` è sempre vero.
 
 ---
 level: 2
