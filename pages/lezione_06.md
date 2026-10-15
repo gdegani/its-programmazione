@@ -448,23 +448,23 @@ Le **enumerazioni** (enum) permettono di definire un insieme di costanti intere 
 ## Problema senza enum
 
 ```c
-#define LUNEDI 0
-#define MARTEDI 1
-#define MERCOLEDI 2
-// ... difficile da gestire
+#define MONDAY 0
+#define TUESDAY 1
+#define WEDNESDAY 2
+// ... hard to manage
 ```
 
 ## Soluzione con enum
 
 ```c
-enum giorni_settimana {
-    LUNEDI,     // 0
-    MARTEDI,    // 1
-    MERCOLEDI,  // 2
-    GIOVEDI,    // 3
-    VENERDI,    // 4
-    SABATO,     // 5
-    DOMENICA    // 6
+enum weekday {
+    MONDAY,     // 0
+    TUESDAY,    // 1
+    WEDNESDAY,  // 2
+    THURSDAY,    // 3
+    FRIDAY,    // 4
+    SATURDAY,     // 5
+    SUNDAY    // 6
 };
 ```
 
@@ -478,10 +478,10 @@ level: 2
 ## Sintassi generale
 
 ```c
-enum nome_tipo {
-    VALORE1,
-    VALORE2,
-    VALORE3
+enum type_name {
+    VALUE1,
+    VALUE2,
+    VALUE3
 };
 ```
 
@@ -532,17 +532,17 @@ level: 2
 I **nomi** devono essere unici, ma i **valori** possono ripetersi:
 
 ```c
-enum Stato {
-    SPENTO = 0,
-    OFF = 0,        // Stesso valore di SPENTO
-    ACCESO = 1,
-    ON = 1          // Stesso valore di ACCESO
+enum State {
+    STOPPED = 0,
+    OFF = 0,        // Same value as STOPPED
+    RUNNING = 1,
+    ON = 1          // Same value as RUNNING
 };
 ```
 
 ## Nota
 
-- `SPENTO` e `OFF` hanno lo stesso valore (0)
+- `STOPPED` e `OFF` hanno lo stesso valore (0)
 - Utile per alias o compatibilità
 
 ---
@@ -555,25 +555,25 @@ level: 2
 ```c
 #include <stdio.h>
 
-enum Semaforo {
-    ROSSO,
-    GIALLO,
-    VERDE
+enum TrafficLight {
+    RED,
+    YELLOW,
+    GREEN
 };
 
-void stampa_azione(enum Semaforo stato) {
-    switch (stato) {
-        case ROSSO:
-            printf("STOP - Non passare!\n");
+void print_action(enum TrafficLight state) {
+    switch (state) {
+        case RED:
+            printf("STOP - Do not go\n");
             break;
-        case GIALLO:
-            printf("ATTENZIONE - Rallenta\n");
+        case YELLOW:
+            printf("CAUTION - Slow down\n");
             break;
-        case VERDE:
-            printf("VIA LIBERA - Puoi passare\n");
+        case GREEN:
+            printf("GO - You may go\n");
             break;
         default:
-            printf("Stato sconosciuto\n");
+            printf("Unknown state\n");
     }
 }
 ```
@@ -590,27 +590,27 @@ level: 2
 ## Senza typedef
 
 ```c
-enum boolean { FALSO, VERO };
-enum boolean flag = VERO;  // Devi scrivere "enum boolean"
+enum boolean { FALSE_VALUE, TRUE_VALUE };
+enum boolean flag = TRUE_VALUE;  // You must write "enum boolean"
 ```
 
 ## Con typedef
 
 ```c
-typedef enum { FALSO, VERO } boolean;
-boolean flag = VERO;  // Più semplice!
+typedef enum { FALSE_VALUE, TRUE_VALUE } boolean;
+boolean flag = TRUE_VALUE;  // Simpler!
 ```
 
 ## Esempio completo
 
 ```c
 typedef enum {
-    GENNAIO = 1, FEBBRAIO, MARZO, APRILE,
-    MAGGIO, GIUGNO, LUGLIO, AGOSTO,
-    SETTEMBRE, OTTOBRE, NOVEMBRE, DICEMBRE
-} Mese;
+    JANUARY = 1, FEBRUARY, MARCH, APRIL,
+    MAY, JUNE, JULY, AUGUST,
+    SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER
+} Month;
 
-Mese corrente = MARZO;  // Tipo Mese invece di enum Mese
+Month current = MARCH;  // Month type instead of enum Month
 ```
 
 ---

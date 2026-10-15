@@ -2,7 +2,7 @@
 
 void add(int a, int b, int *result) {
     *result = a + b;
-    printf("Risultato: %d\n", *result);
+    printf("Result: %d\n", *result);
 }
 
 int main(void) {
@@ -13,7 +13,7 @@ int main(void) {
 
     add(a, b, &result);
 
-    printf("Risultato: %d\n", result);
+    printf("Result: %d\n", result);
 
     return 0;
 }
