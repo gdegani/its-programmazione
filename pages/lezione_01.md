@@ -54,7 +54,7 @@ level: 2
 
 ---
 
-# Licenza per STUDENTI
+# Licenza per studenti
 
 - Creare un account con l’email **@itsmeccatronico.it** e richiedere una licenza educational
 - Scaricare ed installare CLion
@@ -76,7 +76,7 @@ level: 2
 
 ---
 
-# Pair Programming
+# Pair programming
 
 **Tecnica collaborativa di sviluppo software**
 
@@ -97,7 +97,7 @@ level: 2
 
 ---
 
-# Pair Programming: Driver e Navigator
+# Pair programming: driver
 
 ## 🖥️ Driver (Pilota)
 
@@ -113,7 +113,7 @@ level: 2
 
 ---
 
-# Pair Programming: Driver e Navigator
+# Pair programming: navigator
 
 ## 🧭 Navigator (Navigatore)
 
@@ -132,7 +132,7 @@ level: 2
 
 ---
 
-# ALGORITMO
+# Algoritmo
 
 - Il termine deriva dalla trascrizione latina del nome del matematico persiano al-Khwarizmi, vissuto nel IX secolo d.C. È considerato uno dei primi autori ad aver fatto riferimento a questo concetto, scrivendo il libro “Regole di ripristino e riduzione”.
 - In matematica e informatica, un algoritmo è la specificazione di una sequenza finita di operazioni (dette anche istruzioni) che consente di risolvere una classe di problemi specifici o di calcolare il risultato di un'espressione matematica.
@@ -172,7 +172,7 @@ level: 2
 
 ---
 
-# Caratteristiche degli Esecutori
+# Caratteristiche degli esecutori
 
 - Il linguaggio che possono comprendere (italiano, inglese, C, TypeScript, ecc.)
 - Le azioni che possono eseguire
@@ -183,7 +183,7 @@ level: 2
 
 ---
 
-# Calcolatore COME ESECUTORE
+# Calcolatore come esecutore
 
 <br>
 <br>
@@ -201,7 +201,7 @@ level: 2
 
 ---
 
-# ESEMPIO
+# Esempio: area di un rettangolo come algoritmo
 
 <br>
 <br>
@@ -219,7 +219,7 @@ level: 2
 
 ---
 
-# STRUTTURE DATI
+# Strutture dati
 
 - I contenitori usati per contenere i dati in ingresso sono detti variabili.
 - Le variabili:
@@ -233,7 +233,7 @@ level: 2
 
 ---
 
-# ISTRUZIONI DI ASSEGNAZIONE
+# Istruzioni di assegnazione
 
 - Consentono di inserire un valore all’interno di una variabile.
 - Cambiano a seconda del linguaggio utilizzato, ma solitamente usano l’operatore “=”.
@@ -245,7 +245,7 @@ level: 2
 
 ---
 
-# DIAGRAMMA DI FLUSSO/FLOW CHART
+# Diagramma di flusso (flow chart)
 
 - Consentono di rappresentare visivamente un algoritmo.
 - Sono indipendenti dal linguaggio di programmazione.
@@ -269,7 +269,7 @@ level: 2
 
 ---
 
-# Esempio di flowchart
+# Esempio di flow chart
 
 ```mermaid {scale: 0.7, alt: 'A diagram'}
 flowchart LR
@@ -311,7 +311,7 @@ level: 2
 
 ---
 
-# Selezione - IF THEN ELSE
+# Selezione: if-then-else
 
 - Viene valutata una condizione.
 - Se la condizione è vera, l’elaborazione prosegue con il ramo di sinistra.
@@ -319,7 +319,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'A diagram'}
+```mermaid {scale: 0.85, alt: 'A diagram'}
 flowchart TD
     Start([Inizio]) --> Condition{La condizione è verificata?}
     Condition -- Sì --> Action1[Azione se vera]
@@ -334,7 +334,7 @@ level: 2
 
 ---
 
-# Iterazione - Ciclo while
+# Iterazione: ciclo while
 
 - Viene valutata una condizione.
 - Se la condizione è vera, viene eseguita l’azione e poi viene rivalutata la condizione.
@@ -342,7 +342,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 0.9, alt: 'A diagram'}
+```mermaid {scale: 0.8, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
@@ -358,7 +358,7 @@ level: 2
 
 ---
 
-# Iterazione - Ciclo do while
+# Iterazione: ciclo do while
 
 - Viene eseguita l’azione.
 - Se la condizione è vera, l’azione viene eseguita nuovamente e poi viene rivalutata la condizione.
@@ -367,7 +367,7 @@ level: 2
 
 ::right::
 
-```mermaid {scale: 0.8, alt: 'A diagram'}
+```mermaid {scale: 0.7, alt: 'A diagram'}
 flowchart TD
     J1@{ shape: f-circ, label: ""}
     Start([Inizio]) --> J1
@@ -383,7 +383,7 @@ level: 2
 
 ---
 
-# Iterazione - Ciclo for
+# Iterazione: ciclo for
 
 - Viene valutata la condizione e, se vera, si esegue l’azione.
 - L’azione viene eseguita un numero finito di volte.
@@ -408,7 +408,7 @@ level: 2
 
 ---
 
-# Esempio: CALCOLO DEL FATTORIALE
+# Esempio: calcolo del fattoriale
 
 Dato un numero intero, calcolarne il fattoriale.
 
@@ -438,7 +438,7 @@ level: 2
 
 ---
 
-# Esempio: CALCOLO DEL FATTORIALE
+# Esempio: flow chart del fattoriale
 
 ```mermaid {scale: 0.5, alt: 'A diagram'}
 flowchart LR
@@ -460,7 +460,7 @@ level: 2
 
 ---
 
-# ESERCIZIO
+# Esercizio: costo di un prodotto
 
 Rappresentare un algoritmo per il calcolo del costo di un prodotto che soddisfi i seguenti requisiti:
 
@@ -474,7 +474,7 @@ level: 2
 
 ---
 
-# flow-chart
+# Soluzione: flow chart del costo
 
 Flowchart della soluzione
 
@@ -669,7 +669,7 @@ level: 2
 
 ---
 
-# hello, world
+# hello, world: il programma
 
 <<< @/snippets/example01/main.c txt {all}{lines:true}
 
@@ -678,7 +678,7 @@ level: 2
 
 ---
 
-# hello, world
+# hello, world: passo per passo
 
 <<< @/snippets/example01/main.c c {all|1-4|6-7|9-15|17-18|19|all}{lines:true}
 
@@ -687,7 +687,7 @@ level: 2
 
 ---
 
-# Esercizio: Il tuo primo programma in CLion (parte 1)
+# Esercizio: il tuo primo programma in CLion (parte 1)
 
 **Obiettivo:** Creare ed eseguire il programma "Hello, World!" usando CLion
 
@@ -707,7 +707,7 @@ level: 2
 
 ---
 
-# Esercizio: Il tuo primo programma in CLion (parte 2)
+# Esercizio: il tuo primo programma in CLion (parte 2)
 
 6. Verifica che il file `main.c` contenga il codice Hello World
 7. Clicca sul pulsante ▶️ verde (Run) oppure premi `Shift+F10` (Windows/Linux) o `Ctrl+R` (macOS)
@@ -719,6 +719,42 @@ level: 2
 Hello, World!
 
 Process finished with exit code 0
+```
+
+---
+level: 2
+
+---
+
+# Creazione di un eseguibile
+
+Il processo di creazione di un eseguibile a partire dai sorgenti è composto da 2 fasi:
+
+- **compilazione**: il preprocessore espande le direttive come `#include`, poi il compilatore traduce il sorgente. Mancano ancora alcune parti (le "funzioni di base", come `printf`) e viene generato un file intermedio detto file oggetto
+- **linking**: il file oggetto e le librerie vengono unite (collegate, "link") così da aggiungere le parti mancanti e costituire un unico file eseguibile. Il link può unire più file oggetto e più librerie.
+
+Le fasi nel dettaglio sono in lezione 5.
+
+---
+level: 2
+
+---
+
+# Processo di build di un programma C
+
+```mermaid {scale: 0.8, alt: 'Compilation pipeline diagram showing source files and headers flowing through preprocessor and compiler, then, with libraries, through the linker to create the executable'}
+flowchart LR
+SF@{ shape: doc, label: "Source file" }
+HF@{ shape: docs, label: "Header files" }
+SF-->PP[Preprocessor]
+HF-->PP
+PP-->PF@{ shape: doc, label: "Pre-processed file" }
+PF-->CC[Compiler]
+CC-->OF@{ shape: doc, label: "Object file" }
+
+    OFF@{ shape: docs, label: "Object files" }-->LN[Linker]
+    LL@{ shape: docs, label: "Libraries" }--> LN
+    LN -->EF@{ shape: doc, label: "Executable file" }
 ```
 
 ---

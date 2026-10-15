@@ -456,17 +456,7 @@ Le **enumerazioni** (enum) permettono di definire un insieme di costanti intere 
 
 ## Soluzione con enum
 
-```c
-enum weekday {
-    MONDAY,     // 0
-    TUESDAY,    // 1
-    WEDNESDAY,  // 2
-    THURSDAY,    // 3
-    FRIDAY,    // 4
-    SATURDAY,     // 5
-    SUNDAY    // 6
-};
-```
+<<< @/snippets/example71/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -502,20 +492,7 @@ level: 2
 
 È possibile assegnare valori espliciti agli elementi di un enum:
 
-```c
-enum ErrorCode {
-    OK = 0,
-    WARNING = 100,
-    ERROR = 200,
-    CRITICAL = 300
-};
-
-enum HttpStatus {
-    HTTP_OK = 200,
-    HTTP_NOT_FOUND = 404,
-    HTTP_ERROR = 500
-};
-```
+<<< @/snippets/example70/main.c#demo c {*}{lines:true}
 
 ## Regola
 
@@ -552,31 +529,7 @@ level: 2
 
 # Enum con switch: esempio pratico
 
-```c
-#include <stdio.h>
-
-enum TrafficLight {
-    RED,
-    YELLOW,
-    GREEN
-};
-
-void print_action(enum TrafficLight state) {
-    switch (state) {
-        case RED:
-            printf("STOP - Do not go\n");
-            break;
-        case YELLOW:
-            printf("CAUTION - Slow down\n");
-            break;
-        case GREEN:
-            printf("GO - You may go\n");
-            break;
-        default:
-            printf("Unknown state\n");
-    }
-}
-```
+<<< @/snippets/example69/main.c#demo c {*}{lines:true}
 
 ---
 level: 2

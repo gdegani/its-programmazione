@@ -62,17 +62,7 @@ struct struct_name {
 
 ## Esempio completo
 
-```c
-struct Point {
-    int x;
-    int y;
-};
-
-struct Rectangle {
-    struct Point top_left;
-    struct Point bottom_right;
-};
-```
+<<< @/snippets/example81/main.c#demo c {*}{lines:true}
 
 **Nota**: il `;` finale dopo la `}` è obbligatorio!
 
@@ -85,22 +75,7 @@ level: 2
 
 ## Dichiarazione e inizializzazione
 
-```c
-struct Student {
-    char name[50];
-    int age;
-    float grade;
-};
-
-// Direct initialization
-struct Student s1 = {"Marco Rossi", 20, 28.5};
-
-// Partial initialization
-struct Student s2 = {"Anna"}; // age=0, grade=0.0
-
-// Declaration without initialization
-struct Student s3;
-```
+<<< @/snippets/example80/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -111,23 +86,7 @@ level: 2
 
 Si usa l'**operatore punto** `.` per accedere ai membri:
 
-```c
-struct Student s1;
-
-// Assignment
-s1.age = 20;
-s1.grade = 28.5;
-strcpy(s1.name, "Marco Rossi");
-
-// Reading
-printf("Name: %s\n", s1.name);
-printf("Age: %d\n", s1.age);
-printf("Grade: %.2f\n", s1.grade);
-
-// Update
-s1.grade = 30.0;
-s1.age++;
-```
+<<< @/snippets/example79/main.c#demo c {*}{lines:true}
 
 **Attenzione**: per le stringhe (array di char) si usa `strcpy`, non l'assegnazione diretta!
 
@@ -140,25 +99,7 @@ level: 2
 
 # Esempio completo: struct Student
 
-```c
-#include <stdio.h>
-
-struct Student {
-    char name[50];
-    int age;
-    float grade;
-};
-
-int main() {
-    struct Student student1 = {"Marco Rossi", 20, 28.5};
-    
-    printf("Name: %s\n", student1.name);
-    printf("Age: %d\n", student1.age);
-    printf("Grade: %.2f\n", student1.grade);
-    
-    return 0;
-}
-```
+<<< @/snippets/example78/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -169,25 +110,7 @@ level: 2
 
 L'**operatore freccia** `->` accede ai membri tramite puntatore:
 
-```c
-struct Student {
-    char name[50];
-    int age;
-    float grade;
-};
-
-void modifyStudent(struct Student *s) {
-    s->age = 21;           // Same as (*s).age = 21
-    s->grade = 30.0;        // Same as (*s).grade = 30.0
-}
-
-int main() {
-    struct Student s1 = {"Marco", 20, 28.5};
-    modifyStudent(&s1);    // Passes the address
-    printf("New age: %d\n", s1.age);  // Prints 21
-    return 0;
-}
-```
+<<< @/snippets/example77/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -200,19 +123,7 @@ Le strutture possono essere passate alle funzioni **per valore** o **per riferim
 
 ## Passaggio per valore
 
-```c
-void printStudent(struct Student s) {
-    printf("Name: %s\n", s.name);
-    printf("Age: %d\n", s.age);
-    printf("Grade: %.2f\n", s.grade);
-}
-
-int main() {
-    struct Student s1 = {"Marco", 20, 28.5};
-    printStudent(s1);  // Copies the whole structure
-    return 0;
-}
-```
+<<< @/snippets/example76/main.c#demo c {*}{lines:true}
 
 **Nota**: passare per valore copia tutta la struttura (può essere costoso per strutture grandi!).
 
@@ -284,39 +195,11 @@ level: 2
 
 Puoi creare array di strutture per gestire collezioni di dati:
 
-```c
-#include <stdio.h>
-#include <string.h>
-
-typedef struct {
-    char name[50];
-    int age;
-    float grade;
-} Student;
-
-int main() {
-    Student students[3];
-    
-    strcpy(students[0].name, "Marco");
-    students[0].age = 20;
-    students[0].grade = 28.5;
-    
-    strcpy(students[1].name, "Anna");
-    students[1].age = 19;
-    students[1].grade = 27.0;
-```
+<<< @/snippets/example82/main.c#part1 c {*}{lines:true}
 
 ::right::
 
-```c
-    // Print all the students
-    for (int i = 0; i < 2; i++) {
-        printf("%s: %.1f\n", students[i].name, students[i].grade);
-    }
-    
-    return 0;
-}
-```
+<<< @/snippets/example82/main.c#part2 c {*}{lines:true}
 
 ---
 level: 2
@@ -445,20 +328,7 @@ char *fgets(char *str, int n, FILE *stream);
 
 ## Esempio
 
-```c
-FILE *file = fopen("input.txt", "r");
-if (file == NULL) {
-    perror("Error opening file");
-    return 1;
-}
-
-char line[100];
-while (fgets(line, 100, file) != NULL) {
-    printf("%s", line);  // line already contains \n
-}
-
-fclose(file);
-```
+<<< @/snippets/example75/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -475,20 +345,7 @@ int fscanf(FILE *stream, const char *format, ...);
 
 ## Esempio: leggere numeri da file
 
-```c
-FILE *file = fopen("numbers.txt", "r");
-if (file == NULL) {
-    perror("Error opening file");
-    return 1;
-}
-
-int number;
-while (fscanf(file, "%d", &number) == 1) {
-    printf("Read: %d\n", number);
-}
-
-fclose(file);
-```
+<<< @/snippets/example74/main.c#demo c {*}{lines:true}
 
 **Nota**: `fscanf()` restituisce il numero di elementi letti con successo.
 
@@ -507,19 +364,7 @@ int fprintf(FILE *stream, const char *format, ...);
 
 ## Esempio: scrivere una tabella
 
-```c
-FILE *file = fopen("table.txt", "w");
-if (file == NULL) {
-    perror("Error opening file");
-    return 1;
-}
-
-fprintf(file, "%-10s %-5s\n", "Name", "Grade");
-fprintf(file, "%-10s %-5d\n", "Marco", 28);
-fprintf(file, "%-10s %-5d\n", "Anna", 30);
-
-fclose(file);
-```
+<<< @/snippets/example73/main.c#demo c {*}{lines:true}
 
 ---
 level: 2
@@ -563,18 +408,7 @@ level: 2
 
 `fgets()` legge una riga intera in un buffer; `sscanf()` ne estrae i campi, come `scanf()` ma da una stringa:
 
-```c
-char line[100];
-long timestamp;
-int sensor_id;
-double value;
-
-while (fgets(line, sizeof(line), file) != NULL) {
-    if (sscanf(line, "%ld;%d;%lf", &timestamp, &sensor_id, &value) == 3) {
-        // valid row: all three fields were read
-    }
-}
-```
+<<< @/snippets/example72/main.c#demo c {*}{lines:true}
 
 - `sscanf()` restituisce il numero di campi letti: se non è 3, la riga è malformata
 - Formato del file `readings.csv`: `timestamp;sensor_id;value`
@@ -801,45 +635,11 @@ level: 2
 
 Esempio di allocazione dinamica di array di strutture:
 
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct {
-  char subject[30];
-  int grade;
-} Course;
-
-int main() {
-  int n;
-  printf("Number of courses: ");
-  scanf("%d", &n);
-    
-  // Allocate memory for n courses
-  Course *courses = (Course *)malloc(n * sizeof(Course));
-```
+<<< @/snippets/example83/main.c#part1 c {*}{lines:true}
 
 ::right::
   
-```c
-
-  // Read the data
-  for (int i = 0; i < n; i++) {
-    printf("Subject %d: ", i+1);
-    scanf("%s", courses[i].subject);
-    printf("Grade: ");
-    scanf("%d", &courses[i].grade);
-  }
-    
-  // Display
-  for (int i = 0; i < n; i++) {
-    printf("%s: %d\n", courses[i].subject, courses[i].grade);
-  }
-    
-  free(courses);
-  return 0;
-}
-```
+<<< @/snippets/example83/main.c#part2 c {*}{lines:true}
 
 ---
 layout: two-cols
