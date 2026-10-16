@@ -801,3 +801,30 @@ Servono i caratteri speciali della slide precedente: `\n`, `\"` e `\\`.
 ## Per chi finisce prima
 
 Stampare anche una quarta riga con un carattere di tabulazione tra `Status:` e `READY`.
+
+---
+level: 2
+
+---
+
+# Esercizio: il pannello di allarme
+
+Livello standard, in coppia: scambiatevi i ruoli a ogni riga.
+
+Scrivere un programma che stampa con `printf()` questo pannello, usando una sola istruzione `printf()` per riga:
+
+```text
++------------------------+
+| ALARM                  |
+| Sensor: "T-04"         |
+| Limit: 80 C            |
++------------------------+
+```
+
+## Suggerimento
+
+Disegnare prima il pannello su carta e contare i caratteri di ogni riga. Le righe interne hanno la stessa lunghezza dei bordi.
+
+## Per chi finisce prima
+
+Stampare sotto il pannello il percorso `C:\factory\logs\alarm.txt` con le barre inverse.
