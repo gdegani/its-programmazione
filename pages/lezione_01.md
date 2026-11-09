@@ -92,6 +92,9 @@ Due programmatori lavorano insieme allo stesso computer per scrivere codice.
 
 **Durante le esercitazioni in aula lavorerete in coppia seguendo questa metodologia.**
 
+- Le coppie possono cambiare durante il corso.
+- Entrambi devono comprendere e saper spiegare il codice prodotto.
+
 ---
 level: 2
 
@@ -127,6 +130,8 @@ level: 2
 
 **⏱️ Importante:** Scambiatevi i ruoli ogni 15-20 minuti!
 
+Le coppie e i ruoli ruotano durante il corso, così tutti possono lavorare sia alla tastiera sia nella progettazione.
+
 ---
 level: 2
 
@@ -134,7 +139,7 @@ level: 2
 
 # Algoritmo
 
-- Il termine deriva dalla trascrizione latina del nome del matematico persiano al-Khwarizmi, vissuto nel IX secolo d.C. È considerato uno dei primi autori ad aver fatto riferimento a questo concetto, scrivendo il libro “Regole di ripristino e riduzione”.
+- Il termine deriva dalla trascrizione latina del nome di al-Khwarizmi, matematico persiano vissuto nel IX secolo d.C.
 - In matematica e informatica, un algoritmo è la specificazione di una sequenza finita di operazioni (dette anche istruzioni) che consente di risolvere una classe di problemi specifici o di calcolare il risultato di un'espressione matematica.
 
 ---
@@ -160,10 +165,12 @@ level: 2
 # Proprietà di un algoritmo
 
 - **Finito:** costituito da un numero finito di istruzioni.
-- **Deterministico:** partendo dagli stessi dati di ingresso, ottengo gli stessi risultati.
+- **Deterministico:** con gli stessi dati di ingresso e nelle stesse condizioni, produce lo stesso risultato.
 - **Generale:** applicabile a tutti i problemi della classe a cui si riferisce.
   - Ad esempio, l'algoritmo per il calcolo dell'area di un rettangolo deve essere applicabile a tutti i rettangoli.
 - **Eseguibile:** esiste un esecutore in grado di eseguire tutte le istruzioni in un tempo finito.
+
+Non tutti gli algoritmi devono essere deterministici: questa proprietà è importante quando si vuole ottenere un risultato riproducibile.
 
 ---
 layout: image-right
@@ -219,14 +226,15 @@ level: 2
 
 ---
 
-# Strutture dati
+# Variabili e tipi di dato
 
-- I contenitori usati per contenere i dati in ingresso sono detti variabili.
+- Una variabile contiene un valore durante l'esecuzione di un programma.
 - Le variabili:
   - Hanno un nome o identificatore.
   - Possono essere usate come parte di una istruzione.
-  - Possono essere caratterizzate dal tipo di dato che contengono
-    - es. variabili per numeri interi, numeri reali, sequenze di numeri, etc...
+  - Hanno un tipo di dato, che stabilisce quali valori possono contenere.
+    - Ad esempio: numeri interi, numeri reali o caratteri.
+- Le strutture dati sono organizzazioni più complesse di dati e verranno introdotte nelle lezioni successive.
 
 ---
 level: 2
@@ -413,7 +421,7 @@ level: 2
 Dato un numero intero, calcolarne il fattoriale.
 
 - Input: un numero intero maggiore o uguale a zero
-- Algoritmo: moltiplico n per tutti i numeri minori di n, fino a 2
+- Algoritmo: parto da 1 e moltiplico progressivamente il risultato per i numeri da 1 a n
 
 ::right::
 
@@ -520,9 +528,9 @@ level: 2
 # Problema
 
 - Per fornire istruzioni a un computer è necessario utilizzare un linguaggio comune.
-- Il computer comprende solo sequenze di 0 e 1, ovvero sequenze binarie.
+- La CPU esegue istruzioni macchina, rappresentate internamente in forma binaria.
 - Il programmatore comprende il linguaggio naturale: “fai, leggi, scrivi.”
-- Il linguaggio di programmazione è un linguaggio compreso sia dal computer che dal programmatore.
+- Compilatori, interpreti e macchine virtuali traducono o eseguono il codice sorgente.
 
 ---
 layout: image-right
@@ -584,12 +592,14 @@ level: 2
 
 # Linguaggi di programmazione
 
-Calcolatore e programmatore, per comprendersi, devono avere un linguaggio comune:
+Calcolatore e programmatore usano livelli e meccanismi diversi per comunicare:
 
 - Linguaggi a basso livello: (es. Assembly)
-- Linguaggi ad alto livello: (es. JavaScript, Python)
-- Linguaggi compilati: (es. TypeScript, Java)
-- Linguaggi interpretati: (es. JavaScript, Python)
+- Linguaggi ad alto livello: (es. C, JavaScript, Python)
+- Linguaggi normalmente compilati in codice macchina: (es. C)
+- Linguaggi compilati in un formato intermedio: (es. Java in bytecode)
+- Linguaggi trasformati in un altro linguaggio: (es. TypeScript in JavaScript)
+- Linguaggi eseguiti tramite un interprete o una macchina virtuale: (es. Python, JavaScript)
 
 Il documento contenente le istruzioni scritte in un linguaggio di programmazione si chiama **codice sorgente**.
 
@@ -598,10 +608,12 @@ level: 2
 
 ---
 
-# Traduttori in linguaggio macchina
+# Traduttori ed esecutori
 
-- **Interprete:** Le istruzioni vengono tradotte una alla volta ed eseguite immediatamente dal calcolatore.
-- **Compilatore:** Tutte le istruzioni vengono tradotte in linguaggio macchina e memorizzate in un file eseguibile dal calcolatore (programma).
+- **Interprete:** legge il codice o un formato intermedio e lo esegue durante l'esecuzione del programma (es. Python, JavaScript).
+- **Compilatore:** traduce il codice in un formato eseguibile o intermedio, prodotto prima dell'esecuzione (es. C, C++, Rust).
+- Un linguaggio può usare una combinazione di compilazione e interpretazione.
+  - Java viene compilato in bytecode ed eseguito dalla macchina virtuale Java (JVM).
 
 ---
 level: 2
@@ -610,11 +622,11 @@ level: 2
 
 # Pro e contro
 
-Velocità di esecuzione:
+In generale, precompilare parte del programma può ridurre il lavoro da svolgere durante l'esecuzione:
 
-- L’interprete deve tradurre il programma ogni volta che lo esegue.
-- Il programma compilato viene tradotto solo una volta.
-- Il compilatore è più efficiente ed ottimizza il codice tradotto.
+- un programma interpretato può analizzare il codice durante l'esecuzione;
+- un programma compilato può riutilizzare il risultato della traduzione;
+- compilatori e macchine virtuali possono ottimizzare il codice.
 
 ---
 layout: image-right
@@ -649,9 +661,9 @@ level: 2
 
 # Librerie
 
-- In un linguaggio ad alto livello le funzioni di base sono fornite dal linguaggio ( lettura da tastiera, scrittura su schermo, lettura/scrittura da file)
-- Queste operazioni elementari sono disponibili sotto forma di funzioni
-- Le funzioni sono raccolte e distribuite sotto forma di librerie
+- Il linguaggio C definisce una libreria standard con funzioni comuni, per esempio per l'input/output.
+- Gli header, come `stdio.h`, dichiarano le funzioni disponibili, tra cui `printf()`.
+- L'implementazione delle funzioni viene fornita dalle librerie e collegata al programma durante il linking.
 
 ---
 level: 2
@@ -828,3 +840,84 @@ Disegnare prima il pannello su carta e contare i caratteri di ogni riga. Le righ
 ## Per chi finisce prima
 
 Stampare sotto il pannello il percorso `C:\factory\logs\alarm.txt` con le barre inverse.
+
+---
+level: 2
+
+---
+
+# Esercizio: il registro della misura
+
+Scrivere un programma che stampa con `printf()` esattamente questo testo:
+
+```text
+--- Measurement ---
+Sensor: "TEMP-01"
+Location: Line A
+Status: READY
+-------------------
+```
+
+Usare una sequenza `\n` per ogni nuova riga e la sequenza `\"` per le virgolette.
+
+---
+level: 2
+
+---
+
+# Esercizio: il pannello di controllo
+
+Scrivere un programma che stampa con `printf()` esattamente questo testo:
+
+```text
++----------------------+
+| LINE CONTROL         |
+| Status: ACTIVE       |
+| Sensor: OK           |
+| Alarm: NONE          |
++----------------------+
+```
+
+Contare i caratteri di ogni riga per mantenere il pannello allineato.
+
+---
+level: 2
+
+---
+
+# Esercizio: la schermata diagnostica
+
+Scrivere un programma che stampa con `printf()` esattamente questa schermata:
+
+```text
+========================
+   MACHINE DIAGNOSTICS
+========================
+CPU:       OK
+Memory:    OK
+Sensor 01: OK
+Alarm:     NONE
+========================
+```
+
+Usare `\t` per allineare i valori quando possibile.
+
+## Per chi finisce prima
+
+Sostituire gli spazi con tabulazioni e verificare il risultato nella console.
+
+---
+level: 2
+
+---
+
+# Conclusioni: cosa porti a casa?
+
+In coppia, senza consultare le slide, scrivete:
+
+- tre cose che avete imparato oggi;
+- una cosa che non avete ancora capito bene;
+- una cosa che sapete spiegare al vostro compagno;
+- una cosa che proverete nella prossima lezione.
+
+Confrontate poi le vostre risposte con un'altra coppia.

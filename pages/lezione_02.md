@@ -14,6 +14,33 @@ level: 2
 
 ---
 
+# Connessioni: cosa ricordi del primo programma?
+
+In coppia:
+
+1. Ricostruite i passaggi dal file `main.c` al programma eseguibile.
+2. Prevedete l'output di questo programma senza eseguirlo:
+
+```c
+#include <stdio.h>
+
+int main(void) {
+    printf("Machine: \"Press 01\"\n");
+    printf("Status:\tREADY\n");
+    return 0;
+}
+```
+
+3. Indicate quali caratteri speciali riconoscete.
+4. Eseguite il programma e confrontate il risultato con la previsione.
+
+**Domanda finale:** che cosa dovrebbe cambiare nel programma per stampare anche un numero?
+
+---
+level: 2
+
+---
+
 # Elementi base del linguaggio C
 
 Vediamo gli elementi fondamentali del linguaggio:
