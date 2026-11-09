@@ -610,9 +610,10 @@ level: 2
 
 # Traduttori ed esecutori
 
-- **Interprete:** legge il codice o un formato intermedio e lo esegue durante l'esecuzione del programma.
-- **Compilatore:** traduce il codice in un formato eseguibile o intermedio, prodotto prima dell'esecuzione.
+- **Interprete:** legge il codice o un formato intermedio e lo esegue durante l'esecuzione del programma (es. Python, JavaScript).
+- **Compilatore:** traduce il codice in un formato eseguibile o intermedio, prodotto prima dell'esecuzione (es. C, C++, Rust).
 - Un linguaggio può usare una combinazione di compilazione e interpretazione.
+  - Java viene compilato in bytecode ed eseguito dalla macchina virtuale Java (JVM).
 
 ---
 level: 2
@@ -839,3 +840,84 @@ Disegnare prima il pannello su carta e contare i caratteri di ogni riga. Le righ
 ## Per chi finisce prima
 
 Stampare sotto il pannello il percorso `C:\factory\logs\alarm.txt` con le barre inverse.
+
+---
+level: 2
+
+---
+
+# Esercizio: il registro della misura
+
+Scrivere un programma che stampa con `printf()` esattamente questo testo:
+
+```text
+--- Measurement ---
+Sensor: "TEMP-01"
+Location: Line A
+Status: READY
+-------------------
+```
+
+Usare una sequenza `\n` per ogni nuova riga e la sequenza `\"` per le virgolette.
+
+---
+level: 2
+
+---
+
+# Esercizio: il pannello di controllo
+
+Scrivere un programma che stampa con `printf()` esattamente questo testo:
+
+```text
++----------------------+
+| LINE CONTROL         |
+| Status: ACTIVE       |
+| Sensor: OK           |
+| Alarm: NONE          |
++----------------------+
+```
+
+Contare i caratteri di ogni riga per mantenere il pannello allineato.
+
+---
+level: 2
+
+---
+
+# Esercizio: la schermata diagnostica
+
+Scrivere un programma che stampa con `printf()` esattamente questa schermata:
+
+```text
+========================
+   MACHINE DIAGNOSTICS
+========================
+CPU:       OK
+Memory:    OK
+Sensor 01: OK
+Alarm:     NONE
+========================
+```
+
+Usare `\t` per allineare i valori quando possibile.
+
+## Per chi finisce prima
+
+Sostituire gli spazi con tabulazioni e verificare il risultato nella console.
+
+---
+level: 2
+
+---
+
+# Conclusioni: cosa porti a casa?
+
+In coppia, senza consultare le slide, scrivete:
+
+- tre cose che avete imparato oggi;
+- una cosa che non avete ancora capito bene;
+- una cosa che sapete spiegare al vostro compagno;
+- una cosa che proverete nella prossima lezione.
+
+Confrontate poi le vostre risposte con un'altra coppia.
