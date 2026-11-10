@@ -260,19 +260,6 @@ level: 2
 - Esistono diversi standard grafici.
 
 ---
-layout: image
-image: /flowchart.png
-backgroundSize: contain
-title: Simboli flowchart
-level: 2
-
----
-
-<div class="absolute bottom-2 left-4 text-xs text-gray-400">
-source: wikipedia.org
-</div>
-
----
 level: 2
 
 ---
@@ -289,6 +276,19 @@ flowchart LR
     Decision -- No --> End([Fine])
     Process2 --> End([Fine])
 ```
+
+---
+layout: image
+image: /flowchart.png
+backgroundSize: contain
+title: Simboli flowchart
+level: 2
+
+---
+
+<div class="absolute bottom-2 left-4 text-xs text-gray-400">
+source: wikipedia.org
+</div>
 
 ---
 layout: two-cols
@@ -442,6 +442,38 @@ n \times (n-1) \times \cdots \times 2 \times 1 & \text{se } n > 0
 $$
 
 ---
+layout: two-cols
+level: 2
+
+---
+
+# Flow chart con Google Slides
+
+1. Apri `slides.google.com` e crea una presentazione vuota
+2. Condividi il file con il compagno, con permesso di modifica
+3. Imposta il layout «Vuoto» sulla diapositiva
+4. Inserisci le forme: «Inserisci → Forma → Forme», sezione «Diagramma di flusso»
+5. Scrivi il testo con un doppio clic sulla forma
+6. Collega le forme: «Inserisci → Linea → Connettore a gomito», agganciando i punti di connessione
+7. Aggiungi Sì/No con una casella di testo
+
+::right::
+
+## Forme da usare
+
+| Simbolo | Forma |
+| --- | --- |
+| Inizio, Fine | Terminatore |
+| Elaborazione | Processo |
+| Input, Output | Dati |
+| Decisione | Decisione |
+
+## Suggerimenti
+
+- `Ctrl+D` duplica una forma
+- I connettori seguono le forme quando le sposti
+
+---
 level: 2
 
 ---
@@ -592,14 +624,12 @@ level: 2
 
 # Linguaggi di programmazione
 
-Calcolatore e programmatore usano livelli e meccanismi diversi per comunicare:
-
-- Linguaggi a basso livello: (es. Assembly)
-- Linguaggi ad alto livello: (es. C, JavaScript, Python)
-- Linguaggi normalmente compilati in codice macchina: (es. C)
-- Linguaggi compilati in un formato intermedio: (es. Java in bytecode)
-- Linguaggi trasformati in un altro linguaggio: (es. TypeScript in JavaScript)
-- Linguaggi eseguiti tramite un interprete o una macchina virtuale: (es. Python, JavaScript)
+- Per livello di astrazione
+  - Basso livello: vicini alla macchina (es. Assembly)
+  - Alto livello: vicini al programmatore (es. C, Python)
+- Per modalità di esecuzione
+  - Compilati: tradotti in codice macchina (es. C)
+  - Interpretati: eseguiti da un interprete (es. Python)
 
 Il documento contenente le istruzioni scritte in un linguaggio di programmazione si chiama **codice sorgente**.
 
@@ -608,7 +638,7 @@ level: 2
 
 ---
 
-# Traduttori ed esecutori
+# Traduttori ed interpreti
 
 - **Interprete:** legge il codice o un formato intermedio e lo esegue durante l'esecuzione del programma (es. Python, JavaScript).
 - **Compilatore:** traduce il codice in un formato eseguibile o intermedio, prodotto prima dell'esecuzione (es. C, C++, Rust).
@@ -767,6 +797,42 @@ CC-->OF@{ shape: doc, label: "Object file" }
     OFF@{ shape: docs, label: "Object files" }-->LN[Linker]
     LL@{ shape: docs, label: "Libraries" }--> LN
     LN -->EF@{ shape: doc, label: "Executable file" }
+```
+
+---
+layout: two-cols-small-header
+level: 2
+
+---
+
+# Hello world in CLion
+
+::left::
+
+## 1. Crea
+
+- `File → New Project → C Executable`
+- Nome `hello_world`, standard C11
+- CLion genera `main.c` e `CMakeLists.txt`
+
+## 2. Compila
+
+- `Build → Build Project` (`Ctrl+F9`, su macOS `⌘F9`)
+- Compilatore e linker creano l'eseguibile nella cartella `cmake-build-debug`
+
+::right::
+
+## 3. Esegui
+
+- Pulsante ▶ verde (Run): `Shift+F10`, su macOS `Ctrl+R`
+- Se il sorgente è cambiato, Run compila di nuovo prima di eseguire
+
+## Risultato nella finestra Run
+
+```text
+Hello, World!
+
+Process finished with exit code 0
 ```
 
 ---

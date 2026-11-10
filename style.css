@@ -35,6 +35,30 @@
   /*Aggiungi spaziatura tra le righe */
 }
 
+/* Bullet symbols that change with nesting depth (the first level keeps the theme default) */
+.slidev-layout ul ul {
+  font-size: 1.1rem;
+  margin-top: 0.2em;
+}
+
+.slidev-layout ul ul > li {
+  list-style-type: "○  ";
+}
+
+.slidev-layout ul ul > li::marker {
+  color: #444;
+  font-size: 0.7em;
+}
+
+.slidev-layout ul ul ul > li {
+  list-style-type: "▶  ";
+}
+
+.slidev-layout ul ul ul > li::marker {
+  color: #333;
+  font-size: 0.8em;
+}
+
 .col-left .mermaid,
 .col-right .mermaid {
   display: flex;
